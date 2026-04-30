@@ -175,7 +175,7 @@ CREATE POLICY "admin_read" ON contact_messages
 
 | Bloque | Descripción | Estado |
 |---|---|---|
-| B1 | Setup inicial: cuentas, repo, esqueleto Next.js, primer despliegue | ⏳ En curso |
+| B1 | Setup inicial: cuentas, repo, esqueleto Next.js, primer despliegue | ✅ Completado |
 | B2 | Modelo de datos en Supabase: tablas, RLS, Storage, datos prueba | ⬜ Pendiente |
 | B3 | Mapa interactivo con Leaflet leyendo de Supabase | ⬜ Pendiente |
 | B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ⬜ Pendiente |
@@ -280,16 +280,14 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B1 — Setup inicial**. Pasos pendientes:
+**Bloque B2 — Modelo de datos en Supabase**. Pasos pendientes:
 
-1. Verificar/crear cuenta GitHub
-2. Crear cuenta Vercel (con GitHub)
-3. Crear cuenta Supabase (con GitHub)
-4. Crear proyecto Supabase en `eu-central-1`
-5. Crear repositorio GitHub
-6. Inicializar Next.js con TypeScript + Tailwind + App Router
-7. Conectar repo a Vercel
-8. Primer despliegue funcional
+1. Crear tablas `localities` y `contact_messages` en Supabase
+2. Configurar RLS (Row Level Security)
+3. Crear bucket Storage `audios`
+4. Insertar datos de prueba (3-5 localidades ficticias)
+5. Crear `.env.local` con las claves de Supabase
+6. Crear `.env.example` como plantilla (sin valores reales)
 
 ---
 
@@ -300,4 +298,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 30 de abril de 2026*
+*Última actualización: 1 de mayo de 2026*
