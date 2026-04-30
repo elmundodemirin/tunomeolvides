@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css'
 
 type Props = {
   localities: Locality[]
+  locale: string
 }
 
 // SVG pin with forget-me-not flower color
@@ -17,11 +18,13 @@ const MARKER_SVG = `
   <circle cx="14" cy="14" r="3" fill="#6B8CB8"/>
 </svg>`
 
-function buildPopupHTML(loc: Locality): string {
-  const audioSection = loc.audio_url_es
+function buildPopupHTML(loc: Locality, locale: string): string {
+  const description = locale === 'en' ? loc.description_en : loc.description_es
+  const audioUrl = locale === 'en' ? loc.audio_url_en : loc.audio_url_es
+  const audioSection = audioUrl
     ? `<div style="padding:0 12px 4px">
          <audio controls style="width:100%;height:32px">
-           <source src="${loc.audio_url_es}" type="audio/mpeg"/>
+           <source src="${audioUrl}" type="audio/mpeg"/>
          </audio>
        </div>`
     : ''
@@ -42,14 +45,14 @@ function buildPopupHTML(loc: Locality): string {
         <div style="color:rgba(255,255,255,0.85);font-size:11px;margin-top:2px">${loc.province} · ${loc.region}</div>
       </div>
       <div style="padding:10px 12px;font-size:13px;line-height:1.5;color:#2C1810;max-height:100px;overflow-y:auto">
-        ${loc.description_es}
+        ${description}
       </div>
       ${audioSection}
       ${linkSection}
     </div>`
 }
 
-export default function Map({ localities }: Props) {
+export default function Map({ localities, locale }: Props) {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<import('leaflet').Map | null>(null)
 
@@ -81,7 +84,7 @@ export default function Map({ localities }: Props) {
       localities.forEach((loc) => {
         L.marker([loc.latitude, loc.longitude], { icon })
           .addTo(map!)
-          .bindPopup(buildPopupHTML(loc), { maxWidth: 280 })
+          .bindPopup(buildPopupHTML(loc, locale), { maxWidth: 280 })
       })
     })
 
@@ -94,5 +97,5 @@ export default function Map({ localities }: Props) {
     }
   }, [localities])
 
-  return <div ref={mapRef} className="w-full h-full" />
+  return <div ref={mapRef} style={{ width: '100%', height: 'calc(100vh - 72px)' }} />
 }

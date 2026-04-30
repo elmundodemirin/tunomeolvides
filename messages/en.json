@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "header": {
+    "subtitle": "Cultural heritage of rural Spain"
+  },
+  "home": {
+    "mapLoading": "Loading map...",
+    "errorLoading": "Error loading localities"
+  },
+  "about": {
+    "title": "About the project",
+    "intro": "No Me Olvides is a platform to document and preserve the cultural heritage of villages in depopulated rural Spain.",
+    "body": "Each point on the map is a village with a history, with voices that once inhabited it and with a memory that deserves to be told. Through first-person audio narratives, we recover those stories before silence erases them forever.",
+    "promoter": "Promoted by",
+    "promoterName": "María del Carmen López Rosa"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Do you have information about a village, want to collaborate, or simply want to get in touch? Write to us.",
+    "name": "Name",
+    "email": "Email address",
+    "message": "Message",
+    "consent": "I have read and accept the privacy policy. I consent to the processing of my data to handle my enquiry.",
+    "send": "Send message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "messagePlaceholder": "Your message..."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre el proyecto",
+    "contact": "Contacto"
+  },
+  "header": {
+    "subtitle": "Patrimonio cultural de la España vaciada"
+  },
+  "home": {
+    "mapLoading": "Cargando mapa...",
+    "errorLoading": "Error cargando localidades"
+  },
+  "about": {
+    "title": "Sobre el proyecto",
+    "intro": "No Me Olvides es una plataforma para documentar y preservar el patrimonio cultural de los pueblos de la España vaciada.",
+    "body": "Cada punto en el mapa es un pueblo con historia, con voces que lo habitaron y con una memoria que merece ser contada. A través de audios narrados en primera persona, recuperamos esas historias antes de que el silencio las borre para siempre.",
+    "promoter": "Impulsado por",
+    "promoterName": "María del Carmen López Rosa"
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "¿Tienes información sobre un pueblo, quieres colaborar o simplemente deseas ponerte en contacto? Escríbenos.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "consent": "He leído y acepto la política de privacidad. Consiento el tratamiento de mis datos para atender mi consulta.",
+    "send": "Enviar mensaje",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.com",
+    "messagePlaceholder": "Tu mensaje..."
+  }
+}
