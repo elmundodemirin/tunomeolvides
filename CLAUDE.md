@@ -177,7 +177,7 @@ CREATE POLICY "admin_read" ON contact_messages
 |---|---|---|
 | B1 | Setup inicial: cuentas, repo, esqueleto Next.js, primer despliegue | ✅ Completado |
 | B2 | Modelo de datos en Supabase: tablas, RLS, Storage, datos prueba | ✅ Completado |
-| B3 | Mapa interactivo con Leaflet leyendo de Supabase | ⬜ Pendiente |
+| B3 | Mapa interactivo con Leaflet leyendo de Supabase | ✅ Completado |
 | B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ⬜ Pendiente |
 | B5 | i18n ES/EN + páginas estáticas (Inicio, Sobre, Contacto) | ⬜ Pendiente |
 | B6 | Panel `/admin`: login + CRUD localidades + subida audios | ⬜ Pendiente |
@@ -280,12 +280,12 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B3 — Mapa interactivo con Leaflet**. Pasos pendientes:
+**Bloque B4 — Diseño visual**. Pasos pendientes:
 
-1. Instalar Leaflet + tipos TypeScript
-2. Crear componente `Map` (client component)
-3. Leer localidades de Supabase y pintar puntos en el mapa
-4. Popup básico por localidad (nombre, provincia)
+1. Aplicar paleta de colores (terracota, salvia, crema)
+2. Tipografía Georgia (títulos) + Arial (cuerpo)
+3. Icono personalizado para los puntos del mapa (flor no-me-olvides azul)
+4. Popup con diseño: descripción + reproductor de audio + enlace externo
 
 ---
 
