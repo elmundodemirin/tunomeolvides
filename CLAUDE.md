@@ -178,7 +178,7 @@ CREATE POLICY "admin_read" ON contact_messages
 | B1 | Setup inicial: cuentas, repo, esqueleto Next.js, primer despliegue | ✅ Completado |
 | B2 | Modelo de datos en Supabase: tablas, RLS, Storage, datos prueba | ✅ Completado |
 | B3 | Mapa interactivo con Leaflet leyendo de Supabase | ✅ Completado |
-| B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ⬜ Pendiente |
+| B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ✅ Completado |
 | B5 | i18n ES/EN + páginas estáticas (Inicio, Sobre, Contacto) | ⬜ Pendiente |
 | B6 | Panel `/admin`: login + CRUD localidades + subida audios | ⬜ Pendiente |
 | B7 | Formulario contacto + cookies + GA4 + páginas legales | ⬜ Pendiente |
@@ -280,12 +280,14 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B4 — Diseño visual**. Pasos pendientes:
+**Bloque B5 — i18n ES/EN + páginas estáticas**. Pasos pendientes:
 
-1. Aplicar paleta de colores (terracota, salvia, crema)
-2. Tipografía Georgia (títulos) + Arial (cuerpo)
-3. Icono personalizado para los puntos del mapa (flor no-me-olvides azul)
-4. Popup con diseño: descripción + reproductor de audio + enlace externo
+1. Instalar y configurar next-intl
+2. Crear mensajes `es.json` y `en.json`
+3. Reestructurar rutas bajo `app/[locale]/`
+4. Página de Inicio (con el mapa)
+5. Página Sobre el proyecto
+6. Página de Contacto (formulario básico, sin lógica aún)
 
 ---
 
