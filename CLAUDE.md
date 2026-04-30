@@ -179,7 +179,7 @@ CREATE POLICY "admin_read" ON contact_messages
 | B2 | Modelo de datos en Supabase: tablas, RLS, Storage, datos prueba | ✅ Completado |
 | B3 | Mapa interactivo con Leaflet leyendo de Supabase | ✅ Completado |
 | B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ✅ Completado |
-| B5 | i18n ES/EN + páginas estáticas (Inicio, Sobre, Contacto) | ⬜ Pendiente |
+| B5 | i18n ES/EN + páginas estáticas (Inicio, Sobre, Contacto) | ✅ Completado |
 | B6 | Panel `/admin`: login + CRUD localidades + subida audios | ⬜ Pendiente |
 | B7 | Formulario contacto + cookies + GA4 + páginas legales | ⬜ Pendiente |
 | B8 | SEO técnico: sitemap, metadatos, Schema.org, Open Graph | ⬜ Pendiente |
@@ -280,14 +280,13 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B5 — i18n ES/EN + páginas estáticas**. Pasos pendientes:
+**Bloque B6 — Panel `/admin`**. Pasos pendientes:
 
-1. Instalar y configurar next-intl
-2. Crear mensajes `es.json` y `en.json`
-3. Reestructurar rutas bajo `app/[locale]/`
-4. Página de Inicio (con el mapa)
-5. Página Sobre el proyecto
-6. Página de Contacto (formulario básico, sin lógica aún)
+1. Configurar Supabase Auth (email + contraseña)
+2. Página de login `/admin/login`
+3. Middleware de protección de rutas `/admin/*`
+4. CRUD de localidades (listar, crear, editar, desactivar)
+5. Subida de audios MP3 al bucket Storage
 
 ---
 
