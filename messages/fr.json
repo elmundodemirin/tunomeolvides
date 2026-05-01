@@ -2,7 +2,10 @@
   "nav": {
     "home": "Accueil",
     "about": "À propos",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "header": {
     "subtitle": "Patrimoine culturel de l'Espagne rurale"

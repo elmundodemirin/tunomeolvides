@@ -2,7 +2,10 @@
   "nav": {
     "home": "Inicio",
     "about": "Sobre el proyecto",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "header": {
     "subtitle": "Patrimonio cultural de la España vaciada"

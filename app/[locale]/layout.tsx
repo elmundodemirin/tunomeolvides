@@ -5,6 +5,7 @@ import Link from 'next/link'
 import LocaleSwitcher from '@/components/LocaleSwitcher'
 import { CookieBanner } from '@/components/CookieBanner'
 import { Footer } from '@/components/Footer'
+import { MobileMenu } from '@/components/MobileMenu'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -62,17 +63,29 @@ export default async function LocaleLayout({
           </div>
         </Link>
 
-        <nav className="flex items-center gap-5 text-sm text-white/85">
-          <Link href={homeHref} className="transition-colors hover:text-white">
+        <nav className="flex items-center gap-3 lg:gap-5 text-sm text-white/85">
+          {/* Links inline solo en escritorio */}
+          <Link href={homeHref} className="hidden lg:inline-block transition-colors hover:text-white">
             {t('home')}
           </Link>
-          <Link href={aboutHref} className="transition-colors hover:text-white">
+          <Link href={aboutHref} className="hidden lg:inline-block transition-colors hover:text-white">
             {t('about')}
           </Link>
-          <Link href={contactHref} className="transition-colors hover:text-white">
+          <Link href={contactHref} className="hidden lg:inline-block transition-colors hover:text-white">
             {t('contact')}
           </Link>
+
           <LocaleSwitcher />
+
+          {/* Hamburguesa + drawer solo en móvil */}
+          <MobileMenu
+            className="lg:hidden"
+            items={[
+              { href: homeHref, label: t('home') },
+              { href: aboutHref, label: t('about') },
+              { href: contactHref, label: t('contact') },
+            ]}
+          />
         </nav>
       </header>
       <main className="flex-1 flex flex-col">
