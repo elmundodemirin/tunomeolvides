@@ -134,9 +134,12 @@ export default function HomeShell({ localities, locale }: Props) {
         {panel}
       </aside>
 
-      {/* Mapa: pantalla completa en móvil, columna derecha en desktop con tarjeta */}
+      {/* Mapa: pantalla completa en móvil, columna derecha en desktop con tarjeta.
+          isolate fuerza un stacking context propio para que los z-index internos
+          de Leaflet (panes z-200..z-700) no se cuelen por encima del header y
+          tapen el desplegable del LocaleSwitcher. */}
       <div
-        className="h-full w-full lg:flex-1 lg:w-3/5 lg:p-6"
+        className="h-full w-full lg:flex-1 lg:w-3/5 lg:p-6 isolate"
         role="application"
         aria-label={t('mapAriaLabel')}
       >
