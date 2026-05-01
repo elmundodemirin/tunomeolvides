@@ -181,7 +181,7 @@ CREATE POLICY "admin_read" ON contact_messages
 | B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ✅ Completado |
 | B5 | i18n ES/EN + páginas estáticas (Inicio, Sobre, Contacto) | ✅ Completado |
 | B6 | Panel `/admin`: login + CRUD localidades + subida audios | ✅ Completado |
-| B7 | Formulario contacto + cookies + GA4 + páginas legales | ⬜ Pendiente |
+| B7 | Formulario contacto + cookies + GA4 + páginas legales | ✅ Completado |
 | B8 | SEO técnico: sitemap, metadatos, Schema.org, Open Graph | ⬜ Pendiente |
 | B9 | Documentación final: manual del panel + traspaso técnico | ⬜ Pendiente |
 | B10 | Testing en móvil/tablet/escritorio + optimización Lighthouse | ⬜ Pendiente |
@@ -280,12 +280,12 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B7 — Formulario de contacto + cookies + GA4 + páginas legales**. Pasos pendientes:
+**Bloque B8 — SEO técnico**. Pasos pendientes:
 
-1. Formulario de contacto con doble check de consentimiento (tabla `contact_messages`)
-2. Banner de cookies con vanilla-cookieconsent (consentimiento granular)
-3. Integración GA4 (solo carga tras aceptar cookies analíticas)
-4. Páginas legales: Aviso legal, Política de privacidad, Política de cookies
+1. Metadatos dinámicos por página (title, description, Open Graph)
+2. Sitemap.xml automático
+3. robots.txt
+4. Schema.org (WebSite + Place para localidades)
 
 ---
 
@@ -296,4 +296,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 1 de mayo de 2026 — B6 completado*
+*Última actualización: 1 de mayo de 2026 — B7 completado*
