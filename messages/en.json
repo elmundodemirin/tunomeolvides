@@ -9,7 +9,11 @@
   },
   "home": {
     "mapLoading": "Loading map...",
-    "errorLoading": "Error loading localities"
+    "errorLoading": "Error loading localities",
+    "title": "Voices from the villages",
+    "lead": "Each point on the map is a village from rural Spain with a story told by someone who lived it. Click any of them to listen.",
+    "localitiesHeading": "Localities",
+    "localitiesCount": "{count, plural, =0 {No localities available} =1 {# locality} other {# localities}}"
   },
   "about": {
     "title": "About the project",

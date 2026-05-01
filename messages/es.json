@@ -9,7 +9,11 @@
   },
   "home": {
     "mapLoading": "Cargando mapa...",
-    "errorLoading": "Error cargando localidades"
+    "errorLoading": "Error cargando localidades",
+    "title": "Voces de los pueblos",
+    "lead": "Cada punto del mapa es una localidad de la España vaciada con una historia narrada por quien la vivió. Pincha en cualquiera para escucharla.",
+    "localitiesHeading": "Localidades",
+    "localitiesCount": "{count, plural, =0 {Sin localidades disponibles} =1 {# localidad} other {# localidades}}"
   },
   "about": {
     "title": "Sobre el proyecto",

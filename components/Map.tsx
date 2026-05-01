@@ -97,5 +97,5 @@ export default function Map({ localities, locale }: Props) {
     }
   }, [localities])
 
-  return <div ref={mapRef} style={{ width: '100%', height: 'calc(100vh - 72px)' }} />
+  return <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
 }
