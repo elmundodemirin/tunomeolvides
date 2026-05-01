@@ -140,7 +140,7 @@ function disableAnalytics() {
   const id = process.env.NEXT_PUBLIC_GA_ID
   if (!id || typeof window === 'undefined') return
   // Deshabilitar GA4 para esta sesión
-  ;(window as Record<string, unknown>)[`ga-disable-${id}`] = true
+  ;(window as unknown as Record<string, unknown>)[`ga-disable-${id}`] = true
 }
 
 // Extensión del tipo Window para dataLayer de GA4
