@@ -14,9 +14,9 @@ type Props = {
 const DEFAULT_CENTER: [number, number] = [40.4, -3.7]
 const DEFAULT_ZOOM = 6
 
-// SVG pin with forget-me-not flower color
+// SVG pin with forget-me-not flower color (sized 36x44 for accessible touch target)
 const MARKER_SVG = `
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="44" viewBox="0 0 28 36" aria-hidden="true">
   <path d="M14 0C6.268 0 0 6.268 0 14c0 9.333 14 22 14 22S28 23.333 28 14C28 6.268 21.732 0 14 0z"
         fill="#6B8CB8" stroke="#4a6a96" stroke-width="1.5"/>
   <circle cx="14" cy="14" r="6" fill="white" opacity="0.9"/>
@@ -91,6 +91,9 @@ export default function LeafletMap({ localities, locale, selectedId, focusToken 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
           maxZoom: 18,
+          // Sirve tiles 2× en pantallas retina/HiDPI: mejor nitidez en móvil
+          // y resuelve el aviso "Serves images with low resolution" de Lighthouse.
+          detectRetina: true,
         }).addTo(map)
       }
 
@@ -101,15 +104,29 @@ export default function LeafletMap({ localities, locale, selectedId, focusToken 
       const icon = L.divIcon({
         html: MARKER_SVG,
         className: '',
-        iconSize: [28, 36],
-        iconAnchor: [14, 36],
-        popupAnchor: [0, -36],
+        iconSize: [36, 44],
+        iconAnchor: [18, 44],
+        popupAnchor: [0, -44],
       })
 
       localities.forEach((loc) => {
-        const marker = L.marker([loc.latitude, loc.longitude], { icon })
+        const marker = L.marker([loc.latitude, loc.longitude], {
+          icon,
+          alt: loc.name,
+          title: loc.name,
+        })
           .addTo(map!)
           .bindPopup(buildPopupHTML(loc, locale), { maxWidth: 340 })
+
+        // Leaflet hace el div del marker focusable (tabindex=0) pero no le pone
+        // un nombre accesible. Sin esto los lectores de pantalla y Lighthouse
+        // se quejan: "elements do not have accessible names".
+        const el = marker.getElement()
+        if (el) {
+          el.setAttribute('aria-label', loc.name)
+          el.setAttribute('role', 'button')
+        }
+
         markersRef.current[loc.id] = marker
       })
 
