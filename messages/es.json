@@ -18,7 +18,8 @@
     "filterComunidad": "Todas las comunidades",
     "filterProvincia": "Todas las provincias",
     "filterClear": "Limpiar filtros",
-    "noResults": "No hay resultados con estos filtros."
+    "noResults": "No hay resultados con estos filtros.",
+    "mapAriaLabel": "Mapa interactivo de localidades de la España vaciada"
   },
   "about": {
     "title": "Sobre el proyecto",

@@ -18,7 +18,8 @@
     "filterComunidad": "All regions",
     "filterProvincia": "All provinces",
     "filterClear": "Clear filters",
-    "noResults": "No results match these filters."
+    "noResults": "No results match these filters.",
+    "mapAriaLabel": "Interactive map of villages in rural Spain"
   },
   "about": {
     "title": "About the project",

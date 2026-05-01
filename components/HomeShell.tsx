@@ -135,7 +135,11 @@ export default function HomeShell({ localities, locale }: Props) {
       </aside>
 
       {/* Mapa: pantalla completa en móvil, columna derecha en desktop con tarjeta */}
-      <div className="h-full w-full lg:flex-1 lg:w-3/5 lg:p-6">
+      <div
+        className="h-full w-full lg:flex-1 lg:w-3/5 lg:p-6"
+        role="application"
+        aria-label={t('mapAriaLabel')}
+      >
         <div className="h-full w-full lg:overflow-hidden lg:rounded-2xl lg:shadow-lg">
           <MapWrapper
             localities={filtered}
