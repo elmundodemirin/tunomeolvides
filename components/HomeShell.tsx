@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import type { Locality } from '@/lib/types'
 import LocalityList from './LocalityList'
 import MapWrapper from './MapWrapper'
-import { BottomSheet } from './BottomSheet'
+import { MobilePanel } from './MobilePanel'
 
 type Props = {
   localities: Locality[]
@@ -56,7 +56,7 @@ export default function HomeShell({ localities, locale }: Props) {
   )
 
   return (
-    <div className="relative h-[calc(100vh-72px)] lg:flex">
+    <div className="relative h-[calc(100dvh-72px)] lg:flex lg:h-[calc(100vh-72px)]">
       {/* Sidebar narrativo: solo visible en lg+ */}
       <aside
         className="hidden lg:flex lg:w-2/5 lg:max-w-[480px] lg:overflow-y-auto px-6 py-8 lg:px-10 lg:py-12 flex-col"
@@ -77,14 +77,14 @@ export default function HomeShell({ localities, locale }: Props) {
         </div>
       </div>
 
-      {/* Bottom sheet móvil: oculto en lg+ */}
-      <BottomSheet
-        title={t('title')}
-        badge={t('localitiesCount', { count: localities.length })}
+      {/* Botón flotante + panel pantalla completa: solo móvil */}
+      <MobilePanel
+        buttonLabel={t('localitiesHeading')}
+        panelTitle={t('title')}
         className="lg:hidden"
       >
         {panel}
-      </BottomSheet>
+      </MobilePanel>
     </div>
   )
 }
