@@ -2,7 +2,9 @@
 // las páginas /privacidad y /privacy-policy y por el modal del formulario.
 
 export function PrivacyContent({ locale }: { locale: string }) {
-  return locale === 'en' ? <PrivacyContentEN /> : <PrivacyContentES />
+  if (locale === 'en') return <PrivacyContentEN />
+  if (locale === 'fr') return <PrivacyContentFR />
+  return <PrivacyContentES />
 }
 
 function PrivacyContentES() {
@@ -144,6 +146,78 @@ function PrivacyContentEN() {
       </p>
 
       <p className="text-xs text-[#a07860] mt-8">Last updated: May 2026</p>
+    </>
+  )
+}
+
+function PrivacyContentFR() {
+  return (
+    <>
+      <p>
+        Conformément au Règlement (UE) 2016/679 (RGPD) et à la Loi organique espagnole 3/2018 sur la
+        protection des données personnelles et la garantie des droits numériques (LOPDGDD), nous vous
+        informons sur le traitement de vos données personnelles.
+      </p>
+
+      <h2>1. Responsable du traitement</h2>
+      <ul>
+        <li><strong>Identité :</strong> María del Carmen López Rosa</li>
+        <li><strong>Numéro fiscal (NIF) :</strong> [À COMPLÉTER]</li>
+        <li><strong>Adresse :</strong> [À COMPLÉTER]</li>
+        <li><strong>E-mail :</strong> info@nomeolvides.es</li>
+      </ul>
+
+      <h2>2. Données traitées et finalités</h2>
+
+      <h3>a) Formulaire de contact</h3>
+      <ul>
+        <li><strong>Données :</strong> nom, adresse e-mail et message.</li>
+        <li><strong>Finalité :</strong> répondre à votre demande ou proposition de collaboration.</li>
+        <li><strong>Base juridique :</strong> consentement de la personne concernée (art. 6.1.a RGPD).</li>
+        <li><strong>Durée de conservation :</strong> 2 ans à compter de la réception, après quoi les données sont supprimées automatiquement.</li>
+      </ul>
+
+      <h3>b) Panneau d'administration</h3>
+      <ul>
+        <li><strong>Données :</strong> adresse e-mail et mot de passe (chiffré) des administrateurs.</li>
+        <li><strong>Finalité :</strong> gérer l'accès au panneau de contenu.</li>
+        <li><strong>Base juridique :</strong> intérêt légitime du responsable (art. 6.1.f RGPD).</li>
+        <li><strong>Durée de conservation :</strong> tant que le compte reste actif.</li>
+      </ul>
+
+      <h3>c) Cookies analytiques (Google Analytics 4)</h3>
+      <ul>
+        <li><strong>Données :</strong> données de navigation anonymisées (pages visitées, temps passé). Les adresses IP sont anonymisées avant tout stockage.</li>
+        <li><strong>Finalité :</strong> analyse statistique de l'utilisation de la plateforme pour améliorer le service.</li>
+        <li><strong>Base juridique :</strong> consentement de la personne concernée (art. 6.1.a RGPD). <strong>Google Analytics ne se charge pas tant que l'utilisateur n'accepte pas les cookies analytiques.</strong></li>
+        <li><strong>Durée de conservation :</strong> 14 mois (configuration par défaut de GA4).</li>
+      </ul>
+
+      <h2>3. Destinataires des données</h2>
+      <p>Les données sont stockées sur les serveurs de <strong>Supabase</strong> (Supabase Ireland Ltd.) hébergés dans la région <strong>eu-central-1 (Francfort, Allemagne)</strong>, sur le territoire de l'Union européenne. Aucun transfert international hors de l'EEE n'est effectué.</p>
+      <p>Si les cookies analytiques sont activés, les données de navigation anonymisées sont transmises à <strong>Google Ireland Limited</strong> (Dublin, Irlande), avec des garanties adéquates en vertu des clauses contractuelles types de l'UE.</p>
+      <p>Nous ne partageons pas de données personnelles avec des tiers, sauf obligation légale.</p>
+
+      <h2>4. Vos droits</h2>
+      <p>Vous pouvez exercer à tout moment les droits suivants en écrivant à <strong>info@nomeolvides.es</strong> :</p>
+      <ul>
+        <li><strong>Accès :</strong> connaître les données que nous traitons à votre sujet.</li>
+        <li><strong>Rectification :</strong> corriger les données inexactes ou incomplètes.</li>
+        <li><strong>Effacement :</strong> demander la suppression de vos données.</li>
+        <li><strong>Portabilité :</strong> recevoir vos données dans un format structuré.</li>
+        <li><strong>Limitation :</strong> demander la limitation du traitement.</li>
+        <li><strong>Opposition :</strong> vous opposer au traitement fondé sur l'intérêt légitime.</li>
+        <li><strong>Retrait du consentement :</strong> à tout moment, sans effet rétroactif.</li>
+      </ul>
+      <p>
+        Si vous estimez que vos droits n'ont pas été respectés, vous pouvez déposer une réclamation
+        auprès de l'<strong>Agence espagnole de protection des données (AEPD)</strong> sur{' '}
+        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-[#C9633E] hover:underline">
+          www.aepd.es
+        </a>.
+      </p>
+
+      <p className="text-xs text-[#a07860] mt-8">Dernière mise à jour : mai 2026</p>
     </>
   )
 }

@@ -41,7 +41,7 @@ export function CookieBanner({ locale }: Props) {
       },
 
       language: {
-        default: locale === 'en' ? 'en' : 'es',
+        default: locale === 'en' ? 'en' : locale === 'fr' ? 'fr' : 'es',
         translations: {
           es: {
             consentModal: {
@@ -100,6 +100,37 @@ export function CookieBanner({ locale }: Props) {
                   title: 'Analytics cookies',
                   description:
                     'Allow us to understand how you interact with the site (pages visited, time spent). We use Google Analytics 4 with anonymised IP. Data is stored on European servers.',
+                  linkedCategory: 'analytics',
+                },
+              ],
+            },
+          },
+          fr: {
+            consentModal: {
+              title: 'Nous utilisons des cookies',
+              description:
+                'Nous utilisons des cookies nécessaires au fonctionnement du site et, avec votre accord, des cookies analytiques pour comprendre l\'utilisation de la plateforme. Nous ne partageons pas vos données avec des tiers. <a href="/fr/politique-cookies" class="cc__link">En savoir plus</a>.',
+              acceptAllBtn: 'Tout accepter',
+              acceptNecessaryBtn: 'Nécessaires uniquement',
+              showPreferencesBtn: 'Gérer',
+            },
+            preferencesModal: {
+              title: 'Préférences de cookies',
+              acceptAllBtn: 'Tout accepter',
+              acceptNecessaryBtn: 'Tout refuser',
+              savePreferencesBtn: 'Enregistrer les préférences',
+              closeIconLabel: 'Fermer',
+              sections: [
+                {
+                  title: 'Cookies nécessaires',
+                  description:
+                    'Ces cookies sont indispensables au fonctionnement du site et ne peuvent pas être désactivés.',
+                  linkedCategory: 'necessary',
+                },
+                {
+                  title: 'Cookies analytiques',
+                  description:
+                    'Ils nous permettent de comprendre comment vous interagissez avec le site (pages visitées, temps de navigation). Nous utilisons Google Analytics 4 avec IP anonymisée. Les données sont stockées sur des serveurs européens.',
                   linkedCategory: 'analytics',
                 },
               ],

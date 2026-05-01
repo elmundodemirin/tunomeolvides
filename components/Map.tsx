@@ -23,9 +23,24 @@ const MARKER_SVG = `
   <circle cx="14" cy="14" r="3" fill="#6B8CB8"/>
 </svg>`
 
+// FR no tiene contenido propio en BD: cae al inglés tanto para descripción
+// como para audio. ES sigue siendo la fuente principal y EN su par.
+function pickLocalized<T>(locale: string, es: T, en: T): T {
+  if (locale === 'en' || locale === 'fr') return en
+  return es
+}
+
+const MORE_INFO_LABEL: Record<string, string> = {
+  es: 'Más información',
+  en: 'More information',
+  fr: 'Plus d’informations',
+}
+
 function buildPopupHTML(loc: Locality, locale: string): string {
-  const description = locale === 'en' ? loc.description_en : loc.description_es
-  const audioUrl = locale === 'en' ? loc.audio_url_en : loc.audio_url_es
+  const description = pickLocalized(locale, loc.description_es, loc.description_en)
+  const audioUrl = pickLocalized(locale, loc.audio_url_es, loc.audio_url_en)
+  const moreInfoLabel = MORE_INFO_LABEL[locale] ?? MORE_INFO_LABEL.es
+
   const audioSection = audioUrl
     ? `<div style="padding:4px 14px 8px">
          <audio controls preload="metadata" style="width:100%">
@@ -38,7 +53,7 @@ function buildPopupHTML(loc: Locality, locale: string): string {
     ? `<div style="padding:4px 12px 12px">
          <a href="${loc.external_url}" target="_blank" rel="noopener noreferrer"
             style="font-size:12px;color:#8E4226;text-decoration:underline">
-           Más información →
+           ${moreInfoLabel} →
          </a>
        </div>`
     : ''

@@ -15,7 +15,9 @@ export default function LocalityList({ localities, locale, selectedId, onSelect 
   return (
     <ul className="flex flex-col gap-2">
       {localities.map((loc) => {
-        const hasAudio = locale === 'en' ? !!loc.audio_url_en : !!loc.audio_url_es
+        // FR cae al audio inglés (no hay contenido FR en BD)
+        const hasAudio =
+          locale === 'en' || locale === 'fr' ? !!loc.audio_url_en : !!loc.audio_url_es
         const isSelected = selectedId === loc.id
         return (
           <li key={loc.id}>

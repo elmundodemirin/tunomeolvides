@@ -14,7 +14,7 @@ localidad rural con un audio narrado en primera persona.
 
 - **Promotora**: María del Carmen López Rosa
 - **Dominio**: pendiente de decidir (nomeolvides.es está cogido)
-- **Idiomas**: español (por defecto) e inglés
+- **Idiomas**: español (por defecto), inglés y francés. Las descripciones y audios solo se gestionan en ES + EN; FR cae a EN como fallback.
 - **Estado actual**: Fase 1 en desarrollo
 
 ---

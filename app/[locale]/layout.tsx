@@ -22,6 +22,13 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: 'nav' })
   const tHeader = await getTranslations({ locale, namespace: 'header' })
 
+  // URLs por idioma (ES sin prefijo, EN/FR con prefijo y slug traducido)
+  const homeHref = locale === 'es' ? '/' : `/${locale}`
+  const aboutHref =
+    locale === 'es' ? '/sobre' : locale === 'fr' ? '/fr/a-propos' : '/en/about'
+  const contactHref =
+    locale === 'es' ? '/contacto' : locale === 'fr' ? '/fr/contact' : '/en/contact'
+
   return (
     <NextIntlClientProvider messages={messages}>
       <header
@@ -31,7 +38,7 @@ export default async function LocaleLayout({
           boxShadow: '0 1px 0 rgba(0,0,0,0.08)',
         }}
       >
-        <Link href={locale === 'es' ? '/' : '/en'} className="flex items-center gap-3 no-underline">
+        <Link href={homeHref} className="flex items-center gap-3 no-underline">
           <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             {[0,72,144,216,288].map((deg) => (
               <ellipse key={deg} cx="14" cy="14" rx="4" ry="8"
@@ -56,13 +63,13 @@ export default async function LocaleLayout({
         </Link>
 
         <nav className="flex items-center gap-5 text-sm text-white/85">
-          <Link href={locale === 'es' ? '/' : '/en'} className="transition-colors hover:text-white">
+          <Link href={homeHref} className="transition-colors hover:text-white">
             {t('home')}
           </Link>
-          <Link href={locale === 'es' ? '/sobre' : '/en/about'} className="transition-colors hover:text-white">
+          <Link href={aboutHref} className="transition-colors hover:text-white">
             {t('about')}
           </Link>
-          <Link href={locale === 'es' ? '/contacto' : '/en/contact'} className="transition-colors hover:text-white">
+          <Link href={contactHref} className="transition-colors hover:text-white">
             {t('contact')}
           </Link>
           <LocaleSwitcher />

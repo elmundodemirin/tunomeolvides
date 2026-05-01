@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "header": {
+    "subtitle": "Patrimoine culturel de l'Espagne rurale"
+  },
+  "home": {
+    "mapLoading": "Chargement de la carte…",
+    "errorLoading": "Erreur lors du chargement des localités",
+    "title": "Voix des villages",
+    "lead": "Chaque point sur la carte est un village de l'Espagne rurale avec une histoire racontée par celles et ceux qui l'ont vécu. Cliquez sur l'un d'eux pour l'écouter.",
+    "localitiesHeading": "Localités",
+    "localitiesCount": "{count, plural, =0 {Aucune localité disponible} =1 {# localité} other {# localités}}",
+    "filterSearch": "Rechercher une localité…",
+    "filterComunidad": "Toutes les régions",
+    "filterProvincia": "Toutes les provinces",
+    "filterClear": "Effacer les filtres",
+    "noResults": "Aucun résultat avec ces filtres.",
+    "mapAriaLabel": "Carte interactive des villages de l'Espagne rurale"
+  },
+  "about": {
+    "title": "À propos du projet",
+    "intro": "No Me Olvides est une plateforme dédiée à documenter et préserver le patrimoine culturel des villages de l'Espagne rurale en voie de dépeuplement.",
+    "body": "Chaque point sur la carte est un village avec une histoire, avec des voix qui l'ont habité et une mémoire qui mérite d'être racontée. À travers des récits audio à la première personne, nous récupérons ces histoires avant que le silence ne les efface à jamais.",
+    "promoter": "Porté par",
+    "promoterName": "María del Carmen López Rosa"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Vous avez des informations sur un village, vous souhaitez collaborer ou simplement nous écrire ? Contactez-nous.",
+    "name": "Nom",
+    "email": "Adresse e-mail",
+    "message": "Message",
+    "consent": "J'ai lu et j'accepte la <privacyLink>politique de confidentialité</privacyLink>. Je consens au traitement de mes données personnelles pour répondre à ma demande.",
+    "consentRequired": "Vous devez accepter la politique de confidentialité pour envoyer le message.",
+    "send": "Envoyer le message",
+    "sending": "Envoi…",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "vous@email.com",
+    "messagePlaceholder": "Votre message…",
+    "successTitle": "Message envoyé !",
+    "successBody": "Nous avons bien reçu votre message. Nous vous répondrons dans les meilleurs délais.",
+    "error": "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
+    "privacyModalTitle": "Politique de confidentialité",
+    "closeModal": "Fermer"
+  }
+}
