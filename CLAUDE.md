@@ -180,7 +180,7 @@ CREATE POLICY "admin_read" ON contact_messages
 | B3 | Mapa interactivo con Leaflet leyendo de Supabase | ✅ Completado |
 | B4 | Diseño visual: terracota/salvia, Georgia+Arial, popup, reproductor | ✅ Completado |
 | B5 | i18n ES/EN + páginas estáticas (Inicio, Sobre, Contacto) | ✅ Completado |
-| B6 | Panel `/admin`: login + CRUD localidades + subida audios | ⬜ Pendiente |
+| B6 | Panel `/admin`: login + CRUD localidades + subida audios | ✅ Completado |
 | B7 | Formulario contacto + cookies + GA4 + páginas legales | ⬜ Pendiente |
 | B8 | SEO técnico: sitemap, metadatos, Schema.org, Open Graph | ⬜ Pendiente |
 | B9 | Documentación final: manual del panel + traspaso técnico | ⬜ Pendiente |
@@ -280,13 +280,12 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B6 — Panel `/admin`**. Pasos pendientes:
+**Bloque B7 — Formulario de contacto + cookies + GA4 + páginas legales**. Pasos pendientes:
 
-1. Configurar Supabase Auth (email + contraseña)
-2. Página de login `/admin/login`
-3. Middleware de protección de rutas `/admin/*`
-4. CRUD de localidades (listar, crear, editar, desactivar)
-5. Subida de audios MP3 al bucket Storage
+1. Formulario de contacto con doble check de consentimiento (tabla `contact_messages`)
+2. Banner de cookies con vanilla-cookieconsent (consentimiento granular)
+3. Integración GA4 (solo carga tras aceptar cookies analíticas)
+4. Páginas legales: Aviso legal, Política de privacidad, Política de cookies
 
 ---
 
@@ -297,4 +296,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 1 de mayo de 2026*
+*Última actualización: 1 de mayo de 2026 — B6 completado*
