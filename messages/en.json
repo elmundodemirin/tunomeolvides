@@ -13,7 +13,12 @@
     "title": "Voices from the villages",
     "lead": "Each point on the map is a village from rural Spain with a story told by someone who lived it. Click any of them to listen.",
     "localitiesHeading": "Localities",
-    "localitiesCount": "{count, plural, =0 {No localities available} =1 {# locality} other {# localities}}"
+    "localitiesCount": "{count, plural, =0 {No localities available} =1 {# locality} other {# localities}}",
+    "filterSearch": "Search a locality…",
+    "filterComunidad": "All regions",
+    "filterProvincia": "All provinces",
+    "filterClear": "Clear filters",
+    "noResults": "No results match these filters."
   },
   "about": {
     "title": "About the project",

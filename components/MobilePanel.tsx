@@ -67,7 +67,7 @@ export function MobilePanel({
         role="dialog"
         aria-modal="true"
         aria-label={panelTitle}
-        aria-hidden={!open}
+        inert={!open}
       >
         <header
           className="flex items-center justify-between px-5 py-4 shrink-0"

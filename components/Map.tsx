@@ -11,6 +11,9 @@ type Props = {
   focusToken?: number
 }
 
+const DEFAULT_CENTER: [number, number] = [40.4, -3.7]
+const DEFAULT_ZOOM = 6
+
 // SVG pin with forget-me-not flower color
 const MARKER_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
@@ -54,27 +57,46 @@ function buildPopupHTML(loc: Locality, locale: string): string {
     </div>`
 }
 
-export default function LeafletMap({ localities, locale, selectedId, focusToken }: Props) {
+export default function LeafletMap({ localities, locale, selectedId, focusToken = 0 }: Props) {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<import('leaflet').Map | null>(null)
   const markersRef = useRef<Record<string, import('leaflet').Marker>>({})
 
+  // Init del mapa una sola vez (cleanup solo al desmontar el componente).
+  useEffect(() => {
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove()
+        mapInstanceRef.current = null
+        markersRef.current = {}
+      }
+    }
+  }, [])
+
+  // Reacciona a cambios en la lista (filtros) y al locale: si el mapa aún no
+  // existe lo crea; en cualquier caso, reemplaza los markers y reencuadra
+  // automáticamente según el número de resultados.
   useEffect(() => {
     if (!mapRef.current) return
-
     let cancelled = false
-    let map: import('leaflet').Map | null = null
 
     import('leaflet').then((L) => {
-      if (cancelled || !mapRef.current || mapInstanceRef.current) return
+      if (cancelled || !mapRef.current) return
 
-      map = L.map(mapRef.current).setView([40.4, -3.7], 6)
-      mapInstanceRef.current = map
+      let map = mapInstanceRef.current
+      if (!map) {
+        map = L.map(mapRef.current).setView(DEFAULT_CENTER, DEFAULT_ZOOM)
+        mapInstanceRef.current = map
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 18,
-      }).addTo(map)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 18,
+        }).addTo(map)
+      }
+
+      // Limpia markers anteriores
+      Object.values(markersRef.current).forEach((m) => m.remove())
+      markersRef.current = {}
 
       const icon = L.divIcon({
         html: MARKER_SVG,
@@ -90,29 +112,39 @@ export default function LeafletMap({ localities, locale, selectedId, focusToken 
           .bindPopup(buildPopupHTML(loc, locale), { maxWidth: 340 })
         markersRef.current[loc.id] = marker
       })
+
+      // Auto-encuadre según el resultado
+      if (localities.length === 0) {
+        map.flyTo(DEFAULT_CENTER, DEFAULT_ZOOM, { duration: 0.6 })
+      } else if (localities.length === 1) {
+        map.flyTo([localities[0].latitude, localities[0].longitude], 9, { duration: 0.6 })
+      } else {
+        const bounds = L.latLngBounds(
+          localities.map((l) => [l.latitude, l.longitude] as [number, number]),
+        )
+        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 10, animate: true })
+      }
     })
 
     return () => {
       cancelled = true
-      if (map) {
-        map.remove()
-        mapInstanceRef.current = null
-        markersRef.current = {}
-      }
     }
   }, [localities, locale])
 
-  // Reacciona a la selección desde la lista:
-  // - Con id: vuela al marker y abre su popup.
-  // - Sin id (deselección): vuelve a la vista por defecto y cierra el popup.
+  // Reacciona a la selección desde la lista. focusToken === 0 significa
+  // "todavía no ha habido interacción", así que no pisamos el fitBounds inicial.
   useEffect(() => {
+    if (focusToken === 0) return
+
     const map = mapInstanceRef.current
     if (!map) return
+
     if (!selectedId) {
       map.closePopup()
-      map.flyTo([40.4, -3.7], 6, { duration: 0.8 })
+      map.flyTo(DEFAULT_CENTER, DEFAULT_ZOOM, { duration: 0.8 })
       return
     }
+
     const marker = markersRef.current[selectedId]
     if (!marker) return
     map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 8), { duration: 0.8 })
