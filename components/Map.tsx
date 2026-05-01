@@ -24,8 +24,8 @@ function buildPopupHTML(loc: Locality, locale: string): string {
   const description = locale === 'en' ? loc.description_en : loc.description_es
   const audioUrl = locale === 'en' ? loc.audio_url_en : loc.audio_url_es
   const audioSection = audioUrl
-    ? `<div style="padding:0 12px 4px">
-         <audio controls style="width:100%;height:32px">
+    ? `<div style="padding:4px 14px 8px">
+         <audio controls preload="metadata" style="width:100%">
            <source src="${audioUrl}" type="audio/mpeg"/>
          </audio>
        </div>`
