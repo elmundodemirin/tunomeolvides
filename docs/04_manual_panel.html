@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Me Olvides · Manual del panel · v1.0</title>
+<style>
+  :root {
+    --terracota: #C9633E;
+    --terracota-dark: #8E4226;
+    --salvia: #8FA785;
+    --salvia-dark: #5F7355;
+    --crema: #FAF6EE;
+    --crema-dark: #EFE8D6;
+    --tinta: #2A2622;
+    --tinta-soft: #5C544D;
+    --azul-flor: #6B8CB8;
+    --border: #D8CFB9;
+    --code-bg: #2A2622;
+    --code-text: #E8DFC8;
+    --shadow: 0 2px 8px rgba(42, 38, 34, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    background: var(--crema);
+    color: var(--tinta);
+    line-height: 1.7;
+    font-size: 16.5px;
+  }
+  .layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+  /* Sidebar */
+  aside {
+    background: var(--crema-dark);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  aside .logo {
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--terracota-dark);
+    font-style: italic;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.5px;
+  }
+  aside .subtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--tinta-soft);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+  aside nav ul { list-style: none; }
+  aside nav > ul > li { margin-bottom: 1.2rem; }
+  aside nav a {
+    color: var(--tinta);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  aside nav a:hover { background: rgba(201, 99, 62, 0.08); border-left-color: var(--terracota); }
+  aside nav .section-title {
+    font-weight: 600;
+    color: var(--terracota-dark);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Main */
+  main { padding: 3rem 4rem; max-width: 880px; }
+  header.doc-header {
+    border-bottom: 2px solid var(--terracota);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  header.doc-header .pill {
+    display: inline-block;
+    background: var(--salvia);
+    color: white;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+  }
+  header.doc-header h1 {
+    font-family: Georgia, serif;
+    font-size: 2.6rem;
+    line-height: 1.2;
+    color: var(--terracota-dark);
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+  }
+  header.doc-header .meta {
+    color: var(--tinta-soft);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    color: var(--terracota-dark);
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: normal;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--salvia-dark);
+    margin: 2rem 0 0.8rem;
+    font-weight: normal;
+  }
+  p { margin-bottom: 1rem; }
+  ul, ol { margin: 0.5rem 0 1.2rem 1.5rem; }
+  li { margin-bottom: 0.4rem; }
+  strong { color: var(--terracota-dark); }
+  a { color: var(--terracota); }
+  a:hover { color: var(--terracota-dark); }
+
+  /* Boxes */
+  .box {
+    border-left: 4px solid var(--salvia);
+    background: rgba(143, 167, 133, 0.08);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .box.warning {
+    border-left-color: #C9883E;
+    background: rgba(201, 136, 62, 0.08);
+  }
+  .box.tip {
+    border-left-color: var(--azul-flor);
+    background: rgba(107, 140, 184, 0.08);
+  }
+  .box.danger {
+    border-left-color: var(--terracota);
+    background: rgba(201, 99, 62, 0.08);
+  }
+  .box-title {
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+    color: var(--tinta-soft);
+  }
+
+  /* Steps */
+  ol.steps { counter-reset: step; list-style: none; margin-left: 0; }
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1rem;
+    min-height: 2rem;
+  }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 0;
+    width: 2rem; height: 2rem;
+    background: var(--terracota);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  /* Inline code & buttons reference */
+  code {
+    font-family: 'Menlo', 'Consolas', monospace;
+    background: var(--crema-dark);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: var(--terracota-dark);
+  }
+  .btn-ref {
+    display: inline-block;
+    background: var(--terracota);
+    color: white;
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+  }
+  .btn-ref.secondary { background: var(--crema-dark); color: var(--tinta); }
+
+  /* Field reference */
+  .field-name {
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    color: var(--terracota-dark);
+    background: var(--crema-dark);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  /* Pending placeholder */
+  .pending {
+    background: #FFF2CC;
+    color: #6B5A00;
+    padding: 0.05rem 0.5rem;
+    border-radius: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+
+  /* Flower decoration */
+  .flower {
+    display: inline-block;
+    color: var(--azul-flor);
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--tinta-soft);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; }
+    main { padding: 2rem 1.5rem; }
+    header.doc-header h1 { font-size: 2rem; }
+  }
+
+  /* TOC numbers */
+  .toc-num {
+    display: inline-block;
+    color: var(--terracota);
+    font-weight: 600;
+    margin-right: 0.4rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside>
+    <div class="logo">No Me Olvides <span class="flower">✿</span></div>
+    <div class="subtitle">Manual del panel</div>
+    <nav>
+      <ul>
+        <li>
+          <span class="section-title">Capítulos</span>
+          <ul>
+            <li><a href="#bienvenida"><span class="toc-num">01</span>Bienvenida</a></li>
+            <li><a href="#acceso"><span class="toc-num">02</span>Acceso al panel</a></li>
+            <li><a href="#vista-general"><span class="toc-num">03</span>Visión general</a></li>
+            <li><a href="#localidades"><span class="toc-num">04</span>Gestionar localidades</a></li>
+            <li><a href="#coordenadas"><span class="toc-num">05</span>Coordenadas en el mapa</a></li>
+            <li><a href="#audios"><span class="toc-num">06</span>Audios narrados</a></li>
+            <li><a href="#usuarios"><span class="toc-num">07</span>Otros administradores</a></li>
+            <li><a href="#buenas-practicas"><span class="toc-num">08</span>Buenas prácticas</a></li>
+            <li><a href="#si-pasa-algo"><span class="toc-num">09</span>Si pasa algo</a></li>
+            <li><a href="#glosario"><span class="toc-num">10</span>Glosario</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+
+    <header class="doc-header">
+      <span class="pill">Manual de uso</span>
+      <h1>El panel de No Me Olvides</h1>
+      <p class="meta">Una guía pensada para María del Carmen — ningún paso requiere conocimientos técnicos.</p>
+    </header>
+
+    <!-- ─────────────────────────────── 01 ─────────────────────────────── -->
+    <h2 id="bienvenida">01 · Bienvenida</h2>
+
+    <p>
+      Este manual es la llave del proyecto. Con él puedes mantener vivo No Me Olvides
+      sin depender de nadie: añadir pueblos al mapa, subir los audios narrados,
+      corregir lo que haga falta y dar acceso a otra persona si en algún momento
+      quieres compartir la responsabilidad.
+    </p>
+
+    <p>
+      Está escrito como si lo leyese alguien que nunca ha tocado un panel de gestión.
+      Si en algún momento algo no encaja, ve directamente al capítulo
+      <a href="#si-pasa-algo">«Si pasa algo»</a>: ahí están los pasos sencillos
+      para resolverlo o saber a quién avisar.
+    </p>
+
+    <div class="box tip">
+      <div class="box-title">Recomendación</div>
+      Antes de escribir descripciones definitivas o subir audios reales, prueba
+      una vez cada cosa con una localidad de mentira (por ejemplo, «Pueblo Prueba»)
+      para coger confianza. Cuando termines puedes desactivarla y dejarla oculta.
+    </div>
+
+    <!-- ─────────────────────────────── 02 ─────────────────────────────── -->
+    <h2 id="acceso">02 · Acceso al panel</h2>
+
+    <h3>Cómo entrar</h3>
+
+    <p>
+      El panel está en la dirección <span class="pending">[COMPLETAR — URL definitiva]/admin</span>.
+      Mientras no haya dominio propio, la dirección temporal es la que te llega
+      desde Vercel (algo del estilo
+      <code>nomeolvides-xxxxx.vercel.app/admin</code>).
+    </p>
+
+    <p>
+      Para entrar necesitas dos cosas:
+    </p>
+    <ul>
+      <li>Tu <strong>correo electrónico</strong> (el que se usó al crear la cuenta).</li>
+      <li>Tu <strong>contraseña</strong>.</li>
+    </ul>
+
+    <h3>Si has olvidado la contraseña</h3>
+
+    <p>
+      Por seguridad la contraseña no se puede recuperar sola. Escribe a
+      <span class="pending">[COMPLETAR — email del programador]</span>
+      y se gestiona manualmente: te llegará un enlace para crear una nueva.
+    </p>
+
+    <div class="box warning">
+      <div class="box-title">Importante</div>
+      No compartas tu contraseña por correo, WhatsApp ni con nadie. Si alguien
+      necesita entrar al panel, lo correcto es <a href="#usuarios">invitarle como
+      usuario propio</a> con su email — así cada persona tiene su acceso.
+    </div>
+
+    <h3>Cerrar sesión</h3>
+
+    <p>
+      En la barra lateral, abajo a la izquierda, hay un botón
+      <span class="btn-ref secondary">Cerrar sesión</span>. Úsalo siempre que
+      termines, sobre todo si trabajas desde un ordenador que no es el tuyo.
+    </p>
+
+    <!-- ─────────────────────────────── 03 ─────────────────────────────── -->
+    <h2 id="vista-general">03 · Visión general del panel</h2>
+
+    <p>
+      Cuando entras, la pantalla se divide en dos zonas:
+    </p>
+
+    <h3>Barra lateral (izquierda, fondo marrón)</h3>
+    <ul>
+      <li><strong>Inicio</strong>: la pantalla principal con la lista de pueblos.</li>
+      <li><strong>Localidades</strong>: lleva al mismo sitio que «Inicio» (es un atajo).</li>
+      <li><strong>Usuarios</strong>: para gestionar quién más puede entrar al panel.</li>
+      <li>Abajo, tu correo y el botón de <strong>Cerrar sesión</strong>.</li>
+    </ul>
+
+    <h3>Zona principal (derecha, fondo claro)</h3>
+    <p>
+      Aquí aparece lo que estés haciendo en cada momento: la lista de pueblos, un
+      formulario de edición, los usuarios… Cambia según en qué sección de la barra
+      lateral hayas pulsado.
+    </p>
+
+    <!-- ─────────────────────────────── 04 ─────────────────────────────── -->
+    <h2 id="localidades">04 · Gestionar localidades</h2>
+
+    <h3>4.1 — Ver todas las localidades</h3>
+
+    <p>
+      Al entrar, la primera pantalla es <strong>Inicio</strong>, que muestra la lista
+      completa de pueblos. Verás:
+    </p>
+
+    <ul>
+      <li>
+        Tres recuadros arriba con el resumen: <strong>Total</strong>, <strong>Activas</strong>
+        e <strong>Inactivas</strong>. Las activas son las que se ven en el mapa público;
+        las inactivas existen pero están escondidas.
+      </li>
+      <li>
+        Una tabla con todas las localidades. Cada fila lleva el nombre, la provincia,
+        la comunidad autónoma, una etiqueta verde <strong>Activa</strong> o gris
+        <strong>Inactiva</strong>, y un enlace <strong>Editar</strong> a la derecha.
+      </li>
+      <li>
+        Arriba a la derecha, el botón <span class="btn-ref">+ Nueva localidad</span>
+        para empezar una de cero.
+      </li>
+    </ul>
+
+    <h3>4.2 — Crear una localidad nueva</h3>
+
+    <p>
+      Pulsa <span class="btn-ref">+ Nueva localidad</span>. Se abre un formulario
+      dividido en bloques. Puedes rellenarlos en cualquier orden, pero los campos
+      con asterisco rojo (<strong style="color:var(--terracota)">*</strong>) son
+      obligatorios.
+    </p>
+
+    <h4 style="font-family:Arial;color:var(--tinta-soft);font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;margin:1.5rem 0 0.6rem">Bloque «Información básica»</h4>
+    <ul>
+      <li><span class="field-name">Nombre del pueblo</span> — tal y como se conoce: «Calatañazor», «Trevélez»…</li>
+      <li><span class="field-name">Provincia</span> — escribe la provincia entera: «Soria», «Granada».</li>
+      <li><span class="field-name">Comunidad autónoma</span> — «Castilla y León», «Andalucía», etc.</li>
+      <li><span class="field-name">URL externa</span> — opcional. La web turística oficial del pueblo o un enlace de referencia. Aparece en el popup del mapa como «Más información».</li>
+      <li><span class="field-name">Localidad activa</span> (casilla) — déjala marcada para que se vea en el mapa público. Desmárcala si quieres dejar el pueblo a medio preparar y no mostrarlo todavía.</li>
+    </ul>
+
+    <h4 style="font-family:Arial;color:var(--tinta-soft);font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;margin:1.5rem 0 0.6rem">Bloque «Ubicación en el mapa»</h4>
+    <p>Latitud y longitud, las dos coordenadas que ubican el punto exactamente. Cómo conseguirlas en el capítulo <a href="#coordenadas">«Coordenadas en el mapa»</a>.</p>
+
+    <h4 style="font-family:Arial;color:var(--tinta-soft);font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;margin:1.5rem 0 0.6rem">Bloque «Descripción»</h4>
+    <p>
+      Dos cajas: una en español y otra en inglés. Es el texto que aparece en el
+      popup del mapa cuando alguien pincha el pueblo. Recomendaciones de tono y
+      longitud en <a href="#buenas-practicas">«Buenas prácticas»</a>.
+    </p>
+
+    <div class="box tip">
+      <div class="box-title">Si todavía no tienes la traducción</div>
+      Puedes pegar el mismo texto español también en el campo en inglés provisionalmente.
+      Más adelante editas la localidad y reemplazas la traducción.
+    </div>
+
+    <h4 style="font-family:Arial;color:var(--tinta-soft);font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;margin:1.5rem 0 0.6rem">Bloque «Audios narrados»</h4>
+    <p>Subir un MP3 por idioma. El detalle completo en el capítulo <a href="#audios">«Audios narrados»</a>.</p>
+
+    <h4 style="font-family:Arial;color:var(--tinta-soft);font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;margin:1.5rem 0 0.6rem">Bloque «Imagen de portada» (opcional)</h4>
+    <p>
+      Es opcional. Si pegas la URL de una imagen, queda asociada al pueblo
+      (de momento no se muestra en el mapa, pero se queda guardada para cuando
+      se añada esa funcionalidad).
+    </p>
+
+    <h4 style="font-family:Arial;color:var(--tinta-soft);font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;margin:1.5rem 0 0.6rem">Para terminar</h4>
+    <p>
+      Al final del formulario, dos botones:
+    </p>
+    <ul>
+      <li><span class="btn-ref">Crear localidad</span> — guarda el pueblo y vuelve a la lista.</li>
+      <li><span class="btn-ref secondary">Cancelar</span> — vuelve sin guardar nada.</li>
+    </ul>
+
+    <h3>4.3 — Editar una localidad existente</h3>
+
+    <p>En la lista de pueblos, pulsa <strong>Editar</strong> en la fila correspondiente. Se abre el mismo formulario, pero con los datos ya rellenos. Cambia lo que quieras y pulsa <span class="btn-ref">Guardar cambios</span>.</p>
+
+    <p>
+      <strong>Los audios funcionan así</strong>: si <em>no</em> seleccionas un archivo
+      nuevo, se queda el audio que ya había. Solo se reemplaza si subes uno nuevo.
+    </p>
+
+    <h3>4.4 — Activar y desactivar (mejor que borrar)</h3>
+
+    <p>
+      En la pantalla de edición, arriba en el bloque «Información básica», hay una
+      casilla <span class="field-name">Localidad activa</span>. Si la desmarcas y
+      guardas, el pueblo desaparece del mapa público pero <strong>no se borra</strong>
+      — sigue ahí, en la lista, marcado como «Inactiva».
+    </p>
+
+    <p>
+      También hay un atajo: en la edición, abajo a la derecha, el enlace
+      <strong>Desactivar localidad</strong> / <strong>Activar localidad</strong> hace
+      esto mismo en un click sin tocar nada más.
+    </p>
+
+    <div class="box warning">
+      <div class="box-title">Por qué no hay botón de borrar</div>
+      Lo hicimos a propósito: borrar es definitivo y no se puede deshacer.
+      Desactivar es reversible. Si en algún momento necesitas eliminar un pueblo
+      por completo (por ejemplo si lo creaste por error), avisa al programador
+      y se hace desde la base de datos.
+    </div>
+
+    <!-- ─────────────────────────────── 05 ─────────────────────────────── -->
+    <h2 id="coordenadas">05 · Coordenadas en el mapa</h2>
+
+    <p>
+      Cada pueblo necesita dos números: la <strong>latitud</strong> (norte-sur)
+      y la <strong>longitud</strong> (este-oeste). La forma más sencilla de
+      obtenerlas es desde Google Maps:
+    </p>
+
+    <ol class="steps">
+      <li>Abre <a href="https://www.google.com/maps" target="_blank">google.com/maps</a> en cualquier navegador.</li>
+      <li>Busca el pueblo por su nombre y acércate hasta verlo en detalle.</li>
+      <li>Encuentra el punto exacto donde quieres situarlo (puede ser la iglesia, la plaza, lo que tenga más sentido).</li>
+      <li>Haz <strong>clic derecho</strong> sobre ese punto. Se abre un menú.</li>
+      <li>La primera línea del menú son dos números separados por coma, por ejemplo: <code>41.7186, -2.8003</code>. <strong>Pulsa esa línea</strong> y se copian al portapapeles.</li>
+      <li>Vuelve al panel y pega el primer número en <span class="field-name">Latitud</span> y el segundo en <span class="field-name">Longitud</span>.</li>
+    </ol>
+
+    <div class="box tip">
+      <div class="box-title">Truco</div>
+      Si la longitud empieza por signo menos (<code>-3.5</code>, por ejemplo), incluye el signo. Es lo normal en España: casi todas son negativas.
+    </div>
+
+    <!-- ─────────────────────────────── 06 ─────────────────────────────── -->
+    <h2 id="audios">06 · Audios narrados</h2>
+
+    <h3>Formato y tamaño</h3>
+    <ul>
+      <li>Solo se aceptan archivos <strong>MP3</strong>.</li>
+      <li>El tamaño máximo es <strong>10 MB</strong> por archivo (suficiente para unos 8-10 minutos de voz a calidad estándar).</li>
+      <li>Se sube uno por idioma: uno en español, otro en inglés.</li>
+    </ul>
+
+    <h3>Cómo subir un audio nuevo</h3>
+
+    <ol class="steps">
+      <li>Entra en la edición de la localidad (o crea una nueva).</li>
+      <li>Baja hasta el bloque <strong>«Audios narrados»</strong>.</li>
+      <li>En el campo correspondiente al idioma, pulsa <strong>Choose file</strong> / <strong>Seleccionar archivo</strong>.</li>
+      <li>Elige el MP3 desde tu ordenador.</li>
+      <li>Pulsa <span class="btn-ref">Guardar cambios</span> al final del formulario. La subida puede tardar unos segundos según el tamaño.</li>
+    </ol>
+
+    <h3>Cómo reemplazar un audio que ya está</h3>
+
+    <p>
+      Cuando una localidad ya tiene un audio, en el bloque «Audios narrados» verás
+      un pequeño reproductor con el audio actual. Para reemplazarlo, simplemente
+      selecciona un archivo nuevo y guarda — el viejo se sustituye automáticamente.
+    </p>
+
+    <p>
+      Si <strong>no</strong> seleccionas nada, el audio que había se queda intacto.
+      Es decir, puedes editar otros datos del pueblo sin tocar los audios.
+    </p>
+
+    <h3>Cómo grabar el audio</h3>
+
+    <p>Cualquier grabación limpia con el móvil sirve. Algunas opciones según el dispositivo:</p>
+    <ul>
+      <li><strong>iPhone</strong>: app «Notas de voz» (viene de serie). Al terminar: pulsa los tres puntos → «Guardar en Archivos» → comparte por correo o WhatsApp el archivo <code>.m4a</code>. Lo más fácil después es convertirlo a MP3 con cualquier conversor online gratuito (busca «m4a a mp3 online»).</li>
+      <li><strong>Android</strong>: app «Grabadora» o «Grabadora de voz» (viene de serie en la mayoría). Permite exportar directamente a MP3 en muchos modelos.</li>
+      <li><strong>Ordenador</strong>: el programa <strong>Audacity</strong> (gratis, <a href="https://www.audacityteam.org" target="_blank">audacityteam.org</a>) graba y exporta a MP3 en dos clicks.</li>
+    </ul>
+
+    <div class="box tip">
+      <div class="box-title">Calidad mínima recomendada</div>
+      Graba en un lugar silencioso, lejos de ventanas y motores. Acerca el micrófono a unos 20-30 cm. No hace falta estudio profesional: la voz natural y limpia es la que mejor encaja con el espíritu del proyecto.
+    </div>
+
+    <!-- ─────────────────────────────── 07 ─────────────────────────────── -->
+    <h2 id="usuarios">07 · Otros administradores</h2>
+
+    <p>
+      Si en algún momento quieres dar acceso al panel a otra persona (por ejemplo
+      un colaborador que vaya a subir audios), se hace desde la sección
+      <strong>Usuarios</strong> de la barra lateral.
+    </p>
+
+    <h3>Invitar a alguien</h3>
+
+    <ol class="steps">
+      <li>Entra en <strong>Usuarios</strong>.</li>
+      <li>En el bloque <strong>«Invitar nuevo administrador»</strong>, escribe el correo electrónico de la persona.</li>
+      <li>Pulsa <span class="btn-ref">Enviar invitación</span>.</li>
+      <li>La persona recibe un email con un enlace. Al pulsarlo, crea su contraseña y ya puede entrar.</li>
+    </ol>
+
+    <h3>Quitar acceso a alguien</h3>
+
+    <p>
+      Más abajo, en el bloque <strong>«Administradores activos»</strong>, está la lista
+      de quien tiene acceso ahora mismo. Para quitarle el acceso a alguien, pulsa
+      <strong>Eliminar</strong> en su fila. Te pide confirmar antes de hacerlo.
+    </p>
+
+    <div class="box danger">
+      <div class="box-title">Cuidado</div>
+      No puedes eliminar tu propia cuenta desde aquí (como medida de seguridad
+      para que el panel no se quede sin nadie con acceso). Si alguna vez necesitas
+      cambiar el correo de la cuenta principal, avisa al programador.
+    </div>
+
+    <!-- ─────────────────────────────── 08 ─────────────────────────────── -->
+    <h2 id="buenas-practicas">08 · Buenas prácticas</h2>
+
+    <h3>Tono y longitud de las descripciones</h3>
+    <ul>
+      <li><strong>Cortas</strong>: 2-3 frases bastan. El popup del mapa es pequeño y nadie quiere leer un párrafo enorme. Lo que merece desarrollo está en el audio.</li>
+      <li><strong>Evocadoras</strong>: que sugieran la atmósfera del pueblo. No es una ficha de Wikipedia ni un folleto turístico.</li>
+      <li><strong>Auténticas</strong>: que se note tu voz. Cercana, sin formalismos. Si dudas, léelo en alto: si suena natural, está bien.</li>
+    </ul>
+
+    <h3>Traducciones al inglés</h3>
+    <p>
+      Si dominas el inglés, traduce manteniendo el tono. Si no, una traducción con
+      DeepL (<a href="https://www.deepl.com" target="_blank">deepl.com</a>) revisada
+      a ojo es suficiente. Es importante que el inglés exista (algunos visitantes
+      prefieren leer en su idioma) pero no hace falta que sea perfecto literario.
+    </p>
+
+    <h3>Cuándo desactivar y cuándo editar</h3>
+    <ul>
+      <li><strong>Editar</strong>: cuando hay un cambio menor (errata, ampliación de la descripción, audio mejorado…).</li>
+      <li><strong>Desactivar</strong>: cuando todavía no está listo para mostrarse al público (faltan audios, descripciones a medio escribir, dudas de cumplimiento legal…).</li>
+      <li><strong>No borrar</strong>: salvo error grave, siempre desactivar antes que borrar. Conservar el dato cuesta cero.</li>
+    </ul>
+
+    <h3>Antes de añadir un pueblo en serio</h3>
+
+    <div class="box tip">
+      <div class="box-title">Lista de comprobación</div>
+      <ul style="margin-top:0.5rem">
+        <li>¿Tienes consentimiento de la persona cuya voz aparece en el audio? Si la voz no es la tuya y se reconoce, mejor que firme un documento sencillo de cesión.</li>
+        <li>¿Has revisado que la descripción no contenga datos personales de terceros (nombres, direcciones de gente concreta sin permiso)?</li>
+        <li>¿La URL externa apunta a una web fiable y vigente?</li>
+        <li>¿La coordenada cae realmente en el pueblo? Echa un ojo al mapa público después de guardar.</li>
+      </ul>
+    </div>
+
+    <!-- ─────────────────────────────── 09 ─────────────────────────────── -->
+    <h2 id="si-pasa-algo">09 · Si pasa algo</h2>
+
+    <h3>No puedo entrar al panel</h3>
+    <ul>
+      <li>Comprueba que el correo está bien escrito.</li>
+      <li>Comprueba la mayúscula bloqueada en el teclado.</li>
+      <li>Si has olvidado la contraseña, escribe a <span class="pending">[COMPLETAR — email del programador]</span>.</li>
+    </ul>
+
+    <h3>Subo el audio y aparece un error</h3>
+    <ul>
+      <li>Si el mensaje habla de tamaño: tu MP3 es mayor de 10 MB. Conviértelo a una calidad menor (128 kbps suele ser suficiente para voz hablada).</li>
+      <li>Si el mensaje habla de formato: el archivo no es un MP3. Conviértelo desde el formato original.</li>
+      <li>Si no aparece ningún mensaje pero el audio no se guarda: comprueba la conexión a internet y vuelve a intentarlo.</li>
+    </ul>
+
+    <h3>Guardo y los cambios no aparecen en el mapa público</h3>
+    <ul>
+      <li>Confirma que la localidad está marcada como <strong>Activa</strong>.</li>
+      <li>Refresca la página pública (<code>F5</code> o <code>Ctrl + R</code>) — a veces el navegador se queda con la versión antigua.</li>
+      <li>Si sigue sin verse después de refrescar, avisa al programador.</li>
+    </ul>
+
+    <h3>El popup del mapa parece roto</h3>
+    <p>Captura la pantalla, anota el nombre del pueblo y avisa al programador con esos dos datos.</p>
+
+    <h3>A quién avisar</h3>
+    <p>
+      Para cualquier cosa que no sepas resolver desde el panel, escribe a
+      <span class="pending">[COMPLETAR — email del programador]</span> con:
+    </p>
+    <ul>
+      <li>Qué intentabas hacer.</li>
+      <li>Qué pasó (mensaje exacto si lo hay).</li>
+      <li>Una captura de pantalla si puedes.</li>
+    </ul>
+
+    <!-- ─────────────────────────────── 10 ─────────────────────────────── -->
+    <h2 id="glosario">10 · Glosario</h2>
+
+    <p>Cuatro términos que aparecen y conviene tener claros:</p>
+
+    <ul>
+      <li>
+        <strong>Activa / Inactiva</strong> — una localidad activa se ve en el mapa
+        público; una inactiva existe pero no se muestra. Cambiar este estado es
+        instantáneo y reversible.
+      </li>
+      <li>
+        <strong>RGPD / LOPD</strong> — la normativa europea y española de protección
+        de datos. Te afecta sobre todo en dos sitios: cuando alguien escribe por el
+        formulario de contacto (sus datos quedan guardados durante 2 años y luego
+        se borran solos) y cuando das de alta a un nuevo administrador (su email
+        queda registrado).
+      </li>
+      <li>
+        <strong>Coordenadas</strong> — los dos números que sitúan un pueblo en el mapa.
+        El primero es la latitud (norte-sur), el segundo la longitud (este-oeste).
+      </li>
+      <li>
+        <strong>MP3</strong> — el formato estándar de audio comprimido. Cualquier
+        archivo que termine en <code>.mp3</code> es válido para subir como audio
+        narrado.
+      </li>
+    </ul>
+
+    <footer>
+      No Me Olvides — Manual del panel · v1.0 · Última revisión: <span class="pending">[COMPLETAR — fecha]</span>
+    </footer>
+
+  </main>
+
+</div>
+
+</body>
+</html>
