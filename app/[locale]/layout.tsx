@@ -24,9 +24,15 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <header style={{ backgroundColor: 'var(--color-terracotta)' }} className="px-6 py-4 flex items-center justify-between">
+      <header
+        className="px-6 py-3.5 flex items-center justify-between sticky top-0 z-30"
+        style={{
+          backgroundColor: 'var(--color-terracotta-dark)',
+          boxShadow: '0 1px 0 rgba(0,0,0,0.08)',
+        }}
+      >
         <Link href={locale === 'es' ? '/' : '/en'} className="flex items-center gap-3 no-underline">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             {[0,72,144,216,288].map((deg) => (
               <ellipse key={deg} cx="14" cy="14" rx="4" ry="8"
                 fill="#6B8CB8" opacity="0.9"
@@ -37,15 +43,28 @@ export default async function LocaleLayout({
             <circle cx="14" cy="14" r="2.5" fill="#6B8CB8"/>
           </svg>
           <div>
-            <div className="text-white text-xl leading-tight" style={{ fontFamily: 'Georgia, serif' }}>No Me Olvides</div>
-            <div className="text-white/80 text-xs">{tHeader('subtitle')}</div>
+            <div
+              className="text-lg leading-tight text-white"
+              style={{ fontFamily: 'Georgia, serif' }}
+            >
+              No Me Olvides
+            </div>
+            <div className="text-[11px] text-white/75">
+              {tHeader('subtitle')}
+            </div>
           </div>
         </Link>
 
-        <nav className="flex items-center gap-4 text-sm text-white/90">
-          <Link href={locale === 'es' ? '/' : '/en'} className="hover:text-white transition-colors">{t('home')}</Link>
-          <Link href={locale === 'es' ? '/sobre' : '/en/about'} className="hover:text-white transition-colors">{t('about')}</Link>
-          <Link href={locale === 'es' ? '/contacto' : '/en/contact'} className="hover:text-white transition-colors">{t('contact')}</Link>
+        <nav className="flex items-center gap-5 text-sm text-white/85">
+          <Link href={locale === 'es' ? '/' : '/en'} className="transition-colors hover:text-white">
+            {t('home')}
+          </Link>
+          <Link href={locale === 'es' ? '/sobre' : '/en/about'} className="transition-colors hover:text-white">
+            {t('about')}
+          </Link>
+          <Link href={locale === 'es' ? '/contacto' : '/en/contact'} className="transition-colors hover:text-white">
+            {t('contact')}
+          </Link>
           <LocaleSwitcher />
         </nav>
       </header>

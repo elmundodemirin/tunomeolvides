@@ -7,6 +7,8 @@ import 'leaflet/dist/leaflet.css'
 type Props = {
   localities: Locality[]
   locale: string
+  selectedId?: string | null
+  focusToken?: number
 }
 
 // SVG pin with forget-me-not flower color
@@ -40,11 +42,11 @@ function buildPopupHTML(loc: Locality, locale: string): string {
 
   return `
     <div>
-      <div style="background:#C9633E;padding:10px 12px">
-        <strong style="color:white;font-family:Georgia,serif;font-size:15px">${loc.name}</strong>
-        <div style="color:rgba(255,255,255,0.85);font-size:11px;margin-top:2px">${loc.province} · ${loc.region}</div>
+      <div style="background:#C9633E;padding:12px 14px">
+        <strong style="color:white;font-family:Georgia,serif;font-size:16px">${loc.name}</strong>
+        <div style="color:rgba(255,255,255,0.85);font-size:11px;margin-top:3px">${loc.province} · ${loc.region}</div>
       </div>
-      <div style="padding:10px 12px;font-size:13px;line-height:1.5;color:#2C1810;max-height:100px;overflow-y:auto">
+      <div style="padding:12px 14px;font-size:14px;line-height:1.55;color:#2C1810">
         ${description}
       </div>
       ${audioSection}
@@ -52,9 +54,10 @@ function buildPopupHTML(loc: Locality, locale: string): string {
     </div>`
 }
 
-export default function Map({ localities, locale }: Props) {
+export default function LeafletMap({ localities, locale, selectedId, focusToken }: Props) {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<import('leaflet').Map | null>(null)
+  const markersRef = useRef<Record<string, import('leaflet').Marker>>({})
 
   useEffect(() => {
     if (!mapRef.current) return
@@ -82,9 +85,10 @@ export default function Map({ localities, locale }: Props) {
       })
 
       localities.forEach((loc) => {
-        L.marker([loc.latitude, loc.longitude], { icon })
+        const marker = L.marker([loc.latitude, loc.longitude], { icon })
           .addTo(map!)
-          .bindPopup(buildPopupHTML(loc, locale), { maxWidth: 280 })
+          .bindPopup(buildPopupHTML(loc, locale), { maxWidth: 340 })
+        markersRef.current[loc.id] = marker
       })
     })
 
@@ -93,9 +97,27 @@ export default function Map({ localities, locale }: Props) {
       if (map) {
         map.remove()
         mapInstanceRef.current = null
+        markersRef.current = {}
       }
     }
-  }, [localities])
+  }, [localities, locale])
+
+  // Reacciona a la selección desde la lista:
+  // - Con id: vuela al marker y abre su popup.
+  // - Sin id (deselección): vuelve a la vista por defecto y cierra el popup.
+  useEffect(() => {
+    const map = mapInstanceRef.current
+    if (!map) return
+    if (!selectedId) {
+      map.closePopup()
+      map.flyTo([40.4, -3.7], 6, { duration: 0.8 })
+      return
+    }
+    const marker = markersRef.current[selectedId]
+    if (!marker) return
+    map.flyTo(marker.getLatLng(), Math.max(map.getZoom(), 8), { duration: 0.8 })
+    marker.openPopup()
+  }, [selectedId, focusToken])
 
   return <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
 }

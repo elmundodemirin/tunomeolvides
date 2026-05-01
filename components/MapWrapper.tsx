@@ -8,8 +8,10 @@ const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 type Props = {
   localities: Locality[]
   locale: string
+  selectedId?: string | null
+  focusToken?: number
 }
 
-export default function MapWrapper({ localities, locale }: Props) {
-  return <Map localities={localities} locale={locale} />
+export default function MapWrapper({ localities, locale, selectedId, focusToken }: Props) {
+  return <Map localities={localities} locale={locale} selectedId={selectedId} focusToken={focusToken} />
 }

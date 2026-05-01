@@ -1,10 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import { Modal } from '@/components/Modal'
+import { PrivacyContent } from '@/components/PrivacyContent'
 
 export function ContactForm() {
   const t = useTranslations('contact')
+  const locale = useLocale()
 
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [consent, setConsent] = useState(false)
@@ -12,6 +15,7 @@ export function ContactForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showPrivacy, setShowPrivacy] = useState(false)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -111,9 +115,13 @@ export function ContactForm() {
         <label htmlFor="consent" className="text-xs leading-relaxed cursor-pointer" style={{ color: 'var(--color-text)' }}>
           {t.rich('consent', {
             privacyLink: chunks => (
-              <a href="/privacidad" className="underline hover:text-[#C9633E] transition-colors">
+              <button
+                type="button"
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowPrivacy(true) }}
+                className="underline hover:text-[#C9633E] transition-colors cursor-pointer"
+              >
                 {chunks}
-              </a>
+              </button>
             ),
           })}
         </label>
@@ -133,6 +141,15 @@ export function ContactForm() {
       >
         {loading ? t('sending') : t('send')}
       </button>
+
+      <Modal
+        open={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
+        title={t('privacyModalTitle')}
+        closeLabel={t('closeModal')}
+      >
+        <PrivacyContent locale={locale} />
+      </Modal>
 
     </form>
   )

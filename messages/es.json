@@ -37,6 +37,8 @@
     "messagePlaceholder": "Tu mensaje...",
     "successTitle": "¡Mensaje enviado!",
     "successBody": "Hemos recibido tu mensaje. Te responderemos en el menor tiempo posible.",
-    "error": "Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo."
+    "error": "Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+    "privacyModalTitle": "Política de privacidad",
+    "closeModal": "Cerrar"
   }
 }
