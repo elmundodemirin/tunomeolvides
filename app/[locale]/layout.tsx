@@ -3,6 +3,8 @@ import { getMessages, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import Link from 'next/link'
 import LocaleSwitcher from '@/components/LocaleSwitcher'
+import { CookieBanner } from '@/components/CookieBanner'
+import { Footer } from '@/components/Footer'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -50,6 +52,8 @@ export default async function LocaleLayout({
       <main className="flex-1 flex flex-col">
         {children}
       </main>
+      <Footer locale={locale} />
+      <CookieBanner locale={locale} />
     </NextIntlClientProvider>
   )
 }

@@ -24,10 +24,15 @@
     "name": "Nombre",
     "email": "Correo electrónico",
     "message": "Mensaje",
-    "consent": "He leído y acepto la política de privacidad. Consiento el tratamiento de mis datos para atender mi consulta.",
+    "consent": "He leído y acepto la <privacyLink>política de privacidad</privacyLink>. Consiento el tratamiento de mis datos personales para atender mi consulta.",
+    "consentRequired": "Debes aceptar la política de privacidad para enviar el mensaje.",
     "send": "Enviar mensaje",
+    "sending": "Enviando…",
     "namePlaceholder": "Tu nombre",
     "emailPlaceholder": "tu@email.com",
-    "messagePlaceholder": "Tu mensaje..."
+    "messagePlaceholder": "Tu mensaje...",
+    "successTitle": "¡Mensaje enviado!",
+    "successBody": "Hemos recibido tu mensaje. Te responderemos en el menor tiempo posible.",
+    "error": "Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo."
   }
 }
