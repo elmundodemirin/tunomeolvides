@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import type { Locality } from '@/lib/types'
 import LocalityList from './LocalityList'
 import MapWrapper from './MapWrapper'
+import { BottomSheet } from './BottomSheet'
 
 type Props = {
   localities: Locality[]
@@ -17,47 +18,55 @@ export default function HomeShell({ localities, locale }: Props) {
   const [focusToken, setFocusToken] = useState(0)
 
   // Click en la misma localidad → deselecciona (mapa vuelve a vista por defecto).
-  // El token siempre se incrementa para que el mapa reaccione aunque la id no cambie.
   const handleSelect = (id: string) => {
     setSelectedId((current) => (current === id ? null : id))
     setFocusToken((n) => n + 1)
   }
 
+  // Contenido común del panel — usado tanto en el sidebar de escritorio
+  // como dentro del bottom sheet en móvil. La lista mantiene el mismo estado
+  // (selectedId / focusToken) entre ambos.
+  const panel = (
+    <>
+      <div className="mb-6">
+        <h1
+          className="text-2xl lg:text-4xl leading-tight mb-3"
+          style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
+        >
+          {t('title')}
+        </h1>
+        <p className="text-sm lg:text-base leading-relaxed mb-4" style={{ color: 'var(--color-text)' }}>
+          {t('lead')}
+        </p>
+        <div
+          className="text-xs uppercase tracking-wider font-semibold"
+          style={{ color: 'var(--color-sage-dark)' }}
+        >
+          {t('localitiesCount', { count: localities.length })}
+        </div>
+      </div>
+
+      <LocalityList
+        localities={localities}
+        locale={locale}
+        selectedId={selectedId}
+        onSelect={handleSelect}
+      />
+    </>
+  )
+
   return (
-    <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-72px)]">
-      {/* Panel narrativo + lista */}
+    <div className="relative h-[calc(100vh-72px)] lg:flex">
+      {/* Sidebar narrativo: solo visible en lg+ */}
       <aside
-        className="lg:w-2/5 lg:max-w-[480px] lg:overflow-y-auto px-6 py-8 lg:px-10 lg:py-12 flex flex-col"
+        className="hidden lg:flex lg:w-2/5 lg:max-w-[480px] lg:overflow-y-auto px-6 py-8 lg:px-10 lg:py-12 flex-col"
         style={{ backgroundColor: 'var(--color-cream)' }}
       >
-        <header className="mb-6">
-          <h1
-            className="text-3xl lg:text-4xl leading-tight mb-3"
-            style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
-          >
-            {t('title')}
-          </h1>
-          <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--color-text)' }}>
-            {t('lead')}
-          </p>
-          <div
-            className="text-xs uppercase tracking-wider font-semibold"
-            style={{ color: 'var(--color-sage-dark)' }}
-          >
-            {t('localitiesCount', { count: localities.length })}
-          </div>
-        </header>
-
-        <LocalityList
-          localities={localities}
-          locale={locale}
-          selectedId={selectedId}
-          onSelect={handleSelect}
-        />
+        {panel}
       </aside>
 
-      {/* Mapa: tarjeta con borde redondeado y sombra en escritorio */}
-      <div className="h-[60vh] lg:h-auto lg:flex-1 lg:w-3/5 lg:p-6">
+      {/* Mapa: pantalla completa en móvil, columna derecha en desktop con tarjeta */}
+      <div className="h-full w-full lg:flex-1 lg:w-3/5 lg:p-6">
         <div className="h-full w-full lg:overflow-hidden lg:rounded-2xl lg:shadow-lg">
           <MapWrapper
             localities={localities}
@@ -67,6 +76,15 @@ export default function HomeShell({ localities, locale }: Props) {
           />
         </div>
       </div>
+
+      {/* Bottom sheet móvil: oculto en lg+ */}
+      <BottomSheet
+        title={t('title')}
+        badge={t('localitiesCount', { count: localities.length })}
+        className="lg:hidden"
+      >
+        {panel}
+      </BottomSheet>
     </div>
   )
 }
