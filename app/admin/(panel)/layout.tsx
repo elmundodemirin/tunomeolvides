@@ -23,7 +23,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     <div className="flex flex-col lg:flex-row min-h-screen">
 
       {/* Top bar (solo móvil) */}
-      <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#3d2b1f] sticky top-0 z-30">
+      <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#8E4226] sticky top-0 z-30">
         <Link href="/admin/dashboard" className="flex items-center gap-2 no-underline">
           <span className="text-lg" aria-hidden="true">✿</span>
           <span
@@ -32,15 +32,15 @@ export default async function PanelLayout({ children }: { children: React.ReactN
           >
             No Me Olvides
           </span>
-          <span className="text-[#a07860] text-xs">· Admin</span>
+          <span className="text-[#f0c9b0] text-xs">· Admin</span>
         </Link>
         <AdminMobileMenu items={navLinks} userEmail={userEmail} />
       </header>
 
       {/* Barra lateral (solo escritorio) */}
-      <aside className="hidden lg:flex w-56 bg-[#3d2b1f] flex-col shrink-0">
+      <aside className="hidden lg:flex w-56 bg-[#8E4226] flex-col shrink-0">
         {/* Logo */}
-        <div className="px-5 py-6 border-b border-[#5a3f30]">
+        <div className="px-5 py-6 border-b border-[#7a3b20]">
           <div className="text-xl mb-1">✿</div>
           <span
             className="text-[#FAF6EE] text-sm font-bold"
@@ -48,7 +48,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
           >
             No Me Olvides
           </span>
-          <p className="text-[#a07860] text-xs mt-0.5">Panel de administración</p>
+          <p className="text-[#f0c9b0] text-xs mt-0.5">Panel de administración</p>
         </div>
 
         {/* Navegación */}
@@ -57,7 +57,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             <Link
               key={link.href}
               href={link.href}
-              className="block px-4 py-2 text-sm text-[#EFE8D6] hover:bg-[#5a3f30] rounded-lg transition-colors"
+              className="block px-4 py-2 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
             >
               {link.label}
             </Link>
@@ -65,8 +65,8 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         </nav>
 
         {/* Usuario + cerrar sesión */}
-        <div className="px-3 py-4 border-t border-[#5a3f30]">
-          <p className="px-4 text-xs text-[#a07860] truncate mb-2">{userEmail}</p>
+        <div className="px-3 py-4 border-t border-[#7a3b20]">
+          <p className="px-4 text-xs text-[#f0c9b0] truncate mb-2">{userEmail}</p>
           <SignOutButton />
         </div>
       </aside>

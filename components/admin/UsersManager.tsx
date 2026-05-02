@@ -78,7 +78,7 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
           Invitar nuevo administrador
         </h2>
 
-        <form onSubmit={handleInvite} className="flex gap-3">
+        <form onSubmit={handleInvite} className="flex flex-col sm:flex-row gap-3">
           <input
             type="email"
             required
@@ -135,7 +135,7 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
             <tbody className="divide-y divide-[#EFE8D6]">
               {users.map(u => (
                 <tr key={u.id} className="hover:bg-[#FAF6EE] transition-colors">
-                  <td className="px-6 py-3 text-[#3d2b1f]">
+                  <td className="px-6 py-3 text-[#2C1810]">
                     {u.email}
                     {u.id === currentUserId && (
                       <span className="ml-2 text-xs text-[#5F7355] font-medium">(tú)</span>

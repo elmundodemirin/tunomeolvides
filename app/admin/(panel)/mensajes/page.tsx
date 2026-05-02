@@ -53,7 +53,7 @@ export default async function MensajesPage() {
             <tbody className="divide-y divide-[#EFE8D6]">
               {all.map(msg => (
                 <tr key={msg.id} className="hover:bg-[#FAF6EE] transition-colors">
-                  <td className="px-5 py-3 font-medium text-[#3d2b1f]">{msg.name}</td>
+                  <td className="px-5 py-3 font-medium text-[#2C1810]">{msg.name}</td>
                   <td className="px-5 py-3 text-[#5a3f30] hidden sm:table-cell">{msg.email}</td>
                   <td className="px-5 py-3 text-[#5a3f30] hidden md:table-cell max-w-xs">
                     <span className="block truncate">
@@ -94,7 +94,7 @@ export default async function MensajesPage() {
   )
 }
 
-function StatCard({ label, value, color = 'text-[#3d2b1f]' }: {
+function StatCard({ label, value, color = 'text-[#2C1810]' }: {
   label: string
   value: number
   color?: string

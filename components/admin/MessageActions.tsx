@@ -97,7 +97,7 @@ export function MessageActions({ messageId, handled, adminNotes }: Props) {
           onChange={e => setNotes(e.target.value)}
           rows={4}
           placeholder="Añade notas internas sobre este mensaje (no son visibles para el remitente)…"
-          className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm text-[#3d2b1f] placeholder-[#c4b09a] focus:outline-none focus:ring-2 focus:ring-[#C9633E] resize-none"
+          className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm text-[#2C1810] placeholder-[#c4b09a] focus:outline-none focus:ring-2 focus:ring-[#C9633E] resize-none"
         />
         <button
           type="button"

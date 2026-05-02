@@ -68,12 +68,12 @@ export default async function MensajeDetailPage({
         <div className="bg-[#FAF6EE] rounded-xl border border-[#EFE8D6] px-5 py-4 text-sm space-y-1.5">
           <p>
             <span className="text-[#a07860]">Recibido el:</span>{' '}
-            <span className="text-[#3d2b1f]">{fmt(msg.created_at)}</span>
+            <span className="text-[#2C1810]">{fmt(msg.created_at)}</span>
           </p>
           {msg.handled && msg.handled_at && (
             <p>
               <span className="text-[#a07860]">Atendido el:</span>{' '}
-              <span className="text-[#3d2b1f]">{fmt(msg.handled_at)}</span>
+              <span className="text-[#2C1810]">{fmt(msg.handled_at)}</span>
               {handledByEmail && (
                 <span className="text-[#a07860]"> · {handledByEmail}</span>
               )}
@@ -86,7 +86,7 @@ export default async function MensajeDetailPage({
           <h2 className="text-xs font-semibold text-[#a07860] uppercase tracking-wide mb-2">
             Mensaje
           </h2>
-          <blockquote className="bg-white border border-[#EFE8D6] rounded-xl px-5 py-4 text-sm text-[#3d2b1f] whitespace-pre-wrap leading-relaxed">
+          <blockquote className="bg-white border border-[#EFE8D6] rounded-xl px-5 py-4 text-sm text-[#2C1810] whitespace-pre-wrap leading-relaxed">
             {msg.message}
           </blockquote>
         </div>

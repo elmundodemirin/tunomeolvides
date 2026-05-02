@@ -60,7 +60,7 @@ export default async function DashboardPage() {
             <tbody className="divide-y divide-[#EFE8D6]">
               {all.map(locality => (
                 <tr key={locality.id} className="hover:bg-[#FAF6EE] transition-colors">
-                  <td className="px-5 py-3 font-medium text-[#3d2b1f]">{locality.name}</td>
+                  <td className="px-5 py-3 font-medium text-[#2C1810]">{locality.name}</td>
                   <td className="px-5 py-3 text-[#5a3f30]">{locality.province}</td>
                   <td className="px-5 py-3 text-[#5a3f30]">{locality.region}</td>
                   <td className="px-5 py-3">
@@ -90,7 +90,7 @@ export default async function DashboardPage() {
   )
 }
 
-function StatCard({ label, value, color = 'text-[#3d2b1f]' }: {
+function StatCard({ label, value, color = 'text-[#2C1810]' }: {
   label: string
   value: number
   color?: string

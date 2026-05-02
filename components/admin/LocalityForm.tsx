@@ -189,7 +189,7 @@ export function LocalityForm({ locality }: Props) {
             onChange={handleChange}
             className="w-4 h-4 accent-[#C9633E]"
           />
-          <span className="text-sm text-[#3d2b1f]">Localidad activa (visible en el mapa)</span>
+          <span className="text-sm text-[#2C1810]">Localidad activa (visible en el mapa)</span>
         </label>
       </Section>
 
@@ -337,7 +337,7 @@ function Field({ label, required, children }: {
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-[#3d2b1f] mb-1">
+      <label className="block text-sm font-medium text-[#2C1810] mb-1">
         {label}{required && <span className="text-[#C9633E] ml-0.5">*</span>}
       </label>
       {children}
