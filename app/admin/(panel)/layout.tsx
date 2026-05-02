@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { SignOutButton } from '@/components/admin/SignOutButton'
+import { AdminMobileMenu } from '@/components/admin/AdminMobileMenu'
 
 const navLinks = [
   { href: '/admin/dashboard', label: 'Inicio' },
@@ -15,11 +16,28 @@ export default async function PanelLayout({ children }: { children: React.ReactN
 
   if (!user) redirect('/admin/login')
 
-  return (
-    <div className="flex min-h-screen">
+  const userEmail = user.email ?? ''
 
-      {/* Barra lateral */}
-      <aside className="w-56 bg-[#3d2b1f] flex flex-col shrink-0">
+  return (
+    <div className="flex flex-col lg:flex-row min-h-screen">
+
+      {/* Top bar (solo móvil) */}
+      <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#3d2b1f] sticky top-0 z-30">
+        <Link href="/admin/dashboard" className="flex items-center gap-2 no-underline">
+          <span className="text-lg" aria-hidden="true">✿</span>
+          <span
+            className="text-[#FAF6EE] text-sm font-bold"
+            style={{ fontFamily: 'Georgia, serif' }}
+          >
+            No Me Olvides
+          </span>
+          <span className="text-[#a07860] text-xs">· Admin</span>
+        </Link>
+        <AdminMobileMenu items={navLinks} userEmail={userEmail} />
+      </header>
+
+      {/* Barra lateral (solo escritorio) */}
+      <aside className="hidden lg:flex w-56 bg-[#3d2b1f] flex-col shrink-0">
         {/* Logo */}
         <div className="px-5 py-6 border-b border-[#5a3f30]">
           <div className="text-xl mb-1">✿</div>
@@ -47,7 +65,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
 
         {/* Usuario + cerrar sesión */}
         <div className="px-3 py-4 border-t border-[#5a3f30]">
-          <p className="px-4 text-xs text-[#a07860] truncate mb-2">{user.email}</p>
+          <p className="px-4 text-xs text-[#a07860] truncate mb-2">{userEmail}</p>
           <SignOutButton />
         </div>
       </aside>
