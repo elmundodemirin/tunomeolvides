@@ -7,6 +7,7 @@ import { AdminMobileMenu } from '@/components/admin/AdminMobileMenu'
 const navLinks = [
   { href: '/admin/dashboard', label: 'Inicio' },
   { href: '/admin/localities', label: 'Localidades' },
+  { href: '/admin/mensajes', label: 'Mensajes' },
   { href: '/admin/usuarios', label: 'Usuarios' },
 ]
 

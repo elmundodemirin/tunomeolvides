@@ -13,3 +13,18 @@ export type Locality = {
   cover_image_url: string | null
   active: boolean
 }
+
+export type ContactMessage = {
+  id: string
+  name: string
+  email: string
+  message: string
+  consent_given: boolean
+  consent_timestamp: string
+  created_at: string
+  handled: boolean
+  handled_at: string | null
+  handled_by: string | null
+  admin_notes: string | null
+  updated_at: string
+}
