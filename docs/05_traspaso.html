@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Me Olvides · Traspaso técnico · v1.0</title>
+<style>
+  :root {
+    --terracota: #C9633E;
+    --terracota-dark: #8E4226;
+    --salvia: #8FA785;
+    --salvia-dark: #5F7355;
+    --crema: #FAF6EE;
+    --crema-dark: #EFE8D6;
+    --tinta: #2A2622;
+    --tinta-soft: #5C544D;
+    --azul-flor: #6B8CB8;
+    --border: #D8CFB9;
+    --code-bg: #2A2622;
+    --code-text: #E8DFC8;
+    --shadow: 0 2px 8px rgba(42, 38, 34, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    background: var(--crema);
+    color: var(--tinta);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+
+  /* Sidebar */
+  aside {
+    background: var(--crema-dark);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  aside .logo {
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--terracota-dark);
+    font-style: italic;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.5px;
+  }
+  aside .subtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--tinta-soft);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+  aside nav ul { list-style: none; }
+  aside nav > ul > li { margin-bottom: 1.2rem; }
+  aside nav a {
+    color: var(--tinta);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  aside nav a:hover { background: rgba(201, 99, 62, 0.08); border-left-color: var(--terracota); }
+  aside nav .section-title {
+    font-weight: 600;
+    color: var(--terracota-dark);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+  }
+  aside nav ul ul { padding-left: 0.75rem; margin-top: 0.3rem; }
+  aside nav ul ul a { font-size: 0.82rem; color: var(--tinta-soft); padding: 0.2rem 0.5rem; }
+
+  /* Main content */
+  main { padding: 3rem 4rem; max-width: 1000px; }
+  header.doc-header {
+    border-bottom: 2px solid var(--terracota);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  header.doc-header .pill {
+    display: inline-block;
+    background: var(--salvia);
+    color: white;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+  }
+  header.doc-header h1 {
+    font-family: Georgia, serif;
+    font-size: 2.6rem;
+    line-height: 1.2;
+    color: var(--terracota-dark);
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+  }
+  header.doc-header .meta {
+    color: var(--tinta-soft);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    color: var(--terracota-dark);
+    margin: 3rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: normal;
+  }
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--salvia-dark);
+    margin: 2rem 0 0.8rem;
+    font-weight: normal;
+  }
+  h4 {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--tinta-soft);
+    margin: 1.5rem 0 0.6rem;
+  }
+  p { margin-bottom: 1rem; }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    background: white;
+    box-shadow: var(--shadow);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.92rem;
+  }
+  th {
+    background: var(--terracota);
+    color: white;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(143, 167, 133, 0.05); }
+
+  /* Code & inline code */
+  code {
+    font-family: 'Menlo', 'Consolas', monospace;
+    background: var(--crema-dark);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: var(--terracota-dark);
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 1.2rem 1.5rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0 2rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    box-shadow: var(--shadow);
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  /* Boxes */
+  .box {
+    border-left: 4px solid var(--salvia);
+    background: rgba(143, 167, 133, 0.08);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .box.warning {
+    border-left-color: #C9883E;
+    background: rgba(201, 136, 62, 0.08);
+  }
+  .box.legal {
+    border-left-color: var(--azul-flor);
+    background: rgba(107, 140, 184, 0.08);
+  }
+  .box.critical {
+    border-left-color: var(--terracota);
+    background: rgba(201, 99, 62, 0.08);
+  }
+  .box-title {
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+    color: var(--tinta-soft);
+  }
+
+  /* Status pills */
+  .status {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+  }
+  .status.done { background: var(--salvia); color: white; }
+  .status.todo { background: var(--crema-dark); color: var(--tinta-soft); }
+  .status.critical { background: var(--terracota); color: white; }
+  .status.review { background: #E0C868; color: var(--tinta); }
+
+  /* Flower decoration */
+  .flower {
+    display: inline-block;
+    color: var(--azul-flor);
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--tinta-soft);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; }
+    main { padding: 2rem 1.5rem; }
+    header.doc-header h1 { font-size: 2rem; }
+  }
+
+  /* TOC numbers */
+  .toc-num {
+    display: inline-block;
+    color: var(--terracota);
+    font-weight: 600;
+    margin-right: 0.4rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside>
+    <div class="logo">No Me Olvides <span class="flower">✿</span></div>
+    <div class="subtitle">Traspaso técnico</div>
+    <nav>
+      <ul>
+        <li>
+          <span class="section-title">Documento</span>
+          <ul>
+            <li><a href="#bienvenida"><span class="toc-num">01</span>Bienvenida y contexto</a></li>
+            <li><a href="#stack"><span class="toc-num">02</span>Stack y arquitectura</a></li>
+            <li><a href="#cuentas"><span class="toc-num">03</span>Cuentas y accesos</a></li>
+            <li><a href="#local"><span class="toc-num">04</span>Arrancar en local</a></li>
+            <li><a href="#deploy"><span class="toc-num">05</span>Despliegue</a></li>
+            <li><a href="#supabase"><span class="toc-num">06</span>Supabase: configuración</a></li>
+            <li><a href="#migraciones"><span class="toc-num">07</span>Migraciones de BBDD</a></li>
+            <li><a href="#datos"><span class="toc-num">08</span>Modelo de datos</a></li>
+            <li><a href="#invitaciones"><span class="toc-num">09</span>Invitación de admins</a></li>
+            <li><a href="#backups"><span class="toc-num">10</span>Backups y operativa</a></li>
+            <li><a href="#rarezas"><span class="toc-num">11</span>Cosas raras a recordar</a></li>
+            <li><a href="#contactos"><span class="toc-num">12</span>Contactos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+
+    <header class="doc-header">
+      <span class="pill">Documento vivo · v1.0</span>
+      <h1>Traspaso técnico para el siguiente programador</h1>
+      <div class="meta">
+        Proyecto No Me Olvides · Patrimonio cultural de la España vaciada<br>
+        Última actualización: 9 de mayo de 2026
+      </div>
+    </header>
+
+    <!-- 01 -->
+    <section id="bienvenida">
+      <h2>01. Bienvenida y contexto</h2>
+      <p>
+        <strong>No Me Olvides</strong> es una plataforma web bilingüe (con UI también en francés) cuyo
+        elemento central es un mapa interactivo de España donde cada punto representa una localidad
+        rural documentada con un audio narrado en primera persona. La promotora del proyecto es
+        <strong>María del Carmen López Rosa</strong>, que gestiona todo el contenido de forma autónoma
+        desde el panel <code>/admin</code>.
+      </p>
+      <p>
+        El objetivo del proyecto es preservar la memoria oral del patrimonio cultural de la España vaciada
+        haciéndolo accesible a cualquier visitante con conexión a internet, sin login, sin registro y
+        cumpliendo RGPD desde el día 1. La Fase 1 (que es la que has heredado) está prácticamente
+        completa: faltan los bloques B8 (SEO técnico), B9 (documentación final) y B10 (testing y
+        optimización Lighthouse).
+      </p>
+      <p>
+        <strong>Este documento va dirigido a ti</strong>, programador o programadora que toma el relevo.
+        Su intención es ahorrarte el medio día de arqueología que normalmente cuesta entender un
+        proyecto ajeno: aquí tienes los accesos, las decisiones tomadas, las trampas que ya conozco y los
+        puntos donde más dolería romper algo. Léelo entero antes de tocar nada y, cuando empieces a
+        hacer cambios, mantenlo vivo: es la única forma de que el siguiente que venga detrás de ti tenga
+        la misma cortesía.
+      </p>
+      <div class="box">
+        <div class="box-title">Lecturas previas recomendadas</div>
+        <ul>
+          <li><a href="01_arquitectura.html"><code>01_arquitectura.html</code></a> — visión arquitectónica completa.</li>
+          <li><a href="02_modelo_datos.html"><code>02_modelo_datos.html</code></a> — detalle del modelo de datos y RLS.</li>
+          <li><a href="03_lopd_compliance.html"><code>03_lopd_compliance.html</code></a> — obligaciones RGPD/LOPD.</li>
+          <li><a href="04_manual_panel.html"><code>04_manual_panel.html</code></a> — manual de la promotora.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section id="stack">
+      <h2>02. Stack y arquitectura en una página</h2>
+      <p>
+        El stack es deliberadamente estándar y popular: cualquier programador moderno debería poder
+        ponerse al día sin reescribir nada. Sin abstracciones propietarias, sin frameworks exóticos.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th style="width:30%">Capa</th><th>Tecnología</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Framework</td><td><strong>Next.js 16.2.4</strong> (App Router) + <strong>TypeScript 5</strong> + React 19.2.4</td></tr>
+          <tr><td>Estilos</td><td><strong>Tailwind CSS 4</strong> (vía <code>@tailwindcss/postcss</code>)</td></tr>
+          <tr><td>Mapa</td><td><strong>Leaflet 1.9.4</strong> + tiles de <strong>OpenStreetMap</strong></td></tr>
+          <tr><td>Internacionalización</td><td><strong>next-intl 4.11</strong></td></tr>
+          <tr><td>Base de datos / Auth / Storage</td><td><strong>Supabase</strong> (PostgreSQL + Auth + Storage), librerías <code>@supabase/ssr</code> y <code>@supabase/supabase-js</code></td></tr>
+          <tr><td>Hosting frontend</td><td><strong>Vercel</strong></td></tr>
+          <tr><td>Analítica</td><td><strong>Google Analytics 4</strong> (todavía no activado en producción)</td></tr>
+          <tr><td>Banner de cookies</td><td><strong>vanilla-cookieconsent 3.1</strong></td></tr>
+          <tr><td>Control de versiones</td><td><strong>Git + GitHub</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Cómo encajan las piezas</h3>
+      <p>
+        La aplicación tiene <strong>dos vidas paralelas</strong> dentro de la misma codebase Next.js:
+      </p>
+      <ul>
+        <li>
+          <strong>Web pública</strong> (rutas <code>/[locale]/...</code>): visitante anónimo, mapa
+          interactivo, popups con audios, formulario de contacto, páginas estáticas (sobre, contacto,
+          legales). 100% sin login.
+        </li>
+        <li>
+          <strong>Panel admin</strong> (rutas <code>/admin/...</code>): autenticado con Supabase Auth.
+          CRUD de localidades (incluida subida de audios MP3), gestión de mensajes de contacto, e
+          invitación de nuevos administradores.
+        </li>
+      </ul>
+      <p>
+        El idioma por defecto es <strong>español</strong>; <strong>inglés</strong> y <strong>francés</strong>
+        están soportados como UI traducida. Las descripciones y audios solo existen en ES y EN: si el
+        visitante navega en FR, el contenido cae a EN como <em>fallback</em> automático
+        (<code>pickLocalized()</code>).
+      </p>
+    </section>
+
+    <!-- 03 -->
+    <section id="cuentas">
+      <h2>03. Cuentas y accesos</h2>
+      <p>
+        El proyecto vive en cuatro servicios externos. Cada uno se transfiere manualmente al nuevo
+        programador (invitación como colaborador o miembro). <strong>Este documento NO contiene
+        credenciales</strong>: las contraseñas y claves se entregan por canal seguro fuera de aquí.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Servicio</th><th>Identificador</th><th>Cómo se hereda</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GitHub</strong></td>
+            <td><code>aitorsotorubio/nomeolvides</code></td>
+            <td>Añadir al nuevo programador como colaborador del repositorio (Settings → Collaborators).</td>
+          </tr>
+          <tr>
+            <td><strong>Vercel</strong></td>
+            <td>Proyecto desplegado en <code>https://nomeolvides.vercel.app</code></td>
+            <td>Invitar al nuevo programador al equipo de Vercel (Settings → Members). Vercel se conecta al repo de GitHub para los deploys.</td>
+          </tr>
+          <tr>
+            <td><strong>Supabase</strong></td>
+            <td>Proyecto en región <strong>Frankfurt (eu-central-1)</strong></td>
+            <td>Invitar al nuevo programador como miembro de la organización (Organization → Members).</td>
+          </tr>
+          <tr>
+            <td><strong>Dominio definitivo</strong></td>
+            <td>Pendiente de decidir (<code>nomeolvides.es</code> está cogido)</td>
+            <td>Se transferirá cuando se compre. Mientras tanto se usa el dominio <code>.vercel.app</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Email del proyecto</strong></td>
+            <td>Pendiente de configurar</td>
+            <td>Aplazado hasta decidir dominio y proveedor de email (Cloudflare Routing / Google Workspace / Zoho).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box warning">
+        <div class="box-title">⚠ Antes de revocar mis accesos</div>
+        <p>
+          Asegúrate de haber recibido invitación efectiva en GitHub, Vercel y Supabase, de poder hacer
+          login en el panel <code>/admin</code> con tu usuario, y de haber hecho un push de prueba que
+          se despliegue correctamente. Solo entonces tiene sentido retirar al programador anterior de
+          los tres servicios.
+        </p>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section id="local">
+      <h2>04. Cómo arrancar el proyecto en local</h2>
+
+      <ol>
+        <li>Clona el repo: <code>git clone git@github.com:aitorsotorubio/nomeolvides.git</code></li>
+        <li>Entra en la carpeta y ejecuta <code>npm install</code>.</li>
+        <li>Copia <code>.env.example</code> a <code>.env.local</code> y rellena los valores reales (los obtienes del dashboard de Supabase y del proyecto en Vercel).</li>
+        <li>Arranca el servidor de desarrollo con <code>npm run dev</code>. Abre <code>http://localhost:3000</code>.</li>
+      </ol>
+
+      <div class="box">
+        <div class="box-title">Next.js 16 = Turbopack por defecto</div>
+        <p>
+          Desde Next.js 16, el comando <code>next dev</code> usa <strong>Turbopack</strong> sin
+          configuración explícita. Es notablemente más rápido que el viejo Webpack en arranque y en
+          recarga, pero algunos plugins antiguos pueden no ser compatibles. Si añades una dependencia
+          y rompe el dev server, comprueba primero si tiene soporte Turbopack.
+        </p>
+      </div>
+
+      <h3>Variables de entorno</h3>
+      <p>
+        Plantilla en <code>.env.example</code> (sí está en git). Valores reales en
+        <code>.env.local</code> (NO está en git).
+      </p>
+
+      <table>
+        <thead>
+          <tr><th style="width:34%">Variable</th><th>Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>NEXT_PUBLIC_SUPABASE_URL</code></td>
+            <td>URL del proyecto Supabase (algo como <code>https://xxxxx.supabase.co</code>). Pública: viaja al cliente.</td>
+          </tr>
+          <tr>
+            <td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td>
+            <td>Clave pública (anon) del proyecto Supabase. Pública: la protege el RLS.</td>
+          </tr>
+          <tr>
+            <td><code>SUPABASE_SERVICE_ROLE_KEY</code></td>
+            <td>
+              Clave admin <strong>secreta</strong>. <span class="status critical">Solo en servidor</span>
+              (route handlers, API routes). Bypasea RLS y permite operaciones privilegiadas como invitar
+              usuarios. <strong>NUNCA exponer al cliente</strong>: si por error pones el prefijo
+              <code>NEXT_PUBLIC_</code>, Next la inyectaría en el bundle del navegador.
+            </td>
+          </tr>
+          <tr>
+            <td><code>NEXT_PUBLIC_SITE_URL</code></td>
+            <td>
+              URL pública de la app, usada para construir el <code>redirectTo</code> de los emails de
+              invitación y de recuperación de contraseña. En desarrollo:
+              <code>http://localhost:3000</code>. En producción: la URL definitiva o
+              <code>https://nomeolvides.vercel.app</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>NEXT_PUBLIC_GA_ID</code></td>
+            <td>ID de Google Analytics 4 (<code>G-XXXXXXXXXX</code>). Solo cuando se active GA4 en producción. De momento está comentada en <code>.env.example</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 05 -->
+    <section id="deploy">
+      <h2>05. Despliegue</h2>
+      <p>
+        Vercel está conectado al repositorio de GitHub. El flujo es completamente automático:
+      </p>
+      <ul>
+        <li>Cada <strong>push a <code>main</code></strong> dispara un build de producción y despliegue inmediato.</li>
+        <li>Cada <strong>pull request</strong> genera un <em>preview deploy</em> con su propia URL temporal — útil para validar cambios antes de mergear.</li>
+        <li>Los rollbacks se hacen desde el dashboard de Vercel (Deployments → Promote previous).</li>
+      </ul>
+
+      <h3>Variables de entorno en Vercel</h3>
+      <p>
+        Se configuran en <strong>Vercel → Settings → Environment Variables</strong>. Cada variable se
+        define para uno, dos o los tres entornos:
+      </p>
+      <ul>
+        <li><strong>Production</strong> — el sitio en vivo.</li>
+        <li><strong>Preview</strong> — los deploys de pull requests.</li>
+        <li><strong>Development</strong> — para <code>vercel dev</code> en local (no se usa habitualmente; nosotros usamos <code>npm run dev</code> con <code>.env.local</code>).</li>
+      </ul>
+
+      <div class="box warning">
+        <div class="box-title">⚠ Tras añadir o cambiar una variable: Redeploy</div>
+        <p>
+          Las variables de entorno se inyectan en <em>build time</em>, no en <em>runtime</em>. Si cambias
+          una variable y no haces <strong>Redeploy</strong> del último build (Deployments → ... →
+          Redeploy), el cambio NO se aplicará. Es una de las causas más comunes de "lo cambié pero
+          sigue fallando".
+        </p>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section id="supabase">
+      <h2>06. Supabase: configuración crítica</h2>
+      <p>
+        Supabase es el backend completo (BBDD + Auth + Storage). Tres bloques de configuración
+        importan especialmente:
+      </p>
+
+      <h3>Region</h3>
+      <p>
+        El proyecto está en <strong>eu-central-1 (Frankfurt)</strong>. Esto es <strong>requisito legal</strong>:
+        los datos personales (mensajes de contacto, emails de admins) deben quedarse en territorio UE
+        para cumplir RGPD sin tener que firmar cláusulas contractuales tipo (CCT) ni complicar el
+        registro de actividades de tratamiento. Si por lo que sea hay que mover el proyecto a otra
+        región, tiene que ser otra región UE.
+      </p>
+
+      <h3>Authentication → URL Configuration</h3>
+      <p>
+        En el dashboard de Supabase, en <strong>Authentication → URL Configuration</strong>:
+      </p>
+      <ul>
+        <li>
+          <strong>Site URL</strong>: <code>https://nomeolvides.vercel.app</code> (o el dominio definitivo
+          cuando se compre).
+        </li>
+        <li>
+          <strong>Redirect URLs</strong> (lista permitida): debe incluir
+          <code>https://nomeolvides.vercel.app/**</code> y <code>http://localhost:3000/**</code> al
+          menos. Y la URL del dominio definitivo cuando esté.
+        </li>
+      </ul>
+      <div class="box critical">
+        <div class="box-title">⚠ Sin esto, los emails de invitación rompen</div>
+        <p>
+          El flujo de invitación de nuevos admins (ver §09) genera un email con un enlace que vuelve a
+          la app. Si la URL de retorno no está en la lista de Redirect URLs permitidos, Supabase rechaza
+          el redirect y el invitado no puede entrar. Es uno de los errores que más se repiten al cambiar
+          de dominio.
+        </p>
+      </div>
+
+      <h3>Storage bucket <code>audios</code></h3>
+      <ul>
+        <li>Lectura <strong>pública</strong> (los audios deben oírse sin login).</li>
+        <li>Escritura <strong>solo autenticada</strong> (la promotora y los admins).</li>
+        <li>Tamaño máximo por archivo: <strong>10 MB</strong>.</li>
+        <li>Estructura de rutas: <code>audios/{locality_id}/{es|en}.mp3</code>.</li>
+      </ul>
+
+      <h3>Row Level Security (RLS)</h3>
+      <p>
+        Activado en <code>localities</code> y <code>contact_messages</code>. Las políticas están
+        versionadas en <code>supabase/migrations/</code>. Resumen:
+      </p>
+      <ul>
+        <li><strong>localities</strong>: lectura pública de las que tienen <code>active = true</code>; escritura solo para autenticados.</li>
+        <li><strong>contact_messages</strong>: cualquiera puede insertar (formulario de contacto público); leer / actualizar / borrar solo admins.</li>
+      </ul>
+      <p>
+        Para más detalle ver <a href="01_arquitectura.html#datos"><code>01_arquitectura.html</code> §04</a>.
+      </p>
+    </section>
+
+    <!-- 07 -->
+    <section id="migraciones">
+      <h2>07. Migraciones de base de datos</h2>
+      <p>
+        Las migraciones SQL están versionadas en <code>supabase/migrations/</code> con el formato
+        <code>YYYYMMDD_descripcion.sql</code>. Hasta hoy hay una:
+      </p>
+      <ul>
+        <li>
+          <code>20260502_contact_messages_handled.sql</code> — añade los campos de auditoría
+          (<code>updated_at</code>, <code>handled</code>, <code>handled_at</code>, <code>handled_by</code>,
+          <code>admin_notes</code>) a <code>contact_messages</code> y las políticas RLS necesarias para
+          que el panel pueda actualizar y borrar.
+        </li>
+      </ul>
+
+      <h3>Cómo aplicar una nueva migración</h3>
+      <ol>
+        <li>Crea un nuevo fichero en <code>supabase/migrations/</code> con el formato de fecha.</li>
+        <li>Escribe el SQL idempotente cuando sea posible (<code>IF NOT EXISTS</code>, <code>CREATE OR REPLACE</code>).</li>
+        <li>Pega el contenido en <strong>Supabase Dashboard → SQL Editor → Run</strong>.</li>
+        <li>Commitea el fichero <code>.sql</code> al repo: la migración queda versionada para futuras instalaciones (clonar a otro proyecto, recrear en local, etc.).</li>
+      </ol>
+
+      <div class="box warning">
+        <div class="box-title">⚠ Operaciones destructivas: avisa siempre</div>
+        <p>
+          Cualquier <code>DROP TABLE</code>, <code>DROP COLUMN</code>, <code>TRUNCATE</code> o similar
+          debe avisarse a la promotora antes de ejecutar — los datos de las localidades son patrimonio
+          recopilado a mano y perderlos sería un desastre. Supabase pide confirmación explícita en el
+          editor SQL para estas operaciones.
+        </p>
+        <p>
+          Para los triggers prefiere <code>CREATE OR REPLACE TRIGGER</code> (Postgres 14+) en lugar de
+          <code>DROP TRIGGER IF EXISTS</code> + <code>CREATE TRIGGER</code>: evita el aviso destructivo
+          y es atómico.
+        </p>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section id="datos">
+      <h2>08. Modelo de datos</h2>
+      <p>
+        Resumen rápido. Para el detalle completo (tipos, RLS, decisiones de diseño) consulta
+        <a href="01_arquitectura.html#datos"><code>01_arquitectura.html</code> §04</a>.
+      </p>
+
+      <h3>Tabla <code>localities</code></h3>
+      <table>
+        <thead>
+          <tr><th>Campo</th><th>Tipo</th><th>Notas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>uuid</td><td>PK, autogenerado.</td></tr>
+          <tr><td><code>name</code></td><td>text</td><td>Nombre de la localidad.</td></tr>
+          <tr><td><code>province</code></td><td>text</td><td>Provincia.</td></tr>
+          <tr><td><code>region</code></td><td>text</td><td>Comunidad autónoma.</td></tr>
+          <tr><td><code>latitude</code> / <code>longitude</code></td><td>numeric</td><td>Coordenadas para el mapa.</td></tr>
+          <tr><td><code>description_es</code> / <code>description_en</code></td><td>text</td><td>Texto del popup en cada idioma. FR usa EN como fallback.</td></tr>
+          <tr><td><code>audio_url_es</code> / <code>audio_url_en</code></td><td>text</td><td>URLs públicas de Supabase Storage.</td></tr>
+          <tr><td><code>external_url</code></td><td>text</td><td>Enlace turístico externo.</td></tr>
+          <tr><td><code>cover_image_url</code></td><td>text</td><td>Imagen opcional de portada.</td></tr>
+          <tr><td><code>active</code></td><td>boolean</td><td><strong>true</strong> = visible en el mapa.</td></tr>
+          <tr><td><code>created_at</code> / <code>updated_at</code></td><td>timestamptz</td><td>Auditoría temporal. <code>updated_at</code> mantenido por trigger.</td></tr>
+          <tr><td><code>created_by</code> / <code>modified_by</code></td><td>uuid → <code>auth.users</code></td><td>Auditoría operativa: quién creó / modificó.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Tabla <code>contact_messages</code></h3>
+      <table>
+        <thead>
+          <tr><th>Campo</th><th>Tipo</th><th>Notas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>uuid</td><td>PK.</td></tr>
+          <tr><td><code>name</code> / <code>email</code> / <code>message</code></td><td>text</td><td><span class="status critical">Datos personales</span> Email es PII.</td></tr>
+          <tr><td><code>consent_given</code> / <code>consent_timestamp</code></td><td>boolean / timestamptz</td><td>Prueba de consentimiento RGPD.</td></tr>
+          <tr><td><code>created_at</code> / <code>updated_at</code></td><td>timestamptz</td><td><code>updated_at</code> mantenido por trigger.</td></tr>
+          <tr><td><code>handled</code></td><td>boolean</td><td><code>false</code> por defecto. <code>true</code> cuando un admin atiende el mensaje.</td></tr>
+          <tr><td><code>handled_at</code></td><td>timestamptz</td><td>Cuándo se atendió.</td></tr>
+          <tr><td><code>handled_by</code></td><td>uuid → <code>auth.users</code></td><td>Quién atendió. Auditoría RGPD art. 5.2.</td></tr>
+          <tr><td><code>admin_notes</code></td><td>text</td><td>Notas internas. <strong>NO visibles</strong> al remitente.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Función reusable <code>set_updated_at()</code></h3>
+      <p>
+        Una sola función en plpgsql que actualiza <code>updated_at = now()</code> antes de cada
+        <code>UPDATE</code>. Está aplicada vía triggers a las dos tablas (<code>localities</code> y
+        <code>contact_messages</code>) para no tener que mantener el campo desde la aplicación.
+      </p>
+    </section>
+
+    <!-- 09 -->
+    <section id="invitaciones">
+      <h2>09. Flujo de invitación de admins</h2>
+      <p>
+        El panel admite múltiples administradores. La promotora (o cualquier admin existente) puede
+        invitar a otros sin tocar Supabase. El flujo completo:
+      </p>
+
+      <ol>
+        <li>
+          Un admin actual entra en <code>/admin/usuarios</code>, escribe un email y clica
+          <strong>"Enviar invitación"</strong>.
+        </li>
+        <li>
+          La UI llama al endpoint <code>POST /api/admin/users</code> (en
+          <code>app/api/admin/users/route.ts</code>). El handler valida que el caller está autenticado
+          y construye la URL de retorno:
+          <pre><code>const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin
+
+await admin.auth.admin.inviteUserByEmail(email, {
+  redirectTo: `${siteUrl}/admin/set-password`,
+})</code></pre>
+          El cliente <code>admin</code> usa la <code>SUPABASE_SERVICE_ROLE_KEY</code>, por eso solo
+          puede invocarse desde el servidor.
+        </li>
+        <li>
+          Supabase envía un email a la dirección invitada con un enlace. Al pulsarlo, el navegador llega
+          a <code>/admin/set-password</code> con la sesión de la persona ya activa (token en el hash de
+          la URL).
+        </li>
+        <li>
+          La página <code>/admin/set-password</code> recoge una contraseña, llama a
+          <code>auth.updateUser({ password })</code>, y al guardarla la persona queda autenticada como
+          admin. Ya puede entrar al panel con email + contraseña.
+        </li>
+      </ol>
+
+      <div class="box legal">
+        <div class="box-title">📌 Por qué el <code>redirectTo</code> explícito</div>
+        <p>
+          Sin el parámetro <code>redirectTo</code>, Supabase usaría el "Site URL" configurado en el
+          dashboard. Eso funciona en producción siempre que el Site URL esté bien, pero rompe en
+          preview deploys de Vercel y en local. Pasarlo explícitamente desde
+          <code>NEXT_PUBLIC_SITE_URL</code> (con fallback al origin del request) hace la app
+          <strong>independiente del Site URL del dashboard</strong> y multientorno por construcción.
+        </p>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section id="backups">
+      <h2>10. Backups y operativa</h2>
+
+      <h3>Backups de Supabase</h3>
+      <ul>
+        <li>
+          El plan Free de Supabase incluye <strong>backups diarios automáticos</strong> con retención
+          limitada. Verifica el plan vigente al hacerte cargo: si el proyecto sube a Pro, la retención
+          de backups aumenta y se pueden hacer <em>point-in-time recovery</em>.
+        </li>
+        <li>
+          A día de hoy <strong>no hay backups automáticos extra</strong> fuera de Supabase. Es razonable
+          configurar un dump semanal a almacenamiento externo (GitHub Action programado + bucket S3 de
+          terceros, por ejemplo). Recomiendo hacerlo cuando el proyecto pase a producción real con
+          visitantes.
+        </li>
+      </ul>
+
+      <h3>Audios</h3>
+      <p>
+        Viven en Supabase Storage (bucket <code>audios</code>). Para descargarlos masivamente — útil
+        antes de una migración o como copia de seguridad — usa la
+        <a href="https://supabase.com/docs/guides/cli">CLI de Supabase</a>:
+      </p>
+      <pre><code># Listar todos los archivos del bucket
+supabase storage ls ss:///audios --recursive
+
+# Descargar el bucket completo a una carpeta local
+supabase storage download ss:///audios ./backup-audios --recursive</code></pre>
+
+      <h3>Política de retención de mensajes</h3>
+      <p>
+        Los <code>contact_messages</code> deben borrarse automáticamente a los <strong>2 años</strong>
+        desde su recepción (decisión legal documentada en
+        <a href="03_lopd_compliance.html"><code>03_lopd_compliance.html</code></a>). El cron job que lo
+        haga está <strong>pendiente de implementar</strong> — ver
+        <a href="01_arquitectura.html#datos"><code>01_arquitectura.html</code> §05</a>. Hasta que esté
+        operativo, conviene revisar manualmente cada cierto tiempo si hay mensajes con más de 2 años
+        y borrarlos.
+      </p>
+    </section>
+
+    <!-- 11 -->
+    <section id="rarezas">
+      <h2>11. Cosas raras / decisiones a recordar</h2>
+      <p>
+        Esta es la sección de "ojo con esto". Cosas que ya rompieron una vez y que conviene saber
+        antes de tocar el código.
+      </p>
+
+      <h3>Leaflet y los z-index</h3>
+      <p>
+        El contenedor del mapa lleva <code>isolation: isolate</code> en CSS. Leaflet usa internamente
+        capas con z-index entre 200 y 700, y sin aislamiento esas capas peleaban contra el header
+        sticky y, sobre todo, contra el dropdown del selector de idioma (que terminaba pasando por
+        debajo del mapa). El <code>isolation: isolate</code> crea un nuevo <em>stacking context</em>
+        local: Leaflet se queda dentro de su mundo y el dropdown vive en el mundo de fuera, sin
+        interferir.
+      </p>
+
+      <h3>La sesión en <code>/admin/set-password</code> llega por hash</h3>
+      <p>
+        Cuando el invitado pulsa el enlace del email, Supabase no usa cookies ni query params: el
+        token de sesión llega en el <strong>fragmento de la URL</strong> (todo lo que va después del
+        <code>#</code>). El cliente browser de <code>@supabase/ssr</code> lo detecta automáticamente al
+        llamar a <code>getSession()</code> o al suscribirse a <code>onAuthStateChange</code>. No hay que
+        parsear el hash a mano. Si en algún momento esa página deja de funcionar, sospecha primero de
+        este detalle.
+      </p>
+
+      <h3>Idioma FR sin contenido propio</h3>
+      <p>
+        Las descripciones y los audios siguen siendo solo ES + EN. El francés muestra la UI traducida
+        (botones, textos del header, mensajes del formulario, etc.) pero el contenido de las
+        localidades cae a EN como fallback vía <code>pickLocalized()</code>. <strong>No añadas
+        columnas <code>description_fr</code> ni <code>audio_url_fr</code></strong> sin hablarlo antes
+        con la promotora: significa traducir y grabar todo.
+      </p>
+
+      <h3>Migración a Next.js 16: <code>proxy.ts</code> en lugar de <code>middleware.ts</code></h3>
+      <p>
+        Desde Next.js 16, el archivo de middleware se llama <code>proxy.ts</code> y la función
+        exportada es <code>proxy()</code> en lugar de <code>middleware()</code>. <strong>No es
+        renombrado libre</strong>: Next 16 obliga a este nombre. Si abres documentación o ejemplos
+        viejos verás <code>middleware.ts</code>; tradúcelo mentalmente. La firma de la función y el
+        objeto <code>config</code> con el matcher siguen siendo idénticos.
+      </p>
+
+      <h3>Charset y finales de línea (Windows)</h3>
+      <p>
+        El proyecto se desarrolla en Windows pero el repo se commitea con <strong>finales de línea
+        LF</strong>. Asegúrate de que tu editor está configurado para no convertir a CRLF al guardar
+        (en VS Code: <em>Files: Eol = \n</em>). Si <code>git status</code> te marca diffs gigantes en
+        archivos que no has tocado, casi siempre es por CRLF/LF.
+      </p>
+    </section>
+
+    <!-- 12 -->
+    <section id="contactos">
+      <h2>12. Contactos</h2>
+      <table>
+        <thead>
+          <tr><th>Rol</th><th>Persona</th><th>Contacto</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Promotora del proyecto</td>
+            <td>María del Carmen López Rosa</td>
+            <td><span class="status todo">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>Programador anterior</td>
+            <td>Aitor Soto Rubio</td>
+            <td><span class="status todo">Por canal privado en el momento del traspaso</span></td>
+          </tr>
+          <tr>
+            <td>Email del proyecto</td>
+            <td>—</td>
+            <td><span class="status todo">Pendiente de configurar</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box">
+        <div class="box-title">Y por último…</div>
+        <p>
+          Si en algún momento te encuentras una decisión que no entiendes, mira primero los
+          <em>Architecture Decision Records</em> de <code>01_arquitectura.html</code> §09 y los
+          comentarios del código. La mayoría de cosas raras tienen una razón documentada. Y si
+          encuentras algo que no se documentó, <strong>documéntalo tú</strong> antes de cambiarlo: el
+          siguiente que venga te lo agradecerá.
+        </p>
+        <p>
+          Bienvenido al proyecto. <span class="flower">✿</span>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        <span class="flower">✿</span> No Me Olvides · Traspaso técnico · v1.0 ·
+        Última actualización: 9 de mayo de 2026 — Aitor Soto Rubio
+      </p>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>

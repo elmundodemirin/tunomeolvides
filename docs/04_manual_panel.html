@@ -285,12 +285,13 @@
             <li><a href="#acceso"><span class="toc-num">02</span>Acceso al panel</a></li>
             <li><a href="#vista-general"><span class="toc-num">03</span>Visión general</a></li>
             <li><a href="#localidades"><span class="toc-num">04</span>Gestionar localidades</a></li>
-            <li><a href="#coordenadas"><span class="toc-num">05</span>Coordenadas en el mapa</a></li>
-            <li><a href="#audios"><span class="toc-num">06</span>Audios narrados</a></li>
-            <li><a href="#usuarios"><span class="toc-num">07</span>Otros administradores</a></li>
-            <li><a href="#buenas-practicas"><span class="toc-num">08</span>Buenas prácticas</a></li>
-            <li><a href="#si-pasa-algo"><span class="toc-num">09</span>Si pasa algo</a></li>
-            <li><a href="#glosario"><span class="toc-num">10</span>Glosario</a></li>
+            <li><a href="#mensajes"><span class="toc-num">05</span>Mensajes de contacto</a></li>
+            <li><a href="#coordenadas"><span class="toc-num">06</span>Coordenadas en el mapa</a></li>
+            <li><a href="#audios"><span class="toc-num">07</span>Audios narrados</a></li>
+            <li><a href="#usuarios"><span class="toc-num">08</span>Otros administradores</a></li>
+            <li><a href="#buenas-practicas"><span class="toc-num">09</span>Buenas prácticas</a></li>
+            <li><a href="#si-pasa-algo"><span class="toc-num">10</span>Si pasa algo</a></li>
+            <li><a href="#glosario"><span class="toc-num">11</span>Glosario</a></li>
           </ul>
         </li>
       </ul>
@@ -354,7 +355,11 @@
     <p>
       Por seguridad la contraseña no se puede recuperar sola. Escribe a
       <span class="pending">[COMPLETAR — email del programador]</span>
-      y se gestiona manualmente: te llegará un enlace para crear una nueva.
+      y se gestiona manualmente: te llegará un email con un enlace de
+      recuperación. Al pinchar en ese enlace se abre una pantalla del panel
+      (<code>/admin/set-password</code>) donde escribes la contraseña nueva
+      dos veces para confirmarla. En cuanto la guardas, entras al panel
+      automáticamente con la contraseña recién creada.
     </p>
 
     <div class="box warning">
@@ -379,10 +384,15 @@
       Cuando entras, la pantalla se divide en dos zonas:
     </p>
 
-    <h3>Barra lateral (izquierda, fondo marrón)</h3>
+    <h3>Barra lateral (izquierda, fondo terracota)</h3>
+    <p>
+      Es del mismo color terracota que el cabecero de la web pública, para que
+      panel y web hablen el mismo idioma visual.
+    </p>
     <ul>
       <li><strong>Inicio</strong>: la pantalla principal con la lista de pueblos.</li>
       <li><strong>Localidades</strong>: lleva al mismo sitio que «Inicio» (es un atajo).</li>
+      <li><strong>Mensajes</strong>: los mensajes que llegan por el formulario de contacto de la web.</li>
       <li><strong>Usuarios</strong>: para gestionar quién más puede entrar al panel.</li>
       <li>Abajo, tu correo y el botón de <strong>Cerrar sesión</strong>.</li>
     </ul>
@@ -507,7 +517,113 @@
     </div>
 
     <!-- ─────────────────────────────── 05 ─────────────────────────────── -->
-    <h2 id="coordenadas">05 · Coordenadas en el mapa</h2>
+    <h2 id="mensajes">05 · Mensajes de contacto</h2>
+
+    <h3>5.1 — Para qué sirve esta sección</h3>
+
+    <p>
+      Cualquier persona que rellene el formulario de contacto de la web aparece
+      aquí. Es donde lees lo que te escriben, decides qué hacer con cada
+      mensaje, y dejas constancia de que lo has visto. Funciona como una bandeja
+      de entrada propia del panel: nada de mezclarlo con tu correo personal.
+    </p>
+
+    <h3>5.2 — Lista de mensajes</h3>
+
+    <p>
+      Al entrar en <strong>Mensajes</strong> ves tres recuadros arriba con el
+      resumen: <strong>Total</strong>, <strong>Pendientes</strong> y
+      <strong>Atendidos</strong>. Debajo, una tabla con todos los mensajes
+      recibidos. Los pendientes salen primero, para que lo que aún no has tocado
+      se vea de un vistazo.
+    </p>
+
+    <p>Cada fila muestra:</p>
+    <ul>
+      <li>El <strong>nombre</strong> de quien escribió.</li>
+      <li>Su <strong>email</strong>.</li>
+      <li>Las <strong>primeras palabras del mensaje</strong>, a modo de previsualización.</li>
+      <li>La <strong>fecha</strong> en la que llegó.</li>
+      <li>El <strong>estado</strong>: <strong>Pendiente</strong> o <strong>Atendido</strong>.</li>
+      <li>Un enlace <span class="btn-ref secondary">Ver</span> a la derecha para abrirlo.</li>
+    </ul>
+
+    <h3>5.3 — Leer un mensaje</h3>
+
+    <p>
+      Al pulsar <strong>Ver</strong> se abre la ficha del mensaje. Verás:
+    </p>
+    <ul>
+      <li>Quién lo manda: <strong>nombre</strong> y <strong>email</strong>.</li>
+      <li><strong>Cuándo llegó</strong> (fecha y hora).</li>
+      <li>El <strong>texto completo</strong> del mensaje.</li>
+      <li>Y abajo, los botones para gestionarlo.</li>
+    </ul>
+
+    <div class="box warning">
+      <div class="box-title">Importante</div>
+      El texto del mensaje <strong>no se puede editar</strong>. Es lo que la
+      persona escribió y queda igual para siempre — así nadie puede cambiar a
+      posteriori lo que dijo otro. Si necesitas anotar algo sobre el mensaje,
+      usa el campo de notas internas (siguiente apartado).
+    </div>
+
+    <h3>5.4 — Marcar como atendido</h3>
+
+    <p>
+      Cuando hayas contestado por email a la persona (o decidido que no
+      necesita respuesta), pulsa <span class="btn-ref">Marcar como atendido</span>.
+      Esto guarda automáticamente la <strong>fecha y la hora</strong> del cierre,
+      así sabes cuándo lo cerraste y quién (tú) lo atendió.
+    </p>
+
+    <div class="box warning">
+      <div class="box-title">Una vez marcado, no se desmarca</div>
+      Marcar un mensaje como atendido es un registro permanente: no hay forma
+      de volver a dejarlo «Pendiente». Es a propósito, para que la trazabilidad
+      sea clara. Si te equivocas marcando uno, no pasa nada grave — simplemente
+      queda como atendido aunque aún no lo esté del todo.
+    </div>
+
+    <h3>5.5 — Notas internas</h3>
+
+    <p>
+      Debajo del mensaje hay un campo de <strong>notas internas</strong>. Escribe
+      ahí lo que necesites recordar — por ejemplo: «respondí el 5 de mayo»,
+      «me llamó por teléfono después», «es una colaboración interesante para el
+      futuro», «esperando documentación que prometió enviar».
+    </p>
+
+    <div class="box tip">
+      <div class="box-title">Solo para ti</div>
+      Estas notas <strong>nunca</strong> las ve la persona que envió el mensaje.
+      Son un cuaderno privado tuyo dentro del panel. Puedes editarlas las veces
+      que quieras.
+    </div>
+
+    <h3>5.6 — Eliminar un mensaje</h3>
+
+    <p>
+      Al final de la ficha hay un botón <span class="btn-ref">Eliminar mensaje</span>.
+      Al pulsarlo se pide confirmación antes de hacer nada.
+    </p>
+
+    <div class="box danger">
+      <div class="box-title">Borrar es definitivo</div>
+      No hay papelera. Una vez eliminado, el mensaje desaparece sin posibilidad
+      de recuperarlo. Hazlo solo si es <strong>spam</strong> o si <strong>claramente
+      no aporta nada</strong>. En cualquier otro caso es preferible marcarlo como
+      atendido y dejarlo guardado.
+    </div>
+
+    <p>
+      Recuerda además que, por política de privacidad, los mensajes se borran
+      <strong>automáticamente a los 2 años</strong> de haberse recibido. No tienes
+      que ocuparte tú: el sistema lo hace solo.
+    </p>
+
+    <!-- ─────────────────────────────── 06 ─────────────────────────────── -->
+    <h2 id="coordenadas">06 · Coordenadas en el mapa</h2>
 
     <p>
       Cada pueblo necesita dos números: la <strong>latitud</strong> (norte-sur)
@@ -529,8 +645,8 @@
       Si la longitud empieza por signo menos (<code>-3.5</code>, por ejemplo), incluye el signo. Es lo normal en España: casi todas son negativas.
     </div>
 
-    <!-- ─────────────────────────────── 06 ─────────────────────────────── -->
-    <h2 id="audios">06 · Audios narrados</h2>
+    <!-- ─────────────────────────────── 07 ─────────────────────────────── -->
+    <h2 id="audios">07 · Audios narrados</h2>
 
     <h3>Formato y tamaño</h3>
     <ul>
@@ -576,8 +692,8 @@
       Graba en un lugar silencioso, lejos de ventanas y motores. Acerca el micrófono a unos 20-30 cm. No hace falta estudio profesional: la voz natural y limpia es la que mejor encaja con el espíritu del proyecto.
     </div>
 
-    <!-- ─────────────────────────────── 07 ─────────────────────────────── -->
-    <h2 id="usuarios">07 · Otros administradores</h2>
+    <!-- ─────────────────────────────── 08 ─────────────────────────────── -->
+    <h2 id="usuarios">08 · Otros administradores</h2>
 
     <p>
       Si en algún momento quieres dar acceso al panel a otra persona (por ejemplo
@@ -591,8 +707,24 @@
       <li>Entra en <strong>Usuarios</strong>.</li>
       <li>En el bloque <strong>«Invitar nuevo administrador»</strong>, escribe el correo electrónico de la persona.</li>
       <li>Pulsa <span class="btn-ref">Enviar invitación</span>.</li>
-      <li>La persona recibe un email con un enlace. Al pulsarlo, crea su contraseña y ya puede entrar.</li>
+      <li>La persona <strong>recibe un email con un enlace</strong>.</li>
+      <li>
+        Al pinchar el enlace, se abre <strong>una pantalla del panel donde
+        escribe la contraseña que quiera</strong> (dos veces, para confirmar
+        que no se ha equivocado).
+      </li>
+      <li>Cuando la guarda, entra al panel automáticamente y ya queda activado.</li>
     </ol>
+
+    <div class="box warning">
+      <div class="box-title">Si no completa el paso del enlace</div>
+      Si la persona invitada nunca llega a abrir el enlace ni a fijar su
+      contraseña, su email aparece igualmente en la lista de administradores
+      pero <strong>no podrá entrar al panel</strong>. En ese caso lo más limpio
+      es <strong>borrarla y volver a invitarla</strong> desde cero — los
+      enlaces de invitación caducan, así que reutilizar uno antiguo no suele
+      funcionar.
+    </div>
 
     <h3>Quitar acceso a alguien</h3>
 
@@ -609,8 +741,8 @@
       cambiar el correo de la cuenta principal, avisa al programador.
     </div>
 
-    <!-- ─────────────────────────────── 08 ─────────────────────────────── -->
-    <h2 id="buenas-practicas">08 · Buenas prácticas</h2>
+    <!-- ─────────────────────────────── 09 ─────────────────────────────── -->
+    <h2 id="buenas-practicas">09 · Buenas prácticas</h2>
 
     <h3>Tono y longitud de las descripciones</h3>
     <ul>
@@ -646,8 +778,8 @@
       </ul>
     </div>
 
-    <!-- ─────────────────────────────── 09 ─────────────────────────────── -->
-    <h2 id="si-pasa-algo">09 · Si pasa algo</h2>
+    <!-- ─────────────────────────────── 10 ─────────────────────────────── -->
+    <h2 id="si-pasa-algo">10 · Si pasa algo</h2>
 
     <h3>No puedo entrar al panel</h3>
     <ul>
@@ -684,8 +816,8 @@
       <li>Una captura de pantalla si puedes.</li>
     </ul>
 
-    <!-- ─────────────────────────────── 10 ─────────────────────────────── -->
-    <h2 id="glosario">10 · Glosario</h2>
+    <!-- ─────────────────────────────── 11 ─────────────────────────────── -->
+    <h2 id="glosario">11 · Glosario</h2>
 
     <p>Cuatro términos que aparecen y conviene tener claros:</p>
 
@@ -714,7 +846,7 @@
     </ul>
 
     <footer>
-      No Me Olvides — Manual del panel · v1.0 · Última revisión: <span class="pending">[COMPLETAR — fecha]</span>
+      No Me Olvides — Manual del panel · v1.0 · Última actualización: 9 de mayo de 2026
     </footer>
 
   </main>

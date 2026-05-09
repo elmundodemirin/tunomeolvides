@@ -326,7 +326,7 @@
       <h1>Arquitectura técnica de nomeolvides.es</h1>
       <div class="meta">
         Proyecto No Me Olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 30 de abril de 2026
+        Última actualización: 9 de mayo de 2026
       </div>
     </header>
 
@@ -452,8 +452,8 @@
         <tbody>
           <tr>
             <td>Framework frontend</td>
-            <td><strong>Next.js 14+</strong> (App Router)</td>
-            <td>SSR para SEO, ecosistema enorme, integración nativa con Vercel, conocido por miles de programadores (portabilidad).</td>
+            <td><strong>Next.js 16</strong> (App Router)</td>
+            <td>SSR para SEO, ecosistema enorme, integración nativa con Vercel, conocido por miles de programadores (portabilidad). Desde Next.js 16 el archivo <code>middleware.ts</code> pasa a llamarse <code>proxy.ts</code> (misma API, nueva convención).</td>
           </tr>
           <tr>
             <td>Mapa</td>
@@ -462,12 +462,12 @@
           </tr>
           <tr>
             <td>Internacionalización</td>
-            <td><strong>next-intl</strong></td>
-            <td>Estándar de facto en Next.js, URLs <code>/es/</code> y <code>/en/</code> amigables para SEO.</td>
+            <td><strong>next-intl 4</strong></td>
+            <td>Estándar de facto en Next.js, URLs <code>/es/</code>, <code>/en/</code> y <code>/fr/</code> amigables para SEO. Idiomas soportados: <strong>español</strong> (por defecto), <strong>inglés</strong> y <strong>francés</strong>. El francés es <em>solo UI</em>: las descripciones y audios siguen en ES + EN, con <strong>fallback automático a EN</strong> cuando se navega en FR.</td>
           </tr>
           <tr>
             <td>Estilos</td>
-            <td><strong>Tailwind CSS</strong> + componentes propios</td>
+            <td><strong>Tailwind CSS 4</strong> + componentes propios</td>
             <td>Desarrollo rápido, fácil de mantener, identidad visual personalizada (terracota/salvia).</td>
           </tr>
           <tr>
@@ -542,7 +542,9 @@
           <tr><td><code>cover_image_url</code></td><td>text</td><td>Imagen opcional de portada en el popup.</td></tr>
           <tr><td><code>active</code></td><td>boolean</td><td><strong>true</strong> = visible en el mapa, <strong>false</strong> = oculta.</td></tr>
           <tr><td><code>created_at</code></td><td>timestamptz</td><td>Fecha de creación.</td></tr>
-          <tr><td><code>updated_at</code></td><td>timestamptz</td><td>Fecha de última modificación.</td></tr>
+          <tr><td><code>updated_at</code></td><td>timestamptz</td><td>Fecha de última modificación (mantenida por trigger, ver más abajo).</td></tr>
+          <tr><td><code>created_by</code></td><td>uuid → <code>auth.users(id)</code></td><td>Usuario que creó el registro. Auditoría operativa.</td></tr>
+          <tr><td><code>modified_by</code></td><td>uuid → <code>auth.users(id)</code></td><td>Usuario que modificó por última vez el registro. Auditoría operativa.</td></tr>
         </tbody>
       </table>
 
@@ -559,6 +561,11 @@
           <tr><td><code>consent_given</code></td><td>boolean</td><td>Marca de consentimiento explícito (RGPD).</td></tr>
           <tr><td><code>consent_timestamp</code></td><td>timestamptz</td><td>Cuándo se dio el consentimiento (prueba legal).</td></tr>
           <tr><td><code>created_at</code></td><td>timestamptz</td><td>Fecha del mensaje.</td></tr>
+          <tr><td><code>updated_at</code></td><td>timestamptz <span class="status critical">NOT NULL</span></td><td>Fecha de última modificación (mantenida por trigger).</td></tr>
+          <tr><td><code>handled</code></td><td>boolean <span class="status critical">NOT NULL</span></td><td><strong>false</strong> por defecto. Se marca a <strong>true</strong> cuando la promotora atiende el mensaje.</td></tr>
+          <tr><td><code>handled_at</code></td><td>timestamptz</td><td>Cuándo se atendió el mensaje.</td></tr>
+          <tr><td><code>handled_by</code></td><td>uuid → <code>auth.users(id)</code></td><td>Quién atendió el mensaje. Auditoría RGPD.</td></tr>
+          <tr><td><code>admin_notes</code></td><td>text</td><td>Notas internas sobre el mensaje. <strong>No visibles al remitente.</strong></td></tr>
         </tbody>
       </table>
 
@@ -579,6 +586,30 @@
         <li>Tamaño máximo por archivo: 10 MB (suficiente para 5-10 minutos de audio comprimido).</li>
       </ul>
 
+      <h3>Trigger reusable <code>set_updated_at()</code></h3>
+      <p>
+        Función única que mantiene <code>updated_at</code> al día en cada <code>UPDATE</code>. Se aplica
+        a las dos tablas para evitar tener que tocar este campo desde la aplicación.
+      </p>
+      <pre><code>-- Función reusable
+CREATE OR REPLACE FUNCTION set_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Aplicada a localities
+CREATE TRIGGER trg_localities_updated_at
+  BEFORE UPDATE ON localities
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+-- Aplicada a contact_messages
+CREATE TRIGGER trg_contact_messages_updated_at
+  BEFORE UPDATE ON contact_messages
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at();</code></pre>
+
       <h3>Seguridad: Row Level Security (RLS)</h3>
       <p>
         Supabase permite reglas de seguridad a nivel de fila. Las políticas que se aplicarán:
@@ -595,7 +626,13 @@ CREATE POLICY "admin_write" ON localities
 CREATE POLICY "public_insert" ON contact_messages
   FOR INSERT WITH CHECK (true);
 CREATE POLICY "admin_read" ON contact_messages
-  FOR SELECT USING (auth.role() = 'authenticated');</code></pre>
+  FOR SELECT USING (auth.role() = 'authenticated');
+
+-- Sin estas dos políticas, marcar atendido o borrar mensajes fallaba por RLS
+CREATE POLICY "admin_update" ON contact_messages
+  FOR UPDATE USING ((select auth.role()) = 'authenticated');
+CREATE POLICY "admin_delete" ON contact_messages
+  FOR DELETE USING ((select auth.role()) = 'authenticated');</code></pre>
     </section>
 
     <!-- 05 -->
@@ -674,6 +711,19 @@ CREATE POLICY "admin_read" ON contact_messages
         </tbody>
       </table>
 
+      <div class="box legal">
+        <div class="box-title">⚖ Trazabilidad de mensajes atendidos (RGPD art. 5.2)</div>
+        <p>
+          Cada mensaje de contacto que se marca como atendido registra <strong>quién</strong>
+          (<code>handled_by</code> → <code>auth.users.id</code>) y <strong>cuándo</strong>
+          (<code>handled_at</code>). Esto refuerza el principio de <strong>responsabilidad proactiva</strong>
+          (<em>accountability</em>) del RGPD art. 5.2: ante una solicitud de la AEPD o del propio remitente,
+          se puede demostrar quién trató cada mensaje y en qué fecha. Las notas internas
+          (<code>admin_notes</code>) NO son visibles para el remitente y solo deben usarse para anotaciones
+          operativas, nunca para datos personales sensibles.
+        </p>
+      </div>
+
       <div class="box warning">
         <div class="box-title">📌 Transferencia internacional (GA4)</div>
         <p>
@@ -701,58 +751,68 @@ CREATE POLICY "admin_read" ON contact_messages
 
       <table>
         <thead>
-          <tr><th style="width:8%">Bloque</th><th>Contenido</th><th>Entregable</th></tr>
+          <tr><th style="width:7%">Bloque</th><th>Contenido</th><th style="width:22%">Entregable</th><th style="width:14%">Estado</th></tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>B1</strong></td>
             <td>Setup inicial: cuentas (GitHub, Vercel, Supabase), repositorio, dominio, esqueleto del proyecto Next.js.</td>
             <td>URL accesible con “Hola mundo” desplegado.</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B2</strong></td>
             <td>Modelo de datos en Supabase: tablas, RLS, bucket de Storage, datos de prueba con 3-5 localidades.</td>
             <td>BBDD lista, datos cargados manualmente.</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B3</strong></td>
             <td>Página inicio + mapa interactivo con Leaflet leyendo localidades de Supabase. Popup básico funcional.</td>
             <td>Mapa público funcional, sin diseño final.</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B4</strong></td>
             <td>Diseño visual completo: identidad terracota/salvia, tipografías Georgia + Arial, popup pulido, reproductor de audio integrado.</td>
             <td>Web pública con aspecto definitivo.</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B5</strong></td>
-            <td>Internacionalización ES/EN con next-intl. Selector de idioma. Páginas estáticas (Sobre el proyecto, Contacto).</td>
-            <td>Web bilingüe completa.</td>
+            <td>Internacionalización ES/EN/FR con next-intl. Selector de idioma. Páginas estáticas (Sobre el proyecto, Contacto).</td>
+            <td>Web trilingüe completa (FR solo UI).</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B6</strong></td>
             <td>Panel de gestión <code>/admin</code>: login, CRUD de localidades, subida de audios, vista previa.</td>
             <td>Promotora puede gestionar contenido autónomamente.</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B7</strong></td>
             <td>Formulario de contacto, banner de cookies, GA4, páginas legales (aviso, privacidad, cookies).</td>
             <td>Web cumple LOPD/RGPD.</td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B8</strong></td>
             <td>SEO técnico: metadatos por idioma, sitemap.xml, robots.txt, datos estructurados (Schema.org), Open Graph.</td>
             <td>Web indexable y compartible en redes.</td>
+            <td><span class="status todo">Pendiente</span></td>
           </tr>
           <tr>
             <td><strong>B9</strong></td>
             <td>Documentación de usuario en HTML para la promotora (cómo usar el panel) + documentación técnica final.</td>
             <td>Documentación entregada.</td>
+            <td><span class="status review">Parcial — manual de la promotora ya hecho (<code>04_manual_panel.html</code>); falta <code>05_traspaso.html</code></span></td>
           </tr>
           <tr>
             <td><strong>B10</strong></td>
             <td>Pruebas en móvil/tablet/escritorio, optimización de rendimiento (Lighthouse), revisión final.</td>
             <td>Proyecto listo para entrega.</td>
+            <td><span class="status done">Completado — auditoría ya pasada</span></td>
           </tr>
         </tbody>
       </table>
@@ -770,7 +830,7 @@ CREATE POLICY "admin_read" ON contact_messages
 │   └── 05_traspaso.html           # Para futuro programador
 │
 ├── app/                           # Next.js App Router
-│   ├── [locale]/                  # Rutas por idioma (es, en)
+│   ├── [locale]/                  # Rutas por idioma (es, en, fr)
 │   │   ├── page.tsx               # Inicio
 │   │   ├── mapa/page.tsx          # Mapa interactivo
 │   │   ├── sobre/page.tsx         # Sobre el proyecto
@@ -778,20 +838,30 @@ CREATE POLICY "admin_read" ON contact_messages
 │   │   ├── legal/                 # Páginas legales
 │   │   └── layout.tsx
 │   ├── admin/                     # Panel de gestión
-│   │   ├── page.tsx               # Listado de localidades
-│   │   ├── nueva/page.tsx         # Crear localidad
-│   │   └── [id]/page.tsx          # Editar
-│   └── api/                       # API Routes
-│       ├── localities/route.ts
-│       ├── contact/route.ts
-│       └── upload-audio/route.ts
+│   │   ├── page.tsx               # Login
+│   │   ├── set-password/page.tsx  # Fijar contraseña (usuarios invitados)
+│   │   └── (panel)/               # Área autenticada
+│   │       ├── page.tsx           # Listado de localidades
+│   │       ├── nueva/page.tsx     # Crear localidad
+│   │       ├── [id]/page.tsx      # Editar localidad
+│   │       └── mensajes/          # Mensajes de contacto
+│   │           ├── page.tsx       # Lista
+│   │           └── [id]/page.tsx  # Detalle
+│   ├── api/                       # API Routes
+│   │   ├── localities/route.ts
+│   │   ├── contact/route.ts
+│   │   └── upload-audio/route.ts
+│   └── icon.svg                   # Favicon SVG (flor del no-me-olvides)
 │
 ├── components/                    # Componentes React
 │   ├── Map.tsx                    # Mapa Leaflet
 │   ├── LocalityPopup.tsx
 │   ├── AudioPlayer.tsx
 │   ├── LanguageSwitcher.tsx
-│   └── CookieBanner.tsx
+│   ├── CookieBanner.tsx
+│   ├── FlowerIcon.tsx             # Icono compartido web pública/admin
+│   └── admin/
+│       └── MessageActions.tsx     # Cliente: marcar atendido, notas, eliminar
 │
 ├── lib/                           # Utilidades
 │   ├── supabase.ts                # Cliente Supabase
@@ -800,13 +870,14 @@ CREATE POLICY "admin_read" ON contact_messages
 │
 ├── messages/                      # Traducciones
 │   ├── es.json
-│   └── en.json
+│   ├── en.json
+│   └── fr.json                    # Solo UI; contenido cae a EN
 │
 ├── public/                        # Assets estáticos
 │   ├── favicon.ico
 │   └── flor-noteolvides.svg       # Símbolo del proyecto
 │
-├── supabase/                      # Migraciones SQL
+├── supabase/                      # Migraciones SQL versionadas
 │   └── migrations/
 │       ├── 001_create_localities.sql
 │       └── 002_create_contact_messages.sql
@@ -814,6 +885,7 @@ CREATE POLICY "admin_read" ON contact_messages
 ├── .env.local                     # Variables de entorno (NO en git)
 ├── .env.example                   # Plantilla de variables (en git)
 ├── next.config.js
+├── proxy.ts                       # Antes middleware.ts (Next.js 16)
 ├── package.json
 └── README.md                      # Punto de entrada para nuevos programadores</code></pre>
     </section>
@@ -895,6 +967,26 @@ CREATE POLICY "admin_read" ON contact_messages
             <td>Auth solo para el panel (no para visitantes)</td>
             <td>La parte pública es 100% accesible sin login. Solo la promotora se autentica.</td>
           </tr>
+          <tr>
+            <td>2026-05-02</td>
+            <td>Idioma francés (FR) en la UI; contenido sigue ES + EN</td>
+            <td>Ampliar audiencia (turismo francófono) sin duplicar el trabajo de traducción ni grabar nuevos audios. FR cae a EN como fallback automático.</td>
+          </tr>
+          <tr>
+            <td>2026-05-02</td>
+            <td>Campos de auditoría: <code>created_by</code>/<code>modified_by</code> en <code>localities</code>; <code>handled</code>, <code>handled_at</code>, <code>handled_by</code>, <code>admin_notes</code> en <code>contact_messages</code></td>
+            <td>Trazabilidad operativa (saber quién tocó qué) y refuerzo del principio de responsabilidad proactiva del RGPD art. 5.2.</td>
+          </tr>
+          <tr>
+            <td>2026-05-09</td>
+            <td>Migración <code>middleware.ts</code> → <code>proxy.ts</code></td>
+            <td>Adopción de la nueva convención de archivo introducida en Next.js 16. Solo rename, sin cambios de API.</td>
+          </tr>
+          <tr>
+            <td>2026-05-09</td>
+            <td><code>redirectTo</code> explícito en <code>inviteUserByEmail</code> apuntando a <code>/admin/set-password</code></td>
+            <td>Usa <code>NEXT_PUBLIC_SITE_URL</code> con el origen de la request como fallback. Independiza la app del “Site URL” del dashboard de Supabase, evitando que cambios allí rompan el flujo de invitación.</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -938,7 +1030,7 @@ CREATE POLICY "admin_read" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> No Me Olvides · Documentación viva ·
-        Última actualización 30 de abril de 2026 ·
+        Última actualización 9 de mayo de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>
