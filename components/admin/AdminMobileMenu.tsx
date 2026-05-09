@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { SignOutButton } from '@/components/admin/SignOutButton'
+import { FlowerIcon } from '@/components/FlowerIcon'
 
 type Item = { href: string; label: string }
 
@@ -65,7 +66,9 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
       >
         <header className="px-5 py-4 shrink-0 border-b border-[#7a3b20] flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <div className="text-xl mb-1">✿</div>
+            <div className="mb-2">
+              <FlowerIcon size={28} />
+            </div>
             <div
               className="text-[#FAF6EE] text-sm font-bold"
               style={{ fontFamily: 'Georgia, serif' }}

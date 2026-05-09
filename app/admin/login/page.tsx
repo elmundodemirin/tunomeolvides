@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
+import { FlowerIcon } from '@/components/FlowerIcon'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -35,7 +36,9 @@ export default function LoginPage() {
 
         {/* Logo / título */}
         <div className="text-center mb-8">
-          <div className="text-4xl mb-3">✿</div>
+          <div className="flex justify-center mb-3">
+            <FlowerIcon size={44} />
+          </div>
           <h1
             className="text-2xl font-bold text-[#8E4226]"
             style={{ fontFamily: 'Georgia, serif' }}

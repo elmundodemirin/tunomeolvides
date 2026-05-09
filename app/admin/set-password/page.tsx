@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
+import { FlowerIcon } from '@/components/FlowerIcon'
 
 // Página a la que aterriza el usuario invitado tras pinchar el enlace del email.
 // Supabase deja la sesión activa (los tokens viajan en el hash de la URL y los
@@ -75,7 +76,9 @@ export default function SetPasswordPage() {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="w-full max-w-sm text-center">
-          <div className="text-4xl mb-3">✿</div>
+          <div className="flex justify-center mb-3">
+            <FlowerIcon size={44} />
+          </div>
           <h1
             className="text-2xl font-bold text-[#8E4226] mb-2"
             style={{ fontFamily: 'Georgia, serif' }}
@@ -103,7 +106,9 @@ export default function SetPasswordPage() {
       <div className="w-full max-w-sm">
 
         <div className="text-center mb-8">
-          <div className="text-4xl mb-3">✿</div>
+          <div className="flex justify-center mb-3">
+            <FlowerIcon size={44} />
+          </div>
           <h1
             className="text-2xl font-bold text-[#8E4226]"
             style={{ fontFamily: 'Georgia, serif' }}

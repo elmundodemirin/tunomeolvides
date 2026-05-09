@@ -6,6 +6,7 @@ import LocaleSwitcher from '@/components/LocaleSwitcher'
 import { CookieBanner } from '@/components/CookieBanner'
 import { Footer } from '@/components/Footer'
 import { MobileMenu } from '@/components/MobileMenu'
+import { FlowerIcon } from '@/components/FlowerIcon'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -40,16 +41,7 @@ export default async function LocaleLayout({
         }}
       >
         <Link href={homeHref} className="flex items-center gap-3 no-underline">
-          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            {[0,72,144,216,288].map((deg) => (
-              <ellipse key={deg} cx="14" cy="14" rx="4" ry="8"
-                fill="#6B8CB8" opacity="0.9"
-                transform={`rotate(${deg} 14 14) translate(0 -5)`}
-              />
-            ))}
-            <circle cx="14" cy="14" r="4" fill="#FAF6EE"/>
-            <circle cx="14" cy="14" r="2.5" fill="#6B8CB8"/>
-          </svg>
+          <FlowerIcon size={26} />
           <div>
             <div
               className="text-lg leading-tight text-white"

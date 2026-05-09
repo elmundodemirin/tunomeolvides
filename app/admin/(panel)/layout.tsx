@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { SignOutButton } from '@/components/admin/SignOutButton'
 import { AdminMobileMenu } from '@/components/admin/AdminMobileMenu'
+import { FlowerIcon } from '@/components/FlowerIcon'
 
 const navLinks = [
   { href: '/admin/dashboard', label: 'Inicio' },
@@ -25,7 +26,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
       {/* Top bar (solo móvil) */}
       <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#8E4226] sticky top-0 z-30">
         <Link href="/admin/dashboard" className="flex items-center gap-2 no-underline">
-          <span className="text-lg" aria-hidden="true">✿</span>
+          <FlowerIcon size={22} />
           <span
             className="text-[#FAF6EE] text-sm font-bold"
             style={{ fontFamily: 'Georgia, serif' }}
@@ -41,7 +42,9 @@ export default async function PanelLayout({ children }: { children: React.ReactN
       <aside className="hidden lg:flex w-56 bg-[#8E4226] flex-col shrink-0">
         {/* Logo */}
         <div className="px-5 py-6 border-b border-[#7a3b20]">
-          <div className="text-xl mb-1">✿</div>
+          <div className="mb-2">
+            <FlowerIcon size={28} />
+          </div>
           <span
             className="text-[#FAF6EE] text-sm font-bold"
             style={{ fontFamily: 'Georgia, serif' }}
