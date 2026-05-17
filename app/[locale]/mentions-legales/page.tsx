@@ -8,8 +8,8 @@ export default function MentionsLegalesPage() {
       <p>Conformément à l'article 10 de la loi espagnole 34/2002 du 11 juillet relative aux services de la société de l'information et au commerce électronique (LSSI-CE), il est précisé :</p>
       <ul>
         <li><strong>Responsable :</strong> María del Carmen López Rosa</li>
-        <li><strong>Numéro fiscal (NIF) :</strong> [À COMPLÉTER]</li>
-        <li><strong>Adresse :</strong> [À COMPLÉTER]</li>
+        <li><strong>Numéro fiscal (NIF) :</strong> 51089277K</li>
+        <li><strong>Adresse :</strong> C/Antonio López Aguado 1</li>
         <li><strong>E-mail :</strong> info@tunomeolvides.es</li>
         <li><strong>Site web :</strong> [domaine en attente de confirmation]</li>
       </ul>

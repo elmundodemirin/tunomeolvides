@@ -8,8 +8,8 @@ export default function AvisoLegalPage() {
       <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa:</p>
       <ul>
         <li><strong>Titular:</strong> María del Carmen López Rosa</li>
-        <li><strong>NIF:</strong> [COMPLETAR]</li>
-        <li><strong>Domicilio:</strong> [COMPLETAR]</li>
+        <li><strong>NIF:</strong> 51089277K</li>
+        <li><strong>Domicilio:</strong> C/Antonio López Aguado 1</li>
         <li><strong>Correo electrónico:</strong> info@tunomeolvides.es</li>
         <li><strong>Sitio web:</strong> [dominio pendiente de confirmar]</li>
       </ul>

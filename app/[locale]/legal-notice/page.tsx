@@ -8,8 +8,8 @@ export default function LegalNoticePage() {
       <p>In compliance with Article 10 of Spanish Law 34/2002 on Information Society Services (LSSI-CE):</p>
       <ul>
         <li><strong>Owner:</strong> María del Carmen López Rosa</li>
-        <li><strong>Tax ID (NIF):</strong> [TO BE COMPLETED]</li>
-        <li><strong>Address:</strong> [TO BE COMPLETED]</li>
+        <li><strong>Tax ID (NIF):</strong> 51089277K</li>
+        <li><strong>Address:</strong> C/Antonio López Aguado 1</li>
         <li><strong>Email:</strong> info@tunomeolvides.es</li>
         <li><strong>Website:</strong> [domain pending confirmation]</li>
       </ul>

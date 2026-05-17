@@ -19,8 +19,8 @@ function PrivacyContentES() {
       <h2>1. Responsable del tratamiento</h2>
       <ul>
         <li><strong>Identidad:</strong> María del Carmen López Rosa</li>
-        <li><strong>NIF:</strong> [COMPLETAR]</li>
-        <li><strong>Dirección:</strong> [COMPLETAR]</li>
+        <li><strong>NIF:</strong> 51089277K</li>
+        <li><strong>Dirección:</strong> C/Antonio López Aguado 1</li>
         <li><strong>Correo:</strong> info@tunomeolvides.es</li>
       </ul>
 
@@ -90,8 +90,8 @@ function PrivacyContentEN() {
       <h2>1. Data controller</h2>
       <ul>
         <li><strong>Identity:</strong> María del Carmen López Rosa</li>
-        <li><strong>Tax ID (NIF):</strong> [TO BE COMPLETED]</li>
-        <li><strong>Address:</strong> [TO BE COMPLETED]</li>
+        <li><strong>Tax ID (NIF):</strong> 51089277K</li>
+        <li><strong>Address:</strong> C/Antonio López Aguado 1</li>
         <li><strong>Email:</strong> info@tunomeolvides.es</li>
       </ul>
 
@@ -162,8 +162,8 @@ function PrivacyContentFR() {
       <h2>1. Responsable du traitement</h2>
       <ul>
         <li><strong>Identité :</strong> María del Carmen López Rosa</li>
-        <li><strong>Numéro fiscal (NIF) :</strong> [À COMPLÉTER]</li>
-        <li><strong>Adresse :</strong> [À COMPLÉTER]</li>
+        <li><strong>Numéro fiscal (NIF) :</strong> 51089277K</li>
+        <li><strong>Adresse :</strong> C/Antonio López Aguado 1</li>
         <li><strong>E-mail :</strong> info@tunomeolvides.es</li>
       </ul>
 
