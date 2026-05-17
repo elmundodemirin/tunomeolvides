@@ -21,7 +21,7 @@ function PrivacyContentES() {
         <li><strong>Identidad:</strong> María del Carmen López Rosa</li>
         <li><strong>NIF:</strong> [COMPLETAR]</li>
         <li><strong>Dirección:</strong> [COMPLETAR]</li>
-        <li><strong>Correo:</strong> info@nomeolvides.es</li>
+        <li><strong>Correo:</strong> info@tunomeolvides.es</li>
       </ul>
 
       <h2>2. Datos que tratamos y finalidades</h2>
@@ -56,7 +56,7 @@ function PrivacyContentES() {
       <p>No cedemos datos personales a terceros salvo obligación legal.</p>
 
       <h2>4. Derechos del interesado</h2>
-      <p>Puede ejercer en cualquier momento los siguientes derechos dirigiendo un escrito a <strong>info@nomeolvides.es</strong>:</p>
+      <p>Puede ejercer en cualquier momento los siguientes derechos dirigiendo un escrito a <strong>info@tunomeolvides.es</strong>:</p>
       <ul>
         <li><strong>Acceso:</strong> conocer qué datos tratamos sobre usted.</li>
         <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
@@ -92,7 +92,7 @@ function PrivacyContentEN() {
         <li><strong>Identity:</strong> María del Carmen López Rosa</li>
         <li><strong>Tax ID (NIF):</strong> [TO BE COMPLETED]</li>
         <li><strong>Address:</strong> [TO BE COMPLETED]</li>
-        <li><strong>Email:</strong> info@nomeolvides.es</li>
+        <li><strong>Email:</strong> info@tunomeolvides.es</li>
       </ul>
 
       <h2>2. Data we process and purposes</h2>
@@ -127,7 +127,7 @@ function PrivacyContentEN() {
       <p>We do not share personal data with third parties except where required by law.</p>
 
       <h2>4. Your rights</h2>
-      <p>You may exercise the following rights at any time by writing to <strong>info@nomeolvides.es</strong>:</p>
+      <p>You may exercise the following rights at any time by writing to <strong>info@tunomeolvides.es</strong>:</p>
       <ul>
         <li><strong>Access:</strong> know what data we process about you.</li>
         <li><strong>Rectification:</strong> correct inaccurate or incomplete data.</li>
@@ -164,7 +164,7 @@ function PrivacyContentFR() {
         <li><strong>Identité :</strong> María del Carmen López Rosa</li>
         <li><strong>Numéro fiscal (NIF) :</strong> [À COMPLÉTER]</li>
         <li><strong>Adresse :</strong> [À COMPLÉTER]</li>
-        <li><strong>E-mail :</strong> info@nomeolvides.es</li>
+        <li><strong>E-mail :</strong> info@tunomeolvides.es</li>
       </ul>
 
       <h2>2. Données traitées et finalités</h2>
@@ -199,7 +199,7 @@ function PrivacyContentFR() {
       <p>Nous ne partageons pas de données personnelles avec des tiers, sauf obligation légale.</p>
 
       <h2>4. Vos droits</h2>
-      <p>Vous pouvez exercer à tout moment les droits suivants en écrivant à <strong>info@nomeolvides.es</strong> :</p>
+      <p>Vous pouvez exercer à tout moment les droits suivants en écrivant à <strong>info@tunomeolvides.es</strong> :</p>
       <ul>
         <li><strong>Accès :</strong> connaître les données que nous traitons à votre sujet.</li>
         <li><strong>Rectification :</strong> corriger les données inexactes ou incomplètes.</li>

@@ -362,7 +362,7 @@ nomeolvides/
 ## 📞 Contacto del proyecto
 
 - **Promotora**: María del Carmen López Rosa
-- **Email del proyecto**: info@nomeolvides.es (pendiente de configurar)
+- **Email del proyecto**: info@tunomeolvides.es (pendiente de configurar)
 
 ---
 

@@ -10,7 +10,7 @@ export default function MentionsLegalesPage() {
         <li><strong>Responsable :</strong> María del Carmen López Rosa</li>
         <li><strong>Numéro fiscal (NIF) :</strong> [À COMPLÉTER]</li>
         <li><strong>Adresse :</strong> [À COMPLÉTER]</li>
-        <li><strong>E-mail :</strong> info@nomeolvides.es</li>
+        <li><strong>E-mail :</strong> info@tunomeolvides.es</li>
         <li><strong>Site web :</strong> [domaine en attente de confirmation]</li>
       </ul>
 

@@ -10,7 +10,7 @@ export default function AvisoLegalPage() {
         <li><strong>Titular:</strong> María del Carmen López Rosa</li>
         <li><strong>NIF:</strong> [COMPLETAR]</li>
         <li><strong>Domicilio:</strong> [COMPLETAR]</li>
-        <li><strong>Correo electrónico:</strong> info@nomeolvides.es</li>
+        <li><strong>Correo electrónico:</strong> info@tunomeolvides.es</li>
         <li><strong>Sitio web:</strong> [dominio pendiente de confirmar]</li>
       </ul>
 

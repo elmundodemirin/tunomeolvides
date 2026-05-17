@@ -10,7 +10,7 @@ export default function LegalNoticePage() {
         <li><strong>Owner:</strong> María del Carmen López Rosa</li>
         <li><strong>Tax ID (NIF):</strong> [TO BE COMPLETED]</li>
         <li><strong>Address:</strong> [TO BE COMPLETED]</li>
-        <li><strong>Email:</strong> info@nomeolvides.es</li>
+        <li><strong>Email:</strong> info@tunomeolvides.es</li>
         <li><strong>Website:</strong> [domain pending confirmation]</li>
       </ul>
 
