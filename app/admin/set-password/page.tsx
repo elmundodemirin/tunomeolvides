@@ -10,6 +10,7 @@ import { FlowerIcon } from '@/components/FlowerIcon'
 // contraseña con auth.updateUser. Sirve también para "recuperar contraseña".
 export default function SetPasswordPage() {
   const [hasSession, setHasSession] = useState<boolean | null>(null)
+  const [linkError, setLinkError] = useState<string | null>(null)
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
   const [loading, setLoading] = useState(false)
@@ -19,22 +20,60 @@ export default function SetPasswordPage() {
   useEffect(() => {
     const supabase = createSupabaseBrowserClient()
 
-    // Si ya hay sesión en cookies, la detectamos al instante.
+    // 1) Mira si Supabase ha devuelto algún error en la URL.
+    //    Estos errores pueden venir en el hash (flujo implícito) o en
+    //    la query (flujo PKCE). Si hay error, lo mostramos tal cual
+    //    para no enmascararlo bajo un "enlace caducado" genérico.
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''))
+    const queryParams = new URLSearchParams(window.location.search)
+    const urlError =
+      hashParams.get('error_description') ??
+      queryParams.get('error_description') ??
+      hashParams.get('error') ??
+      queryParams.get('error') ??
+      null
+
+    if (urlError) {
+      console.error('[set-password] Supabase auth error in URL:', urlError)
+      setLinkError(urlError.replace(/\+/g, ' '))
+      setHasSession(false)
+      return
+    }
+
+    // 2) Flujo PKCE: la URL trae ?code=... y hay que canjearlo por sesión.
+    const code = queryParams.get('code')
+    if (code) {
+      console.info('[set-password] PKCE code detected in URL, exchanging…')
+      supabase.auth.exchangeCodeForSession(code).then(({ data, error }) => {
+        if (error) {
+          console.error('[set-password] exchangeCodeForSession failed:', error)
+          setLinkError(error.message)
+          setHasSession(false)
+          return
+        }
+        if (data?.session) {
+          setHasSession(true)
+          // Limpia la URL para que recargas posteriores no reintenten el canje.
+          window.history.replaceState({}, '', window.location.pathname)
+        }
+      })
+    }
+
+    // 3) Flujo implícito (#access_token=...) o sesión ya en cookies.
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) setHasSession(true)
     })
 
-    // Si la sesión viene del hash de la URL (#access_token=...) tarda
-    // un instante en procesarse; este listener nos avisa cuando ocurra.
+    // 4) Por si la sesión llega de forma asíncrona tras detectar el hash.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) setHasSession(true)
     })
 
-    // Margen de 1s antes de decidir "enlace no válido". Evita el flicker
-    // de mostrar el mensaje de error mientras Supabase parsea el hash.
+    // 5) Margen antes de decidir "enlace no válido". Si todo está roto,
+    //    aquí caemos: nada de session, ni hash, ni code válido.
     const fallback = setTimeout(() => {
       setHasSession(prev => (prev === null ? false : prev))
-    }, 1000)
+    }, 1500)
 
     return () => {
       clearTimeout(fallback)
@@ -100,6 +139,11 @@ export default function SetPasswordPage() {
             Este enlace ha caducado o ya ha sido usado. Pídele al administrador
             una invitación nueva.
           </p>
+          {linkError && (
+            <p className="text-xs text-[#a07860] bg-[#FAF6EE] rounded-lg px-3 py-2 mb-6 break-words">
+              Detalle: {linkError}
+            </p>
+          )}
           <a
             href="/admin/login"
             className="text-sm text-[#C9633E] hover:text-[#8E4226] transition-colors"
