@@ -11,7 +11,7 @@ export default function LegalNoticePage() {
         <li><strong>Tax ID (NIF):</strong> 51089277K</li>
         <li><strong>Address:</strong> C/Antonio López Aguado 1</li>
         <li><strong>Email:</strong> info@tunomeolvides.es</li>
-        <li><strong>Website:</strong> [domain pending confirmation]</li>
+        <li><strong>Website:</strong> tunomeolvides.es</li>
       </ul>
 
       <h2>2. Purpose and activity</h2>
