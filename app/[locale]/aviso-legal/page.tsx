@@ -11,7 +11,7 @@ export default function AvisoLegalPage() {
         <li><strong>NIF:</strong> 51089277K</li>
         <li><strong>Domicilio:</strong> C/Antonio López Aguado 1</li>
         <li><strong>Correo electrónico:</strong> info@tunomeolvides.es</li>
-        <li><strong>Sitio web:</strong> [dominio pendiente de confirmar]</li>
+        <li><strong>Sitio web:</strong> tunomeolvides.es</li>
       </ul>
 
       <h2>2. Objeto y actividad</h2>
