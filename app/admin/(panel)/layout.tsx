@@ -67,9 +67,15 @@ export default async function PanelLayout({ children }: { children: React.ReactN
           ))}
         </nav>
 
-        {/* Usuario + cerrar sesión */}
+        {/* Usuario + mi cuenta + cerrar sesión */}
         <div className="px-3 py-4 border-t border-[#7a3b20]">
           <p className="px-4 text-xs text-[#f0c9b0] truncate mb-2">{userEmail}</p>
+          <Link
+            href="/admin/cuenta"
+            className="block px-4 py-2 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
+          >
+            Mi cuenta
+          </Link>
           <SignOutButton />
         </div>
       </aside>

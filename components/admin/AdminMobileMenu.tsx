@@ -104,6 +104,13 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
 
         <div className="px-3 py-4 border-t border-[#7a3b20] shrink-0">
           <p className="px-4 text-xs text-[#f0c9b0] truncate mb-2">{userEmail}</p>
+          <Link
+            href="/admin/cuenta"
+            onClick={() => setOpen(false)}
+            className="block px-4 py-2 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
+          >
+            Mi cuenta
+          </Link>
           <SignOutButton />
         </div>
       </aside>
