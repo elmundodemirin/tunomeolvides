@@ -30,10 +30,18 @@ export async function proxy(request: NextRequest) {
       }
     )
 
+    // Rutas que NO exigen sesión cookie aún:
+    //  - /admin/login: la propia pantalla de login
+    //  - /admin/set-password: aterrizaje de invitación / recuperación de contraseña.
+    //    Supabase devuelve los tokens en el hash de la URL (#access_token=...),
+    //    que el server NUNCA ve. La sesión se establece en cliente y luego
+    //    se guarda en cookie. Si bloqueamos aquí, el flujo se rompe.
+    const PUBLIC_ADMIN_PATHS = new Set(['/admin/login', '/admin/set-password'])
+
     // getUser() valida el token contra Supabase Auth (más seguro que getSession)
     const { data: { user } } = await supabase.auth.getUser()
 
-    if (!user && pathname !== '/admin/login') {
+    if (!user && !PUBLIC_ADMIN_PATHS.has(pathname)) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
 
