@@ -298,12 +298,13 @@
             <li><a href="#local"><span class="toc-num">04</span>Arrancar en local</a></li>
             <li><a href="#deploy"><span class="toc-num">05</span>Despliegue</a></li>
             <li><a href="#supabase"><span class="toc-num">06</span>Supabase: configuración</a></li>
-            <li><a href="#migraciones"><span class="toc-num">07</span>Migraciones de BBDD</a></li>
-            <li><a href="#datos"><span class="toc-num">08</span>Modelo de datos</a></li>
-            <li><a href="#invitaciones"><span class="toc-num">09</span>Invitación de admins</a></li>
-            <li><a href="#backups"><span class="toc-num">10</span>Backups y operativa</a></li>
-            <li><a href="#rarezas"><span class="toc-num">11</span>Cosas raras a recordar</a></li>
-            <li><a href="#contactos"><span class="toc-num">12</span>Contactos</a></li>
+            <li><a href="#dns"><span class="toc-num">07</span>DNS y dominio (Hostinger)</a></li>
+            <li><a href="#migraciones"><span class="toc-num">08</span>Migraciones de BBDD</a></li>
+            <li><a href="#datos"><span class="toc-num">09</span>Modelo de datos</a></li>
+            <li><a href="#invitaciones"><span class="toc-num">10</span>Invitación de admins</a></li>
+            <li><a href="#backups"><span class="toc-num">11</span>Backups y operativa</a></li>
+            <li><a href="#rarezas"><span class="toc-num">12</span>Cosas raras a recordar</a></li>
+            <li><a href="#contactos"><span class="toc-num">13</span>Contactos</a></li>
           </ul>
         </li>
       </ul>
@@ -317,7 +318,7 @@
       <h1>Traspaso técnico para el siguiente programador</h1>
       <div class="meta">
         Proyecto No Me Olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 9 de mayo de 2026
+        Última actualización: 17 de mayo de 2026
       </div>
     </header>
 
@@ -436,14 +437,34 @@
             <td>Invitar al nuevo programador como miembro de la organización (Organization → Members).</td>
           </tr>
           <tr>
+            <td><strong>Hostinger</strong></td>
+            <td>
+              Registrador y proveedor DNS del dominio <code>tunomeolvides.es</code>. Permite gestionar
+              registros A, CNAME, MX, TXT, etc. Nameservers:
+              <code>byte.dns-parking.com</code> y <code>pixel.dns-parking.com</code>. Renovación del
+              dominio <strong>anual</strong>.
+            </td>
+            <td>Transferencia manual de credenciales por canal privado. La gestión de DNS se hace en el panel de Hostinger (Domains → Manage → DNS / Nameservers).</td>
+          </tr>
+          <tr>
+            <td><strong>Resend</strong></td>
+            <td>
+              <a href="https://resend.com">resend.com</a> — proveedor de SMTP custom para Supabase
+              Auth. Dominio verificado <code>tunomeolvides.es</code>, región <strong>EU-West
+              (Dublín)</strong>. Free tier de <strong>3.000 emails/mes</strong>. Requiere una API key
+              (secreta, guardada en Supabase Auth → Emails → SMTP, <strong>no en el repo</strong>).
+            </td>
+            <td>Invitar al nuevo programador al equipo de Resend o transferir credenciales por canal privado. Rotar la API key tras el traspaso si se considera necesario.</td>
+          </tr>
+          <tr>
             <td><strong>Dominio definitivo</strong></td>
-            <td>Pendiente de decidir (<code>nomeolvides.es</code> está cogido)</td>
-            <td>Se transferirá cuando se compre. Mientras tanto se usa el dominio <code>.vercel.app</code>.</td>
+            <td><code>tunomeolvides.es</code> (registrado en Hostinger)</td>
+            <td>Ya en producción. El apex apunta a Vercel; <code>www</code> redirige al apex.</td>
           </tr>
           <tr>
             <td><strong>Email del proyecto</strong></td>
             <td>Pendiente de configurar</td>
-            <td>Aplazado hasta decidir dominio y proveedor de email (Cloudflare Routing / Google Workspace / Zoho).</td>
+            <td>Aplazado hasta decidir proveedor de buzón (Cloudflare Routing / Google Workspace / Zoho). Los registros DNS de Hostinger están preparados para activarlo.</td>
           </tr>
         </tbody>
       </table>
@@ -513,8 +534,11 @@
             <td>
               URL pública de la app, usada para construir el <code>redirectTo</code> de los emails de
               invitación y de recuperación de contraseña. En desarrollo:
-              <code>http://localhost:3000</code>. En producción: la URL definitiva o
-              <code>https://nomeolvides.vercel.app</code>.
+              <code>http://localhost:3000</code>. En <strong>Production de Vercel</strong> debe valer
+              <strong><code>https://tunomeolvides.es</code></strong> (antes era el
+              <code>*.vercel.app</code>). Si la variable no está definida, el código cae al
+              <code>origin</code> del request como fallback, así que los preview deploys siguen
+              funcionando solos.
             </td>
           </tr>
           <tr>
@@ -582,22 +606,50 @@
       </p>
       <ul>
         <li>
-          <strong>Site URL</strong>: <code>https://nomeolvides.vercel.app</code> (o el dominio definitivo
-          cuando se compre).
+          <strong>Site URL</strong>: <code>https://tunomeolvides.es</code>.
         </li>
         <li>
           <strong>Redirect URLs</strong> (lista permitida): debe incluir
-          <code>https://nomeolvides.vercel.app/**</code> y <code>http://localhost:3000/**</code> al
-          menos. Y la URL del dominio definitivo cuando esté.
+          <code>https://tunomeolvides.es/**</code> y <code>http://localhost:3000/**</code>. Mientras no
+          se quiera retirar la URL antigua, mantener también
+          <code>https://nomeolvides.vercel.app/**</code> en la lista.
         </li>
       </ul>
       <div class="box critical">
         <div class="box-title">⚠ Sin esto, los emails de invitación rompen</div>
         <p>
-          El flujo de invitación de nuevos admins (ver §09) genera un email con un enlace que vuelve a
+          El flujo de invitación de nuevos admins (ver §10) genera un email con un enlace que vuelve a
           la app. Si la URL de retorno no está en la lista de Redirect URLs permitidos, Supabase rechaza
           el redirect y el invitado no puede entrar. Es uno de los errores que más se repiten al cambiar
           de dominio.
+        </p>
+      </div>
+
+      <h3>Authentication → Emails → SMTP custom (Resend)</h3>
+      <p>
+        En <strong>Authentication → Emails → SMTP Settings</strong> está habilitado el SMTP custom de
+        Resend con la siguiente configuración:
+      </p>
+      <table>
+        <thead>
+          <tr><th style="width:30%">Campo</th><th>Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Host</strong></td><td><code>smtp.resend.com</code></td></tr>
+          <tr><td><strong>Port</strong></td><td><code>465</code></td></tr>
+          <tr><td><strong>Username</strong></td><td><code>resend</code></td></tr>
+          <tr><td><strong>Password</strong></td><td>API key de Resend <span class="status critical">Secreta</span> Rotar con cuidado: al cambiarla aquí, todos los emails posteriores la usan; los enlaces ya enviados siguen siendo válidos hasta que expiren.</td></tr>
+          <tr><td><strong>Sender email</strong></td><td><code>noreply@tunomeolvides.es</code></td></tr>
+          <tr><td><strong>Sender name</strong></td><td><code>No Me Olvides</code></td></tr>
+        </tbody>
+      </table>
+      <div class="box warning">
+        <div class="box-title">⚠ Sin SMTP custom = rate limit asfixiante</div>
+        <p>
+          Si el SMTP custom se deshabilita o se rompe, Supabase Auth cae automáticamente al SMTP
+          compartido de Supabase, que tiene un <strong>rate limit de 2 emails/hora</strong>. Suficiente
+          para juguetear, insuficiente para operar el panel con varias invitaciones o recuperaciones de
+          contraseña seguidas. Si los emails empiezan a no llegar, mira primero este bloque.
         </p>
       </div>
 
@@ -624,8 +676,83 @@
     </section>
 
     <!-- 07 -->
+    <section id="dns">
+      <h2>07. DNS y dominio (Hostinger)</h2>
+      <p>
+        El dominio <code>tunomeolvides.es</code> está registrado en <strong>Hostinger</strong> y sus
+        DNS también se gestionan ahí (panel de Hostinger → Domains → Manage → DNS / Nameservers).
+        Esto significa que cualquier cambio en registros A, CNAME, MX, TXT, DKIM, SPF o DMARC se hace
+        en Hostinger, no en Vercel ni en Supabase.
+      </p>
+
+      <h3>Registros DNS clave</h3>
+      <table>
+        <thead>
+          <tr><th style="width:14%">Tipo</th><th style="width:22%">Nombre</th><th>Valor</th><th style="width:32%">Para qué sirve</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A</strong></td>
+            <td><code>@</code></td>
+            <td><code>216.198.79.1</code></td>
+            <td>El apex (<code>tunomeolvides.es</code>) apunta a Vercel.</td>
+          </tr>
+          <tr>
+            <td><strong>CNAME</strong></td>
+            <td><code>www</code></td>
+            <td><code>eed528e1e45a2d4b.vercel-dns-017.com</code></td>
+            <td><code>www.tunomeolvides.es</code> apunta a Vercel.</td>
+          </tr>
+          <tr>
+            <td><strong>TXT</strong></td>
+            <td><code>resend._domainkey</code></td>
+            <td>Clave pública DKIM de Resend</td>
+            <td>Firma DKIM de los emails enviados desde Resend. Imprescindible para entregabilidad.</td>
+          </tr>
+          <tr>
+            <td><strong>MX</strong></td>
+            <td><code>send</code></td>
+            <td><code>feedback-smtp.eu-west-1.amazonses.com</code> (priority 10)</td>
+            <td>Recibe los bounces de los emails enviados por Resend.</td>
+          </tr>
+          <tr>
+            <td><strong>TXT</strong></td>
+            <td><code>send</code></td>
+            <td><code>v=spf1 include:amazonses.com ~all</code></td>
+            <td>SPF del subdominio <code>send</code> autorizando a Amazon SES (Resend) a enviar en su nombre.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        El resto de registros MX/SPF/DMARC/DKIM/autoconfig/autodiscover que Hostinger ya tenía creados
+        <strong>se conservan intactos</strong>: están reservados para activar un buzón propio en
+        <code>tunomeolvides.es</code> el día que se decida proveedor de email.
+      </p>
+
+      <div class="box">
+        <div class="box-title">📌 Por qué delegar a un subdominio <code>send.</code></div>
+        <p>
+          Los registros SPF y MX de Resend cuelgan de <code>send.tunomeolvides.es</code> y no del
+          dominio raíz a propósito: así <strong>no chocan con el SPF</strong> que el dominio raíz
+          tiene reservado para el futuro buzón de Hostinger. DKIM sí va en el dominio raíz
+          (<code>resend._domainkey.tunomeolvides.es</code>) porque DKIM admite múltiples claves
+          paralelas en selectores distintos y no genera conflictos con otros remitentes.
+        </p>
+      </div>
+
+      <h3>Apex vs <code>www</code></h3>
+      <p>
+        El <strong>apex</strong> (<code>https://tunomeolvides.es</code>) es la <strong>URL canónica</strong>
+        del sitio. <code>www.tunomeolvides.es</code> redirige automáticamente al apex; Vercel gestiona
+        esa redirección sin que haga falta tocar nada en el código. Todas las URLs internas, sitemap,
+        Open Graph, etc., deben usar la versión sin <code>www</code>.
+      </p>
+    </section>
+
+    <!-- 08 -->
     <section id="migraciones">
-      <h2>07. Migraciones de base de datos</h2>
+      <h2>08. Migraciones de base de datos</h2>
       <p>
         Las migraciones SQL están versionadas en <code>supabase/migrations/</code> con el formato
         <code>YYYYMMDD_descripcion.sql</code>. Hasta hoy hay una:
@@ -663,9 +790,9 @@
       </div>
     </section>
 
-    <!-- 08 -->
+    <!-- 09 -->
     <section id="datos">
-      <h2>08. Modelo de datos</h2>
+      <h2>09. Modelo de datos</h2>
       <p>
         Resumen rápido. Para el detalle completo (tipos, RLS, decisiones de diseño) consulta
         <a href="01_arquitectura.html#datos"><code>01_arquitectura.html</code> §04</a>.
@@ -717,9 +844,9 @@
       </p>
     </section>
 
-    <!-- 09 -->
+    <!-- 10 -->
     <section id="invitaciones">
-      <h2>09. Flujo de invitación de admins</h2>
+      <h2>10. Flujo de invitación de admins</h2>
       <p>
         El panel admite múltiples administradores. La promotora (o cualquier admin existente) puede
         invitar a otros sin tocar Supabase. El flujo completo:
@@ -767,9 +894,9 @@ await admin.auth.admin.inviteUserByEmail(email, {
       </div>
     </section>
 
-    <!-- 10 -->
+    <!-- 11 -->
     <section id="backups">
-      <h2>10. Backups y operativa</h2>
+      <h2>11. Backups y operativa</h2>
 
       <h3>Backups de Supabase</h3>
       <ul>
@@ -810,9 +937,9 @@ supabase storage download ss:///audios ./backup-audios --recursive</code></pre>
       </p>
     </section>
 
-    <!-- 11 -->
+    <!-- 12 -->
     <section id="rarezas">
-      <h2>11. Cosas raras / decisiones a recordar</h2>
+      <h2>12. Cosas raras / decisiones a recordar</h2>
       <p>
         Esta es la sección de "ojo con esto". Cosas que ya rompieron una vez y que conviene saber
         antes de tocar el código.
@@ -836,6 +963,29 @@ supabase storage download ss:///audios ./backup-audios --recursive</code></pre>
         llamar a <code>getSession()</code> o al suscribirse a <code>onAuthStateChange</code>. No hay que
         parsear el hash a mano. Si en algún momento esa página deja de funcionar, sospecha primero de
         este detalle.
+      </p>
+
+      <h3>PKCE vs implicit en <code>/admin/set-password</code></h3>
+      <p>
+        La página <code>/admin/set-password</code> detecta automáticamente <strong>los dos flujos</strong>
+        de Supabase Auth: PKCE (la URL trae <code>?code=...</code> como query param y hay que
+        intercambiarlo por una sesión con <code>exchangeCodeForSession()</code>) e implicit (la sesión
+        llega ya en el fragmento <code>#access_token=...</code> de la URL). Después de activar el SMTP
+        custom de Resend hemos visto que Supabase puede entregar el enlace en <strong>cualquiera de los
+        dos formatos</strong> según la versión del email template, así que la página intenta primero
+        leer <code>code</code> y, si no lo encuentra, espera el hash. No simplifiques eliminando una
+        de las dos ramas: rompe a los invitados.
+      </p>
+
+      <h3>Subdomain delegation de Resend (SPF/MX en <code>send.</code>)</h3>
+      <p>
+        Los registros SPF y MX de Resend cuelgan de <code>send.tunomeolvides.es</code> y no del
+        dominio raíz a propósito: el SPF del dominio raíz queda <strong>reservado</strong> para un
+        eventual buzón propio en Hostinger, y un dominio no puede tener dos registros SPF que
+        compitan. DKIM en cambio sí va en el dominio raíz
+        (<code>resend._domainkey.tunomeolvides.es</code>): DKIM admite múltiples claves en selectores
+        distintos sin generar conflictos. Si algún día migras el SMTP a otro proveedor, recuerda
+        limpiar también el subdominio <code>send</code>.
       </p>
 
       <h3>Idioma FR sin contenido propio</h3>
@@ -865,9 +1015,9 @@ supabase storage download ss:///audios ./backup-audios --recursive</code></pre>
       </p>
     </section>
 
-    <!-- 12 -->
+    <!-- 13 -->
     <section id="contactos">
-      <h2>12. Contactos</h2>
+      <h2>13. Contactos</h2>
       <table>
         <thead>
           <tr><th>Rol</th><th>Persona</th><th>Contacto</th></tr>
@@ -909,7 +1059,7 @@ supabase storage download ss:///audios ./backup-audios --recursive</code></pre>
     <footer>
       <p>
         <span class="flower">✿</span> No Me Olvides · Traspaso técnico · v1.0 ·
-        Última actualización: 9 de mayo de 2026 — Aitor Soto Rubio
+        Última actualización: 17 de mayo de 2026 — Aitor Soto Rubio
       </p>
     </footer>
 

@@ -326,7 +326,7 @@
       <h1>Arquitectura técnica de nomeolvides.es</h1>
       <div class="meta">
         Proyecto No Me Olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 9 de mayo de 2026
+        Última actualización: 17 de mayo de 2026
       </div>
     </header>
 
@@ -507,8 +507,18 @@
           </tr>
           <tr>
             <td>Dominio</td>
-            <td><strong>nomeolvides.es</strong> (Namecheap o Cloudflare)</td>
-            <td>~12€/año. Cloudflare añade protección DDoS gratuita.</td>
+            <td><strong>tunomeolvides.es</strong> (Hostinger)</td>
+            <td>~9-12 €/año. Permite gestionar dominio, DNS y, en el futuro, buzón propio sin cambiar de proveedor.</td>
+          </tr>
+          <tr>
+            <td>DNS</td>
+            <td><strong>Hostinger</strong> (nameservers <code>byte.dns-parking.com</code> / <code>pixel.dns-parking.com</code>)</td>
+            <td>Gestión de los registros DNS del dominio <code>tunomeolvides.es</code>: A/CNAME apuntando a Vercel, además de los registros SPF/MX/DKIM necesarios para el SMTP transaccional.</td>
+          </tr>
+          <tr>
+            <td>Email transaccional / SMTP</td>
+            <td><strong>Resend</strong> (<a href="https://resend.com">resend.com</a>, región EU-West / Dublín)</td>
+            <td>Servidor SMTP <em>custom</em> de Supabase Auth para los emails de invitación de admins y recuperación de contraseña del panel. Sustituye al SMTP compartido de Supabase (limitado a 2 emails/hora para todo el proyecto). Servidores en territorio UE, coherente con la región de Supabase.</td>
           </tr>
         </tbody>
       </table>
@@ -724,6 +734,18 @@ CREATE POLICY "admin_delete" ON contact_messages
         </p>
       </div>
 
+      <div class="box legal">
+        <div class="box-title">⚖ Email transaccional dentro de la UE</div>
+        <p>
+          Los emails transaccionales del panel (invitación de nuevos administradores y recuperación
+          de contraseña) se envían a través de <strong>Resend</strong>, cuyos servidores SMTP están en
+          <strong>EU-West (Dublín)</strong>. Los metadatos del envío (direcciones, asuntos, fechas) se
+          procesan y almacenan en territorio UE, en coherencia con la base de datos de Supabase en
+          Frankfurt. No se produce, por tanto, transferencia internacional de datos personales para
+          este canal de comunicación.
+        </p>
+      </div>
+
       <div class="box warning">
         <div class="box-title">📌 Transferencia internacional (GA4)</div>
         <p>
@@ -903,10 +925,11 @@ CREATE POLICY "admin_delete" ON contact_messages
           <tr><td>GitHub</td><td>Free</td><td>0 €</td></tr>
           <tr><td>Vercel</td><td>Hobby</td><td>0 €</td></tr>
           <tr><td>Supabase (Frankfurt)</td><td>Free</td><td>0 €</td></tr>
-          <tr><td>Dominio nomeolvides.es</td><td>Namecheap o Cloudflare</td><td>~12 €</td></tr>
+          <tr><td>Dominio <code>tunomeolvides.es</code></td><td>Hostinger</td><td>~9-12 €</td></tr>
+          <tr><td>Resend (SMTP transaccional)</td><td>Free (3000 emails/mes, 100/día)</td><td>0 €</td></tr>
           <tr><td>OpenStreetMap</td><td>—</td><td>0 €</td></tr>
           <tr><td>Google Analytics 4</td><td>—</td><td>0 €</td></tr>
-          <tr><td><strong>Total</strong></td><td></td><td><strong>~12 €/año</strong></td></tr>
+          <tr><td><strong>Total</strong></td><td></td><td><strong>~10 €/año</strong></td></tr>
         </tbody>
       </table>
 
@@ -914,7 +937,8 @@ CREATE POLICY "admin_delete" ON contact_messages
       <ul>
         <li><strong>Supabase Pro (25 $/mes)</strong>: solo necesario si la web supera 50.000 usuarios mensuales o 500 MB de BBDD. Para Fase 1 no aplica.</li>
         <li><strong>Vercel Pro (20 $/mes)</strong>: necesario si se supera 100 GB de tráfico mensual. Improbable en Fase 1.</li>
-        <li><strong>Dominio</strong>: renovación anual ~12 €.</li>
+        <li><strong>Resend Pro (20 $/mes)</strong>: solo necesario si se superan 3000 emails/mes. El proyecto está MUY por debajo (solo invitaciones de admin y recuperación de contraseña — apenas un puñado al año), así que el free tier sobra holgadamente.</li>
+        <li><strong>Dominio</strong>: renovación anual ~9-12 € en Hostinger (el primer año suele ser más barato por oferta).</li>
       </ul>
 
       <div class="box warning">
@@ -987,6 +1011,21 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td><code>redirectTo</code> explícito en <code>inviteUserByEmail</code> apuntando a <code>/admin/set-password</code></td>
             <td>Usa <code>NEXT_PUBLIC_SITE_URL</code> con el origen de la request como fallback. Independiza la app del “Site URL” del dashboard de Supabase, evitando que cambios allí rompan el flujo de invitación.</td>
           </tr>
+          <tr>
+            <td>2026-05-17</td>
+            <td>Dominio <code>tunomeolvides.es</code> registrado en <strong>Hostinger</strong> y apuntado a Vercel</td>
+            <td>Cierra la decisión aplazada sobre el dominio definitivo. Hostinger ofrecía mejor precio en <code>.es</code> y permite gestionar dominio, DNS y, en el futuro, buzón propio sin cambiar de proveedor.</td>
+          </tr>
+          <tr>
+            <td>2026-05-17</td>
+            <td><code>NEXT_PUBLIC_SITE_URL</code> en Vercel apuntando a <code>https://tunomeolvides.es</code> + <em>Site URL</em> de Supabase actualizado al mismo valor</td>
+            <td>Los emails de invitación y el <code>redirectTo</code> usan ahora el dominio real en lugar de la URL <code>*.vercel.app</code>. Coherencia entre entornos y enlaces estables para los usuarios invitados.</td>
+          </tr>
+          <tr>
+            <td>2026-05-17</td>
+            <td>SMTP <em>custom</em> vía <strong>Resend</strong> (delegación de subdominio <code>send.tunomeolvides.es</code> para SPF/MX y DKIM en <code>resend._domainkey.tunomeolvides.es</code>)</td>
+            <td>El SMTP compartido de Supabase tiene un rate limit de <strong>2 emails/hora</strong> para todo el proyecto, lo que rompe el flujo de invitación cuando hay varios admins. Con Resend sube a <strong>300/hora</strong> y los emails salen como <code>noreply@tunomeolvides.es</code>. El free tier de Resend (3000 emails/mes) sobra holgadamente para el caso de uso.</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1030,7 +1069,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> No Me Olvides · Documentación viva ·
-        Última actualización 9 de mayo de 2026 ·
+        Última actualización 17 de mayo de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>

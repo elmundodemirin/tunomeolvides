@@ -13,7 +13,7 @@ mediante un mapa interactivo de España donde cada punto representa una
 localidad rural con un audio narrado en primera persona.
 
 - **Promotora**: María del Carmen López Rosa
-- **Dominio**: pendiente de decidir (nomeolvides.es está cogido)
+- **Dominio**: `tunomeolvides.es` (registrado y DNS en Hostinger, apuntado a Vercel)
 - **Idiomas**: español (por defecto), inglés y francés. Las descripciones y audios solo se gestionan en ES + EN; FR cae a EN como fallback.
 - **Estado actual**: Fase 1 en desarrollo
 
@@ -57,6 +57,8 @@ localidad rural con un audio narrado en primera persona.
 | Auth | Supabase Auth (solo para el panel de gestión) |
 | Storage | Supabase Storage (audios MP3) |
 | Hosting frontend | Vercel |
+| Dominio + DNS | Hostinger (`tunomeolvides.es`) |
+| Email transaccional | Resend (SMTP custom de Supabase Auth, región EU-West) |
 | Analítica | Google Analytics 4 |
 | Banner de cookies | vanilla-cookieconsent |
 | Control de versiones | Git + GitHub |
@@ -307,14 +309,16 @@ nomeolvides/
 | 2026-05-02 | Campos de auditoría (`created_by`/`modified_by` en `localities`, `handled_*` y `admin_notes` en `contact_messages`) | Trazabilidad operativa y refuerzo de accountability RGPD art. 5.2 |
 | 2026-05-09 | Migración `middleware.ts` → `proxy.ts` (Next 16) | Adoptar la nueva convención del framework; rename puro sin cambios de API |
 | 2026-05-09 | `redirectTo` explícito en `inviteUserByEmail` apuntando a `/admin/set-password`, con `NEXT_PUBLIC_SITE_URL` → request origin como fallback | Independizar la app del "Site URL" del dashboard de Supabase y soportar múltiples entornos |
+| 2026-05-17 | Dominio `tunomeolvides.es` registrado en Hostinger y apuntado a Vercel | Cierra el bloqueo del dominio definitivo; Hostinger es competitivo en `.es` y permite gestionar DNS + buzón en el futuro sin cambiar de proveedor |
+| 2026-05-17 | `NEXT_PUBLIC_SITE_URL` y "Site URL" de Supabase actualizados a `https://tunomeolvides.es` | Que los emails de invitación y los `redirectTo` usen el dominio real, no la URL `*.vercel.app` |
+| 2026-05-17 | SMTP custom de Supabase Auth vía Resend (región EU-West / Dublín, subdomain delegation en `send.tunomeolvides.es`) | El SMTP compartido de Supabase tiene rate limit 2 emails/hora a nivel proyecto; con Resend pasa a 300/hora y los emails salen como `noreply@tunomeolvides.es`. Free tier de 3000/mes sobra |
 
 ---
 
 ## 🤔 Decisiones aplazadas (recordar más adelante)
 
-- [ ] Nombre y extensión del dominio definitivo
-- [ ] Número de buzones de email
-- [ ] Proveedor de email (Cloudflare Routing gratis / Google Workspace / Zoho)
+- [x] ~~Nombre y extensión del dominio definitivo~~ → `tunomeolvides.es` (2026-05-17)
+- [ ] Activar buzón propio en Hostinger (`info@`, `noreply@` real, etc.) si se quiere recibir respuestas. Hoy `noreply@tunomeolvides.es` se usa solo para enviar; no existe inbox que reciba.
 - [ ] Si en Fase 2 se incorpora avatar IA como alternativa al audio
 - [ ] Si en Fase 2 se añaden filtros en el mapa (provincia, comunidad, tipo)
 
@@ -345,8 +349,10 @@ nomeolvides/
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (secreta, solo en server)
-   - `NEXT_PUBLIC_SITE_URL` (URL pública; usada en `redirectTo` de los emails de invitación/recuperación)
+   - `NEXT_PUBLIC_SITE_URL` → `https://tunomeolvides.es` en Production de Vercel. Usada en `redirectTo` de los emails de invitación/recuperación.
    - `NEXT_PUBLIC_GA_ID` (cuando se active GA4)
+
+   La API key de Resend NO va en `.env.local` — vive solo en Supabase Dashboard → Authentication → Emails → SMTP Settings.
 
 ### Lo siguiente que toca hacer
 
@@ -366,4 +372,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 9 de mayo de 2026 — B7+B10 completados, B9 parcial (manual + traspaso), mejoras admin (mensajes + audit + set-password + paleta)*
+*Última actualización: 17 de mayo de 2026 — dominio `tunomeolvides.es` en producción (Hostinger + Vercel) y SMTP custom vía Resend (subdomain delegation, EU-West)*
