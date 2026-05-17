@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { createSupabaseBrowserClient } from '@/lib/supabase-browser'
 import { FlowerIcon } from '@/components/FlowerIcon'
 
@@ -10,7 +9,6 @@ import { FlowerIcon } from '@/components/FlowerIcon'
 // detecta @supabase/ssr automáticamente). Aquí solo le pedimos que fije una
 // contraseña con auth.updateUser. Sirve también para "recuperar contraseña".
 export default function SetPasswordPage() {
-  const router = useRouter()
   const [hasSession, setHasSession] = useState<boolean | null>(null)
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
@@ -21,15 +19,27 @@ export default function SetPasswordPage() {
   useEffect(() => {
     const supabase = createSupabaseBrowserClient()
 
+    // Si ya hay sesión en cookies, la detectamos al instante.
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setHasSession(!!session)
+      if (session) setHasSession(true)
     })
 
+    // Si la sesión viene del hash de la URL (#access_token=...) tarda
+    // un instante en procesarse; este listener nos avisa cuando ocurra.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setHasSession(!!session)
+      if (session) setHasSession(true)
     })
 
-    return () => subscription.unsubscribe()
+    // Margen de 1s antes de decidir "enlace no válido". Evita el flicker
+    // de mostrar el mensaje de error mientras Supabase parsea el hash.
+    const fallback = setTimeout(() => {
+      setHasSession(prev => (prev === null ? false : prev))
+    }, 1000)
+
+    return () => {
+      clearTimeout(fallback)
+      subscription.unsubscribe()
+    }
   }, [])
 
   async function handleSubmit(e: React.FormEvent) {
@@ -56,9 +66,10 @@ export default function SetPasswordPage() {
     }
 
     setSuccess(true)
+    // Full reload (no router.push) para garantizar que la cookie de sesión
+    // viaja en la siguiente petición y el middleware no rebota a /login.
     setTimeout(() => {
-      router.push('/admin/dashboard')
-      router.refresh()
+      window.location.assign('/admin/dashboard')
     }, 1500)
   }
 
