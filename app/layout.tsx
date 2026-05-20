@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getLocale } from 'next-intl/server'
 import './globals.css'
+import { AuthRedirectGuard } from '@/components/AuthRedirectGuard'
 
 export const metadata: Metadata = {
   title: 'No Me Olvides',
@@ -32,7 +33,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <link rel="preconnect" href={supabaseOrigin} crossOrigin="anonymous" />
         )}
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AuthRedirectGuard />
+        {children}
+      </body>
     </html>
   )
 }
