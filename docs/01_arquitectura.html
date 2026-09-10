@@ -828,7 +828,7 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td><strong>B8</strong></td>
             <td>SEO técnico: metadatos por idioma, sitemap.xml, robots.txt, datos estructurados (Schema.org), Open Graph.</td>
             <td>Web indexable y compartible en redes.</td>
-            <td><span class="status todo">Pendiente</span></td>
+            <td><span class="status done">Completado</span></td>
           </tr>
           <tr>
             <td><strong>B9</strong></td>
@@ -1032,6 +1032,16 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>SMTP <em>custom</em> vía <strong>Resend</strong> (delegación de subdominio <code>send.tunomeolvides.es</code> para SPF/MX y DKIM en <code>resend._domainkey.tunomeolvides.es</code>)</td>
             <td>El SMTP compartido de Supabase tiene un rate limit de <strong>2 emails/hora</strong> para todo el proyecto, lo que rompe el flujo de invitación cuando hay varios admins. Con Resend sube a <strong>300/hora</strong> y los emails salen como <code>noreply@tunomeolvides.es</code>. El free tier de Resend (3000 emails/mes) sobra holgadamente para el caso de uso.</td>
           </tr>
+          <tr>
+            <td>2026-09-10</td>
+            <td>Metadatos SEO por página vía <code>generateMetadata()</code> (dinámico en home/sobre/contacto, estático en páginas legales), centralizados en <code>lib/seo.ts</code></td>
+            <td>Un único sitio define título, descripción, Open Graph y <em>alternates</em> (canonical + hreflang) por página e idioma, evitando que Google trate las 3 versiones de idioma como contenido duplicado. Un solo helper facilita mantenerlo coherente en el futuro.</td>
+          </tr>
+          <tr>
+            <td>2026-09-10</td>
+            <td>Sitemap y JSON-LD sin entradas por localidad individual</td>
+            <td>Hoy los pueblos solo existen como popups dentro del mapa de la home, sin URL propia — no hay a qué apuntar. El JSON-LD de la home sí incluye cada localidad activa como <code>TouristAttraction</code> dentro de un <code>ItemList</code>, para no perder esa señal mientras no exista una página por localidad (ver decisión aplazada correspondiente).</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1045,28 +1055,52 @@ CREATE POLICY "admin_delete" ON contact_messages
         Quedan estas piezas pendientes, de mayor a menor prioridad:
       </p>
 
-      <h3>10.1 — B8: SEO técnico (próximo bloque)</h3>
+      <h3>10.1 — B8: SEO técnico ✅ Completado (2026-09-10)</h3>
       <ol>
         <li>
-          <strong>Metadatos dinámicos por página</strong> usando <code>generateMetadata()</code>
-          de Next.js: title, description y Open Graph (imagen, locale alternates). Especialmente
-          para los popups de localidades.
+          <strong>Metadatos dinámicos por página</strong>: <code>lib/seo.ts</code> centraliza título,
+          descripción, Open Graph y <em>alternates</em> (canonical + hreflang es/en/fr) por página.
+          Home, "Sobre" y "Contacto" usan <code>generateMetadata()</code> con next-intl (namespaces
+          <code>home</code>/<code>about</code>/<code>contact</code>, claves <code>metaTitle</code>/
+          <code>metaDescription</code>); las 9 páginas legales (aviso, privacidad, cookies × 3
+          idiomas) usan <code>export const metadata</code> estático, ya que su contenido también
+          está escrito directamente por idioma. El layout raíz define <code>metadataBase</code> y
+          un <em>title template</em> (<code>%s · No Me Olvides</code>).
         </li>
         <li>
-          <strong>Sitemap.xml automático</strong> con <code>app/sitemap.ts</code>: enumera las
-          páginas estáticas (Home, Sobre, Contacto, legales) y dinámicamente todas las localidades
-          activas. Genera variante por idioma con <code>alternates</code>.
+          <strong>Sitemap.xml automático</strong> (<code>app/sitemap.ts</code>): enumera las 6
+          páginas estáticas (Home, Sobre, Contacto, 3 legales) en los 3 idiomas, con
+          <code>alternates.languages</code> por entrada. <strong>No incluye localidades
+          individuales</strong> — ver nota más abajo.
         </li>
         <li>
-          <strong>robots.txt</strong> con <code>app/robots.ts</code>: permite indexar todo lo público,
-          bloquea <code>/admin/*</code> y <code>/api/admin/*</code>.
+          <strong>robots.txt</strong> (<code>app/robots.ts</code>): permite indexar todo lo público,
+          bloquea <code>/admin</code> y <code>/api/admin</code>, y declara el sitemap.
         </li>
         <li>
-          <strong>Schema.org (JSON-LD)</strong>: marcado <code>WebSite</code> en la home y
-          <code>Place</code> + <code>TouristAttraction</code> en cada popup, con coordenadas y
-          enlace al audio. Mejora visibilidad en Google y buscadores especializados.
+          <strong>Schema.org (JSON-LD)</strong>: la home inyecta un <code>&lt;script
+          type="application/ld+json"&gt;</code> con <code>WebSite</code> + un <code>ItemList</code>
+          de <code>TouristAttraction</code> (una por localidad activa, con dirección, coordenadas,
+          audio como <code>AudioObject</code> y enlace externo cuando existe). Se construye en
+          <code>buildHomeJsonLd()</code> (<code>lib/seo.ts</code>) a partir de la misma consulta que
+          ya alimenta el mapa, reutilizando <code>pickLocalized()</code> (extraída de
+          <code>components/Map.tsx</code> a <code>lib/locality.ts</code> para no duplicar la regla
+          de fallback ES→EN/FR).
         </li>
       </ol>
+
+      <div class="box">
+        <div class="box-title">⚠ Pendiente relacionado: páginas propias por localidad</div>
+        <p>
+          Ni el sitemap ni el JSON-LD pueden enlazar cada pueblo a su propia URL porque hoy no
+          existe: las localidades solo se muestran como popups dentro del mapa de la home. Crear
+          una página individual por localidad (p. ej. <code>/pueblo/[slug]</code>) permitiría que
+          cada una posicionara en Google por su propio nombre — una mejora de SEO real, pero mayor
+          que el alcance de B8. Además, a fecha de esta actualización el proyecto aún no tiene
+          localidades reales cargadas (solo datos de prueba), así que tiene sentido esperar a que
+          haya contenido real antes de acometerlo. Añadido como pendiente en el apartado 10.5.
+        </p>
+      </div>
 
       <h3>10.2 — Google Analytics 4</h3>
       <ol>
@@ -1120,6 +1154,8 @@ CREATE POLICY "admin_delete" ON contact_messages
 
       <h3>10.5 — Fase 2 (lejos)</h3>
       <ul>
+        <li>Página propia por localidad (URL individual) para mejorar su posicionamiento
+          independiente en Google — esperar a tener localidades reales cargadas (ver 10.1).</li>
         <li>Avatar IA narrando las historias como alternativa al audio (texto-a-voz personalizado).</li>
         <li>Filtros avanzados en el mapa (por provincia, comunidad, tipo de patrimonio).</li>
         <li>Recogida de testimonios crowdsourced (con moderación).</li>
@@ -1129,8 +1165,8 @@ CREATE POLICY "admin_delete" ON contact_messages
         <div class="box-title">✓ Estado actual</div>
         <p>
           Plataforma desplegada y funcional en <code>tunomeolvides.es</code>. Toda la Fase 1
-          (B1-B7, B9, B10) cerrada, salvo B8 SEO técnico. Las piezas administrativas (panel,
-          mensajes, gestión de usuarios, set/cambio de contraseña) están terminadas y probadas.
+          (B1-B10) cerrada. Las piezas administrativas (panel, mensajes, gestión de usuarios,
+          set/cambio de contraseña) y el SEO técnico (B8) están terminados y probados.
         </p>
       </div>
     </section>
@@ -1138,7 +1174,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> No Me Olvides · Documentación viva ·
-        Última actualización 17 de mayo de 2026 ·
+        Última actualización 10 de septiembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>

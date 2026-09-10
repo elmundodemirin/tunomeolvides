@@ -218,7 +218,7 @@ CREATE POLICY "admin_delete" ON contact_messages
 | B5 | i18n ES/EN/FR + páginas estáticas (Inicio, Sobre, Contacto) | ✅ Completado |
 | B6 | Panel `/admin`: login + CRUD localidades + subida audios + invitación | ✅ Completado |
 | B7 | Formulario contacto + cookies + GA4 + páginas legales | ✅ Completado |
-| B8 | SEO técnico: sitemap, metadatos, Schema.org, Open Graph | ⬜ Pendiente |
+| B8 | SEO técnico: sitemap, metadatos, Schema.org, Open Graph | ✅ Completado |
 | B9 | Documentación final: manual del panel + traspaso técnico | 🟧 Parcial — manual ✅, traspaso ✅ (recién creado) |
 | B10 | Testing en móvil/tablet/escritorio + optimización Lighthouse | ✅ Completado |
 
@@ -230,6 +230,7 @@ CREATE POLICY "admin_delete" ON contact_messages
 - ✅ Migración `middleware.ts` → `proxy.ts` (Next.js 16).
 - ✅ Componente compartido `FlowerIcon` y favicon SVG (`app/icon.svg`).
 - ✅ Panel admin alineado con la paleta de marca (terracota, no marrón espresso).
+- ✅ SEO técnico (B8): metadatos por página (`lib/seo.ts` + `generateMetadata()`), `app/sitemap.ts`, `app/robots.ts` y JSON-LD (`WebSite` + `ItemList` de localidades) en la home.
 
 > **Actualiza este apartado** cada vez que un bloque cambie de estado.
 
@@ -312,6 +313,8 @@ nomeolvides/
 | 2026-05-17 | Dominio `tunomeolvides.es` registrado en Hostinger y apuntado a Vercel | Cierra el bloqueo del dominio definitivo; Hostinger es competitivo en `.es` y permite gestionar DNS + buzón en el futuro sin cambiar de proveedor |
 | 2026-05-17 | `NEXT_PUBLIC_SITE_URL` y "Site URL" de Supabase actualizados a `https://tunomeolvides.es` | Que los emails de invitación y los `redirectTo` usen el dominio real, no la URL `*.vercel.app` |
 | 2026-05-17 | SMTP custom de Supabase Auth vía Resend (región EU-West / Dublín, subdomain delegation en `send.tunomeolvides.es`) | El SMTP compartido de Supabase tiene rate limit 2 emails/hora a nivel proyecto; con Resend pasa a 300/hora y los emails salen como `noreply@tunomeolvides.es`. Free tier de 3000/mes sobra |
+| 2026-09-10 | Metadatos SEO por página centralizados en `lib/seo.ts` (dinámico vía `generateMetadata()` en home/sobre/contacto, estático en las 9 páginas legales) | Título, descripción, Open Graph y alternates (canonical + hreflang es/en/fr) coherentes en un único sitio, evitando que Google trate los 3 idiomas como contenido duplicado |
+| 2026-09-10 | Sitemap y JSON-LD sin URL individual por localidad | Los pueblos solo existen como popups en el mapa de la home; no hay página propia a la que apuntar. El JSON-LD de la home sí incluye cada localidad activa como `TouristAttraction` dentro de un `ItemList` mientras no exista esa página |
 
 ---
 
@@ -319,6 +322,7 @@ nomeolvides/
 
 - [x] ~~Nombre y extensión del dominio definitivo~~ → `tunomeolvides.es` (2026-05-17)
 - [ ] Activar buzón propio en Hostinger (`info@`, `noreply@` real, etc.) si se quiere recibir respuestas. Hoy `noreply@tunomeolvides.es` se usa solo para enviar; no existe inbox que reciba.
+- [ ] Página propia por localidad (URL individual, ej. `/pueblo/[slug]`) para mejorar su posicionamiento en Google por su propio nombre. Esperar a tener localidades reales cargadas (hoy solo hay datos de prueba).
 - [ ] Si en Fase 2 se incorpora avatar IA como alternativa al audio
 - [ ] Si en Fase 2 se añaden filtros en el mapa (provincia, comunidad, tipo)
 
@@ -356,12 +360,14 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B8 — SEO técnico**. Pasos pendientes:
+**Bloque B8 (SEO técnico) completado el 2026-09-10.** Ver `docs/01_arquitectura.html` §10.1
+para el detalle de lo implementado (metadatos, sitemap, robots.txt, JSON-LD).
 
-1. Metadatos dinámicos por página (title, description, Open Graph)
-2. Sitemap.xml automático
-3. robots.txt
-4. Schema.org (WebSite + Place para localidades)
+Siguiente en la lista (§10.2 de `arquitectura.html`): **Google Analytics 4**
+
+1. Crear la propiedad GA4 en `analytics.google.com` (a nombre de la promotora) y obtener el ID `G-XXXXXXXXXX`.
+2. Añadir `NEXT_PUBLIC_GA_ID` en Vercel (Production, Preview, Development) y redesplegar.
+3. Verificar con Google Tag Assistant que `page_view` no se dispara hasta aceptar cookies.
 
 ---
 
@@ -372,4 +378,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 17 de mayo de 2026 — dominio `tunomeolvides.es` en producción (Hostinger + Vercel) y SMTP custom vía Resend (subdomain delegation, EU-West)*
+*Última actualización: 10 de septiembre de 2026 — Bloque B8 (SEO técnico) completado: metadatos por página, sitemap.xml, robots.txt y JSON-LD*
