@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
+import type { Locality } from '@/lib/types'
+import { pickLocalized } from '@/lib/locality'
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tunomeolvides.es'
 
@@ -72,5 +74,53 @@ export function buildPageMetadata({
       title,
       description,
     },
+  }
+}
+
+/**
+ * JSON-LD (Schema.org) para la home: describe el sitio y, como ItemList,
+ * cada localidad activa como TouristAttraction. No hay URL individual por
+ * localidad todavía (solo existen como popups en el mapa), así que se
+ * enlaza a external_url cuando existe.
+ */
+export function buildHomeJsonLd(localities: Locality[], locale: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        name: 'No Me Olvides',
+        url: siteUrl,
+        inLanguage: locale,
+      },
+      {
+        '@type': 'ItemList',
+        itemListElement: localities.map((loc, index) => {
+          const audioUrl = pickLocalized(locale, loc.audio_url_es, loc.audio_url_en)
+          return {
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+              '@type': 'TouristAttraction',
+              name: loc.name,
+              description: pickLocalized(locale, loc.description_es, loc.description_en),
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: loc.province,
+                addressRegion: loc.region,
+                addressCountry: 'ES',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: loc.latitude,
+                longitude: loc.longitude,
+              },
+              ...(loc.external_url ? { url: loc.external_url } : {}),
+              ...(audioUrl ? { subjectOf: { '@type': 'AudioObject', contentUrl: audioUrl } } : {}),
+            },
+          }
+        }),
+      },
+    ],
   }
 }

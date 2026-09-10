@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import type { Locality } from '@/lib/types'
+import { pickLocalized } from '@/lib/locality'
 import 'leaflet/dist/leaflet.css'
 
 type Props = {
@@ -22,13 +23,6 @@ const MARKER_SVG = `
   <circle cx="14" cy="14" r="6" fill="white" opacity="0.9"/>
   <circle cx="14" cy="14" r="3" fill="#6B8CB8"/>
 </svg>`
-
-// FR no tiene contenido propio en BD: cae al inglés tanto para descripción
-// como para audio. ES sigue siendo la fuente principal y EN su par.
-function pickLocalized<T>(locale: string, es: T, en: T): T {
-  if (locale === 'en' || locale === 'fr') return en
-  return es
-}
 
 const MORE_INFO_LABEL: Record<string, string> = {
   es: 'Más información',

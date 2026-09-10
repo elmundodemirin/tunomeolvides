@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { supabase } from '@/lib/supabase'
 import type { Locality } from '@/lib/types'
 import HomeShell from '@/components/HomeShell'
-import { buildPageMetadata } from '@/lib/seo'
+import { buildPageMetadata, buildHomeJsonLd } from '@/lib/seo'
 
 export async function generateMetadata({
   params,
@@ -39,5 +39,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     )
   }
 
-  return <HomeShell localities={(localities as Locality[]) ?? []} locale={locale} />
+  const activeLocalities = (localities as Locality[]) ?? []
+  const jsonLd = buildHomeJsonLd(activeLocalities, locale)
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // Escapamos "<" para evitar que una descripción con "</script>" rompa el HTML.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+      />
+      <HomeShell localities={activeLocalities} locale={locale} />
+    </>
+  )
 }
