@@ -2,9 +2,14 @@ import type { Metadata } from 'next'
 import { getLocale } from 'next-intl/server'
 import './globals.css'
 import { AuthRedirectGuard } from '@/components/AuthRedirectGuard'
+import { siteUrl } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'No Me Olvides',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'No Me Olvides',
+    template: '%s · No Me Olvides',
+  },
   description: 'Patrimonio cultural de la España vaciada. Un mapa de voces, memoria y territorio.',
 }
 

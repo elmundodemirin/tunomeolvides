@@ -22,17 +22,23 @@
     "filterProvincia": "All provinces",
     "filterClear": "Clear filters",
     "noResults": "No results match these filters.",
-    "mapAriaLabel": "Interactive map of villages in rural Spain"
+    "mapAriaLabel": "Interactive map of villages in rural Spain",
+    "metaTitle": "No Me Olvides — A Sound Map of Rural Spain",
+    "metaDescription": "Explore villages of depopulated rural Spain through an interactive map with first-person audio stories told by those who lived them."
   },
   "about": {
     "title": "About the project",
     "intro": "No Me Olvides is a platform to document and preserve the cultural heritage of villages in depopulated rural Spain.",
     "body": "Each point on the map is a village with a history, with voices that once inhabited it and with a memory that deserves to be told. Through first-person audio narratives, we recover those stories before silence erases them forever.",
-    "body2": "No Me Olvides aims to train and create an on-site digital guide that knows and narrates all these stories, accompanying national and international visitors during their stay in the village, discovering the points of interest one by one and recounting their peculiarities and anecdotes — creating an immersive and unique experience for the visitors of each locality."
+    "body2": "No Me Olvides aims to train and create an on-site digital guide that knows and narrates all these stories, accompanying national and international visitors during their stay in the village, discovering the points of interest one by one and recounting their peculiarities and anecdotes — creating an immersive and unique experience for the visitors of each locality.",
+    "metaTitle": "About the project — rural heritage & memory",
+    "metaDescription": "No Me Olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives."
   },
   "contact": {
     "title": "Contact",
     "intro": "Do you have information about a village, want to collaborate, or simply want to get in touch? Write to us.",
+    "metaTitle": "Contact — share your story",
+    "metaDescription": "Do you have information about a village or want to collaborate with No Me Olvides? Get in touch with us.",
     "name": "Name",
     "email": "Email address",
     "message": "Message",

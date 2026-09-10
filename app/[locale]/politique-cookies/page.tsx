@@ -1,5 +1,14 @@
+import type { Metadata } from 'next'
 import { LegalPage } from '@/components/LegalPage'
 import { ManageCookiesButton } from '@/components/ManageCookiesButton'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = buildPageMetadata({
+  page: 'cookiePolicy',
+  locale: 'fr',
+  title: 'Politique de cookies',
+  description: 'Quels cookies utilise No Me Olvides, dans quel but et comment gérer vos préférences.',
+})
 
 export default function PolitiqueCookiesPage() {
   return (

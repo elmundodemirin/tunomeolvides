@@ -1,4 +1,13 @@
+import type { Metadata } from 'next'
 import { LegalPage } from '@/components/LegalPage'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = buildPageMetadata({
+  page: 'legalNotice',
+  locale: 'en',
+  title: 'Legal notice',
+  description: 'Ownership details, terms of use and liability information for the No Me Olvides website.',
+})
 
 export default function LegalNoticePage() {
   return (

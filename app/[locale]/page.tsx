@@ -1,7 +1,25 @@
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { supabase } from '@/lib/supabase'
 import type { Locality } from '@/lib/types'
 import HomeShell from '@/components/HomeShell'
+import { buildPageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: 'es' | 'en' | 'fr' }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'home' })
+  return buildPageMetadata({
+    page: 'home',
+    locale,
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    absoluteTitle: true,
+  })
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params

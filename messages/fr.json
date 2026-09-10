@@ -22,17 +22,23 @@
     "filterProvincia": "Toutes les provinces",
     "filterClear": "Effacer les filtres",
     "noResults": "Aucun résultat avec ces filtres.",
-    "mapAriaLabel": "Carte interactive des villages de l'Espagne rurale"
+    "mapAriaLabel": "Carte interactive des villages de l'Espagne rurale",
+    "metaTitle": "No Me Olvides — Carte sonore de l'Espagne rurale",
+    "metaDescription": "Découvrez les villages de l'Espagne rurale à travers une carte interactive avec des récits audio racontés à la première personne."
   },
   "about": {
     "title": "À propos du projet",
     "intro": "No Me Olvides est une plateforme dédiée à documenter et préserver le patrimoine culturel des villages de l'Espagne rurale en voie de dépeuplement.",
     "body": "Chaque point sur la carte est un village avec une histoire, avec des voix qui l'ont habité et une mémoire qui mérite d'être racontée. À travers des récits audio à la première personne, nous récupérons ces histoires avant que le silence ne les efface à jamais.",
-    "body2": "No Me Olvides propose de former et créer un guide numérique sur place, qui connaît et raconte toutes ces histoires, accompagnant les touristes nationaux et internationaux lors de leur visite au village, en découvrant un à un les points d'intérêt et en racontant leurs particularités et anecdotes — créant ainsi une expérience immersive et unique pour les visiteurs de chaque localité."
+    "body2": "No Me Olvides propose de former et créer un guide numérique sur place, qui connaît et raconte toutes ces histoires, accompagnant les touristes nationaux et internationaux lors de leur visite au village, en découvrant un à un les points d'intérêt et en racontant leurs particularités et anecdotes — créant ainsi une expérience immersive et unique pour les visiteurs de chaque localité.",
+    "metaTitle": "À propos — mémoire et patrimoine rural",
+    "metaDescription": "No Me Olvides documente et préserve le patrimoine culturel des villages de l'Espagne rurale grâce à des récits audio à la première personne."
   },
   "contact": {
     "title": "Contact",
     "intro": "Vous avez des informations sur un village, vous souhaitez collaborer ou simplement nous écrire ? Contactez-nous.",
+    "metaTitle": "Contact — partagez votre histoire",
+    "metaDescription": "Vous avez des informations sur un village ou souhaitez collaborer avec No Me Olvides ? Contactez-nous.",
     "name": "Nom",
     "email": "Adresse e-mail",
     "message": "Message",
