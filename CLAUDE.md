@@ -61,7 +61,7 @@ localidad rural con un audio narrado en primera persona.
 | Email transaccional | Resend (SMTP custom de Supabase Auth, región EU-West) |
 | Analítica | Google Analytics 4 |
 | Banner de cookies | vanilla-cookieconsent |
-| Control de versiones | Git + GitHub |
+| Control de versiones | Git + GitHub — `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora desde el 2026-09-24) |
 
 ### Región de datos
 
@@ -315,6 +315,7 @@ nomeolvides/
 | 2026-05-17 | SMTP custom de Supabase Auth vía Resend (región EU-West / Dublín, subdomain delegation en `send.tunomeolvides.es`) | El SMTP compartido de Supabase tiene rate limit 2 emails/hora a nivel proyecto; con Resend pasa a 300/hora y los emails salen como `noreply@tunomeolvides.es`. Free tier de 3000/mes sobra |
 | 2026-09-10 | Metadatos SEO por página centralizados en `lib/seo.ts` (dinámico vía `generateMetadata()` en home/sobre/contacto, estático en las 9 páginas legales) | Título, descripción, Open Graph y alternates (canonical + hreflang es/en/fr) coherentes en un único sitio, evitando que Google trate los 3 idiomas como contenido duplicado |
 | 2026-09-10 | Sitemap y JSON-LD sin URL individual por localidad | Los pueblos solo existen como popups en el mapa de la home; no hay página propia a la que apuntar. El JSON-LD de la home sí incluye cada localidad activa como `TouristAttraction` dentro de un `ItemList` mientras no exista esa página |
+| 2026-09-24 | Repositorio migrado de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora) | El repo original pertenecía a la cuenta personal del programador anterior; la promotora solo tenía acceso como colaboradora. Se creó un repositorio nuevo y vacío bajo su cuenta y se subió el historial completo, para garantizar control total (principio rector nº1) |
 
 ---
 
@@ -360,14 +361,11 @@ nomeolvides/
 
 ### Lo siguiente que toca hacer
 
-**Bloque B8 (SEO técnico) completado el 2026-09-10.** Ver `docs/01_arquitectura.html` §10.1
-para el detalle de lo implementado (metadatos, sitemap, robots.txt, JSON-LD).
+- ✅ **Bloque B8 (SEO técnico)** completado el 2026-09-10 (ver `docs/01_arquitectura.html` §10.1).
+- ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado en local que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). Pendiente confirmar que `NEXT_PUBLIC_GA_ID` está guardado en Vercel (Production/Preview/Development) y probar en `tunomeolvides.es` en producción.
+- ✅ **Repositorio** migrado el 2026-09-24 de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora).
 
-Siguiente en la lista (§10.2 de `arquitectura.html`): **Google Analytics 4**
-
-1. Crear la propiedad GA4 en `analytics.google.com` (a nombre de la promotora) y obtener el ID `G-XXXXXXXXXX`.
-2. Añadir `NEXT_PUBLIC_GA_ID` en Vercel (Production, Preview, Development) y redesplegar.
-3. Verificar con Google Tag Assistant que `page_view` no se dispara hasta aceptar cookies.
+**Pendiente ahora mismo**: reconectar el proyecto de Vercel al repositorio nuevo (`elmundodemirin/tunomeolvides`) — Vercel sigue apuntando al repositorio antiguo de Aitor, así que un `git push` a partir de ahora no despliega solo hasta hacer esto. De paso, aprovechar para confirmar que `NEXT_PUBLIC_GA_ID` sigue configurado en el proyecto de Vercel tras la reconexión.
 
 ---
 
@@ -378,4 +376,4 @@ Siguiente en la lista (§10.2 de `arquitectura.html`): **Google Analytics 4**
 
 ---
 
-*Última actualización: 10 de septiembre de 2026 — Bloque B8 (SEO técnico) completado: metadatos por página, sitemap.xml, robots.txt y JSON-LD*
+*Última actualización: 24 de septiembre de 2026 — Repositorio migrado a la cuenta de GitHub de la promotora (`elmundodemirin/tunomeolvides`); GA4 activo con ID `G-GVYLDZ8C1B`*
