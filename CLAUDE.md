@@ -369,11 +369,12 @@ nomeolvides/
 - ✅ **Proyecto Supabase** migrado el 2026-09-24 a organización propia de la promotora (ref `ilfhwflhbasogrnaktbk`, Frankfurt). Esquema recreado, bucket `audios` recreado, usuario admin recreado, login del panel probado y funcionando.
 - ✅ **Proyecto Vercel** creado el 2026-09-24 desde cero en la cuenta de la promotora (equipo `no-me-olvides`, importado de `elmundodemirin/tunomeolvides`), con las variables de entorno apuntando al Supabase nuevo. **No se esperó a que Aitor transfiriera su proyecto** — en su lugar, se verificó la propiedad del dominio por DNS (registros TXT `_vercel` en Hostinger) y se conectó `tunomeolvides.es` directamente al proyecto nuevo. Producción y local ya usan exactamente el mismo stack (repo, Supabase, Vercel), todo propiedad de la promotora. El proyecto antiguo de Vercel de Aitor queda huérfano (sin tráfico), no hace falta tocarlo.
 
+- ✅ **Site URL y Redirect URLs** del proyecto Supabase nuevo configurados el 2026-09-24: Site URL `https://tunomeolvides.es`, Redirect URL `https://tunomeolvides.es/**` (necesario para que `redirectTo` en las invitaciones/recuperación de contraseña del panel funcione — Supabase ignora `redirectTo` si la URL no está en esta lista).
+
 **Pendiente ahora mismo**:
-1. Comprobar en el proyecto Supabase nuevo (Authentication → URL Configuration) que el **Site URL** está puesto a `https://tunomeolvides.es` — necesario para que los enlaces de invitación/recuperación de contraseña del panel apunten bien. Puede que no se haya configurado todavía al ser un proyecto nuevo.
-2. Revisar si el SMTP custom de Resend (para invitaciones del panel) también depende de una cuenta de Aitor — pendiente de comprobar. Mientras tanto, el proyecto nuevo de Supabase usará su SMTP compartido por defecto (rate limit bajo, 2 emails/hora).
-3. Opcional: cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
-4. Opcional: añadir también `www.tunomeolvides.es` como dominio en el proyecto de Vercel con redirección al dominio raíz (antes existía el registro DNS pero no se ha reconectado explícitamente).
+1. Revisar si el SMTP custom de Resend (para invitaciones del panel) también depende de una cuenta de Aitor — pendiente de comprobar. Mientras tanto, el proyecto nuevo de Supabase usará su SMTP compartido por defecto (rate limit bajo, 2 emails/hora).
+2. Opcional: cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
+3. Opcional: añadir también `www.tunomeolvides.es` como dominio en el proyecto de Vercel con redirección al dominio raíz (antes existía el registro DNS pero no se ha reconectado explícitamente).
 
 ---
 
