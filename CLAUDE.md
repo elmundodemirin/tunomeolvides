@@ -56,7 +56,7 @@ localidad rural con un audio narrado en primera persona.
 | Base de datos | PostgreSQL (vía Supabase) |
 | Auth | Supabase Auth (solo para el panel de gestión) |
 | Storage | Supabase Storage (audios MP3) |
-| Hosting frontend | Vercel |
+| Hosting frontend | Vercel — equipo `no-me-olvides` (propiedad de la promotora desde el 2026-09-24) |
 | Dominio + DNS | Hostinger (`tunomeolvides.es`) |
 | Email transaccional | Resend (SMTP custom de Supabase Auth, región EU-West) |
 | Analítica | Google Analytics 4 |
@@ -317,6 +317,7 @@ nomeolvides/
 | 2026-09-10 | Sitemap y JSON-LD sin URL individual por localidad | Los pueblos solo existen como popups en el mapa de la home; no hay página propia a la que apuntar. El JSON-LD de la home sí incluye cada localidad activa como `TouristAttraction` dentro de un `ItemList` mientras no exista esa página |
 | 2026-09-24 | Repositorio migrado de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora) | El repo original pertenecía a la cuenta personal del programador anterior; la promotora solo tenía acceso como colaboradora. Se creó un repositorio nuevo y vacío bajo su cuenta y se subió el historial completo, para garantizar control total (principio rector nº1) |
 | 2026-09-24 | Proyecto Supabase migrado a organización propia de la promotora (nuevo proyecto, región Frankfurt, ref `ilfhwflhbasogrnaktbk`), reemplazando el proyecto de Aitor (`rxqbobklqsusmrgkvmux`) | El proyecto original vivía en la organización personal de Aitor; la promotora solo tenía rol Administrator, insuficiente para regenerar claves. Al no existir aún localidades reales (solo datos de prueba), era el momento de menor riesgo para migrar. Esquema recreado desde `supabase/migrations/20260924_initial_schema_baseline.sql` (primera vez que la estructura base queda versionada en código, no solo en el panel). Usuario admin recreado a mano en el proyecto nuevo |
+| 2026-09-24 | Proyecto Vercel creado desde cero en la cuenta de la promotora (equipo `no-me-olvides`), en vez de esperar a que Aitor transfiriera el suyo | El dominio `tunomeolvides.es` está registrado a nombre de la promotora en Hostinger, así que no hacía falta el proyecto antiguo: se verificó la propiedad del dominio por DNS (registros TXT `_vercel`) y se conectó directamente al proyecto nuevo, sin tocar el de Aitor. Cierra la dependencia de Aitor en las tres piezas de infraestructura (repo, base de datos, hosting) |
 
 ---
 
@@ -363,15 +364,16 @@ nomeolvides/
 ### Lo siguiente que toca hacer
 
 - ✅ **Bloque B8 (SEO técnico)** completado el 2026-09-10 (ver `docs/01_arquitectura.html` §10.1).
-- ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado en local que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). Pendiente confirmar que `NEXT_PUBLIC_GA_ID` está guardado en Vercel (Production/Preview/Development) y probar en `tunomeolvides.es` en producción.
+- ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado en local que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). `NEXT_PUBLIC_GA_ID` está configurado en el proyecto Vercel nuevo; pendiente repetir la prueba de "Tiempo real" ya en `tunomeolvides.es` en producción.
 - ✅ **Repositorio** migrado el 2026-09-24 de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora).
-- ✅ **Proyecto Supabase** migrado el 2026-09-24 a organización propia de la promotora (ref `ilfhwflhbasogrnaktbk`, Frankfurt). Esquema recreado, bucket `audios` recreado, usuario admin recreado, login del panel probado y funcionando en local. Sin localidades reales todavía (base vacía por elección, ver decisión correspondiente).
+- ✅ **Proyecto Supabase** migrado el 2026-09-24 a organización propia de la promotora (ref `ilfhwflhbasogrnaktbk`, Frankfurt). Esquema recreado, bucket `audios` recreado, usuario admin recreado, login del panel probado y funcionando.
+- ✅ **Proyecto Vercel** creado el 2026-09-24 desde cero en la cuenta de la promotora (equipo `no-me-olvides`, importado de `elmundodemirin/tunomeolvides`), con las variables de entorno apuntando al Supabase nuevo. **No se esperó a que Aitor transfiriera su proyecto** — en su lugar, se verificó la propiedad del dominio por DNS (registros TXT `_vercel` en Hostinger) y se conectó `tunomeolvides.es` directamente al proyecto nuevo. Producción y local ya usan exactamente el mismo stack (repo, Supabase, Vercel), todo propiedad de la promotora. El proyecto antiguo de Vercel de Aitor queda huérfano (sin tráfico), no hace falta tocarlo.
 
 **Pendiente ahora mismo**:
-1. Transferencia del **proyecto de Vercel** de la cuenta de Aitor a la de la promotora (`elmundodemirin@gmail.com`) — pedida, esperando que Aitor la haga desde Settings → General → Transfer Project.
-2. Una vez transferido: reconectar el repositorio de Git al nuevo (`elmundodemirin/tunomeolvides`) y actualizar las variables de entorno de Vercel (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`) para que apunten al proyecto Supabase nuevo — hasta entonces, producción (`tunomeolvides.es`) sigue funcionando contra el proyecto Supabase **antiguo** de Aitor, mientras que el entorno local ya usa el nuevo.
-3. Revisar si el SMTP custom de Resend (para invitaciones del panel) también depende de una cuenta de Aitor — pendiente de comprobar.
-4. Opcional: cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
+1. Comprobar en el proyecto Supabase nuevo (Authentication → URL Configuration) que el **Site URL** está puesto a `https://tunomeolvides.es` — necesario para que los enlaces de invitación/recuperación de contraseña del panel apunten bien. Puede que no se haya configurado todavía al ser un proyecto nuevo.
+2. Revisar si el SMTP custom de Resend (para invitaciones del panel) también depende de una cuenta de Aitor — pendiente de comprobar. Mientras tanto, el proyecto nuevo de Supabase usará su SMTP compartido por defecto (rate limit bajo, 2 emails/hora).
+3. Opcional: cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
+4. Opcional: añadir también `www.tunomeolvides.es` como dominio en el proyecto de Vercel con redirección al dominio raíz (antes existía el registro DNS pero no se ha reconectado explícitamente).
 
 ---
 
@@ -382,4 +384,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 24 de septiembre de 2026 — Repositorio (GitHub) y proyecto de base de datos (Supabase) migrados a cuentas propias de la promotora; GA4 activo con ID `G-GVYLDZ8C1B`; pendiente transferencia de Vercel*
+*Última actualización: 24 de septiembre de 2026 — Repositorio (GitHub), base de datos (Supabase) y hosting (Vercel) migrados a cuentas propias de la promotora; dominio tunomeolvides.es conectado y funcionando; proyecto totalmente independiente de la cuenta del programador anterior*

@@ -493,8 +493,8 @@
           </tr>
           <tr>
             <td>Hosting frontend</td>
-            <td><strong>Vercel</strong></td>
-            <td>CDN global, despliegue automático desde GitHub, free tier suficiente para Fase 1.</td>
+            <td><strong>Vercel</strong> — equipo <code>no-me-olvides</code></td>
+            <td>CDN global, despliegue automático desde GitHub, free tier suficiente para Fase 1. Proyecto propiedad de la promotora desde el 2026-09-24 (antes vivía en la cuenta del programador anterior).</td>
           </tr>
           <tr>
             <td>Analítica</td>
@@ -1052,6 +1052,11 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Proyecto Supabase migrado de la organización de Aitor Soto Rubio (<code>rxqbobklqsusmrgkvmux</code>) a una organización propia de la promotora (<code>ilfhwflhbasogrnaktbk</code>, Frankfurt)</td>
             <td>La promotora tenía rol Administrator en la organización de Aitor, insuficiente para regenerar claves API. Al no existir aún localidades reales cargadas (solo datos de prueba), era el momento de menor riesgo para migrar sin pérdida de datos. Esquema recreado con <code>supabase/migrations/20260924_initial_schema_baseline.sql</code> — primera vez que la estructura base (tablas, RLS, bucket <code>audios</code>) queda versionada en código en vez de vivir solo en el panel de Supabase.</td>
           </tr>
+          <tr>
+            <td>2026-09-24</td>
+            <td>Proyecto Vercel creado desde cero en la cuenta de la promotora (equipo <code>no-me-olvides</code>) en vez de esperar la transferencia del proyecto de Aitor</td>
+            <td>El dominio <code>tunomeolvides.es</code> está registrado a nombre de la promotora en Hostinger, así que no era imprescindible el proyecto antiguo de Vercel: se verificó la propiedad del dominio por DNS (registros TXT <code>_vercel</code>) y se conectó directamente al proyecto nuevo. Cierra la dependencia del programador anterior en las tres piezas de infraestructura (repositorio, base de datos y hosting).</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1176,7 +1181,9 @@ CREATE POLICY "admin_delete" ON contact_messages
         <p>
           Plataforma desplegada y funcional en <code>tunomeolvides.es</code>. Toda la Fase 1
           (B1-B10) cerrada. Las piezas administrativas (panel, mensajes, gestión de usuarios,
-          set/cambio de contraseña) y el SEO técnico (B8) están terminados y probados.
+          set/cambio de contraseña) y el SEO técnico (B8) están terminados y probados. Desde el
+          2026-09-24, el proyecto es <strong>totalmente independiente del programador anterior</strong>:
+          repositorio, base de datos y hosting viven en cuentas propias de la promotora.
         </p>
       </div>
     </section>
