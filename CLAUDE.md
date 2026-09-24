@@ -316,6 +316,7 @@ nomeolvides/
 | 2026-09-10 | Metadatos SEO por página centralizados en `lib/seo.ts` (dinámico vía `generateMetadata()` en home/sobre/contacto, estático en las 9 páginas legales) | Título, descripción, Open Graph y alternates (canonical + hreflang es/en/fr) coherentes en un único sitio, evitando que Google trate los 3 idiomas como contenido duplicado |
 | 2026-09-10 | Sitemap y JSON-LD sin URL individual por localidad | Los pueblos solo existen como popups en el mapa de la home; no hay página propia a la que apuntar. El JSON-LD de la home sí incluye cada localidad activa como `TouristAttraction` dentro de un `ItemList` mientras no exista esa página |
 | 2026-09-24 | Repositorio migrado de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora) | El repo original pertenecía a la cuenta personal del programador anterior; la promotora solo tenía acceso como colaboradora. Se creó un repositorio nuevo y vacío bajo su cuenta y se subió el historial completo, para garantizar control total (principio rector nº1) |
+| 2026-09-24 | Proyecto Supabase migrado a organización propia de la promotora (nuevo proyecto, región Frankfurt, ref `ilfhwflhbasogrnaktbk`), reemplazando el proyecto de Aitor (`rxqbobklqsusmrgkvmux`) | El proyecto original vivía en la organización personal de Aitor; la promotora solo tenía rol Administrator, insuficiente para regenerar claves. Al no existir aún localidades reales (solo datos de prueba), era el momento de menor riesgo para migrar. Esquema recreado desde `supabase/migrations/20260924_initial_schema_baseline.sql` (primera vez que la estructura base queda versionada en código, no solo en el panel). Usuario admin recreado a mano en el proyecto nuevo |
 
 ---
 
@@ -364,8 +365,13 @@ nomeolvides/
 - ✅ **Bloque B8 (SEO técnico)** completado el 2026-09-10 (ver `docs/01_arquitectura.html` §10.1).
 - ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado en local que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). Pendiente confirmar que `NEXT_PUBLIC_GA_ID` está guardado en Vercel (Production/Preview/Development) y probar en `tunomeolvides.es` en producción.
 - ✅ **Repositorio** migrado el 2026-09-24 de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora).
+- ✅ **Proyecto Supabase** migrado el 2026-09-24 a organización propia de la promotora (ref `ilfhwflhbasogrnaktbk`, Frankfurt). Esquema recreado, bucket `audios` recreado, usuario admin recreado, login del panel probado y funcionando en local. Sin localidades reales todavía (base vacía por elección, ver decisión correspondiente).
 
-**Pendiente ahora mismo**: reconectar el proyecto de Vercel al repositorio nuevo (`elmundodemirin/tunomeolvides`) — Vercel sigue apuntando al repositorio antiguo de Aitor, así que un `git push` a partir de ahora no despliega solo hasta hacer esto. De paso, aprovechar para confirmar que `NEXT_PUBLIC_GA_ID` sigue configurado en el proyecto de Vercel tras la reconexión.
+**Pendiente ahora mismo**:
+1. Transferencia del **proyecto de Vercel** de la cuenta de Aitor a la de la promotora (`elmundodemirin@gmail.com`) — pedida, esperando que Aitor la haga desde Settings → General → Transfer Project.
+2. Una vez transferido: reconectar el repositorio de Git al nuevo (`elmundodemirin/tunomeolvides`) y actualizar las variables de entorno de Vercel (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`) para que apunten al proyecto Supabase nuevo — hasta entonces, producción (`tunomeolvides.es`) sigue funcionando contra el proyecto Supabase **antiguo** de Aitor, mientras que el entorno local ya usa el nuevo.
+3. Revisar si el SMTP custom de Resend (para invitaciones del panel) también depende de una cuenta de Aitor — pendiente de comprobar.
+4. Opcional: cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
 
 ---
 
@@ -376,4 +382,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 24 de septiembre de 2026 — Repositorio migrado a la cuenta de GitHub de la promotora (`elmundodemirin/tunomeolvides`); GA4 activo con ID `G-GVYLDZ8C1B`*
+*Última actualización: 24 de septiembre de 2026 — Repositorio (GitHub) y proyecto de base de datos (Supabase) migrados a cuentas propias de la promotora; GA4 activo con ID `G-GVYLDZ8C1B`; pendiente transferencia de Vercel*

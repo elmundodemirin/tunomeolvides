@@ -478,8 +478,8 @@
           </tr>
           <tr>
             <td>Base de datos</td>
-            <td><strong>PostgreSQL</strong> (vía Supabase)</td>
-            <td>Estándar abierto, portable, robusto. La promotora puede exportar todos sus datos cuando quiera.</td>
+            <td><strong>PostgreSQL</strong> (vía Supabase) — proyecto <code>ilfhwflhbasogrnaktbk</code></td>
+            <td>Estándar abierto, portable, robusto. La promotora puede exportar todos sus datos cuando quiera. Proyecto propiedad de la promotora desde el 2026-09-24 (antes vivía en la organización del programador anterior).</td>
           </tr>
           <tr>
             <td>Autenticación</td>
@@ -1046,6 +1046,11 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>2026-09-24</td>
             <td>Repositorio migrado de <code>github.com/aitorsotorubio/nomeolvides</code> a <code>github.com/elmundodemirin/tunomeolvides</code> (propiedad de la promotora)</td>
             <td>El repositorio original pertenecía a la cuenta personal del programador anterior; la promotora solo tenía acceso como colaboradora. Se creó un repositorio nuevo y vacío bajo su propia cuenta de GitHub y se subió el historial completo, para garantizar control total y autonomía (principio rector nº1 del proyecto).</td>
+          </tr>
+          <tr>
+            <td>2026-09-24</td>
+            <td>Proyecto Supabase migrado de la organización de Aitor Soto Rubio (<code>rxqbobklqsusmrgkvmux</code>) a una organización propia de la promotora (<code>ilfhwflhbasogrnaktbk</code>, Frankfurt)</td>
+            <td>La promotora tenía rol Administrator en la organización de Aitor, insuficiente para regenerar claves API. Al no existir aún localidades reales cargadas (solo datos de prueba), era el momento de menor riesgo para migrar sin pérdida de datos. Esquema recreado con <code>supabase/migrations/20260924_initial_schema_baseline.sql</code> — primera vez que la estructura base (tablas, RLS, bucket <code>audios</code>) queda versionada en código en vez de vivir solo en el panel de Supabase.</td>
           </tr>
         </tbody>
       </table>
