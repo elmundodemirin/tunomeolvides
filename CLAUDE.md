@@ -13,7 +13,7 @@ mediante un mapa interactivo de España donde cada punto representa una
 localidad rural con un audio narrado en primera persona.
 
 - **Promotora**: María del Carmen López Rosa
-- **Dominio**: `tunomeolvides.es` (registrado y DNS en Hostinger, apuntado a Vercel)
+- **Dominio**: `tunomeolvides.es` (registrado y DNS en Hostinger, apuntado a Vercel). También propiedad de la promotora: `tunomeolvides.com` (mismo registrador, redirige 308 permanente a `tunomeolvides.es` desde el 2026-09-24, para proteger la marca).
 - **Idiomas**: español (por defecto), inglés y francés. Las descripciones y audios solo se gestionan en ES + EN; FR cae a EN como fallback.
 - **Estado actual**: Fase 1 en desarrollo
 
@@ -318,6 +318,7 @@ nomeolvides/
 | 2026-09-24 | Repositorio migrado de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora) | El repo original pertenecía a la cuenta personal del programador anterior; la promotora solo tenía acceso como colaboradora. Se creó un repositorio nuevo y vacío bajo su cuenta y se subió el historial completo, para garantizar control total (principio rector nº1) |
 | 2026-09-24 | Proyecto Supabase migrado a organización propia de la promotora (nuevo proyecto, región Frankfurt, ref `ilfhwflhbasogrnaktbk`), reemplazando el proyecto de Aitor (`rxqbobklqsusmrgkvmux`) | El proyecto original vivía en la organización personal de Aitor; la promotora solo tenía rol Administrator, insuficiente para regenerar claves. Al no existir aún localidades reales (solo datos de prueba), era el momento de menor riesgo para migrar. Esquema recreado desde `supabase/migrations/20260924_initial_schema_baseline.sql` (primera vez que la estructura base queda versionada en código, no solo en el panel). Usuario admin recreado a mano en el proyecto nuevo |
 | 2026-09-24 | Proyecto Vercel creado desde cero en la cuenta de la promotora (equipo `no-me-olvides`), en vez de esperar a que Aitor transfiriera el suyo | El dominio `tunomeolvides.es` está registrado a nombre de la promotora en Hostinger, así que no hacía falta el proyecto antiguo: se verificó la propiedad del dominio por DNS (registros TXT `_vercel`) y se conectó directamente al proyecto nuevo, sin tocar el de Aitor. Cierra la dependencia de Aitor en las tres piezas de infraestructura (repo, base de datos, hosting) |
+| 2026-09-24 | `tunomeolvides.com` (también propiedad de la promotora, mismo registrador) conectado en Vercel con redirección 308 permanente a `tunomeolvides.es` | Protege la marca — evita que otra persona registre el `.com` y lo use para confundir visitantes o hacer phishing. Registro A en Hostinger apuntado a Vercel (`216.198.79.1`); el redirect lo gestiona Vercel a nivel de dominio, sin código adicional en la app |
 
 ---
 
@@ -385,4 +386,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 24 de septiembre de 2026 — Repositorio (GitHub), base de datos (Supabase) y hosting (Vercel) migrados a cuentas propias de la promotora; dominio tunomeolvides.es conectado y funcionando; proyecto totalmente independiente de la cuenta del programador anterior*
+*Última actualización: 24 de septiembre de 2026 — Repositorio (GitHub), base de datos (Supabase) y hosting (Vercel) migrados a cuentas propias de la promotora; tunomeolvides.es conectado y funcionando; tunomeolvides.com redirige a tunomeolvides.es; proyecto totalmente independiente de la cuenta del programador anterior*
