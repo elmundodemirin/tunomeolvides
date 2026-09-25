@@ -37,6 +37,12 @@
     "metaTitle": "About the project — rural heritage & memory",
     "metaDescription": "No Me Olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives."
   },
+  "hero": {
+    "title": "No Me Olvides",
+    "subtitle": "We rescue the stories of rural Spain's villages and put them on the map.",
+    "paragraph": "We research, narrate and digitise the heritage of small towns that deserve to be known — an on-site digital guide that accompanies visitors point by point, telling the secrets of each place.",
+    "cta1": "Discover the villages"
+  },
   "homeIntro": {
     "title": "No Me Olvides gathers the voices of Spain's villages and gives them a place in a digital, globalised world.",
     "intro": "This isn't only about heritage. It's everything that makes a village unique: its routes, its festivals, its restaurants, its places to stay, its traditions. Every locality that joins the project gets a complete digital platform that turns it into a real tourist destination.",

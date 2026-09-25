@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { supabase } from '@/lib/supabase'
 import type { Locality } from '@/lib/types'
 import HomeShell from '@/components/HomeShell'
+import { HomeHero } from '@/components/HomeHero'
 import { HomeIntro } from '@/components/HomeIntro'
 import { HomeAyuntamientosTeaser } from '@/components/HomeAyuntamientosTeaser'
 import { buildPageMetadata, buildHomeJsonLd } from '@/lib/seo'
@@ -51,8 +52,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         // Escapamos "<" para evitar que una descripción con "</script>" rompa el HTML.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
+      <HomeHero locale={locale} />
       <HomeIntro locale={locale} />
-      <HomeShell localities={activeLocalities} locale={locale} />
+      <div id="mapa" className="scroll-mt-[72px]">
+        <HomeShell localities={activeLocalities} locale={locale} />
+      </div>
       {locale === 'es' && <HomeAyuntamientosTeaser />}
     </>
   )

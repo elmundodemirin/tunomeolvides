@@ -37,6 +37,12 @@
     "metaTitle": "À propos — mémoire et patrimoine rural",
     "metaDescription": "No Me Olvides documente et préserve le patrimoine culturel des villages de l'Espagne rurale grâce à des récits audio à la première personne."
   },
+  "hero": {
+    "title": "No Me Olvides",
+    "subtitle": "Nous sauvons les histoires des villages de l'Espagne rurale et les plaçons sur la carte.",
+    "paragraph": "Nous enquêtons, racontons et numérisons le patrimoine de petits villages qui méritent d'être connus — un guide numérique sur place qui accompagne le visiteur point par point, en lui racontant les secrets de chaque lieu.",
+    "cta1": "Découvrir les villages"
+  },
   "homeIntro": {
     "title": "No Me Olvides recueille les voix des villages et leur donne une place dans un monde numérique et mondialisé.",
     "intro": "Il ne s'agit pas seulement de patrimoine. C'est tout ce qui rend un village unique : ses sentiers, ses fêtes, ses restaurants, ses hébergements, ses traditions. Chaque localité qui rejoint le projet reçoit une plateforme numérique complète qui en fait une véritable destination touristique.",

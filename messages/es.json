@@ -37,6 +37,12 @@
     "metaTitle": "Sobre el proyecto — memoria y patrimonio rural",
     "metaDescription": "No Me Olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona."
   },
+  "hero": {
+    "title": "No me olvides",
+    "subtitle": "Rescatamos las historias de los pueblos de la España vaciada y las ponemos en el mapa.",
+    "paragraph": "Investigamos, narramos y digitalizamos el patrimonio de pequeños municipios que merecen ser conocidos. Una guía digital en destino que acompaña al visitante punto a punto, contándole los secretos de cada lugar.",
+    "cta1": "Descubre los pueblos"
+  },
   "homeIntro": {
     "title": "No me olvides recoge las voces de los pueblos y les da valor en un mundo digital y globalizado.",
     "intro": "No se trata solo de patrimonio. Es todo lo que hace único a un municipio: sus rutas, sus fiestas, sus restaurantes, sus alojamientos, sus tradiciones. Cada localidad que entra en el proyecto recibe una plataforma digital completa que lo convierte en un destino turístico real.",

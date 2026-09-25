@@ -70,12 +70,12 @@ export async function HomeIntro({ locale }: Props) {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
-      <h1
+      <h2
         className="text-2xl lg:text-4xl leading-tight mb-5 max-w-3xl"
         style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
       >
         {t('title')}
-      </h1>
+      </h2>
       <p className="text-sm lg:text-base leading-relaxed mb-12 max-w-2xl" style={{ color: 'var(--color-text)' }}>
         {t('intro')}
       </p>

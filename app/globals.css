@@ -11,6 +11,10 @@
   --color-text:         #2C1810;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-cream);
   color: var(--color-text);
