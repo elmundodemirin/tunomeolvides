@@ -58,7 +58,7 @@ localidad rural con un audio narrado en primera persona.
 | Storage | Supabase Storage (audios MP3) |
 | Hosting frontend | Vercel — equipo `no-me-olvides` (propiedad de la promotora desde el 2026-09-24) |
 | Dominio + DNS | Hostinger (`tunomeolvides.es`) |
-| Email transaccional | Resend (SMTP custom de Supabase Auth, región EU-West) |
+| Email transaccional | Resend (SMTP custom de Supabase Auth, región EU-West) — cuenta propia de la promotora desde el 2026-09-25 |
 | Analítica | Google Analytics 4 |
 | Banner de cookies | vanilla-cookieconsent |
 | Control de versiones | Git + GitHub — `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora desde el 2026-09-24) |
@@ -319,6 +319,7 @@ nomeolvides/
 | 2026-09-24 | Proyecto Supabase migrado a organización propia de la promotora (nuevo proyecto, región Frankfurt, ref `ilfhwflhbasogrnaktbk`), reemplazando el proyecto de Aitor (`rxqbobklqsusmrgkvmux`) | El proyecto original vivía en la organización personal de Aitor; la promotora solo tenía rol Administrator, insuficiente para regenerar claves. Al no existir aún localidades reales (solo datos de prueba), era el momento de menor riesgo para migrar. Esquema recreado desde `supabase/migrations/20260924_initial_schema_baseline.sql` (primera vez que la estructura base queda versionada en código, no solo en el panel). Usuario admin recreado a mano en el proyecto nuevo |
 | 2026-09-24 | Proyecto Vercel creado desde cero en la cuenta de la promotora (equipo `no-me-olvides`), en vez de esperar a que Aitor transfiriera el suyo | El dominio `tunomeolvides.es` está registrado a nombre de la promotora en Hostinger, así que no hacía falta el proyecto antiguo: se verificó la propiedad del dominio por DNS (registros TXT `_vercel`) y se conectó directamente al proyecto nuevo, sin tocar el de Aitor. Cierra la dependencia de Aitor en las tres piezas de infraestructura (repo, base de datos, hosting) |
 | 2026-09-24 | `tunomeolvides.com` (también propiedad de la promotora, mismo registrador) conectado en Vercel con redirección 308 permanente a `tunomeolvides.es` | Protege la marca — evita que otra persona registre el `.com` y lo use para confundir visitantes o hacer phishing. Registro A en Hostinger apuntado a Vercel (`216.198.79.1`); el redirect lo gestiona Vercel a nivel de dominio, sin código adicional en la app |
+| 2026-09-25 | Cuenta de Resend recreada con la cuenta propia de la promotora (dominio `send.tunomeolvides.es` reverificado con nuevos registros DKIM/CNAME de Resend, distintos a los de Aitor) y reconfigurada como SMTP custom en el proyecto Supabase nuevo | La cuenta de Resend original también era de Aitor y no se trasladó al migrar Supabase. Cierra la última dependencia del programador anterior. Sender email cambia ligeramente a `noreply@send.tunomeolvides.es` (antes `noreply@tunomeolvides.es`) para alinearse exactamente con el dominio verificado en la cuenta nueva. Probado con el flujo de "recuperar contraseña" del panel: email recibido correctamente |
 
 ---
 
@@ -372,10 +373,13 @@ nomeolvides/
 
 - ✅ **Site URL y Redirect URLs** del proyecto Supabase nuevo configurados el 2026-09-24: Site URL `https://tunomeolvides.es`, Redirect URL `https://tunomeolvides.es/**` (necesario para que `redirectTo` en las invitaciones/recuperación de contraseña del panel funcione — Supabase ignora `redirectTo` si la URL no está en esta lista).
 
-**Pendiente ahora mismo**:
-1. Revisar si el SMTP custom de Resend (para invitaciones del panel) también depende de una cuenta de Aitor — pendiente de comprobar. Mientras tanto, el proyecto nuevo de Supabase usará su SMTP compartido por defecto (rate limit bajo, 2 emails/hora).
-2. Opcional: cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
-3. Opcional: añadir también `www.tunomeolvides.es` como dominio en el proyecto de Vercel con redirección al dominio raíz (antes existía el registro DNS pero no se ha reconectado explícitamente).
+- ✅ **Resend** recreado con cuenta propia de la promotora el 2026-09-25 (dominio `send.tunomeolvides.es` verificado, SMTP custom reconfigurado en el proyecto Supabase nuevo). Probado con el flujo de recuperación de contraseña: email recibido correctamente, remitente `No Me Olvides <noreply@send.tunomeolvides.es>`.
+
+**Con esto, el proyecto es 100% independiente del programador anterior en las cuatro piezas de infraestructura: repositorio, base de datos, hosting y email.**
+
+**Pendiente (opcional, sin prisa)**:
+1. Cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
+2. Añadir también `www.tunomeolvides.es` como dominio en el proyecto de Vercel con redirección al dominio raíz (antes existía el registro DNS pero no se ha reconectado explícitamente).
 
 ---
 
@@ -386,4 +390,4 @@ nomeolvides/
 
 ---
 
-*Última actualización: 24 de septiembre de 2026 — Repositorio (GitHub), base de datos (Supabase) y hosting (Vercel) migrados a cuentas propias de la promotora; tunomeolvides.es conectado y funcionando; tunomeolvides.com redirige a tunomeolvides.es; proyecto totalmente independiente de la cuenta del programador anterior*
+*Última actualización: 25 de septiembre de 2026 — Resend recreado con cuenta propia de la promotora (send.tunomeolvides.es). Repositorio, base de datos, hosting y email ya están en cuentas propias de la promotora: proyecto 100% independiente del programador anterior*

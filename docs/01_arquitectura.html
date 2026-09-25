@@ -326,7 +326,7 @@
       <h1>Arquitectura técnica de nomeolvides.es</h1>
       <div class="meta">
         Proyecto No Me Olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 24 de septiembre de 2026
+        Última actualización: 25 de septiembre de 2026
       </div>
     </header>
 
@@ -524,7 +524,7 @@
           <tr>
             <td>Email transaccional / SMTP</td>
             <td><strong>Resend</strong> (<a href="https://resend.com">resend.com</a>, región EU-West / Dublín)</td>
-            <td>Servidor SMTP <em>custom</em> de Supabase Auth para los emails de invitación de admins y recuperación de contraseña del panel. Sustituye al SMTP compartido de Supabase (limitado a 2 emails/hora para todo el proyecto). Servidores en territorio UE, coherente con la región de Supabase.</td>
+            <td>Servidor SMTP <em>custom</em> de Supabase Auth para los emails de invitación de admins y recuperación de contraseña del panel. Sustituye al SMTP compartido de Supabase (limitado a 2 emails/hora para todo el proyecto). Servidores en territorio UE, coherente con la región de Supabase. Cuenta propia de la promotora desde el 2026-09-25; remitente <code>noreply@send.tunomeolvides.es</code>.</td>
           </tr>
         </tbody>
       </table>
@@ -1057,6 +1057,16 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Proyecto Vercel creado desde cero en la cuenta de la promotora (equipo <code>no-me-olvides</code>) en vez de esperar la transferencia del proyecto de Aitor</td>
             <td>El dominio <code>tunomeolvides.es</code> está registrado a nombre de la promotora en Hostinger, así que no era imprescindible el proyecto antiguo de Vercel: se verificó la propiedad del dominio por DNS (registros TXT <code>_vercel</code>) y se conectó directamente al proyecto nuevo. Cierra la dependencia del programador anterior en las tres piezas de infraestructura (repositorio, base de datos y hosting).</td>
           </tr>
+          <tr>
+            <td>2026-09-24</td>
+            <td><code>tunomeolvides.com</code> (también propiedad de la promotora, mismo registrador) conectado en Vercel con redirección 308 permanente a <code>tunomeolvides.es</code></td>
+            <td>Protege la marca — evita que otra persona registre el <code>.com</code> y lo use para confundir visitantes o hacer phishing. Registro A en Hostinger apuntado a Vercel (<code>216.198.79.1</code>); el redirect lo gestiona Vercel a nivel de dominio, sin código adicional en la app.</td>
+          </tr>
+          <tr>
+            <td>2026-09-25</td>
+            <td>Cuenta de Resend recreada con cuenta propia de la promotora (dominio <code>send.tunomeolvides.es</code> reverificado con registros DKIM/CNAME nuevos) y reconfigurada como SMTP custom en el proyecto Supabase nuevo</td>
+            <td>La cuenta de Resend original también era de Aitor y no se trasladó al migrar Supabase. Cierra la última dependencia del programador anterior. El remitente cambia ligeramente a <code>noreply@send.tunomeolvides.es</code> (antes <code>noreply@tunomeolvides.es</code>) para alinearse con el dominio verificado en la cuenta nueva. Probado con el flujo de recuperación de contraseña del panel: email recibido correctamente.</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1182,8 +1192,9 @@ CREATE POLICY "admin_delete" ON contact_messages
           Plataforma desplegada y funcional en <code>tunomeolvides.es</code>. Toda la Fase 1
           (B1-B10) cerrada. Las piezas administrativas (panel, mensajes, gestión de usuarios,
           set/cambio de contraseña) y el SEO técnico (B8) están terminados y probados. Desde el
-          2026-09-24, el proyecto es <strong>totalmente independiente del programador anterior</strong>:
-          repositorio, base de datos y hosting viven en cuentas propias de la promotora.
+          2026-09-25, el proyecto es <strong>100% independiente del programador anterior</strong>:
+          repositorio, base de datos, hosting y email transaccional viven en cuentas propias de
+          la promotora.
         </p>
       </div>
     </section>
@@ -1191,7 +1202,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> No Me Olvides · Documentación viva ·
-        Última actualización 24 de septiembre de 2026 ·
+        Última actualización 25 de septiembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>
