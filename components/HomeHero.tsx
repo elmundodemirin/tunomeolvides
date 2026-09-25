@@ -9,11 +9,11 @@ type Props = { locale: string }
 // Primer elemento visible de la home, antes de cualquier otro contenido
 // (incluido el mapa). Sostiene el único <h1> de la página.
 //
-// Imagen de fondo: public/hero-pueblo.jpg (a añadir por la promotora —
-// foto real de un pueblo de la España vaciada). Hasta que exista, se
-// comprueba en el servidor y se usa un degradado de marca como respaldo,
-// para no mostrar un icono de imagen rota.
-const HERO_IMAGE_EXISTS = existsSync(join(process.cwd(), 'public', 'hero-pueblo.jpg'))
+// Imagen de fondo: public/hero-pueblo.png (foto real de un pueblo de la
+// España vaciada, proporcionada por la promotora). Si en algún momento no
+// existe, se comprueba en el servidor y se usa un degradado de marca como
+// respaldo, para no mostrar un icono de imagen rota.
+const HERO_IMAGE_EXISTS = existsSync(join(process.cwd(), 'public', 'hero-pueblo.png'))
 
 export async function HomeHero({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'hero' })
@@ -27,7 +27,7 @@ export async function HomeHero({ locale }: Props) {
     >
       {HERO_IMAGE_EXISTS && (
         <Image
-          src="/hero-pueblo.jpg"
+          src="/hero-pueblo.png"
           alt=""
           fill
           priority
