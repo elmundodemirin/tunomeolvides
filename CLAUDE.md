@@ -320,6 +320,7 @@ nomeolvides/
 | 2026-09-24 | Proyecto Vercel creado desde cero en la cuenta de la promotora (equipo `no-me-olvides`), en vez de esperar a que Aitor transfiriera el suyo | El dominio `tunomeolvides.es` está registrado a nombre de la promotora en Hostinger, así que no hacía falta el proyecto antiguo: se verificó la propiedad del dominio por DNS (registros TXT `_vercel`) y se conectó directamente al proyecto nuevo, sin tocar el de Aitor. Cierra la dependencia de Aitor en las tres piezas de infraestructura (repo, base de datos, hosting) |
 | 2026-09-24 | `tunomeolvides.com` (también propiedad de la promotora, mismo registrador) conectado en Vercel con redirección 308 permanente a `tunomeolvides.es` | Protege la marca — evita que otra persona registre el `.com` y lo use para confundir visitantes o hacer phishing. Registro A en Hostinger apuntado a Vercel (`216.198.79.1`); el redirect lo gestiona Vercel a nivel de dominio, sin código adicional en la app |
 | 2026-09-25 | Cuenta de Resend recreada con la cuenta propia de la promotora (dominio `send.tunomeolvides.es` reverificado con nuevos registros DKIM/CNAME de Resend, distintos a los de Aitor) y reconfigurada como SMTP custom en el proyecto Supabase nuevo | La cuenta de Resend original también era de Aitor y no se trasladó al migrar Supabase. Cierra la última dependencia del programador anterior. Sender email cambia ligeramente a `noreply@send.tunomeolvides.es` (antes `noreply@tunomeolvides.es`) para alinearse exactamente con el dominio verificado en la cuenta nueva. Probado con el flujo de "recuperar contraseña" del panel: email recibido correctamente |
+| 2026-09-25 | `www.tunomeolvides.es` conectado al proyecto Vercel de la promotora con redirección 308 permanente a `tunomeolvides.es` | El registro DNS de `www` existía desde antes pero nunca se había reconectado durante la migración; seguía "vinculado a la cuenta de Vercel de Aitor" y servía una versión desactualizada de la web. Verificado por TXT igual que `tunomeolvides.es` y `tunomeolvides.com` |
 
 ---
 
@@ -377,9 +378,10 @@ nomeolvides/
 
 **Con esto, el proyecto es 100% independiente del programador anterior en las cuatro piezas de infraestructura: repositorio, base de datos, hosting y email.**
 
+- ✅ **`www.tunomeolvides.es`** conectado el 2026-09-25 al proyecto de Vercel con redirección 308 permanente a `tunomeolvides.es` (también estaba "vinculado a otra cuenta de Vercel", verificado por TXT igual que los otros dominios). Los tres dominios (`tunomeolvides.es`, `tunomeolvides.com`, `www.tunomeolvides.es`) quedan cubiertos.
+
 **Pendiente (opcional, sin prisa)**:
 1. Cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
-2. Añadir también `www.tunomeolvides.es` como dominio en el proyecto de Vercel con redirección al dominio raíz (antes existía el registro DNS pero no se ha reconectado explícitamente).
 
 ---
 

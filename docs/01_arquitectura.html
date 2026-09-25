@@ -1067,6 +1067,11 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Cuenta de Resend recreada con cuenta propia de la promotora (dominio <code>send.tunomeolvides.es</code> reverificado con registros DKIM/CNAME nuevos) y reconfigurada como SMTP custom en el proyecto Supabase nuevo</td>
             <td>La cuenta de Resend original también era de Aitor y no se trasladó al migrar Supabase. Cierra la última dependencia del programador anterior. El remitente cambia ligeramente a <code>noreply@send.tunomeolvides.es</code> (antes <code>noreply@tunomeolvides.es</code>) para alinearse con el dominio verificado en la cuenta nueva. Probado con el flujo de recuperación de contraseña del panel: email recibido correctamente.</td>
           </tr>
+          <tr>
+            <td>2026-09-25</td>
+            <td><code>www.tunomeolvides.es</code> conectado al proyecto Vercel de la promotora con redirección 308 permanente a <code>tunomeolvides.es</code></td>
+            <td>El registro DNS de <code>www</code> existía desde antes pero nunca se había reconectado durante la migración; seguía "vinculado a la cuenta de Vercel de Aitor" y servía una versión desactualizada de la web (sin las mejoras de SEO). Verificado por DNS (TXT) igual que <code>tunomeolvides.es</code> y <code>tunomeolvides.com</code>.</td>
+          </tr>
         </tbody>
       </table>
     </section>
