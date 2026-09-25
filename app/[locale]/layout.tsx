@@ -30,6 +30,8 @@ export default async function LocaleLayout({
     locale === 'es' ? '/sobre' : locale === 'fr' ? '/fr/a-propos' : '/en/about'
   const contactHref =
     locale === 'es' ? '/contacto' : locale === 'fr' ? '/fr/contact' : '/en/contact'
+  // "Para ayuntamientos" solo existe en español (público objetivo: ayuntamientos españoles)
+  const isEs = locale === 'es'
 
   return (
     <NextIntlClientProvider messages={messages}>
@@ -63,6 +65,11 @@ export default async function LocaleLayout({
           <Link href={aboutHref} className="hidden lg:inline-block transition-colors hover:text-white">
             {t('about')}
           </Link>
+          {isEs && (
+            <Link href="/ayuntamientos" className="hidden lg:inline-block transition-colors hover:text-white">
+              Para ayuntamientos
+            </Link>
+          )}
           <Link href={contactHref} className="hidden lg:inline-block transition-colors hover:text-white">
             {t('contact')}
           </Link>
@@ -75,6 +82,7 @@ export default async function LocaleLayout({
             items={[
               { href: homeHref, label: t('home') },
               { href: aboutHref, label: t('about') },
+              ...(isEs ? [{ href: '/ayuntamientos', label: 'Para ayuntamientos' }] : []),
               { href: contactHref, label: t('contact') },
             ]}
           />

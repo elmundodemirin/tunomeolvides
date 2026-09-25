@@ -19,7 +19,7 @@ const ENTRIES: { page: PageKey; changeFrequency: MetadataRoute.Sitemap[number]['
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
-  return ENTRIES.flatMap(({ page, changeFrequency, priority }) => {
+  const multiLangEntries = ENTRIES.flatMap(({ page, changeFrequency, priority }) => {
     const paths = PAGE_PATHS[page]
     const languages = {
       es: new URL(paths.es, siteUrl).toString(),
@@ -35,4 +35,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages },
     }))
   })
+
+  // /ayuntamientos solo existe en español, sin alternates de idioma.
+  const ayuntamientosEntry: MetadataRoute.Sitemap[number] = {
+    url: new URL('/ayuntamientos', siteUrl).toString(),
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }
+
+  return [...multiLangEntries, ayuntamientosEntry]
 }

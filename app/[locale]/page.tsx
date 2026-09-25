@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { supabase } from '@/lib/supabase'
 import type { Locality } from '@/lib/types'
 import HomeShell from '@/components/HomeShell'
+import { HomeAyuntamientosTeaser } from '@/components/HomeAyuntamientosTeaser'
 import { buildPageMetadata, buildHomeJsonLd } from '@/lib/seo'
 
 export async function generateMetadata({
@@ -50,6 +51,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <HomeShell localities={activeLocalities} locale={locale} />
+      {locale === 'es' && <HomeAyuntamientosTeaser />}
     </>
   )
 }
