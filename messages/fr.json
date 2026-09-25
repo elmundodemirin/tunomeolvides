@@ -28,11 +28,26 @@
   },
   "about": {
     "title": "À propos du projet",
-    "intro": "No Me Olvides est une plateforme dédiée à documenter et préserver le patrimoine culturel des villages de l'Espagne rurale en voie de dépeuplement.",
-    "body": "Chaque point sur la carte est un village avec une histoire, avec des voix qui l'ont habité et une mémoire qui mérite d'être racontée. À travers des récits audio à la première personne, nous récupérons ces histoires avant que le silence ne les efface à jamais.",
-    "body2": "No Me Olvides propose de former et créer un guide numérique sur place, qui connaît et raconte toutes ces histoires, accompagnant les touristes nationaux et internationaux lors de leur visite au village, en découvrant un à un les points d'intérêt et en racontant leurs particularités et anecdotes — créant ainsi une expérience immersive et unique pour les visiteurs de chaque localité.",
+    "intro": "No Me Olvides est une plateforme dédiée à documenter, préserver et faire connaître le patrimoine culturel des villages de l'Espagne rurale. Chaque point sur la carte est un village avec une histoire, avec des voix qui l'ont habité et une mémoire qui mérite d'être racontée.",
+    "body": "No Me Olvides propose un guide numérique sur place : une voix qui accompagne les visiteurs nationaux et internationaux pendant leur passage dans le village, en découvrant un à un les points d'intérêt et en racontant leurs particularités, anecdotes et secrets. Sans application à télécharger. Sans inscription. Il suffit de scanner le QR code et d'écouter.",
+    "body2": "Il ne parle pas d'histoire. Il raconte des histoires. De vie, de souvenirs, de curiosités qui font qu'une promenade dans un petit village devient quelque chose d'unique. Un murmure de nostalgie qui vous ramène dans le passé.",
+    "body3": "Mais No Me Olvides n'est pas seulement un audioguide. Chaque localité qui rejoint le projet reçoit un site web touristique complet : ses points d'intérêt avec fiche et audioguide, ses itinéraires documentés, ses établissements, son agenda de fêtes et d'événements. Le tout référencé sur internet pour que le voyageur en quête d'une destination authentique trouve ce village avant même d'y arriver.",
+    "body4": "Et enfin, ce qu'aucun petit village n'a jamais eu : des données réelles sur ses visiteurs. Chaque QR code scanné est enregistré — combien de personnes, quand, et d'où elles viennent. Pour la première fois, un village sans office de tourisme peut savoir qui le visite et ce qui l'intéresse.",
+    "body5": "Parce que chaque village a une histoire qui mérite d'être racontée. No Me Olvides est là pour la raconter.",
     "metaTitle": "À propos — mémoire et patrimoine rural",
     "metaDescription": "No Me Olvides documente et préserve le patrimoine culturel des villages de l'Espagne rurale grâce à des récits audio à la première personne."
+  },
+  "homeIntro": {
+    "title": "No Me Olvides recueille les voix des villages et leur donne une place dans un monde numérique et mondialisé.",
+    "intro": "Il ne s'agit pas seulement de patrimoine. C'est tout ce qui rend un village unique : ses sentiers, ses fêtes, ses restaurants, ses hébergements, ses traditions. Chaque localité qui rejoint le projet reçoit une plateforme numérique complète qui en fait une véritable destination touristique.",
+    "poiTitle": "Points d'intérêt",
+    "poiBody": "Patrimoine, histoire, nature, points de vue. Chaque lieu avec sa fiche, sa photographie et son audioguide raconté à la première personne. Le visiteur scanne le QR code et écoute l'histoire de ce lieu comme si un guide expert se trouvait à ses côtés.",
+    "routesTitle": "Itinéraires",
+    "routesBody": "Itinéraires à pied, à vélo ou en voiture à travers le village. Avec carte, distance, difficulté et les points d'intérêt que vous trouverez en chemin.",
+    "venuesTitle": "Établissements",
+    "venuesBody": "Restaurants, bars, hébergements ruraux, boutiques de produits locaux. Tout ce dont le visiteur a besoin pour rester plus longtemps et dépenser dans le village.",
+    "eventsTitle": "Fêtes et événements",
+    "eventsBody": "L'agenda local : fêtes patronales, marchés, activités culturelles et sportives. Ce qui donne envie de visiter un village à chaque période de l'année."
   },
   "contact": {
     "title": "Contact",

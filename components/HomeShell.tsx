@@ -79,12 +79,12 @@ export default function HomeShell({ localities, locale }: Props) {
   const panel = (
     <>
       <div className="mb-6">
-        <h1
+        <h2
           className="text-2xl lg:text-4xl leading-tight mb-3"
           style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
         >
           {t('title')}
-        </h1>
+        </h2>
         <p className="text-sm lg:text-base leading-relaxed mb-4" style={{ color: 'var(--color-text)' }}>
           {t('lead')}
         </p>

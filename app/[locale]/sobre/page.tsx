@@ -26,7 +26,10 @@ export default async function SobrePage({ params }: { params: Promise<{ locale: 
       <h1 className="text-3xl mb-6" style={{ color: 'var(--color-terracotta-dark)' }}>{t('title')}</h1>
       <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-text)' }}>{t('intro')}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-text)' }}>{t('body')}</p>
-      <p className="leading-relaxed" style={{ color: 'var(--color-text)' }}>{t('body2')}</p>
+      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-text)' }}>{t('body2')}</p>
+      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-text)' }}>{t('body3')}</p>
+      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-text)' }}>{t('body4')}</p>
+      <p className="leading-relaxed" style={{ color: 'var(--color-text)' }}>{t('body5')}</p>
     </div>
   )
 }

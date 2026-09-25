@@ -28,11 +28,26 @@
   },
   "about": {
     "title": "Sobre el proyecto",
-    "intro": "No Me Olvides es una plataforma para documentar y preservar el patrimonio cultural de los pueblos de la España vaciada.",
-    "body": "Cada punto en el mapa es un pueblo con historia, con voces que lo habitaron y con una memoria que merece ser contada. A través de audios narrados en primera persona, recuperamos esas historias antes de que el silencio las borre para siempre.",
-    "body2": "No Me Olvides propone formar y crear un guía digital en destino, que conozca y narre todas esas historias, acompañando al turista nacional o internacional durante su visita al municipio, descubriendo uno a uno los puntos de interés y narrando sus peculiaridades y anécdotas. Generando así una experiencia inmersiva y única para los visitantes de cada localidad.",
+    "intro": "No Me Olvides es una plataforma para documentar, preservar y difundir el patrimonio cultural de los pueblos de la España vaciada. Cada punto en el mapa es un pueblo con historia, con voces que lo habitaron y con una memoria que merece ser contada.",
+    "body": "No Me Olvides propone un guía digital en destino: una voz que acompaña al turista nacional o internacional durante su visita al municipio, descubriendo uno a uno los puntos de interés y narrando sus peculiaridades, anécdotas y secretos. Sin descargar ninguna aplicación. Sin registro. Solo escanear el código QR y escuchar.",
+    "body2": "No habla de historia. Habla de historias. De vida, de recuerdos, de curiosidades que hacen que un paseo por un pueblo pequeño se convierta en algo único. Un susurro de anhelo que te traslada al pasado.",
+    "body3": "Pero No Me Olvides no es solo una audioguía. Cada localidad que entra en el proyecto recibe una plataforma web turística completa: sus puntos de interés con ficha y audioguía, sus rutas documentadas, sus establecimientos, su agenda de fiestas y eventos. Todo posicionado en internet para que el viajero que busca un destino auténtico encuentre ese municipio antes de llegar.",
+    "body4": "Y al final, lo que ningún pueblo pequeño ha tenido nunca: datos reales sobre sus visitantes. Cada código QR registra cuántas personas lo escanean, cuándo y de dónde vienen. Por primera vez, un municipio sin oficina de turismo puede saber quién le visita y qué le interesa.",
+    "body5": "Porque cada pueblo tiene una historia que merece ser contada. No Me Olvides está aquí para contarla.",
     "metaTitle": "Sobre el proyecto — memoria y patrimonio rural",
     "metaDescription": "No Me Olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona."
+  },
+  "homeIntro": {
+    "title": "No me olvides recoge las voces de los pueblos y les da valor en un mundo digital y globalizado.",
+    "intro": "No se trata solo de patrimonio. Es todo lo que hace único a un municipio: sus rutas, sus fiestas, sus restaurantes, sus alojamientos, sus tradiciones. Cada localidad que entra en el proyecto recibe una plataforma digital completa que lo convierte en un destino turístico real.",
+    "poiTitle": "Puntos de interés",
+    "poiBody": "Patrimonio, historia, naturaleza, miradores. Cada punto con su ficha, su fotografía y su audioguía narrada en primera persona. El visitante escanea el QR y escucha la historia de ese lugar como si un guía experto estuviera a su lado.",
+    "routesTitle": "Rutas",
+    "routesBody": "Rutas a pie, en bicicleta o en coche por el municipio. Con mapa, distancia, dificultad y los puntos de interés que encontrarás en el camino.",
+    "venuesTitle": "Establecimientos",
+    "venuesBody": "Restaurantes, bares, alojamientos rurales, tiendas de productos locales. Todo lo que el visitante necesita para quedarse más tiempo y gastar en el municipio.",
+    "eventsTitle": "Fiestas y eventos",
+    "eventsBody": "La agenda local: fiestas patronales, mercados, actividades culturales y deportivas. Lo que hace que un pueblo valga la pena visitar en cada época del año."
   },
   "contact": {
     "title": "Contacto",

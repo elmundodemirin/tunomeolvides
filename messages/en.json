@@ -28,11 +28,26 @@
   },
   "about": {
     "title": "About the project",
-    "intro": "No Me Olvides is a platform to document and preserve the cultural heritage of villages in depopulated rural Spain.",
-    "body": "Each point on the map is a village with a history, with voices that once inhabited it and with a memory that deserves to be told. Through first-person audio narratives, we recover those stories before silence erases them forever.",
-    "body2": "No Me Olvides aims to train and create an on-site digital guide that knows and narrates all these stories, accompanying national and international visitors during their stay in the village, discovering the points of interest one by one and recounting their peculiarities and anecdotes — creating an immersive and unique experience for the visitors of each locality.",
+    "intro": "No Me Olvides is a platform to document, preserve and share the cultural heritage of the villages of depopulated rural Spain. Every point on the map is a village with a history, with voices that once lived there, and with a memory that deserves to be told.",
+    "body": "No Me Olvides offers an on-site digital guide: a voice that accompanies national and international visitors during their stay in the village, uncovering its points of interest one by one and narrating their peculiarities, anecdotes and secrets. No app to download. No registration. Just scan the QR code and listen.",
+    "body2": "It doesn't talk about history. It tells stories. Of life, of memories, of curiosities that turn a walk through a small village into something unique. A whisper of longing that carries you back in time.",
+    "body3": "But No Me Olvides isn't only an audioguide. Every locality that joins the project gets a complete tourism website: its points of interest with a page and audioguide, its documented routes, its places to eat and stay, its calendar of festivals and events — all positioned online so that travellers looking for an authentic destination find that village before they arrive.",
+    "body4": "And, finally, something no small village has ever had before: real data about its visitors. Every QR code scan is logged — how many, when, and where from. For the first time, a village with no tourist office can know who is visiting and what interests them.",
+    "body5": "Because every village has a story that deserves to be told. No Me Olvides is here to tell it.",
     "metaTitle": "About the project — rural heritage & memory",
     "metaDescription": "No Me Olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives."
+  },
+  "homeIntro": {
+    "title": "No Me Olvides gathers the voices of Spain's villages and gives them a place in a digital, globalised world.",
+    "intro": "This isn't only about heritage. It's everything that makes a village unique: its routes, its festivals, its restaurants, its places to stay, its traditions. Every locality that joins the project gets a complete digital platform that turns it into a real tourist destination.",
+    "poiTitle": "Points of interest",
+    "poiBody": "Heritage, history, nature, viewpoints. Each point with its own page, photograph and first-person audioguide. Visitors scan the QR code and hear the story of that place as if an expert guide were right beside them.",
+    "routesTitle": "Routes",
+    "routesBody": "Walking, cycling and driving routes around the village — with map, distance, difficulty, and the points of interest you'll find along the way.",
+    "venuesTitle": "Places",
+    "venuesBody": "Restaurants, bars, rural accommodation, local produce shops. Everything a visitor needs to stay longer and spend in the village.",
+    "eventsTitle": "Festivals and events",
+    "eventsBody": "The local calendar: patron saint festivals, markets, cultural and sporting activities — what makes a village worth visiting at any time of year."
   },
   "contact": {
     "title": "Contact",
