@@ -18,7 +18,7 @@ export default function LegalNoticePage() {
       <ul>
         <li><strong>Owner:</strong> María del Carmen López Rosa</li>
         <li><strong>Tax ID (NIF):</strong> 51089277K</li>
-        <li><strong>Address:</strong> C/Antonio López Aguado 1</li>
+        <li><strong>Address:</strong> C/Antonio López Aguado 1, 28029 Madrid, Spain</li>
         <li><strong>Email:</strong> info@tunomeolvides.es</li>
         <li><strong>Website:</strong> tunomeolvides.es</li>
       </ul>

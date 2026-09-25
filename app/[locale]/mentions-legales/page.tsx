@@ -18,7 +18,7 @@ export default function MentionsLegalesPage() {
       <ul>
         <li><strong>Responsable :</strong> María del Carmen López Rosa</li>
         <li><strong>Numéro fiscal (NIF) :</strong> 51089277K</li>
-        <li><strong>Adresse :</strong> C/Antonio López Aguado 1</li>
+        <li><strong>Adresse :</strong> C/Antonio López Aguado 1, 28029 Madrid, Espagne</li>
         <li><strong>E-mail :</strong> info@tunomeolvides.es</li>
         <li><strong>Site web :</strong> tunomeolvides.es</li>
       </ul>

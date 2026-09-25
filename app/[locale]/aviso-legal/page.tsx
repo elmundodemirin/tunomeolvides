@@ -18,7 +18,7 @@ export default function AvisoLegalPage() {
       <ul>
         <li><strong>Titular:</strong> María del Carmen López Rosa</li>
         <li><strong>NIF:</strong> 51089277K</li>
-        <li><strong>Domicilio:</strong> C/Antonio López Aguado 1</li>
+        <li><strong>Domicilio:</strong> C/Antonio López Aguado 1, 28029 Madrid</li>
         <li><strong>Correo electrónico:</strong> info@tunomeolvides.es</li>
         <li><strong>Sitio web:</strong> tunomeolvides.es</li>
       </ul>
