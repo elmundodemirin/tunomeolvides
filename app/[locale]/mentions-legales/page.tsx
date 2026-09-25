@@ -25,10 +25,11 @@ export default function MentionsLegalesPage() {
 
       <h2>2. Objet et activité</h2>
       <p>
-        <em>No Me Olvides</em> est une plateforme culturelle informative à but non lucratif dont l'objet
-        est de documenter et préserver le patrimoine culturel des municipalités de l'Espagne rurale au
-        moyen d'une carte interactive accompagnée de récits audio à la première personne. Aucune activité
-        commerciale n'est exercée et aucun bien ou service n'est vendu.
+        <em>No Me Olvides</em> est une plateforme dédiée à la recherche, la documentation et la
+        diffusion du patrimoine culturel des municipalités de l'Espagne rurale. Elle propose des
+        services de digitalisation touristique à des entités publiques et privées, notamment le
+        développement de sites web touristiques, la production de contenus et des audioguides
+        numériques sur place.
       </p>
 
       <h2>3. Propriété intellectuelle et industrielle</h2>

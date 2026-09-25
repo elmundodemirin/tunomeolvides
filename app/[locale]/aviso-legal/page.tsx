@@ -25,10 +25,10 @@ export default function AvisoLegalPage() {
 
       <h2>2. Objeto y actividad</h2>
       <p>
-        <em>No Me Olvides</em> es una plataforma cultural informativa sin ánimo de lucro cuyo objeto
-        es documentar y preservar el patrimonio cultural de los municipios de la España vaciada mediante
-        un mapa interactivo con audios narrados en primera persona. No se realiza actividad comercial
-        ni se venden bienes o servicios.
+        <em>No Me Olvides</em> es una plataforma dedicada a la investigación, documentación y difusión
+        del patrimonio cultural de los municipios de la España vaciada. Ofrece servicios de
+        digitalización turística a entidades públicas y privadas, incluyendo el desarrollo de
+        plataformas web turísticas, producción de contenidos y audioguías digitales en destino.
       </p>
 
       <h2>3. Propiedad intelectual e industrial</h2>

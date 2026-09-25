@@ -25,10 +25,10 @@ export default function LegalNoticePage() {
 
       <h2>2. Purpose and activity</h2>
       <p>
-        <em>No Me Olvides</em> is a non-commercial cultural information platform whose purpose is
-        to document and preserve the cultural heritage of depopulated rural Spanish municipalities
-        through an interactive map with first-person audio narratives. No commercial activity is
-        carried out and no goods or services are sold.
+        <em>No Me Olvides</em> is a platform dedicated to the research, documentation and
+        dissemination of the cultural heritage of the municipalities of depopulated rural Spain.
+        It provides tourism digitisation services to public and private entities, including the
+        development of tourism websites, content production, and on-site digital audioguides.
       </p>
 
       <h2>3. Intellectual and industrial property</h2>
