@@ -47,12 +47,13 @@ body {
 }
 
 /* Texto corrido justificado en toda la web (títulos, botones y menús no
-   son <p>, así que no se ven afectados). hyphens: auto evita "ríos" de
-   espacio en blanco al justificar columnas estrechas. */
+   son <p>, así que no se ven afectados). Sin hyphens: las palabras no se
+   parten nunca visualmente, aunque eso pueda dejar algo más de espacio
+   en blanco entre palabras en columnas estrechas. */
 p {
   text-align: justify;
   text-align-last: left;
-  hyphens: auto;
+  hyphens: none;
 }
 
 h1, h2, h3 {
