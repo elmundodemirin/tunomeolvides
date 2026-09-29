@@ -25,10 +25,9 @@
 }
 
 /* Envoltorio semántico para cada aparición de "Tú no me olvides" en textos,
-   párrafos y títulos. Intencionadamente sin estilo propio por ahora: sirve
-   de gancho para poder estilizar el nombre de marca de forma centralizada
-   en el futuro sin tocar cada componente. */
+   párrafos y títulos. */
 .marca {
+  font-style: italic;
 }
 
 :root {
