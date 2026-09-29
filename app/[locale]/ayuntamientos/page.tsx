@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { siteUrl } from '@/lib/seo'
@@ -95,6 +96,20 @@ export default async function AyuntamientosPage({
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
+      <div className="flex items-center gap-3 mb-6">
+        <Image
+          src="/ods11.png"
+          alt="ODS 11 — Ciudades y comunidades sostenibles"
+          width={32}
+          height={32}
+          className="rounded-marca shrink-0"
+        />
+        <p className="text-sm leading-snug" style={{ color: 'var(--color-tinta)' }}>
+          <strong style={{ color: 'var(--color-terracota)' }}>Proyecto subvencionable.</strong>{' '}
+          Contribuimos al ODS 11 protegiendo el patrimonio cultural de los pueblos y generando
+          desarrollo local.
+        </p>
+      </div>
       <h1
         className="text-3xl lg:text-4xl leading-tight mb-4"
         style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
