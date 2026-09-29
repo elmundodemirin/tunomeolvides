@@ -42,8 +42,8 @@ export async function generateMetadata({
 function SearchIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="17" cy="17" r="10" stroke="#C9633E" strokeWidth="2.5" />
-      <line x1="24.5" y1="24.5" x2="33" y2="33" stroke="#C9633E" strokeWidth="2.5" strokeLinecap="round" />
+      <circle cx="17" cy="17" r="10" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <line x1="24.5" y1="24.5" x2="33" y2="33" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   )
 }
@@ -51,9 +51,9 @@ function SearchIcon() {
 function HeadphonesIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <path d="M8 22v-2a12 12 0 0 1 24 0v2" stroke="#C9633E" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-      <rect x="5" y="21" width="7" height="11" rx="3.5" stroke="#C9633E" strokeWidth="2.5" />
-      <rect x="28" y="21" width="7" height="11" rx="3.5" stroke="#C9633E" strokeWidth="2.5" />
+      <path d="M8 22v-2a12 12 0 0 1 24 0v2" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <rect x="5" y="21" width="7" height="11" rx="3.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <rect x="28" y="21" width="7" height="11" rx="3.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
     </svg>
   )
 }
@@ -61,10 +61,10 @@ function HeadphonesIcon() {
 function ChartIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <line x1="7" y1="33" x2="33" y2="33" stroke="#C9633E" strokeWidth="2.5" strokeLinecap="round" />
-      <rect x="10" y="22" width="6" height="11" rx="1.5" stroke="#C9633E" strokeWidth="2.5" />
-      <rect x="19" y="14" width="6" height="19" rx="1.5" stroke="#C9633E" strokeWidth="2.5" />
-      <rect x="28" y="18" width="6" height="15" rx="1.5" stroke="#C9633E" strokeWidth="2.5" />
+      <line x1="7" y1="33" x2="33" y2="33" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" />
+      <rect x="10" y="22" width="6" height="11" rx="1.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <rect x="19" y="14" width="6" height="19" rx="1.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <rect x="28" y="18" width="6" height="15" rx="1.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
     </svg>
   )
 }
@@ -99,11 +99,11 @@ export default async function AyuntamientosPage({
     <div className="max-w-4xl mx-auto px-6 py-16">
       <h1
         className="text-3xl lg:text-4xl leading-tight mb-4"
-        style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
+        style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
       >
         {TITLE}
       </h1>
-      <p className="text-base lg:text-lg leading-relaxed mb-14 max-w-2xl" style={{ color: 'var(--color-text)' }}>
+      <p className="text-base lg:text-lg leading-relaxed mb-14 max-w-2xl" style={{ color: 'var(--color-tinta)' }}>
         {SUBTITLE}
       </p>
 
@@ -113,11 +113,11 @@ export default async function AyuntamientosPage({
             <Icon />
             <h2
               className="text-lg mt-4 mb-2"
-              style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
+              style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
             >
               {title}
             </h2>
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text)' }}>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--color-tinta)' }}>
               {body}
             </p>
           </div>
@@ -125,10 +125,10 @@ export default async function AyuntamientosPage({
       </div>
 
       <div
-        className="rounded-2xl px-6 py-6 mb-14"
-        style={{ backgroundColor: 'var(--color-cream-dark)' }}
+        className="rounded-marca px-6 py-6 mb-14"
+        style={{ backgroundColor: 'var(--color-papel-hondo)' }}
       >
-        <p className="text-sm lg:text-base leading-relaxed" style={{ color: 'var(--color-text)' }}>
+        <p className="text-sm lg:text-base leading-relaxed" style={{ color: 'var(--color-tinta)' }}>
           El proyecto puede financiarse con subvenciones públicas. Nos encargamos de identificar
           las convocatorias disponibles para tu municipio y gestionar todo el proceso de solicitud.
         </p>
@@ -137,12 +137,12 @@ export default async function AyuntamientosPage({
       <div>
         <Link
           href="/contacto"
-          className="inline-block py-3 px-6 rounded-lg text-white font-medium text-sm transition-colors"
-          style={{ backgroundColor: 'var(--color-terracotta)' }}
+          className="inline-block py-3 px-6 rounded-marca text-white font-medium text-sm transition-colors"
+          style={{ backgroundColor: 'var(--color-terracota)' }}
         >
           Solicita información
         </Link>
-        <p className="text-xs mt-3" style={{ color: 'var(--color-sage-dark)' }}>
+        <p className="text-xs mt-3" style={{ color: 'var(--color-olivo)' }}>
           Sin compromiso. Primera consulta gratuita.
         </p>
       </div>

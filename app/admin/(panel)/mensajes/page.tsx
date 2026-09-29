@@ -20,8 +20,8 @@ export default async function MensajesPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <h1
-          className="text-2xl font-bold text-[#8E4226]"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-2xl font-bold text-terracota"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Mensajes de contacto
         </h1>
@@ -29,38 +29,38 @@ export default async function MensajesPage() {
 
       <div className="grid grid-cols-3 gap-4 mb-8">
         <StatCard label="Total" value={total} />
-        <StatCard label="Pendientes" value={pending} color="text-[#C9633E]" />
-        <StatCard label="Atendidos" value={attended} color="text-[#5F7355]" />
+        <StatCard label="Pendientes" value={pending} color="text-terracota" />
+        <StatCard label="Atendidos" value={attended} color="text-olivo" />
       </div>
 
       {error ? (
         <p className="text-red-600 text-sm">Error al cargar los mensajes.</p>
       ) : all.length === 0 ? (
-        <p className="text-[#a07860] text-sm">Aún no hay mensajes de contacto.</p>
+        <p className="text-tinta/60 text-sm">Aún no hay mensajes de contacto.</p>
       ) : (
-        <div className="bg-white rounded-2xl border border-[#EFE8D6] overflow-hidden">
+        <div className="bg-white rounded-marca border border-papel-hondo overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-[#FAF6EE] border-b border-[#EFE8D6]">
+            <thead className="bg-papel border-b border-papel-hondo">
               <tr>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold">Nombre</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold hidden sm:table-cell">Email</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold hidden md:table-cell">Mensaje</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold hidden sm:table-cell">Fecha</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold">Estado</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold">Nombre</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold hidden sm:table-cell">Email</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold hidden md:table-cell">Mensaje</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold hidden sm:table-cell">Fecha</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold">Estado</th>
                 <th className="px-5 py-3"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EFE8D6]">
+            <tbody className="divide-y divide-papel-hondo">
               {all.map(msg => (
-                <tr key={msg.id} className="hover:bg-[#FAF6EE] transition-colors">
-                  <td className="px-5 py-3 font-medium text-[#2C1810]">{msg.name}</td>
-                  <td className="px-5 py-3 text-[#5a3f30] hidden sm:table-cell">{msg.email}</td>
-                  <td className="px-5 py-3 text-[#5a3f30] hidden md:table-cell max-w-xs">
+                <tr key={msg.id} className="hover:bg-papel transition-colors">
+                  <td className="px-5 py-3 font-medium text-tinta">{msg.name}</td>
+                  <td className="px-5 py-3 text-tinta/85 hidden sm:table-cell">{msg.email}</td>
+                  <td className="px-5 py-3 text-tinta/85 hidden md:table-cell max-w-xs">
                     <span className="block truncate">
                       {msg.message.length > 80 ? msg.message.slice(0, 80) + '…' : msg.message}
                     </span>
                   </td>
-                  <td className="px-5 py-3 text-[#a07860] hidden sm:table-cell whitespace-nowrap">
+                  <td className="px-5 py-3 text-tinta/60 hidden sm:table-cell whitespace-nowrap">
                     {new Date(msg.created_at).toLocaleDateString('es-ES', {
                       day: '2-digit',
                       month: '2-digit',
@@ -79,7 +79,7 @@ export default async function MensajesPage() {
                   <td className="px-5 py-3 text-right">
                     <Link
                       href={`/admin/mensajes/${msg.id}`}
-                      className="text-[#C9633E] hover:text-[#8E4226] font-medium transition-colors"
+                      className="text-terracota hover:opacity-80 font-medium transition-colors"
                     >
                       Ver
                     </Link>
@@ -94,14 +94,14 @@ export default async function MensajesPage() {
   )
 }
 
-function StatCard({ label, value, color = 'text-[#2C1810]' }: {
+function StatCard({ label, value, color = 'text-tinta' }: {
   label: string
   value: number
   color?: string
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#EFE8D6] px-6 py-5">
-      <p className="text-xs text-[#a07860] uppercase tracking-wide mb-1">{label}</p>
+    <div className="bg-white rounded-marca border border-papel-hondo px-6 py-5">
+      <p className="text-xs text-dorado-lema uppercase tracking-wide mb-1">{label}</p>
       <p className={`text-3xl font-bold ${color}`}>{value}</p>
     </div>
   )

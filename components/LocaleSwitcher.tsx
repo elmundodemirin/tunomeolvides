@@ -71,7 +71,7 @@ export default function LocaleSwitcher() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-1 px-2 py-1 rounded border text-xs hover:bg-black/5 transition-colors uppercase"
-        style={{ borderColor: 'var(--color-cream-dark)', color: 'var(--color-text)' }}
+        style={{ borderColor: 'var(--color-papel-hondo)', color: 'var(--color-tinta)' }}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={`Idioma actual: ${currentLocale.toUpperCase()}`}
@@ -97,8 +97,8 @@ export default function LocaleSwitcher() {
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 mt-1 min-w-[140px] bg-white rounded-lg shadow-lg border overflow-hidden z-50 text-sm"
-          style={{ borderColor: 'var(--color-cream-dark)' }}
+          className="absolute right-0 mt-1 min-w-[140px] bg-white rounded-marca shadow-sm border overflow-hidden z-50 text-sm"
+          style={{ borderColor: 'var(--color-papel-hondo)' }}
         >
           {LOCALES.map(({ code, label }) => {
             const isCurrent = code === currentLocale
@@ -107,16 +107,16 @@ export default function LocaleSwitcher() {
                 <button
                   type="button"
                   onClick={() => handleSelect(code)}
-                  className="w-full text-left px-3 py-2 transition-colors hover:bg-[color:var(--color-cream)] flex items-center gap-2"
+                  className="w-full text-left px-3 py-2 transition-colors hover:bg-[color:var(--color-papel)] flex items-center gap-2"
                   style={{
-                    color: 'var(--color-text)',
-                    backgroundColor: isCurrent ? 'var(--color-cream)' : undefined,
+                    color: 'var(--color-tinta)',
+                    backgroundColor: isCurrent ? 'var(--color-papel)' : undefined,
                     fontWeight: isCurrent ? 600 : 400,
                   }}
                 >
                   <span
                     className="uppercase text-xs font-mono w-6"
-                    style={{ color: 'var(--color-terracotta-dark)' }}
+                    style={{ color: 'var(--color-terracota)' }}
                   >
                     {code}
                   </span>

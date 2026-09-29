@@ -28,7 +28,7 @@ export function FlowerIcon({ size = 26, className }: Props) {
           transform={`rotate(${deg} 14 14) translate(0 -5)`}
         />
       ))}
-      <circle cx="14" cy="14" r="4" fill="#FAF6EE" />
+      <circle cx="14" cy="14" r="4" fill="var(--color-papel)" />
       <circle cx="14" cy="14" r="2.5" fill="#6B8CB8" />
     </svg>
   )

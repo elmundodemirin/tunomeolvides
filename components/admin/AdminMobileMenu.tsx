@@ -35,7 +35,7 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`p-2 rounded text-[#FAF6EE] hover:bg-[#C9633E] transition-colors ${className}`}
+        className={`p-2 rounded text-sobre-terracota hover:bg-black/10 transition-colors ${className}`}
         aria-label="Abrir menú"
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -54,7 +54,7 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
       />
 
       <aside
-        className={`fixed top-0 right-0 bottom-0 z-[1001] flex flex-col w-[min(280px,82vw)] bg-[#8E4226] transition-transform duration-300 ease-out ${className}`}
+        className={`fixed top-0 right-0 bottom-0 z-[1001] flex flex-col w-[min(280px,82vw)] bg-terracota transition-transform duration-300 ease-out ${className}`}
         style={{
           transform: open ? 'translateX(0)' : 'translateX(100%)',
           boxShadow: '-8px 0 24px rgba(0,0,0,0.3)',
@@ -64,24 +64,24 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
         aria-label="Menú de administración"
         inert={!open}
       >
-        <header className="px-5 py-4 shrink-0 border-b border-[#7a3b20] flex items-start justify-between gap-3">
+        <header className="px-5 py-4 shrink-0 border-b border-black/15 flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="mb-2">
               <FlowerIcon size={28} />
             </div>
             <div
-              className="text-[#FAF6EE] text-sm font-bold"
-              style={{ fontFamily: 'Georgia, serif' }}
+              className="text-papel text-sm font-bold"
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
               Tú no me olvides
             </div>
-            <p className="text-[#f0c9b0] text-xs mt-0.5">Panel de administración</p>
+            <p className="text-sobre-terracota/75 text-xs mt-0.5">Panel de administración</p>
           </div>
           <button
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Cerrar menú"
-            className="shrink-0 w-9 h-9 inline-flex items-center justify-center rounded-full text-[#FAF6EE] hover:bg-[#C9633E] transition-colors"
+            className="shrink-0 w-9 h-9 inline-flex items-center justify-center rounded-full text-sobre-terracota hover:bg-black/10 transition-colors"
           >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -95,19 +95,19 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block px-4 py-3 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
+              className="block px-4 py-3 text-sm text-sobre-terracota hover:bg-black/10 rounded-marca transition-colors"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="px-3 py-4 border-t border-[#7a3b20] shrink-0">
-          <p className="px-4 text-xs text-[#f0c9b0] truncate mb-2">{userEmail}</p>
+        <div className="px-3 py-4 border-t border-black/15 shrink-0">
+          <p className="px-4 text-xs text-sobre-terracota/75 truncate mb-2">{userEmail}</p>
           <Link
             href="/admin/cuenta"
             onClick={() => setOpen(false)}
-            className="block px-4 py-2 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
+            className="block px-4 py-2 text-sm text-sobre-terracota hover:bg-black/10 rounded-marca transition-colors"
           >
             Mi cuenta
           </Link>

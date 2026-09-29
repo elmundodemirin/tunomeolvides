@@ -21,12 +21,12 @@ export default async function UsuariosPage() {
     <div className="p-8">
       <div className="mb-8">
         <h1
-          className="text-2xl font-bold text-[#8E4226]"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-2xl font-bold text-terracota"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Administradores
         </h1>
-        <p className="text-sm text-[#a07860] mt-1">
+        <p className="text-sm text-tinta/60 mt-1">
           Gestiona quién tiene acceso al panel. Los usuarios invitados reciben
           un email para activar su cuenta.
         </p>

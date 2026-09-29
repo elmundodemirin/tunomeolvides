@@ -42,16 +42,14 @@ export function Modal({ open, onClose, title, children, closeLabel = 'Cerrar' }:
         aria-hidden="true"
       />
       <div
-        className="relative bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
+        className="relative bg-white rounded-marca w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-md"
       >
         <header
-          className="flex items-center justify-between px-6 py-4"
-          style={{ borderBottom: '1px solid var(--color-cream-dark)' }}
+          className="flex items-center justify-between px-6 py-4 border-b border-papel-hondo"
         >
           <h2
             id="modal-title"
-            className="text-xl"
-            style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
+            className="text-xl text-terracota"
           >
             {title}
           </h2>
@@ -59,8 +57,7 @@ export function Modal({ open, onClose, title, children, closeLabel = 'Cerrar' }:
             type="button"
             onClick={onClose}
             aria-label={closeLabel}
-            className="w-8 h-8 inline-flex items-center justify-center rounded-full text-xl leading-none transition-colors hover:bg-[color:var(--color-cream-dark)]"
-            style={{ color: 'var(--color-text)' }}
+            className="w-8 h-8 inline-flex items-center justify-center rounded-full text-xl leading-none transition-colors hover:bg-papel-hondo text-tinta"
           >
             ×
           </button>

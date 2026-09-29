@@ -187,9 +187,9 @@ export function LocalityForm({ locality }: Props) {
           <input
             name="active" type="checkbox" checked={form.active}
             onChange={handleChange}
-            className="w-4 h-4 accent-[#C9633E]"
+            className="w-4 h-4 accent-terracota"
           />
-          <span className="text-sm text-[#2C1810]">Localidad activa (visible en el mapa)</span>
+          <span className="text-sm text-tinta">Localidad activa (visible en el mapa)</span>
         </label>
       </Section>
 
@@ -213,7 +213,7 @@ export function LocalityForm({ locality }: Props) {
             />
           </Field>
         </div>
-        <p className="text-xs text-[#a07860] mt-1">
+        <p className="text-xs text-tinta/60 mt-1">
           Puedes obtener las coordenadas haciendo clic derecho en Google Maps → &quot;¿Qué hay aquí?&quot;
         </p>
       </Section>
@@ -254,7 +254,7 @@ export function LocalityForm({ locality }: Props) {
             onChange={handleAudioChange('en')}
           />
         </div>
-        <p className="text-xs text-[#a07860] mt-1">
+        <p className="text-xs text-tinta/60 mt-1">
           Formato MP3. Máximo {MAX_AUDIO_MB} MB por archivo.
         </p>
       </Section>
@@ -273,7 +273,7 @@ export function LocalityForm({ locality }: Props) {
 
       {/* Error */}
       {error && (
-        <p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-3">{error}</p>
+        <p className="text-sm text-red-600 bg-red-50 rounded-marca px-4 py-3">{error}</p>
       )}
 
       {/* Acciones */}
@@ -281,7 +281,7 @@ export function LocalityForm({ locality }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#C9633E] hover:bg-[#8E4226] text-white font-medium px-6 py-2 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="bg-terracota hover:opacity-90 text-sobre-terracota font-medium px-6 py-2 rounded-marca transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? 'Guardando…' : isEdit ? 'Guardar cambios' : 'Crear localidad'}
         </button>
@@ -290,7 +290,7 @@ export function LocalityForm({ locality }: Props) {
           type="button"
           onClick={() => router.back()}
           disabled={loading}
-          className="text-[#5a3f30] hover:text-[#8E4226] font-medium px-4 py-2 rounded-lg transition-colors disabled:opacity-60"
+          className="text-tinta/85 hover:opacity-80 font-medium px-4 py-2 rounded-marca transition-colors disabled:opacity-60"
         >
           Cancelar
         </button>
@@ -300,7 +300,7 @@ export function LocalityForm({ locality }: Props) {
             type="button"
             onClick={handleToggleActive}
             disabled={loading}
-            className="ml-auto text-sm text-[#a07860] hover:text-[#5a3f30] underline transition-colors disabled:opacity-60"
+            className="ml-auto text-sm text-tinta/60 hover:text-tinta/85 underline transition-colors disabled:opacity-60"
           >
             {locality.active ? 'Desactivar localidad' : 'Activar localidad'}
           </button>
@@ -314,14 +314,14 @@ export function LocalityForm({ locality }: Props) {
 // ── Subcomponentes internos ──────────────────────────────────────────────────
 
 const inputClass =
-  'w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent'
+  'w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#EFE8D6] p-6 space-y-4">
+    <div className="bg-white rounded-marca border border-papel-hondo p-6 space-y-4">
       <h2
-        className="text-base font-semibold text-[#8E4226]"
-        style={{ fontFamily: 'Georgia, serif' }}
+        className="text-base font-semibold text-terracota"
+        style={{ fontFamily: 'var(--font-heading)' }}
       >
         {title}
       </h2>
@@ -337,8 +337,8 @@ function Field({ label, required, children }: {
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-[#2C1810] mb-1">
-        {label}{required && <span className="text-[#C9633E] ml-0.5">*</span>}
+      <label className="block text-sm font-medium text-tinta mb-1">
+        {label}{required && <span className="text-terracota ml-0.5">*</span>}
       </label>
       {children}
     </div>
@@ -353,13 +353,13 @@ function AudioField({ label, currentUrl, onChange }: {
   return (
     <Field label={label}>
       {currentUrl && (
-        <audio controls src={currentUrl} className="w-full mb-2 rounded-lg" />
+        <audio controls src={currentUrl} className="w-full mb-2 rounded-marca" />
       )}
       <input
         type="file"
         accept="audio/mpeg,.mp3"
         onChange={onChange}
-        className="w-full text-sm text-[#5a3f30] file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-[#FAF6EE] file:text-[#C9633E] hover:file:bg-[#EFE8D6] cursor-pointer"
+        className="w-full text-sm text-tinta/85 file:mr-3 file:py-1.5 file:px-3 file:rounded-marca file:border-0 file:text-sm file:font-medium file:bg-papel file:text-terracota hover:file:bg-papel-hondo cursor-pointer"
       />
     </Field>
   )

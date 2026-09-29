@@ -37,7 +37,7 @@ export default async function LocaleLayout({
       <header
         className="px-6 py-2.5 flex items-center justify-between sticky top-0 z-30"
         style={{
-          backgroundColor: 'var(--color-cream)',
+          backgroundColor: 'var(--color-papel)',
           boxShadow: '0 1px 0 rgba(0,0,0,0.08)',
         }}
       >
@@ -46,8 +46,8 @@ export default async function LocaleLayout({
               imagen), separada del header con sombra, en vez de forzar un
               recorte/transparencia que no tenemos. */}
           <span
-            className="block rounded-lg overflow-hidden shrink-0"
-            style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.15)', border: '1px solid var(--color-cream-dark)' }}
+            className="block rounded-marca overflow-hidden shrink-0"
+            style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.15)', border: '1px solid var(--color-papel-hondo)' }}
           >
             <Image
               src="/logo-tunomeolvides.jpg"
@@ -60,20 +60,20 @@ export default async function LocaleLayout({
           </span>
         </Link>
 
-        <nav className="flex items-center gap-3 lg:gap-5 text-sm" style={{ color: 'var(--color-text)' }}>
-          {/* Links inline solo en escritorio */}
-          <Link href={homeHref} className="hidden lg:inline-block transition-colors hover:opacity-70">
+        <nav className="flex items-center gap-3 lg:gap-5 text-xs">
+          {/* Links inline solo en escritorio — etiquetas/menú: mayúsculas espaciadas en dorado-lema */}
+          <Link href={homeHref} className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
             {t('home')}
           </Link>
-          <Link href={aboutHref} className="hidden lg:inline-block transition-colors hover:opacity-70">
+          <Link href={aboutHref} className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
             {t('about')}
           </Link>
           {isEs && (
-            <Link href="/ayuntamientos" className="hidden lg:inline-block transition-colors hover:opacity-70">
+            <Link href="/ayuntamientos" className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
               Para ayuntamientos
             </Link>
           )}
-          <Link href={contactHref} className="hidden lg:inline-block transition-colors hover:opacity-70">
+          <Link href={contactHref} className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
             {t('contact')}
           </Link>
 

@@ -81,16 +81,15 @@ export default function HomeShell({ localities, locale }: Props) {
       <div className="mb-6">
         <h2
           className="text-2xl lg:text-4xl leading-tight mb-3"
-          style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
+          style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
         >
           {t('title')}
         </h2>
-        <p className="text-sm lg:text-base leading-relaxed mb-4" style={{ color: 'var(--color-text)' }}>
+        <p className="text-sm lg:text-base leading-relaxed mb-4" style={{ color: 'var(--color-tinta)' }}>
           {t('lead')}
         </p>
         <div
-          className="text-xs uppercase tracking-wider font-semibold"
-          style={{ color: 'var(--color-sage-dark)' }}
+          className="text-xs uppercase tracking-wider font-semibold text-dorado-lema"
         >
           {t('localitiesCount', { count: filtered.length })}
         </div>
@@ -110,7 +109,7 @@ export default function HomeShell({ localities, locale }: Props) {
       />
 
       {filtered.length === 0 ? (
-        <p className="text-sm py-4" style={{ color: 'var(--color-sage-dark)' }}>
+        <p className="text-sm py-4" style={{ color: 'var(--color-olivo)' }}>
           {t('noResults')}
         </p>
       ) : (
@@ -129,7 +128,7 @@ export default function HomeShell({ localities, locale }: Props) {
       {/* Sidebar narrativo: solo visible en lg+ */}
       <aside
         className="hidden lg:flex lg:w-2/5 lg:max-w-[480px] lg:overflow-y-auto px-6 py-8 lg:px-10 lg:py-12 flex-col"
-        style={{ backgroundColor: 'var(--color-cream)' }}
+        style={{ backgroundColor: 'var(--color-papel)' }}
       >
         {panel}
       </aside>
@@ -143,7 +142,7 @@ export default function HomeShell({ localities, locale }: Props) {
         role="application"
         aria-label={t('mapAriaLabel')}
       >
-        <div className="h-full w-full lg:overflow-hidden lg:rounded-2xl lg:shadow-lg">
+        <div className="h-full w-full lg:overflow-hidden lg:rounded-marca lg:shadow-sm">
           <MapWrapper
             localities={filtered}
             locale={locale}

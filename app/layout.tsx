@@ -1,8 +1,23 @@
 import type { Metadata } from 'next'
+import { EB_Garamond, Jost } from 'next/font/google'
 import { getLocale } from 'next-intl/server'
 import './globals.css'
 import { AuthRedirectGuard } from '@/components/AuthRedirectGuard'
 import { siteUrl } from '@/lib/seo'
+
+// Identidad de marca: EB Garamond para títulos, Jost para el resto del texto.
+const ebGaramond = EB_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-eb-garamond',
+  display: 'swap',
+})
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-jost',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -26,7 +41,7 @@ const supabaseOrigin = (() => {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
   return (
-    <html lang={locale} className="h-full">
+    <html lang={locale} className={`h-full ${ebGaramond.variable} ${jost.variable}`}>
       <head>
         {/* Preconnect a los subdominios de tiles de OSM y a Supabase
             para arrancar el handshake antes de que Leaflet/los queries

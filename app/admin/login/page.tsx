@@ -75,24 +75,24 @@ export default function LoginPage() {
             <FlowerIcon size={44} />
           </div>
           <h1
-            className="text-2xl font-bold text-[#8E4226]"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="text-2xl font-bold text-terracota"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Tú no me olvides
           </h1>
-          <p className="text-sm text-[#5F7355] mt-1">Panel de administración</p>
+          <p className="text-sm text-olivo mt-1">Panel de administración</p>
         </div>
 
         {mode === 'signin' ? (
           <>
             <form
               onSubmit={handleSignIn}
-              className="bg-white rounded-2xl shadow-sm border border-[#EFE8D6] p-8 space-y-5"
+              className="bg-white rounded-marca shadow-sm border border-papel-hondo p-8 space-y-5"
             >
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-[#2C1810] mb-1"
+                  className="block text-sm font-medium text-tinta mb-1"
                 >
                   Correo electrónico
                 </label>
@@ -103,14 +103,14 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+                  className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-[#2C1810] mb-1"
+                  className="block text-sm font-medium text-tinta mb-1"
                 >
                   Contraseña
                 </label>
@@ -121,12 +121,12 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+                  className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
                 />
               </div>
 
               {error && (
-                <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">
+                <p className="text-sm text-red-600 bg-red-50 rounded-marca px-3 py-2">
                   {error}
                 </p>
               )}
@@ -134,7 +134,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#C9633E] hover:bg-[#8E4226] text-white font-medium py-2 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-terracota hover:opacity-90 text-sobre-terracota font-medium py-2 rounded-marca transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {loading ? 'Entrando…' : 'Entrar'}
               </button>
@@ -144,7 +144,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => switchMode('recover')}
-                className="text-sm text-[#C9633E] hover:text-[#8E4226] transition-colors"
+                className="text-sm text-terracota hover:opacity-80 transition-colors"
               >
                 ¿Olvidaste tu contraseña?
               </button>
@@ -154,16 +154,16 @@ export default function LoginPage() {
           <>
             <form
               onSubmit={handleRecover}
-              className="bg-white rounded-2xl shadow-sm border border-[#EFE8D6] p-8 space-y-5"
+              className="bg-white rounded-marca shadow-sm border border-papel-hondo p-8 space-y-5"
             >
               <div>
-                <p className="text-sm text-[#5a3f30] mb-4">
+                <p className="text-sm text-tinta/85 mb-4">
                   Escribe tu correo y te enviaremos un enlace para fijar una
                   contraseña nueva.
                 </p>
                 <label
                   htmlFor="recover-email"
-                  className="block text-sm font-medium text-[#2C1810] mb-1"
+                  className="block text-sm font-medium text-tinta mb-1"
                 >
                   Correo electrónico
                 </label>
@@ -174,17 +174,17 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+                  className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
                 />
               </div>
 
               {error && (
-                <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">
+                <p className="text-sm text-red-600 bg-red-50 rounded-marca px-3 py-2">
                   {error}
                 </p>
               )}
               {recoverySent && (
-                <p className="text-sm text-[#5F7355] bg-[#FAF6EE] rounded-lg px-3 py-2">
+                <p className="text-sm text-olivo bg-papel rounded-marca px-3 py-2">
                   Te hemos enviado un email con el enlace. Revisa tu bandeja de
                   entrada (y la carpeta de spam, por si acaso).
                 </p>
@@ -193,7 +193,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading || recoverySent}
-                className="w-full bg-[#C9633E] hover:bg-[#8E4226] text-white font-medium py-2 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-terracota hover:opacity-90 text-sobre-terracota font-medium py-2 rounded-marca transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {loading ? 'Enviando…' : recoverySent ? 'Enviado' : 'Enviar enlace de recuperación'}
               </button>
@@ -203,7 +203,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => switchMode('signin')}
-                className="text-sm text-[#C9633E] hover:text-[#8E4226] transition-colors"
+                className="text-sm text-terracota hover:opacity-80 transition-colors"
               >
                 ← Volver al inicio de sesión
               </button>

@@ -30,8 +30,8 @@ export default function CookiePolicyPage() {
       <h3>Necessary cookies (always active)</h3>
       <p>Essential for the site to function. They cannot be disabled.</p>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#EFE8D6] rounded-lg overflow-hidden">
-          <thead className="bg-[#EFE8D6]">
+        <table className="w-full text-sm border border-papel-hondo rounded-marca overflow-hidden">
+          <thead className="bg-papel-hondo">
             <tr>
               <th className="text-left px-4 py-2 font-semibold">Name</th>
               <th className="text-left px-4 py-2 font-semibold">Provider</th>
@@ -39,7 +39,7 @@ export default function CookiePolicyPage() {
               <th className="text-left px-4 py-2 font-semibold">Duration</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#EFE8D6]">
+          <tbody className="divide-y divide-papel-hondo">
             <tr>
               <td className="px-4 py-2 font-mono text-xs">sb-*</td>
               <td className="px-4 py-2">Supabase</td>
@@ -59,8 +59,8 @@ export default function CookiePolicyPage() {
       <h3>Analytics cookies (require consent)</h3>
       <p>Only installed if you accept analytics cookies. Allow us to understand how the site is used.</p>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#EFE8D6] rounded-lg overflow-hidden">
-          <thead className="bg-[#EFE8D6]">
+        <table className="w-full text-sm border border-papel-hondo rounded-marca overflow-hidden">
+          <thead className="bg-papel-hondo">
             <tr>
               <th className="text-left px-4 py-2 font-semibold">Name</th>
               <th className="text-left px-4 py-2 font-semibold">Provider</th>
@@ -68,7 +68,7 @@ export default function CookiePolicyPage() {
               <th className="text-left px-4 py-2 font-semibold">Duration</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#EFE8D6]">
+          <tbody className="divide-y divide-papel-hondo">
             <tr>
               <td className="px-4 py-2 font-mono text-xs">_ga</td>
               <td className="px-4 py-2">Google Analytics</td>
@@ -109,7 +109,7 @@ export default function CookiePolicyPage() {
         your device.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Last updated: May 2026</p>
+      <p className="text-xs text-tinta/60 mt-8">Last updated: May 2026</p>
     </LegalPage>
   )
 }

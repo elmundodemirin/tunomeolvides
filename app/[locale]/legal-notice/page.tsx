@@ -55,7 +55,7 @@ export default function LegalNoticePage() {
         to the courts of the owner&apos;s place of domicile, expressly waiving any other jurisdiction.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Last updated: May 2026</p>
+      <p className="text-xs text-tinta/60 mt-8">Last updated: May 2026</p>
     </LegalPage>
   )
 }

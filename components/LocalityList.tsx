@@ -24,11 +24,11 @@ export default function LocalityList({ localities, locale, selectedId, onSelect 
             <button
               type="button"
               onClick={() => onSelect(loc.id)}
-              className="w-full text-left px-4 py-3 rounded-lg border transition-all duration-150 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
+              className="w-full text-left px-4 py-3 rounded-marca border transition-all duration-150 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
               style={{
-                backgroundColor: isSelected ? 'var(--color-terracotta)' : 'white',
-                borderColor: isSelected ? 'var(--color-terracotta-dark)' : 'var(--color-cream-dark)',
-                color: isSelected ? 'white' : 'var(--color-text)',
+                backgroundColor: isSelected ? 'var(--color-terracota)' : 'white',
+                borderColor: isSelected ? 'var(--color-terracota)' : 'var(--color-papel-hondo)',
+                color: isSelected ? 'white' : 'var(--color-tinta)',
               }}
               aria-pressed={isSelected}
             >
@@ -36,7 +36,7 @@ export default function LocalityList({ localities, locale, selectedId, onSelect 
                 <div className="flex-1 min-w-0">
                   <div
                     className="text-base mb-0.5 truncate"
-                    style={{ fontFamily: 'Georgia, serif', fontWeight: 600 }}
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}
                   >
                     {loc.name}
                   </div>
@@ -48,8 +48,8 @@ export default function LocalityList({ localities, locale, selectedId, onSelect 
                   <span
                     className="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full text-sm"
                     style={{
-                      backgroundColor: isSelected ? 'rgba(255,255,255,0.22)' : 'var(--color-cream-dark)',
-                      color: isSelected ? 'white' : 'var(--color-sage-dark)',
+                      backgroundColor: isSelected ? 'rgba(255,255,255,0.22)' : 'var(--color-papel-hondo)',
+                      color: isSelected ? 'white' : 'var(--color-olivo)',
                     }}
                     aria-label="Audio"
                     title="Audio"

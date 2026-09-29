@@ -78,7 +78,7 @@ export function LocalitiesManager({ localities }: Props) {
   return (
     <>
       {/* Filtro por estado */}
-      <div className="mb-4 inline-flex items-center gap-1 bg-white rounded-xl border border-[#EFE8D6] p-1">
+      <div className="mb-4 inline-flex items-center gap-1 bg-white rounded-marca border border-papel-hondo p-1">
         <FilterButton current={filter} value="all" onClick={changeFilter}>Todas</FilterButton>
         <FilterButton current={filter} value="active" onClick={changeFilter}>Activas</FilterButton>
         <FilterButton current={filter} value="inactive" onClick={changeFilter}>Inactivas</FilterButton>
@@ -86,11 +86,11 @@ export function LocalitiesManager({ localities }: Props) {
 
       {/* Tabla */}
       {visible.length === 0 ? (
-        <p className="text-[#a07860] text-sm">No hay localidades para mostrar con este filtro.</p>
+        <p className="text-tinta/60 text-sm">No hay localidades para mostrar con este filtro.</p>
       ) : (
-        <div className="bg-white rounded-2xl border border-[#EFE8D6] overflow-x-auto">
+        <div className="bg-white rounded-marca border border-papel-hondo overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-[#FAF6EE] border-b border-[#EFE8D6]">
+            <thead className="bg-papel border-b border-papel-hondo">
               <tr>
                 <th className="w-10 px-3 py-3">
                   <input
@@ -99,23 +99,23 @@ export function LocalitiesManager({ localities }: Props) {
                     ref={el => { if (el) el.indeterminate = partialChecked }}
                     onChange={toggleAll}
                     aria-label="Seleccionar todas las visibles"
-                    className="accent-[#C9633E] w-4 h-4 cursor-pointer"
+                    className="accent-terracota w-4 h-4 cursor-pointer"
                   />
                 </th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold">Localidad</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold">Provincia</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold">Comunidad</th>
-                <th className="text-left px-5 py-3 text-[#8E4226] font-semibold">Estado</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold">Localidad</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold">Provincia</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold">Comunidad</th>
+                <th className="text-left px-5 py-3 text-terracota font-semibold">Estado</th>
                 <th className="px-5 py-3"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EFE8D6]">
+            <tbody className="divide-y divide-papel-hondo">
               {visible.map(loc => {
                 const isSelected = selected.has(loc.id)
                 return (
                   <tr
                     key={loc.id}
-                    className={`transition-colors ${isSelected ? 'bg-[#FAF6EE]' : 'hover:bg-[#FAF6EE]'}`}
+                    className={`transition-colors ${isSelected ? 'bg-papel' : 'hover:bg-papel'}`}
                   >
                     <td className="px-3 py-3">
                       <input
@@ -123,12 +123,12 @@ export function LocalitiesManager({ localities }: Props) {
                         checked={isSelected}
                         onChange={() => toggleRow(loc.id)}
                         aria-label={`Seleccionar ${loc.name}`}
-                        className="accent-[#C9633E] w-4 h-4 cursor-pointer"
+                        className="accent-terracota w-4 h-4 cursor-pointer"
                       />
                     </td>
-                    <td className="px-5 py-3 font-medium text-[#2C1810]">{loc.name}</td>
-                    <td className="px-5 py-3 text-[#5a3f30]">{loc.province}</td>
-                    <td className="px-5 py-3 text-[#5a3f30]">{loc.region}</td>
+                    <td className="px-5 py-3 font-medium text-tinta">{loc.name}</td>
+                    <td className="px-5 py-3 text-tinta/85">{loc.province}</td>
+                    <td className="px-5 py-3 text-tinta/85">{loc.region}</td>
                     <td className="px-5 py-3">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                         loc.active
@@ -141,7 +141,7 @@ export function LocalitiesManager({ localities }: Props) {
                     <td className="px-5 py-3 text-right">
                       <Link
                         href={`/admin/localities/${loc.id}/edit`}
-                        className="text-[#C9633E] hover:text-[#8E4226] font-medium transition-colors"
+                        className="text-terracota hover:opacity-80 font-medium transition-colors"
                       >
                         Editar
                       </Link>
@@ -159,16 +159,16 @@ export function LocalitiesManager({ localities }: Props) {
         <div
           role="region"
           aria-label="Acciones masivas"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-white rounded-2xl shadow-xl border border-[#EFE8D6] px-5 py-3 flex items-center gap-3 sm:gap-4 flex-wrap justify-center max-w-[calc(100vw-2rem)]"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-white rounded-marca shadow-md border border-papel-hondo px-5 py-3 flex items-center gap-3 sm:gap-4 flex-wrap justify-center max-w-[calc(100vw-2rem)]"
         >
-          <span className="text-sm font-medium text-[#2C1810]">
+          <span className="text-sm font-medium text-tinta">
             {selected.size} seleccionada{selected.size !== 1 ? 's' : ''}
           </span>
           <button
             type="button"
             disabled={busy}
             onClick={() => setConfirming('activate')}
-            className="text-sm font-medium px-3 py-1.5 rounded-lg bg-[#5F7355] hover:bg-[#4a5b42] text-white transition-colors disabled:opacity-60"
+            className="text-sm font-medium px-3 py-1.5 rounded-marca bg-olivo hover:opacity-90 text-white transition-colors disabled:opacity-60"
           >
             Activar
           </button>
@@ -176,7 +176,7 @@ export function LocalitiesManager({ localities }: Props) {
             type="button"
             disabled={busy}
             onClick={() => setConfirming('deactivate')}
-            className="text-sm font-medium px-3 py-1.5 rounded-lg bg-[#5a3f30] hover:bg-[#3d2b1f] text-white transition-colors disabled:opacity-60"
+            className="text-sm font-medium px-3 py-1.5 rounded-marca bg-tinta hover:opacity-90 text-white transition-colors disabled:opacity-60"
           >
             Desactivar
           </button>
@@ -184,7 +184,7 @@ export function LocalitiesManager({ localities }: Props) {
             type="button"
             disabled={busy}
             onClick={() => setSelected(new Set())}
-            className="text-sm text-[#a07860] hover:text-[#5a3f30] transition-colors"
+            className="text-sm text-tinta/60 hover:text-tinta/85 transition-colors"
           >
             Cancelar
           </button>
@@ -201,17 +201,17 @@ export function LocalitiesManager({ localities }: Props) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="bulk-confirm-title"
-            className="bg-white rounded-2xl shadow-xl border border-[#EFE8D6] max-w-sm w-full p-6"
+            className="bg-white rounded-marca shadow-md border border-papel-hondo max-w-sm w-full p-6"
             onClick={e => e.stopPropagation()}
           >
             <h3
               id="bulk-confirm-title"
-              className="text-base font-semibold text-[#8E4226] mb-2"
-              style={{ fontFamily: 'Georgia, serif' }}
+              className="text-base font-semibold text-terracota mb-2"
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
               {confirming === 'activate' ? '¿Activar localidades?' : '¿Desactivar localidades?'}
             </h3>
-            <p className="text-sm text-[#5a3f30] mb-5">
+            <p className="text-sm text-tinta/85 mb-5">
               Vas a {confirming === 'activate' ? 'activar' : 'desactivar'}{' '}
               <strong>{selected.size}</strong>{' '}
               localidad{selected.size !== 1 ? 'es' : ''}.{' '}
@@ -225,7 +225,7 @@ export function LocalitiesManager({ localities }: Props) {
                 type="button"
                 disabled={busy}
                 onClick={() => setConfirming(null)}
-                className="text-sm text-[#a07860] hover:text-[#5a3f30] transition-colors"
+                className="text-sm text-tinta/60 hover:text-tinta/85 transition-colors"
               >
                 Cancelar
               </button>
@@ -233,10 +233,10 @@ export function LocalitiesManager({ localities }: Props) {
                 type="button"
                 disabled={busy}
                 onClick={() => applyBulk(confirming)}
-                className={`text-sm font-medium px-4 py-2 rounded-lg text-white transition-colors disabled:opacity-60 ${
+                className={`text-sm font-medium px-4 py-2 rounded-marca text-white transition-colors disabled:opacity-60 ${
                   confirming === 'activate'
-                    ? 'bg-[#5F7355] hover:bg-[#4a5b42]'
-                    : 'bg-[#5a3f30] hover:bg-[#3d2b1f]'
+                    ? 'bg-olivo hover:opacity-90'
+                    : 'bg-tinta hover:opacity-90'
                 }`}
               >
                 {busy
@@ -268,10 +268,10 @@ function FilterButton({
       type="button"
       onClick={() => onClick(value)}
       aria-pressed={active}
-      className={`text-sm font-medium px-3 py-1.5 rounded-lg transition-colors ${
+      className={`text-sm font-medium px-3 py-1.5 rounded-marca transition-colors ${
         active
-          ? 'bg-[#C9633E] text-white'
-          : 'text-[#5a3f30] hover:bg-[#FAF6EE]'
+          ? 'bg-terracota text-white'
+          : 'text-tinta/85 hover:bg-papel'
       }`}
     >
       {children}

@@ -46,7 +46,7 @@ function buildPopupHTML(loc: Locality, locale: string): string {
   const linkSection = loc.external_url
     ? `<div style="padding:4px 12px 12px">
          <a href="${loc.external_url}" target="_blank" rel="noopener noreferrer"
-            style="font-size:12px;color:#8E4226;text-decoration:underline">
+            style="font-size:12px;color:var(--color-terracota);text-decoration:underline">
            ${moreInfoLabel} →
          </a>
        </div>`
@@ -54,11 +54,11 @@ function buildPopupHTML(loc: Locality, locale: string): string {
 
   return `
     <div>
-      <div style="background:#C9633E;padding:12px 14px">
-        <strong style="color:white;font-family:Georgia,serif;font-size:16px">${loc.name}</strong>
+      <div style="background:var(--color-terracota);padding:12px 14px">
+        <strong style="color:var(--color-sobre-terracota);font-family:var(--font-heading);font-size:16px">${loc.name}</strong>
         <div style="color:rgba(255,255,255,0.85);font-size:11px;margin-top:3px">${loc.province} · ${loc.region}</div>
       </div>
-      <div style="padding:12px 14px;font-size:14px;line-height:1.55;color:#2C1810">
+      <div style="padding:12px 14px;font-size:14px;line-height:1.55;color:var(--color-tinta)">
         ${description}
       </div>
       ${audioSection}

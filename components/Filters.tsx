@@ -30,7 +30,7 @@ export function Filters({
   const t = useTranslations('home')
 
   const inputBase =
-    'w-full border rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[color:var(--color-terracotta)] focus:border-transparent'
+    'w-full border rounded-marca px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[color:var(--color-terracota)] focus:border-transparent'
 
   return (
     <div className="flex flex-col gap-2 mb-4">
@@ -40,7 +40,7 @@ export function Filters({
         value={search}
         onChange={(e) => onSearchChange(e.target.value)}
         className={inputBase}
-        style={{ borderColor: 'var(--color-cream-dark)' }}
+        style={{ borderColor: 'var(--color-papel-hondo)' }}
         aria-label={t('filterSearch')}
       />
 
@@ -49,7 +49,7 @@ export function Filters({
           value={comunidad}
           onChange={(e) => onComunidadChange(e.target.value)}
           className={inputBase}
-          style={{ borderColor: 'var(--color-cream-dark)' }}
+          style={{ borderColor: 'var(--color-papel-hondo)' }}
           aria-label={t('filterComunidad')}
         >
           <option value="">{t('filterComunidad')}</option>
@@ -62,7 +62,7 @@ export function Filters({
           value={provincia}
           onChange={(e) => onProvinciaChange(e.target.value)}
           className={inputBase}
-          style={{ borderColor: 'var(--color-cream-dark)' }}
+          style={{ borderColor: 'var(--color-papel-hondo)' }}
           aria-label={t('filterProvincia')}
         >
           <option value="">{t('filterProvincia')}</option>
@@ -77,7 +77,7 @@ export function Filters({
           type="button"
           onClick={onClear}
           className="self-start text-xs underline transition-colors mt-1"
-          style={{ color: 'var(--color-terracotta)' }}
+          style={{ color: 'var(--color-terracota)' }}
         >
           {t('filterClear')}
         </button>

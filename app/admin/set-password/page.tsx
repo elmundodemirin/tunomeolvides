@@ -116,7 +116,7 @@ export default function SetPasswordPage() {
   if (hasSession === null) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
-        <p className="text-sm text-[#a07860]">Cargando…</p>
+        <p className="text-sm text-tinta/60">Cargando…</p>
       </div>
     )
   }
@@ -130,23 +130,23 @@ export default function SetPasswordPage() {
             <FlowerIcon size={44} />
           </div>
           <h1
-            className="text-2xl font-bold text-[#8E4226] mb-2"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="text-2xl font-bold text-terracota mb-2"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Enlace no válido
           </h1>
-          <p className="text-sm text-[#5a3f30] mb-6">
+          <p className="text-sm text-tinta/85 mb-6">
             Este enlace ha caducado o ya ha sido usado. Pídele al administrador
             una invitación nueva.
           </p>
           {linkError && (
-            <p className="text-xs text-[#a07860] bg-[#FAF6EE] rounded-lg px-3 py-2 mb-6 break-words">
+            <p className="text-xs text-tinta/60 bg-papel rounded-marca px-3 py-2 mb-6 break-words">
               Detalle: {linkError}
             </p>
           )}
           <a
             href="/admin/login"
-            className="text-sm text-[#C9633E] hover:text-[#8E4226] transition-colors"
+            className="text-sm text-terracota hover:opacity-80 transition-colors"
           >
             Ir al inicio de sesión
           </a>
@@ -165,24 +165,24 @@ export default function SetPasswordPage() {
             <FlowerIcon size={44} />
           </div>
           <h1
-            className="text-2xl font-bold text-[#8E4226]"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="text-2xl font-bold text-terracota"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Establece tu contraseña
           </h1>
-          <p className="text-sm text-[#5F7355] mt-1">
+          <p className="text-sm text-olivo mt-1">
             Bienvenida al panel de Tú no me olvides
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-sm border border-[#EFE8D6] p-8 space-y-5"
+          className="bg-white rounded-marca shadow-sm border border-papel-hondo p-8 space-y-5"
         >
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-[#2C1810] mb-1"
+              className="block text-sm font-medium text-tinta mb-1"
             >
               Contraseña nueva
             </label>
@@ -194,15 +194,15 @@ export default function SetPasswordPage() {
               minLength={8}
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+              className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
             />
-            <p className="text-xs text-[#a07860] mt-1">Mínimo 8 caracteres.</p>
+            <p className="text-xs text-tinta/60 mt-1">Mínimo 8 caracteres.</p>
           </div>
 
           <div>
             <label
               htmlFor="confirm"
-              className="block text-sm font-medium text-[#2C1810] mb-1"
+              className="block text-sm font-medium text-tinta mb-1"
             >
               Repetir contraseña
             </label>
@@ -213,17 +213,17 @@ export default function SetPasswordPage() {
               required
               value={confirm}
               onChange={e => setConfirm(e.target.value)}
-              className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+              className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
             />
           </div>
 
           {error && (
-            <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">
+            <p className="text-sm text-red-600 bg-red-50 rounded-marca px-3 py-2">
               {error}
             </p>
           )}
           {success && (
-            <p className="text-sm text-[#5F7355] bg-[#FAF6EE] rounded-lg px-3 py-2">
+            <p className="text-sm text-olivo bg-papel rounded-marca px-3 py-2">
               Contraseña guardada. Redirigiendo al panel…
             </p>
           )}
@@ -231,7 +231,7 @@ export default function SetPasswordPage() {
           <button
             type="submit"
             disabled={loading || success}
-            className="w-full bg-[#C9633E] hover:bg-[#8E4226] text-white font-medium py-2 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full bg-terracota hover:opacity-90 text-sobre-terracota font-medium py-2 rounded-marca transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? 'Guardando…' : success ? 'Listo' : 'Guardar contraseña'}
           </button>

@@ -26,11 +26,11 @@ export default async function ContactoPage({ params }: { params: Promise<{ local
     <div className="max-w-xl mx-auto px-6 py-12">
       <h1
         className="text-3xl mb-4"
-        style={{ color: 'var(--color-terracotta-dark)', fontFamily: 'Georgia, serif' }}
+        style={{ color: 'var(--color-terracota)', fontFamily: 'var(--font-heading)' }}
       >
         {t('title')}
       </h1>
-      <p className="mb-8 leading-relaxed" style={{ color: 'var(--color-text)' }}>
+      <p className="mb-8 leading-relaxed" style={{ color: 'var(--color-tinta)' }}>
         {t('intro')}
       </p>
       <ContactForm />

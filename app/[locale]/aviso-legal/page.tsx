@@ -56,7 +56,7 @@ export default function AvisoLegalPage() {
         con renuncia expresa a cualquier otro fuero que pudiera corresponderles.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Última actualización: mayo de 2026</p>
+      <p className="text-xs text-tinta/60 mt-8">Última actualización: mayo de 2026</p>
     </LegalPage>
   )
 }

@@ -23,12 +23,12 @@ export default async function EditLocalityPage({
     <div className="p-8">
       <div className="mb-6">
         <h1
-          className="text-2xl font-bold text-[#8E4226]"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-2xl font-bold text-terracota"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Editar: {locality.name}
         </h1>
-        <p className="text-sm text-[#a07860] mt-1">
+        <p className="text-sm text-tinta/60 mt-1">
           {locality.province} · {locality.region}
         </p>
       </div>

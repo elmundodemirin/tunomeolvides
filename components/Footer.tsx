@@ -44,15 +44,15 @@ export function Footer({ locale }: Props) {
   const strings = STRINGS[locale] ?? STRINGS.es
 
   return (
-    <footer className="border-t border-[#EFE8D6] bg-[#FAF6EE] mt-auto">
-      <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#5a3f30]">
+    <footer className="border-t border-papel-hondo bg-papel mt-auto">
+      <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-tinta/80">
         <span>{strings.rights(new Date().getFullYear())}</span>
         <nav className="flex flex-wrap items-center gap-4" aria-label={strings.navAria}>
           {links.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-[#8E4226] transition-colors"
+              className="hover:text-terracota transition-colors"
             >
               {link.label}
             </Link>

@@ -13,24 +13,24 @@ export default async function CuentaPage() {
 
       <div className="mb-8">
         <h1
-          className="text-2xl font-bold text-[#8E4226]"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-2xl font-bold text-terracota"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Mi cuenta
         </h1>
-        <p className="text-sm text-[#a07860] mt-1">
+        <p className="text-sm text-tinta/60 mt-1">
           Datos de tu acceso al panel de administración.
         </p>
       </div>
 
       {/* Datos básicos del usuario */}
-      <div className="bg-white rounded-2xl border border-[#EFE8D6] p-6 mb-6">
-        <h2 className="text-xs font-semibold text-[#a07860] uppercase tracking-wide mb-3">
+      <div className="bg-white rounded-marca border border-papel-hondo p-6 mb-6">
+        <h2 className="text-xs font-semibold text-dorado-lema uppercase tracking-wide mb-3">
           Tus datos
         </h2>
         <dl className="text-sm">
-          <dt className="text-[#a07860] mb-1">Correo electrónico</dt>
-          <dd className="text-[#2C1810]">{userEmail}</dd>
+          <dt className="text-tinta/60 mb-1">Correo electrónico</dt>
+          <dd className="text-tinta">{userEmail}</dd>
         </dl>
       </div>
 

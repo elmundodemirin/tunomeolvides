@@ -24,14 +24,14 @@ export default async function DashboardPage() {
 
       <div className="flex items-center justify-between mb-8">
         <h1
-          className="text-2xl font-bold text-[#8E4226]"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-2xl font-bold text-terracota"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Localidades
         </h1>
         <Link
           href="/admin/localities/new"
-          className="bg-[#C9633E] hover:bg-[#8E4226] text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+          className="bg-terracota hover:opacity-90 text-sobre-terracota text-sm font-medium px-4 py-2 rounded-marca transition-colors"
         >
           + Nueva localidad
         </Link>
@@ -40,15 +40,15 @@ export default async function DashboardPage() {
       {/* Tarjetas de resumen (siempre totales, no se ven afectadas por el filtro) */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         <StatCard label="Total" value={total} />
-        <StatCard label="Activas" value={active} color="text-[#5F7355]" />
-        <StatCard label="Inactivas" value={inactive} color="text-[#a07860]" />
+        <StatCard label="Activas" value={active} color="text-olivo" />
+        <StatCard label="Inactivas" value={inactive} color="text-tinta/60" />
       </div>
 
       {/* Filtro + tabla + acciones masivas */}
       {error ? (
         <p className="text-red-600 text-sm">Error al cargar las localidades.</p>
       ) : all.length === 0 ? (
-        <p className="text-[#a07860] text-sm">Aún no hay localidades. ¡Crea la primera!</p>
+        <p className="text-tinta/60 text-sm">Aún no hay localidades. ¡Crea la primera!</p>
       ) : (
         <LocalitiesManager localities={all} />
       )}
@@ -56,14 +56,14 @@ export default async function DashboardPage() {
   )
 }
 
-function StatCard({ label, value, color = 'text-[#2C1810]' }: {
+function StatCard({ label, value, color = 'text-tinta' }: {
   label: string
   value: number
   color?: string
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#EFE8D6] px-6 py-5">
-      <p className="text-xs text-[#a07860] uppercase tracking-wide mb-1">{label}</p>
+    <div className="bg-white rounded-marca border border-papel-hondo px-6 py-5">
+      <p className="text-xs text-dorado-lema uppercase tracking-wide mb-1">{label}</p>
       <p className={`text-3xl font-bold ${color}`}>{value}</p>
     </div>
   )

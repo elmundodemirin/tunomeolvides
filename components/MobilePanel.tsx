@@ -43,9 +43,9 @@ export function MobilePanel({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`fixed bottom-5 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2 px-5 py-3 rounded-full shadow-xl transition-transform active:scale-95 ${className}`}
+        className={`fixed bottom-5 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2 px-5 py-3 rounded-full shadow-md transition-transform active:scale-95 ${className}`}
         style={{
-          backgroundColor: 'var(--color-terracotta)',
+          backgroundColor: 'var(--color-terracota)',
           color: 'white',
         }}
         aria-haspopup="dialog"
@@ -61,7 +61,7 @@ export function MobilePanel({
       <div
         className={`fixed inset-0 z-[1001] flex flex-col transition-transform duration-300 ease-out ${className}`}
         style={{
-          backgroundColor: 'var(--color-cream)',
+          backgroundColor: 'var(--color-papel)',
           transform: open ? 'translateY(0)' : 'translateY(100%)',
         }}
         role="dialog"
@@ -71,11 +71,11 @@ export function MobilePanel({
       >
         <header
           className="flex items-center justify-between px-5 py-4 shrink-0"
-          style={{ borderBottom: '1px solid var(--color-cream-dark)' }}
+          style={{ borderBottom: '1px solid var(--color-papel-hondo)' }}
         >
           <h2
             className="text-lg leading-tight"
-            style={{ fontFamily: 'Georgia, serif', color: 'var(--color-terracotta-dark)' }}
+            style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
           >
             {panelTitle}
           </h2>
@@ -83,8 +83,8 @@ export function MobilePanel({
             type="button"
             onClick={() => setOpen(false)}
             aria-label={closeLabel}
-            className="w-9 h-9 inline-flex items-center justify-center rounded-full text-2xl leading-none transition-colors hover:bg-[color:var(--color-cream-dark)]"
-            style={{ color: 'var(--color-text)' }}
+            className="w-9 h-9 inline-flex items-center justify-center rounded-full text-2xl leading-none transition-colors hover:bg-[color:var(--color-papel-hondo)]"
+            style={{ color: 'var(--color-tinta)' }}
           >
             ×
           </button>

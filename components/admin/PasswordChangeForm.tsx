@@ -73,16 +73,16 @@ export function PasswordChangeForm({ userEmail }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-2xl border border-[#EFE8D6] p-6 space-y-5"
+      className="bg-white rounded-marca border border-papel-hondo p-6 space-y-5"
     >
       <div>
         <h2
-          className="text-base font-semibold text-[#8E4226]"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-base font-semibold text-terracota"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Cambiar contraseña
         </h2>
-        <p className="text-sm text-[#a07860] mt-0.5">
+        <p className="text-sm text-tinta/60 mt-0.5">
           Por seguridad, confirma primero tu contraseña actual.
         </p>
       </div>
@@ -90,7 +90,7 @@ export function PasswordChangeForm({ userEmail }: Props) {
       <div>
         <label
           htmlFor="currentPassword"
-          className="block text-sm font-medium text-[#2C1810] mb-1"
+          className="block text-sm font-medium text-tinta mb-1"
         >
           Contraseña actual
         </label>
@@ -101,14 +101,14 @@ export function PasswordChangeForm({ userEmail }: Props) {
           required
           value={currentPassword}
           onChange={e => setCurrentPassword(e.target.value)}
-          className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+          className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
         />
       </div>
 
       <div>
         <label
           htmlFor="newPassword"
-          className="block text-sm font-medium text-[#2C1810] mb-1"
+          className="block text-sm font-medium text-tinta mb-1"
         >
           Contraseña nueva
         </label>
@@ -120,15 +120,15 @@ export function PasswordChangeForm({ userEmail }: Props) {
           minLength={8}
           value={newPassword}
           onChange={e => setNewPassword(e.target.value)}
-          className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+          className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
         />
-        <p className="text-xs text-[#a07860] mt-1">Mínimo 8 caracteres.</p>
+        <p className="text-xs text-tinta/60 mt-1">Mínimo 8 caracteres.</p>
       </div>
 
       <div>
         <label
           htmlFor="confirmPassword"
-          className="block text-sm font-medium text-[#2C1810] mb-1"
+          className="block text-sm font-medium text-tinta mb-1"
         >
           Repetir contraseña nueva
         </label>
@@ -139,15 +139,15 @@ export function PasswordChangeForm({ userEmail }: Props) {
           required
           value={confirm}
           onChange={e => setConfirm(e.target.value)}
-          className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+          className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
         />
       </div>
 
       {error && (
-        <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>
+        <p className="text-sm text-red-600 bg-red-50 rounded-marca px-3 py-2">{error}</p>
       )}
       {success && (
-        <p className="text-sm text-[#5F7355] bg-[#FAF6EE] rounded-lg px-3 py-2">
+        <p className="text-sm text-olivo bg-papel rounded-marca px-3 py-2">
           Contraseña actualizada correctamente.
         </p>
       )}
@@ -155,7 +155,7 @@ export function PasswordChangeForm({ userEmail }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="bg-[#C9633E] hover:bg-[#8E4226] text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="bg-terracota hover:opacity-90 text-sobre-terracota text-sm font-medium px-5 py-2 rounded-marca transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {loading ? 'Guardando…' : 'Guardar nueva contraseña'}
       </button>

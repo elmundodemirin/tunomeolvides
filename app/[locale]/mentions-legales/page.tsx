@@ -58,7 +58,7 @@ export default function MentionsLegalesPage() {
         expressément à toute autre juridiction susceptible de leur être applicable.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Dernière mise à jour : mai 2026</p>
+      <p className="text-xs text-tinta/60 mt-8">Dernière mise à jour : mai 2026</p>
     </LegalPage>
   )
 }

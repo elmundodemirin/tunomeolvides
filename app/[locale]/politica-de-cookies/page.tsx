@@ -30,8 +30,8 @@ export default function PoliticaCookiesPage() {
       <h3>Cookies necesarias (siempre activas)</h3>
       <p>Son imprescindibles para el funcionamiento del sitio. No pueden desactivarse.</p>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#EFE8D6] rounded-lg overflow-hidden">
-          <thead className="bg-[#EFE8D6]">
+        <table className="w-full text-sm border border-papel-hondo rounded-marca overflow-hidden">
+          <thead className="bg-papel-hondo">
             <tr>
               <th className="text-left px-4 py-2 font-semibold">Nombre</th>
               <th className="text-left px-4 py-2 font-semibold">Proveedor</th>
@@ -39,7 +39,7 @@ export default function PoliticaCookiesPage() {
               <th className="text-left px-4 py-2 font-semibold">Duración</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#EFE8D6]">
+          <tbody className="divide-y divide-papel-hondo">
             <tr>
               <td className="px-4 py-2 font-mono text-xs">sb-*</td>
               <td className="px-4 py-2">Supabase</td>
@@ -59,8 +59,8 @@ export default function PoliticaCookiesPage() {
       <h3>Cookies analíticas (requieren consentimiento)</h3>
       <p>Solo se instalan si acepta las cookies analíticas. Permiten conocer cómo se usa el sitio.</p>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-[#EFE8D6] rounded-lg overflow-hidden">
-          <thead className="bg-[#EFE8D6]">
+        <table className="w-full text-sm border border-papel-hondo rounded-marca overflow-hidden">
+          <thead className="bg-papel-hondo">
             <tr>
               <th className="text-left px-4 py-2 font-semibold">Nombre</th>
               <th className="text-left px-4 py-2 font-semibold">Proveedor</th>
@@ -68,7 +68,7 @@ export default function PoliticaCookiesPage() {
               <th className="text-left px-4 py-2 font-semibold">Duración</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#EFE8D6]">
+          <tbody className="divide-y divide-papel-hondo">
             <tr>
               <td className="px-4 py-2 font-mono text-xs">_ga</td>
               <td className="px-4 py-2">Google Analytics</td>
@@ -93,7 +93,7 @@ export default function PoliticaCookiesPage() {
       <p className="text-sm">
         Las IPs se anonimizan antes de cualquier procesamiento. Google Analytics no recibe datos
         personales identificables. Más información en la{' '}
-        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#C9633E] hover:underline">
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-terracota hover:underline">
           política de privacidad de Google
         </a>.
       </p>
@@ -116,7 +116,7 @@ export default function PoliticaCookiesPage() {
         de su dispositivo.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Última actualización: mayo de 2026</p>
+      <p className="text-xs text-tinta/60 mt-8">Última actualización: mayo de 2026</p>
     </LegalPage>
   )
 }

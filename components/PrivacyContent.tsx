@@ -69,12 +69,12 @@ function PrivacyContentES() {
       <p>
         Si considera que sus derechos no han sido atendidos, puede presentar una reclamación ante la
         <strong> Agencia Española de Protección de Datos (AEPD)</strong> en{' '}
-        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-[#C9633E] hover:underline">
+        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-terracota hover:underline">
           www.aepd.es
         </a>.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Última actualización: mayo de 2026</p>
+      <p className="text-xs text-tinta/70 mt-8">Última actualización: mayo de 2026</p>
     </>
   )
 }
@@ -140,12 +140,12 @@ function PrivacyContentEN() {
       <p>
         If you believe your rights have not been respected, you may lodge a complaint with the
         <strong> Spanish Data Protection Agency (AEPD)</strong> at{' '}
-        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-[#C9633E] hover:underline">
+        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-terracota hover:underline">
           www.aepd.es
         </a>.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Last updated: May 2026</p>
+      <p className="text-xs text-tinta/70 mt-8">Last updated: May 2026</p>
     </>
   )
 }
@@ -212,12 +212,12 @@ function PrivacyContentFR() {
       <p>
         Si vous estimez que vos droits n'ont pas été respectés, vous pouvez déposer une réclamation
         auprès de l'<strong>Agence espagnole de protection des données (AEPD)</strong> sur{' '}
-        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-[#C9633E] hover:underline">
+        <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-terracota hover:underline">
           www.aepd.es
         </a>.
       </p>
 
-      <p className="text-xs text-[#a07860] mt-8">Dernière mise à jour : mai 2026</p>
+      <p className="text-xs text-tinta/70 mt-8">Dernière mise à jour : mai 2026</p>
     </>
   )
 }

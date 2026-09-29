@@ -70,10 +70,10 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
     <div className="space-y-8 max-w-2xl">
 
       {/* Invitar usuario */}
-      <div className="bg-white rounded-2xl border border-[#EFE8D6] p-6">
+      <div className="bg-white rounded-marca border border-papel-hondo p-6">
         <h2
-          className="text-base font-semibold text-[#8E4226] mb-4"
-          style={{ fontFamily: 'Georgia, serif' }}
+          className="text-base font-semibold text-terracota mb-4"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Invitar nuevo administrador
         </h2>
@@ -85,12 +85,12 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
             placeholder="correo@ejemplo.com"
             value={inviteEmail}
             onChange={e => { setInviteEmail(e.target.value); setInviteSuccess(false); setInviteError(null) }}
-            className="flex-1 border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9633E] focus:border-transparent"
+            className="flex-1 border border-papel-hondo rounded-marca px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-terracota focus:border-transparent"
           />
           <button
             type="submit"
             disabled={inviteLoading}
-            className="bg-[#C9633E] hover:bg-[#8E4226] text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+            className="bg-terracota hover:opacity-90 text-sobre-terracota text-sm font-medium px-5 py-2 rounded-marca transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
           >
             {inviteLoading ? 'Enviando…' : 'Enviar invitación'}
           </button>
@@ -100,48 +100,48 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
           <p className="text-sm text-red-600 mt-2">{inviteError}</p>
         )}
         {inviteSuccess && (
-          <p className="text-sm text-[#5F7355] mt-2">
+          <p className="text-sm text-olivo mt-2">
             Invitación enviada. El usuario recibirá un email para activar su cuenta.
           </p>
         )}
-        <p className="text-xs text-[#a07860] mt-3">
+        <p className="text-xs text-tinta/60 mt-3">
           El usuario invitado recibirá un email con un enlace para establecer su contraseña
           y acceder al panel.
         </p>
       </div>
 
       {/* Lista de usuarios */}
-      <div className="bg-white rounded-2xl border border-[#EFE8D6] overflow-hidden">
-        <div className="px-6 py-4 border-b border-[#EFE8D6]">
+      <div className="bg-white rounded-marca border border-papel-hondo overflow-hidden">
+        <div className="px-6 py-4 border-b border-papel-hondo">
           <h2
-            className="text-base font-semibold text-[#8E4226]"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="text-base font-semibold text-terracota"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Administradores activos ({users.length})
           </h2>
         </div>
 
         {users.length === 0 ? (
-          <p className="px-6 py-4 text-sm text-[#a07860]">No hay usuarios registrados.</p>
+          <p className="px-6 py-4 text-sm text-tinta/60">No hay usuarios registrados.</p>
         ) : (
           <table className="w-full text-sm">
-            <thead className="bg-[#FAF6EE] border-b border-[#EFE8D6]">
+            <thead className="bg-papel border-b border-papel-hondo">
               <tr>
-                <th className="text-left px-6 py-3 text-[#8E4226] font-semibold">Email</th>
-                <th className="text-left px-6 py-3 text-[#8E4226] font-semibold">Último acceso</th>
+                <th className="text-left px-6 py-3 text-terracota font-semibold">Email</th>
+                <th className="text-left px-6 py-3 text-terracota font-semibold">Último acceso</th>
                 <th className="px-6 py-3"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EFE8D6]">
+            <tbody className="divide-y divide-papel-hondo">
               {users.map(u => (
-                <tr key={u.id} className="hover:bg-[#FAF6EE] transition-colors">
-                  <td className="px-6 py-3 text-[#2C1810]">
+                <tr key={u.id} className="hover:bg-papel transition-colors">
+                  <td className="px-6 py-3 text-tinta">
                     {u.email}
                     {u.id === currentUserId && (
-                      <span className="ml-2 text-xs text-[#5F7355] font-medium">(tú)</span>
+                      <span className="ml-2 text-xs text-olivo font-medium">(tú)</span>
                     )}
                   </td>
-                  <td className="px-6 py-3 text-[#a07860]">
+                  <td className="px-6 py-3 text-tinta/60">
                     {u.last_sign_in_at
                       ? new Date(u.last_sign_in_at).toLocaleDateString('es-ES', {
                           day: '2-digit', month: 'short', year: 'numeric',
@@ -150,10 +150,10 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
                   </td>
                   <td className="px-6 py-3 text-right">
                     {u.id === currentUserId ? (
-                      <span className="text-xs text-[#a07860]">—</span>
+                      <span className="text-xs text-tinta/60">—</span>
                     ) : confirmDeleteId === u.id ? (
                       <span className="inline-flex items-center gap-2">
-                        <span className="text-xs text-[#5a3f30]">¿Seguro?</span>
+                        <span className="text-xs text-tinta/85">¿Seguro?</span>
                         <button
                           onClick={() => handleDelete(u.id)}
                           disabled={deletingId === u.id}
@@ -163,7 +163,7 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
                         </button>
                         <button
                           onClick={() => setConfirmDeleteId(null)}
-                          className="text-xs text-[#a07860] hover:text-[#5a3f30]"
+                          className="text-xs text-tinta/60 hover:text-tinta/85"
                         >
                           Cancelar
                         </button>
@@ -171,7 +171,7 @@ export function UsersManager({ users: initialUsers, currentUserId }: Props) {
                     ) : (
                       <button
                         onClick={() => setConfirmDeleteId(u.id)}
-                        className="text-xs text-[#a07860] hover:text-red-600 transition-colors"
+                        className="text-xs text-tinta/60 hover:text-red-600 transition-colors"
                       >
                         Eliminar
                       </button>

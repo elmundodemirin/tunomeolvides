@@ -80,7 +80,7 @@ export function MessageActions({ messageId, handled, adminNotes }: Props) {
             type="button"
             onClick={handleMark}
             disabled={marking}
-            className="bg-[#5F7355] hover:bg-[#4a5b42] disabled:opacity-50 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            className="bg-olivo hover:opacity-90 disabled:opacity-50 text-white text-sm font-medium px-4 py-2 rounded-marca transition-colors"
           >
             {marking ? 'Guardando…' : 'Marcar como atendido'}
           </button>
@@ -89,7 +89,7 @@ export function MessageActions({ messageId, handled, adminNotes }: Props) {
 
       {/* Notas del administrador */}
       <div>
-        <label className="block text-xs font-semibold text-[#a07860] uppercase tracking-wide mb-2">
+        <label className="block text-xs font-semibold text-dorado-lema uppercase tracking-wide mb-2">
           Notas internas
         </label>
         <textarea
@@ -97,35 +97,35 @@ export function MessageActions({ messageId, handled, adminNotes }: Props) {
           onChange={e => setNotes(e.target.value)}
           rows={4}
           placeholder="Añade notas internas sobre este mensaje (no son visibles para el remitente)…"
-          className="w-full border border-[#EFE8D6] rounded-lg px-3 py-2 text-sm text-[#2C1810] placeholder-[#c4b09a] focus:outline-none focus:ring-2 focus:ring-[#C9633E] resize-none"
+          className="w-full border border-papel-hondo rounded-marca px-3 py-2 text-sm text-tinta placeholder-tinta/40 focus:outline-none focus:ring-2 focus:ring-terracota resize-none"
         />
         <button
           type="button"
           onClick={handleSaveNotes}
           disabled={savingNotes}
-          className="mt-2 text-sm text-[#C9633E] hover:text-[#8E4226] font-medium disabled:opacity-50 transition-colors"
+          className="mt-2 text-sm text-terracota hover:opacity-80 font-medium disabled:opacity-50 transition-colors"
         >
           {savingNotes ? 'Guardando…' : 'Guardar nota'}
         </button>
       </div>
 
       {/* Zona peligrosa */}
-      <div className="border-t border-[#EFE8D6] pt-6">
+      <div className="border-t border-papel-hondo pt-6">
         {confirmDelete ? (
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="text-sm text-[#5a3f30]">¿Seguro que quieres eliminar este mensaje?</span>
+            <span className="text-sm text-tinta/85">¿Seguro que quieres eliminar este mensaje?</span>
             <button
               type="button"
               onClick={handleDelete}
               disabled={deleting}
-              className="text-sm text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+              className="text-sm text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-marca transition-colors disabled:opacity-50"
             >
               {deleting ? 'Eliminando…' : 'Sí, eliminar'}
             </button>
             <button
               type="button"
               onClick={() => setConfirmDelete(false)}
-              className="text-sm text-[#a07860] hover:text-[#5a3f30] transition-colors"
+              className="text-sm text-tinta/60 hover:text-tinta/85 transition-colors"
             >
               Cancelar
             </button>

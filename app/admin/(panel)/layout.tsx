@@ -24,34 +24,34 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     <div className="flex flex-col lg:flex-row min-h-screen">
 
       {/* Top bar (solo móvil) */}
-      <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#8E4226] sticky top-0 z-30">
+      <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-terracota sticky top-0 z-30">
         <Link href="/admin/dashboard" className="flex items-center gap-2 no-underline">
           <FlowerIcon size={22} />
           <span
-            className="text-[#FAF6EE] text-sm font-bold"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="text-papel text-sm font-bold"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Tú no me olvides
           </span>
-          <span className="text-[#f0c9b0] text-xs">· Admin</span>
+          <span className="text-sobre-terracota/75 text-xs">· Admin</span>
         </Link>
         <AdminMobileMenu items={navLinks} userEmail={userEmail} />
       </header>
 
       {/* Barra lateral (solo escritorio) */}
-      <aside className="hidden lg:flex w-56 bg-[#8E4226] flex-col shrink-0">
+      <aside className="hidden lg:flex w-56 bg-terracota flex-col shrink-0">
         {/* Logo */}
-        <div className="px-5 py-6 border-b border-[#7a3b20]">
+        <div className="px-5 py-6 border-b border-black/15">
           <div className="mb-2">
             <FlowerIcon size={28} />
           </div>
           <span
-            className="text-[#FAF6EE] text-sm font-bold"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="text-papel text-sm font-bold"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
             Tú no me olvides
           </span>
-          <p className="text-[#f0c9b0] text-xs mt-0.5">Panel de administración</p>
+          <p className="text-sobre-terracota/75 text-xs mt-0.5">Panel de administración</p>
         </div>
 
         {/* Navegación */}
@@ -60,7 +60,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             <Link
               key={link.href}
               href={link.href}
-              className="block px-4 py-2 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
+              className="block px-4 py-2 text-sm text-sobre-terracota hover:bg-black/10 rounded-marca transition-colors"
             >
               {link.label}
             </Link>
@@ -68,11 +68,11 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         </nav>
 
         {/* Usuario + mi cuenta + cerrar sesión */}
-        <div className="px-3 py-4 border-t border-[#7a3b20]">
-          <p className="px-4 text-xs text-[#f0c9b0] truncate mb-2">{userEmail}</p>
+        <div className="px-3 py-4 border-t border-black/15">
+          <p className="px-4 text-xs text-sobre-terracota/75 truncate mb-2">{userEmail}</p>
           <Link
             href="/admin/cuenta"
-            className="block px-4 py-2 text-sm text-[#FAF6EE] hover:bg-[#C9633E] rounded-lg transition-colors"
+            className="block px-4 py-2 text-sm text-sobre-terracota hover:bg-black/10 rounded-marca transition-colors"
           >
             Mi cuenta
           </Link>

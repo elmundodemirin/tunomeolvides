@@ -22,7 +22,7 @@ export async function HomeHero({ locale }: Props) {
     <div
       className="relative min-h-[85dvh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden"
       style={{
-        background: 'linear-gradient(160deg, var(--color-terracotta-dark), var(--color-sage-dark))',
+        background: 'linear-gradient(160deg, var(--color-terracota), var(--color-olivo))',
       }}
     >
       {HERO_IMAGE_EXISTS && (
@@ -44,7 +44,7 @@ export async function HomeHero({ locale }: Props) {
       <div className="relative max-w-3xl mx-auto px-6 py-16 text-center">
         <h1
           className="text-4xl lg:text-6xl leading-tight mb-4 text-white"
-          style={{ fontFamily: 'Georgia, serif', textShadow: '0 2px 12px rgba(0,0,0,0.35)' }}
+          style={{ textShadow: '0 2px 12px rgba(0,0,0,0.35)' }}
         >
           {t('title')}
         </h1>
@@ -58,15 +58,16 @@ export async function HomeHero({ locale }: Props) {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href="#mapa"
-            className="inline-block py-4 px-7 rounded-lg text-white font-medium text-base transition-colors min-h-[48px]"
-            style={{ backgroundColor: 'var(--color-terracotta)' }}
+            className="inline-block py-4 px-7 rounded-marca bg-terracota text-sobre-terracota font-medium text-base transition-colors min-h-[48px]"
           >
             {t('cta1')}
           </a>
           {locale === 'es' && (
+            // Excepción deliberada: sobre foto con overlay oscuro, un botón
+            // secundario en olivo se perdería — se usa contorno blanco por contraste.
             <Link
               href="/ayuntamientos"
-              className="inline-block py-4 px-7 rounded-lg font-medium text-base text-white transition-colors border-2 border-white min-h-[48px] backdrop-blur-sm"
+              className="inline-block py-4 px-7 rounded-marca font-medium text-base text-white transition-colors border-2 border-white min-h-[48px] backdrop-blur-sm"
               style={{ backgroundColor: 'rgba(255,255,255,0.12)' }}
             >
               ¿Eres un ayuntamiento?

@@ -36,7 +36,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   if (error) {
     return (
-      <p className="p-8" style={{ color: 'var(--color-terracotta)' }}>
+      <p className="p-8" style={{ color: 'var(--color-terracota)' }}>
         {t('errorLoading')}: {error.message}
       </p>
     )
