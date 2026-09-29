@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
-/* Identidad de marca "Tú no me olvides". Prefijo --color-* / --radius-* /
-   --font-* para que Tailwind 4 genere utilidades automáticamente
-   (bg-terracota, text-tinta, rounded-marca, font-heading...). Los alias
-   --color-terracotta(-dark)/--color-sage(-dark)/--color-cream(-dark)/
-   --color-text se mantienen apuntando a los nuevos valores mientras se
-   termina de migrar todo el código a los nombres nuevos. */
+/* Identidad de marca "Tú no me olvides" — paleta de 3 colores (2026-09-29):
+   fondo único, verde olivo (títulos/texto/menú/iconos) y terracota (solo
+   botones, enlaces y marcadores del mapa). --color-papel-hondo, --olivo,
+   --dorado-lema y --sobre-terracota quedan como alias del mismo valor de
+   --papel/--tinta en vez de colores propios, para no tener que reescribir
+   cada clase bg-papel-hondo/text-olivo/text-dorado-lema del código — así
+   se actualizan todas a la vez cambiando solo estos alias. Prefijo
+   --color-* / --radius-* / --font-* para que Tailwind 4 genere utilidades
+   automáticamente (bg-terracota, text-tinta, rounded-marca, font-heading...). */
 @theme {
-  --color-papel:            #F2E9D8;
-  --color-papel-hondo:      #E8DCC3;
-  --color-tinta:            #332318;
-  --color-terracota:        #AD5F3B;
-  --color-sobre-terracota:  #F2E9D8;
-  --color-olivo:            #6F7A56;
-  --color-dorado-lema:      #B08A3E;
+  --color-papel:            #FAF7F2;
+  --color-papel-hondo:      #FAF7F2;
+  --color-tinta:            #4A5236;
+  --color-terracota:        #9A5530;
+  --color-sobre-terracota:  #FAF7F2;
+  --color-olivo:            #4A5236;
+  --color-dorado-lema:      #4A5236;
 
   --radius-marca: 10px;
 
@@ -29,7 +32,7 @@
   --color-sage-dark:       var(--color-olivo);
   --color-cream:           var(--color-papel);
   --color-cream-dark:      var(--color-papel-hondo);
-  --color-flower:          #6B8CB8;
+  --color-flower:          var(--color-olivo);
   --color-text:            var(--color-tinta);
 }
 
@@ -100,11 +103,11 @@ h1, h2, h3 {
 /* ── vanilla-cookieconsent: identidad visual del proyecto ── */
 :root {
   --cc-btn-primary-bg:          var(--color-terracota);
-  --cc-btn-primary-hover-bg:    #8E4226;
+  --cc-btn-primary-hover-bg:    color-mix(in srgb, var(--color-terracota) 85%, black);
   --cc-btn-primary-border-color: var(--color-terracota);
-  --cc-btn-primary-hover-border-color: #8E4226;
+  --cc-btn-primary-hover-border-color: color-mix(in srgb, var(--color-terracota) 85%, black);
   --cc-btn-secondary-bg:        var(--color-papel-hondo);
-  --cc-btn-secondary-hover-bg:  #d6ccb8;
+  --cc-btn-secondary-hover-bg:  color-mix(in srgb, var(--color-papel-hondo) 90%, black);
   --cc-btn-secondary-color:     var(--color-tinta);
   --cc-btn-secondary-border-color: var(--color-papel-hondo);
   --cc-bg:                      var(--color-papel);

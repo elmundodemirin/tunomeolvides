@@ -3,8 +3,10 @@ type Props = {
   className?: string
 }
 
-// La flor del no-me-olvides: 5 pétalos azules en torno a un centro crema.
+// La flor del no-me-olvides: 5 pétalos en torno a un centro claro.
 // Usada en la cabecera pública y en el panel de administración.
+// Color olivo (paleta de 3 colores: terracota se reserva para botones,
+// enlaces y marcadores del mapa).
 export function FlowerIcon({ size = 26, className }: Props) {
   return (
     <svg
@@ -23,13 +25,13 @@ export function FlowerIcon({ size = 26, className }: Props) {
           cy="14"
           rx="4"
           ry="8"
-          fill="#6B8CB8"
+          fill="var(--color-olivo)"
           opacity="0.9"
           transform={`rotate(${deg} 14 14) translate(0 -5)`}
         />
       ))}
       <circle cx="14" cy="14" r="4" fill="var(--color-papel)" />
-      <circle cx="14" cy="14" r="2.5" fill="#6B8CB8" />
+      <circle cx="14" cy="14" r="2.5" fill="var(--color-olivo)" />
     </svg>
   )
 }

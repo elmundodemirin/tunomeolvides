@@ -15,13 +15,14 @@ type Props = {
 const DEFAULT_CENTER: [number, number] = [40.4, -3.7]
 const DEFAULT_ZOOM = 6
 
-// SVG pin with forget-me-not flower color (sized 36x44 for accessible touch target)
+// SVG pin en terracota, la marca reserva ese color solo para botones,
+// enlaces y marcadores del mapa (sized 36x44 for accessible touch target)
 const MARKER_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="44" viewBox="0 0 28 36" aria-hidden="true">
   <path d="M14 0C6.268 0 0 6.268 0 14c0 9.333 14 22 14 22S28 23.333 28 14C28 6.268 21.732 0 14 0z"
-        fill="#6B8CB8" stroke="#4a6a96" stroke-width="1.5"/>
-  <circle cx="14" cy="14" r="6" fill="white" opacity="0.9"/>
-  <circle cx="14" cy="14" r="3" fill="#6B8CB8"/>
+        fill="var(--color-terracota)" stroke="var(--color-olivo)" stroke-width="1.5"/>
+  <circle cx="14" cy="14" r="6" fill="var(--color-papel)" opacity="0.9"/>
+  <circle cx="14" cy="14" r="3" fill="var(--color-terracota)"/>
 </svg>`
 
 const MORE_INFO_LABEL: Record<string, string> = {
