@@ -71,12 +71,12 @@ export async function HomeIntro({ locale }: Props) {
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
       <h2
-        className="text-2xl lg:text-4xl leading-tight mb-5 max-w-3xl"
+        className="text-2xl lg:text-4xl leading-tight mb-5 max-w-3xl mx-auto text-center"
         style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
       >
         {t('title')}
       </h2>
-      <p className="text-sm lg:text-base leading-relaxed mb-12 max-w-2xl" style={{ color: 'var(--color-tinta)' }}>
+      <p className="text-sm lg:text-base leading-relaxed mb-12 max-w-2xl mx-auto" style={{ color: 'var(--color-tinta)' }}>
         {t('intro')}
       </p>
 
