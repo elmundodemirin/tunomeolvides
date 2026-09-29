@@ -7,11 +7,7 @@ import { siteUrl } from '@/lib/seo'
 // española y su público (concejales, técnicos municipales) lee en español.
 // No existe equivalente /en o /fr.
 
-const HOOK =
-  'Proyecto subvencionable a través de diferentes líneas de ayuda. Alineado con el ODS 11, «Ciudades y comunidades sostenibles», y con el modelo de Destino Turístico Inteligente.'
 const TITLE = '¿Tu municipio tiene una historia que contar?'
-const SUBTITLE =
-  'Tú no me olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.'
 
 export async function generateMetadata({
   params,
@@ -99,12 +95,6 @@ export default async function AyuntamientosPage({
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
-      <p
-        className="text-left text-sm font-semibold leading-snug mb-4 max-w-2xl px-4 py-2 rounded-marca inline-block"
-        style={{ color: 'var(--color-terracota)', backgroundColor: 'var(--color-papel-hondo)' }}
-      >
-        {HOOK}
-      </p>
       <h1
         className="text-3xl lg:text-4xl leading-tight mb-4"
         style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
@@ -112,7 +102,8 @@ export default async function AyuntamientosPage({
         {TITLE}
       </h1>
       <p className="text-base lg:text-lg leading-relaxed mb-14 max-w-2xl" style={{ color: 'var(--color-tinta)' }}>
-        {SUBTITLE}
+        Tú no me olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización
+        turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.
       </p>
 
       <div className="grid sm:grid-cols-3 gap-8 mb-14">
