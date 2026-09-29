@@ -25,7 +25,7 @@ export default function MentionsLegalesPage() {
 
       <h2>2. Objet et activité</h2>
       <p>
-        <em>Tú no me olvides</em> est une plateforme dédiée à la recherche, la documentation et la
+        <em><span className="marca">Tú no me olvides</span></em> est une plateforme dédiée à la recherche, la documentation et la
         diffusion du patrimoine culturel des municipalités de l'Espagne rurale. Elle propose des
         services de digitalisation touristique à des entités publiques et privées, notamment le
         développement de sites web touristiques, la production de contenus et des audioguides

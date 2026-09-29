@@ -102,8 +102,8 @@ export default async function AyuntamientosPage({
         {TITLE}
       </h1>
       <p className="text-base lg:text-lg leading-relaxed mb-14 max-w-2xl" style={{ color: 'var(--color-tinta)' }}>
-        Tú no me olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización
-        turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.
+        <span className="marca">Tú no me olvides</span> ofrece a los pequeños ayuntamientos un servicio completo de
+        digitalización turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.
       </p>
 
       <div className="grid sm:grid-cols-3 gap-8 mb-14">

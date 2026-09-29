@@ -21,21 +21,21 @@ const LINKS_BY_LOCALE: Record<string, { href: string; label: string }[]> = {
   ],
 }
 
-const STRINGS: Record<string, { manage: string; navAria: string; rights: (year: number) => string }> = {
+const STRINGS: Record<string, { manage: string; navAria: string; rights: (year: number) => React.ReactNode }> = {
   es: {
     manage: 'Gestionar cookies',
     navAria: 'Avisos legales',
-    rights: (year) => `© ${year} Tú no me olvides · Todos los derechos reservados`,
+    rights: (year) => <>© {year} <span className="marca">Tú no me olvides</span> · Todos los derechos reservados</>,
   },
   en: {
     manage: 'Manage cookies',
     navAria: 'Legal',
-    rights: (year) => `© ${year} Tú no me olvides · All rights reserved`,
+    rights: (year) => <>© {year} <span className="marca">Tú no me olvides</span> · All rights reserved</>,
   },
   fr: {
     manage: 'Gérer les cookies',
     navAria: 'Mentions légales',
-    rights: (year) => `© ${year} Tú no me olvides · Tous droits réservés`,
+    rights: (year) => <>© {year} <span className="marca">Tú no me olvides</span> · Tous droits réservés</>,
   },
 }
 

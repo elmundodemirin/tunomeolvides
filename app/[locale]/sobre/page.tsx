@@ -24,12 +24,12 @@ export default async function SobrePage({ params }: { params: Promise<{ locale: 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
       <h1 className="text-3xl mb-6" style={{ color: 'var(--color-terracota)' }}>{t('title')}</h1>
-      <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('intro')}</p>
-      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body')}</p>
+      <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t.rich('intro', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
+      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t.rich('body', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body2')}</p>
-      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body3')}</p>
+      <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t.rich('body3', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body4')}</p>
-      <p className="leading-relaxed" style={{ color: 'var(--color-tinta)' }}>{t('body5')}</p>
+      <p className="leading-relaxed" style={{ color: 'var(--color-tinta)' }}>{t.rich('body5', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
     </div>
   )
 }

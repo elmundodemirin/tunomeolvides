@@ -28,7 +28,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         <Link href="/admin/dashboard" className="flex items-center gap-2 no-underline">
           <FlowerIcon size={22} />
           <span
-            className="text-papel text-sm font-bold"
+            className="text-papel text-sm font-bold marca"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             Tú no me olvides
@@ -46,7 +46,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             <FlowerIcon size={28} />
           </div>
           <span
-            className="text-papel text-sm font-bold"
+            className="text-papel text-sm font-bold marca"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             Tú no me olvides

@@ -70,7 +70,7 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
               <FlowerIcon size={28} />
             </div>
             <div
-              className="text-papel text-sm font-bold"
+              className="text-papel text-sm font-bold marca"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               Tú no me olvides

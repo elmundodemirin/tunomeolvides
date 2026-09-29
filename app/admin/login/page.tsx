@@ -78,7 +78,7 @@ export default function LoginPage() {
             className="text-2xl font-bold text-terracota"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Tú no me olvides
+            <span className="marca">Tú no me olvides</span>
           </h1>
           <p className="text-sm text-olivo mt-1">Panel de administración</p>
         </div>

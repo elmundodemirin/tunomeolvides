@@ -46,7 +46,7 @@ export async function HomeHero({ locale }: Props) {
           className="text-4xl lg:text-6xl leading-tight mb-4 text-white"
           style={{ textShadow: '0 2px 12px rgba(0,0,0,0.35)' }}
         >
-          {t('title')}
+          <span className="marca">{t('title')}</span>
         </h1>
         <p className="text-lg lg:text-2xl leading-snug mb-5 text-white">
           {t('subtitle')}

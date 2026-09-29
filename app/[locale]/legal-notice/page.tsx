@@ -25,7 +25,7 @@ export default function LegalNoticePage() {
 
       <h2>2. Purpose and activity</h2>
       <p>
-        <em>Tú no me olvides</em> is a platform dedicated to the research, documentation and
+        <em><span className="marca">Tú no me olvides</span></em> is a platform dedicated to the research, documentation and
         dissemination of the cultural heritage of the municipalities of depopulated rural Spain.
         It provides tourism digitisation services to public and private entities, including the
         development of tourism websites, content production, and on-site digital audioguides.

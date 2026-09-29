@@ -25,7 +25,7 @@ export default function AvisoLegalPage() {
 
       <h2>2. Objeto y actividad</h2>
       <p>
-        <em>Tú no me olvides</em> es una plataforma dedicada a la investigación, documentación y difusión
+        <em><span className="marca">Tú no me olvides</span></em> es una plataforma dedicada a la investigación, documentación y difusión
         del patrimonio cultural de los municipios de la España vaciada. Ofrece servicios de
         digitalización turística a entidades públicas y privadas, incluyendo el desarrollo de
         plataformas web turísticas, producción de contenidos y audioguías digitales en destino.

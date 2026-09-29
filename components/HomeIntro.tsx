@@ -74,7 +74,7 @@ export async function HomeIntro({ locale }: Props) {
         className="text-2xl lg:text-4xl leading-tight mb-5 max-w-3xl mx-auto text-center"
         style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
       >
-        {t('title')}
+        {t.rich('title', { marca: (chunks) => <span className="marca">{chunks}</span> })}
       </h2>
       <p className="text-sm lg:text-base leading-relaxed mb-12 max-w-2xl mx-auto" style={{ color: 'var(--color-tinta)' }}>
         {t('intro')}
