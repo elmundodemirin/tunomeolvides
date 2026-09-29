@@ -42,20 +42,17 @@ export default async function LocaleLayout({
         }}
       >
         <Link href={homeHref} className="flex items-center gap-3 no-underline">
-          {/* Logo como "insignia": tarjeta con su propio fondo crema (el de la
-              imagen), separada del header con sombra, en vez de forzar un
-              recorte/transparencia que no tenemos. */}
-          <span
-            className="block rounded-marca overflow-hidden shrink-0"
-            style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.15)', border: '1px solid var(--color-papel-hondo)' }}
-          >
+          {/* Solo el emblema del pueblo (sin el texto "Tú no me olvides" ni
+              la franja inferior de la imagen original, recortada con
+              object-position). Fondo de la imagen ya es prácticamente el
+              mismo crema del header, así que no necesita tarjeta propia. */}
+          <span className="block relative overflow-hidden shrink-0 h-11 w-[116px] lg:h-14 lg:w-[148px]">
             <Image
-              src="/logo-tunomeolvides.jpg"
+              src="/logo-tunomeolvides.png"
               alt="Tú no me olvides"
-              width={180}
-              height={115}
+              fill
               priority
-              className="block h-11 w-auto lg:h-14"
+              className="object-cover object-top"
             />
           </span>
         </Link>
