@@ -39,7 +39,8 @@ export function MobileMenu({ items, className = '' }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`p-1 -mr-1 rounded text-white hover:bg-white/10 transition-colors ${className}`}
+        className={`p-1 -mr-1 rounded hover:bg-black/5 transition-colors ${className}`}
+        style={{ color: 'var(--color-text)' }}
         aria-label={t('openMenu')}
         aria-haspopup="dialog"
         aria-expanded={open}

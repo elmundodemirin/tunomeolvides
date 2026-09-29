@@ -171,7 +171,7 @@ export default function SetPasswordPage() {
             Establece tu contraseña
           </h1>
           <p className="text-sm text-[#5F7355] mt-1">
-            Bienvenida al panel de No Me Olvides
+            Bienvenida al panel de Tú no me olvides
           </p>
         </div>
 

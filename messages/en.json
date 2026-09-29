@@ -23,28 +23,28 @@
     "filterClear": "Clear filters",
     "noResults": "No results match these filters.",
     "mapAriaLabel": "Interactive map of villages in rural Spain",
-    "metaTitle": "No Me Olvides — A Sound Map of Rural Spain",
+    "metaTitle": "Tú no me olvides — A Sound Map of Rural Spain",
     "metaDescription": "Explore villages of depopulated rural Spain through an interactive map with first-person audio stories told by those who lived them."
   },
   "about": {
     "title": "About the project",
-    "intro": "No Me Olvides is a platform to document, preserve and share the cultural heritage of the villages of depopulated rural Spain. Every point on the map is a village with a history, with voices that once lived there, and with a memory that deserves to be told.",
-    "body": "No Me Olvides offers an on-site digital guide: a voice that accompanies national and international visitors during their stay in the village, uncovering its points of interest one by one and narrating their peculiarities, anecdotes and secrets. No app to download. No registration. Just scan the QR code and listen.",
+    "intro": "Tú no me olvides is a platform to document, preserve and share the cultural heritage of the villages of depopulated rural Spain. Every point on the map is a village with a history, with voices that once lived there, and with a memory that deserves to be told.",
+    "body": "Tú no me olvides offers an on-site digital guide: a voice that accompanies national and international visitors during their stay in the village, uncovering its points of interest one by one and narrating their peculiarities, anecdotes and secrets. No app to download. No registration. Just scan the QR code and listen.",
     "body2": "It doesn't talk about history. It tells stories. Of life, of memories, of curiosities that turn a walk through a small village into something unique. A whisper of longing that carries you back in time.",
-    "body3": "But No Me Olvides isn't only an audioguide. Every locality that joins the project gets a complete tourism website: its points of interest with a page and audioguide, its documented routes, its places to eat and stay, its calendar of festivals and events — all positioned online so that travellers looking for an authentic destination find that village before they arrive.",
+    "body3": "But Tú no me olvides isn't only an audioguide. Every locality that joins the project gets a complete tourism website: its points of interest with a page and audioguide, its documented routes, its places to eat and stay, its calendar of festivals and events — all positioned online so that travellers looking for an authentic destination find that village before they arrive.",
     "body4": "And, finally, something no small village has ever had before: real data about its visitors. Every QR code scan is logged — how many, when, and where from. For the first time, a village with no tourist office can know who is visiting and what interests them.",
-    "body5": "Because every village has a story that deserves to be told. No Me Olvides is here to tell it.",
+    "body5": "Because every village has a story that deserves to be told. Tú no me olvides is here to tell it.",
     "metaTitle": "About the project — rural heritage & memory",
-    "metaDescription": "No Me Olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives."
+    "metaDescription": "Tú no me olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives."
   },
   "hero": {
-    "title": "No Me Olvides",
+    "title": "Tú no me olvides",
     "subtitle": "We rescue the stories of rural Spain's villages and put them on the map.",
     "paragraph": "We research, narrate and digitise the heritage of small towns that deserve to be known — an on-site digital guide that accompanies visitors point by point, telling the secrets of each place.",
     "cta1": "Discover the villages"
   },
   "homeIntro": {
-    "title": "No Me Olvides gathers the voices of Spain's villages and gives them a place in a digital, globalised world.",
+    "title": "Tú no me olvides gathers the voices of Spain's villages and gives them a place in a digital, globalised world.",
     "intro": "This isn't only about heritage. It's everything that makes a village unique: its routes, its festivals, its restaurants, its places to stay, its traditions. Every locality that joins the project gets a complete digital platform that turns it into a real tourist destination.",
     "poiTitle": "Points of interest",
     "poiBody": "Heritage, history, nature, viewpoints. Each point with its own page, photograph and first-person audioguide. Visitors scan the QR code and hear the story of that place as if an expert guide were right beside them.",
@@ -59,7 +59,7 @@
     "title": "Contact",
     "intro": "Do you have information about a village, want to collaborate, or simply want to get in touch? Write to us.",
     "metaTitle": "Contact — share your story",
-    "metaDescription": "Do you have information about a village or want to collaborate with No Me Olvides? Get in touch with us.",
+    "metaDescription": "Do you have information about a village or want to collaborate with Tú no me olvides? Get in touch with us.",
     "name": "Name",
     "email": "Email address",
     "message": "Message",

@@ -57,7 +57,7 @@ function EventsIcon() {
 
 type Props = { locale: string }
 
-// Bloque "Qué es No Me Olvides", primera sección de la home (encima del mapa).
+// Bloque "Qué es Tú no me olvides", primera sección de la home (encima del mapa).
 export async function HomeIntro({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'homeIntro' })
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = buildPageMetadata({
   page: 'privacy',
   locale: 'es',
   title: 'Política de privacidad',
-  description: 'Cómo No Me Olvides recoge, trata y protege tus datos personales, conforme al RGPD.',
+  description: 'Cómo Tú no me olvides recoge, trata y protege tus datos personales, conforme al RGPD.',
 })
 
 export default function PrivacidadPage() {

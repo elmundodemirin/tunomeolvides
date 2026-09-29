@@ -7,7 +7,7 @@ export const metadata: Metadata = buildPageMetadata({
   page: 'privacy',
   locale: 'en',
   title: 'Privacy policy',
-  description: 'How No Me Olvides collects, processes and protects your personal data, in compliance with the GDPR.',
+  description: 'How Tú no me olvides collects, processes and protects your personal data, in compliance with the GDPR.',
 })
 
 export default function PrivacyPolicyPage() {

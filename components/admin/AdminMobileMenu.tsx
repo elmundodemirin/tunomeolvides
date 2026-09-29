@@ -73,7 +73,7 @@ export function AdminMobileMenu({ items, userEmail, className = '' }: Props) {
               className="text-[#FAF6EE] text-sm font-bold"
               style={{ fontFamily: 'Georgia, serif' }}
             >
-              No Me Olvides
+              Tú no me olvides
             </div>
             <p className="text-[#f0c9b0] text-xs mt-0.5">Panel de administración</p>
           </div>

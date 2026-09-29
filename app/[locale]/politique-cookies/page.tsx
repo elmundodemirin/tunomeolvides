@@ -7,7 +7,7 @@ export const metadata: Metadata = buildPageMetadata({
   page: 'cookiePolicy',
   locale: 'fr',
   title: 'Politique de cookies',
-  description: 'Quels cookies utilise No Me Olvides, dans quel but et comment gérer vos préférences.',
+  description: 'Quels cookies utilise Tú no me olvides, dans quel but et comment gérer vos préférences.',
 })
 
 export default function PolitiqueCookiesPage() {

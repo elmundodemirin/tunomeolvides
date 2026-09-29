@@ -12,7 +12,7 @@ export function HomeAyuntamientosTeaser() {
         ¿Tu municipio tiene una historia que contar?
       </h2>
       <p className="text-sm lg:text-base leading-relaxed mb-6" style={{ color: 'var(--color-text)' }}>
-        No Me Olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización
+        Tú no me olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización
         turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.
       </p>
       <Link

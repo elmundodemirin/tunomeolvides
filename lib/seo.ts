@@ -43,7 +43,7 @@ export function buildPageMetadata({
   locale: Locale
   title: string
   description: string
-  /** true solo para la home: evita que el template "%s · No Me Olvides" del layout raíz duplique el nombre de marca. */
+  /** true solo para la home: evita que el template "%s · Tú no me olvides" del layout raíz duplique el nombre de marca. */
   absoluteTitle?: boolean
 }): Metadata {
   const paths = PAGE_PATHS[page]
@@ -65,7 +65,7 @@ export function buildPageMetadata({
       title,
       description,
       url: canonicalUrl,
-      siteName: 'No Me Olvides',
+      siteName: 'Tú no me olvides',
       locale: OG_LOCALES[locale],
       type: 'website',
     },
@@ -89,7 +89,7 @@ export function buildHomeJsonLd(localities: Locality[], locale: string) {
     '@graph': [
       {
         '@type': 'WebSite',
-        name: 'No Me Olvides',
+        name: 'Tú no me olvides',
         url: siteUrl,
         inLanguage: locale,
       },

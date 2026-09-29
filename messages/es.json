@@ -23,28 +23,28 @@
     "filterClear": "Limpiar filtros",
     "noResults": "No hay resultados con estos filtros.",
     "mapAriaLabel": "Mapa interactivo de localidades de la España vaciada",
-    "metaTitle": "No Me Olvides — Mapa sonoro de la España vaciada",
+    "metaTitle": "Tú no me olvides — Mapa sonoro de la España vaciada",
     "metaDescription": "Descubre pueblos de la España vaciada a través de un mapa interactivo con audios narrados en primera persona por quienes los vivieron."
   },
   "about": {
     "title": "Sobre el proyecto",
-    "intro": "No Me Olvides es una plataforma para documentar, preservar y difundir el patrimonio cultural de los pueblos de la España vaciada. Cada punto en el mapa es un pueblo con historia, con voces que lo habitaron y con una memoria que merece ser contada.",
-    "body": "No Me Olvides propone un guía digital en destino: una voz que acompaña al turista nacional o internacional durante su visita al municipio, descubriendo uno a uno los puntos de interés y narrando sus peculiaridades, anécdotas y secretos. Sin descargar ninguna aplicación. Sin registro. Solo escanear el código QR y escuchar.",
+    "intro": "Tú no me olvides es una plataforma para documentar, preservar y difundir el patrimonio cultural de los pueblos de la España vaciada. Cada punto en el mapa es un pueblo con historia, con voces que lo habitaron y con una memoria que merece ser contada.",
+    "body": "Tú no me olvides propone un guía digital en destino: una voz que acompaña al turista nacional o internacional durante su visita al municipio, descubriendo uno a uno los puntos de interés y narrando sus peculiaridades, anécdotas y secretos. Sin descargar ninguna aplicación. Sin registro. Solo escanear el código QR y escuchar.",
     "body2": "No habla de historia. Habla de historias. De vida, de recuerdos, de curiosidades que hacen que un paseo por un pueblo pequeño se convierta en algo único. Un susurro de anhelo que te traslada al pasado.",
-    "body3": "Pero No Me Olvides no es solo una audioguía. Cada localidad que entra en el proyecto recibe una plataforma web turística completa: sus puntos de interés con ficha y audioguía, sus rutas documentadas, sus establecimientos, su agenda de fiestas y eventos. Todo posicionado en internet para que el viajero que busca un destino auténtico encuentre ese municipio antes de llegar.",
+    "body3": "Pero Tú no me olvides no es solo una audioguía. Cada localidad que entra en el proyecto recibe una plataforma web turística completa: sus puntos de interés con ficha y audioguía, sus rutas documentadas, sus establecimientos, su agenda de fiestas y eventos. Todo posicionado en internet para que el viajero que busca un destino auténtico encuentre ese municipio antes de llegar.",
     "body4": "Y al final, lo que ningún pueblo pequeño ha tenido nunca: datos reales sobre sus visitantes. Cada código QR registra cuántas personas lo escanean, cuándo y de dónde vienen. Por primera vez, un municipio sin oficina de turismo puede saber quién le visita y qué le interesa.",
-    "body5": "Porque cada pueblo tiene una historia que merece ser contada. No Me Olvides está aquí para contarla.",
+    "body5": "Porque cada pueblo tiene una historia que merece ser contada. Tú no me olvides está aquí para contarla.",
     "metaTitle": "Sobre el proyecto — memoria y patrimonio rural",
-    "metaDescription": "No Me Olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona."
+    "metaDescription": "Tú no me olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona."
   },
   "hero": {
-    "title": "No me olvides",
+    "title": "Tú no me olvides",
     "subtitle": "Rescatamos las historias de los pueblos de la España vaciada y las ponemos en el mapa.",
     "paragraph": "Investigamos, narramos y digitalizamos el patrimonio de pequeños municipios que merecen ser conocidos. Una guía digital en destino que acompaña al visitante punto a punto, contándole los secretos de cada lugar.",
     "cta1": "Descubre los pueblos"
   },
   "homeIntro": {
-    "title": "No me olvides recoge las voces de los pueblos y les da valor en un mundo digital y globalizado.",
+    "title": "Tú no me olvides recoge las voces de los pueblos y les da valor en un mundo digital y globalizado.",
     "intro": "No se trata solo de patrimonio. Es todo lo que hace único a un municipio: sus rutas, sus fiestas, sus restaurantes, sus alojamientos, sus tradiciones. Cada localidad que entra en el proyecto recibe una plataforma digital completa que lo convierte en un destino turístico real.",
     "poiTitle": "Puntos de interés",
     "poiBody": "Patrimonio, historia, naturaleza, miradores. Cada punto con su ficha, su fotografía y su audioguía narrada en primera persona. El visitante escanea el QR y escucha la historia de ese lugar como si un guía experto estuviera a su lado.",
@@ -59,7 +59,7 @@
     "title": "Contacto",
     "intro": "¿Tienes información sobre un pueblo, quieres colaborar o simplemente deseas ponerte en contacto? Escríbenos.",
     "metaTitle": "Contacto — cuéntanos tu historia",
-    "metaDescription": "¿Tienes información sobre un pueblo o quieres colaborar con No Me Olvides? Ponte en contacto con nosotros.",
+    "metaDescription": "¿Tienes información sobre un pueblo o quieres colaborar con Tú no me olvides? Ponte en contacto con nosotros.",
     "name": "Nombre",
     "email": "Correo electrónico",
     "message": "Mensaje",

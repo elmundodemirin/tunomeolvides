@@ -9,7 +9,7 @@ import { siteUrl } from '@/lib/seo'
 
 const TITLE = '¿Tu municipio tiene una historia que contar?'
 const SUBTITLE =
-  'No Me Olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.'
+  'Tú no me olvides ofrece a los pequeños ayuntamientos un servicio completo de digitalización turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.'
 
 export async function generateMetadata({
   params,
@@ -28,10 +28,10 @@ export async function generateMetadata({
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${TITLE} · No Me Olvides`,
+      title: `${TITLE} · Tú no me olvides`,
       description,
       url,
-      siteName: 'No Me Olvides',
+      siteName: 'Tú no me olvides',
       locale: 'es_ES',
       type: 'website',
     },

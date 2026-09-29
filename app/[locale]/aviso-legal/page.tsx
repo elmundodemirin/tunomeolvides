@@ -6,7 +6,7 @@ export const metadata: Metadata = buildPageMetadata({
   page: 'legalNotice',
   locale: 'es',
   title: 'Aviso legal',
-  description: 'Datos identificativos, condiciones de uso y régimen de responsabilidad del sitio web No Me Olvides.',
+  description: 'Datos identificativos, condiciones de uso y régimen de responsabilidad del sitio web Tú no me olvides.',
 })
 
 export default function AvisoLegalPage() {
@@ -25,7 +25,7 @@ export default function AvisoLegalPage() {
 
       <h2>2. Objeto y actividad</h2>
       <p>
-        <em>No Me Olvides</em> es una plataforma dedicada a la investigación, documentación y difusión
+        <em>Tú no me olvides</em> es una plataforma dedicada a la investigación, documentación y difusión
         del patrimonio cultural de los municipios de la España vaciada. Ofrece servicios de
         digitalización turística a entidades públicas y privadas, incluyendo el desarrollo de
         plataformas web turísticas, producción de contenidos y audioguías digitales en destino.

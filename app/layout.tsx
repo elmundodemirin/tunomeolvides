@@ -7,8 +7,8 @@ import { siteUrl } from '@/lib/seo'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'No Me Olvides',
-    template: '%s · No Me Olvides',
+    default: 'Tú no me olvides',
+    template: '%s · Tú no me olvides',
   },
   description: 'Patrimonio cultural de la España vaciada. Un mapa de voces, memoria y territorio.',
 }

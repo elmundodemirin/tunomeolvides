@@ -25,17 +25,17 @@ const STRINGS: Record<string, { manage: string; navAria: string; rights: (year: 
   es: {
     manage: 'Gestionar cookies',
     navAria: 'Avisos legales',
-    rights: (year) => `© ${year} No Me Olvides · Todos los derechos reservados`,
+    rights: (year) => `© ${year} Tú no me olvides · Todos los derechos reservados`,
   },
   en: {
     manage: 'Manage cookies',
     navAria: 'Legal',
-    rights: (year) => `© ${year} No Me Olvides · All rights reserved`,
+    rights: (year) => `© ${year} Tú no me olvides · All rights reserved`,
   },
   fr: {
     manage: 'Gérer les cookies',
     navAria: 'Mentions légales',
-    rights: (year) => `© ${year} No Me Olvides · Tous droits réservés`,
+    rights: (year) => `© ${year} Tú no me olvides · Tous droits réservés`,
   },
 }
 

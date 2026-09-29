@@ -70,7 +70,8 @@ export default function LocaleSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1 px-2 py-1 rounded border border-white/40 text-xs hover:bg-white/10 transition-colors uppercase text-white"
+        className="flex items-center gap-1 px-2 py-1 rounded border text-xs hover:bg-black/5 transition-colors uppercase"
+        style={{ borderColor: 'var(--color-cream-dark)', color: 'var(--color-text)' }}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={`Idioma actual: ${currentLocale.toUpperCase()}`}

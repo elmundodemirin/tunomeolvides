@@ -5,8 +5,8 @@ import Link from 'next/link'
 import LocaleSwitcher from '@/components/LocaleSwitcher'
 import { CookieBanner } from '@/components/CookieBanner'
 import { Footer } from '@/components/Footer'
+import Image from 'next/image'
 import { MobileMenu } from '@/components/MobileMenu'
-import { FlowerIcon } from '@/components/FlowerIcon'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -22,7 +22,6 @@ export default async function LocaleLayout({
   const { locale } = await params
   const messages = await getMessages()
   const t = await getTranslations({ locale, namespace: 'nav' })
-  const tHeader = await getTranslations({ locale, namespace: 'header' })
 
   // URLs por idioma (ES sin prefijo, EN/FR con prefijo y slug traducido)
   const homeHref = locale === 'es' ? '/' : `/${locale}`
@@ -36,41 +35,45 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <header
-        className="px-6 py-3.5 flex items-center justify-between sticky top-0 z-30"
+        className="px-6 py-2.5 flex items-center justify-between sticky top-0 z-30"
         style={{
-          backgroundColor: 'var(--color-terracotta-dark)',
+          backgroundColor: 'var(--color-cream)',
           boxShadow: '0 1px 0 rgba(0,0,0,0.08)',
         }}
       >
         <Link href={homeHref} className="flex items-center gap-3 no-underline">
-          <FlowerIcon size={26} />
-          <div>
-            <div
-              className="text-lg leading-tight text-white"
-              style={{ fontFamily: 'Georgia, serif' }}
-            >
-              No Me Olvides
-            </div>
-            <div className="text-[11px] text-white/75">
-              {tHeader('subtitle')}
-            </div>
-          </div>
+          {/* Logo como "insignia": tarjeta con su propio fondo crema (el de la
+              imagen), separada del header con sombra, en vez de forzar un
+              recorte/transparencia que no tenemos. */}
+          <span
+            className="block rounded-lg overflow-hidden shrink-0"
+            style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.15)', border: '1px solid var(--color-cream-dark)' }}
+          >
+            <Image
+              src="/logo-tunomeolvides.jpg"
+              alt="Tú no me olvides"
+              width={180}
+              height={115}
+              priority
+              className="block h-11 w-auto lg:h-14"
+            />
+          </span>
         </Link>
 
-        <nav className="flex items-center gap-3 lg:gap-5 text-sm text-white/85">
+        <nav className="flex items-center gap-3 lg:gap-5 text-sm" style={{ color: 'var(--color-text)' }}>
           {/* Links inline solo en escritorio */}
-          <Link href={homeHref} className="hidden lg:inline-block transition-colors hover:text-white">
+          <Link href={homeHref} className="hidden lg:inline-block transition-colors hover:opacity-70">
             {t('home')}
           </Link>
-          <Link href={aboutHref} className="hidden lg:inline-block transition-colors hover:text-white">
+          <Link href={aboutHref} className="hidden lg:inline-block transition-colors hover:opacity-70">
             {t('about')}
           </Link>
           {isEs && (
-            <Link href="/ayuntamientos" className="hidden lg:inline-block transition-colors hover:text-white">
+            <Link href="/ayuntamientos" className="hidden lg:inline-block transition-colors hover:opacity-70">
               Para ayuntamientos
             </Link>
           )}
-          <Link href={contactHref} className="hidden lg:inline-block transition-colors hover:text-white">
+          <Link href={contactHref} className="hidden lg:inline-block transition-colors hover:opacity-70">
             {t('contact')}
           </Link>
 

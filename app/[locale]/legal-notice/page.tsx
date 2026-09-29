@@ -6,7 +6,7 @@ export const metadata: Metadata = buildPageMetadata({
   page: 'legalNotice',
   locale: 'en',
   title: 'Legal notice',
-  description: 'Ownership details, terms of use and liability information for the No Me Olvides website.',
+  description: 'Ownership details, terms of use and liability information for the Tú no me olvides website.',
 })
 
 export default function LegalNoticePage() {
@@ -25,7 +25,7 @@ export default function LegalNoticePage() {
 
       <h2>2. Purpose and activity</h2>
       <p>
-        <em>No Me Olvides</em> is a platform dedicated to the research, documentation and
+        <em>Tú no me olvides</em> is a platform dedicated to the research, documentation and
         dissemination of the cultural heritage of the municipalities of depopulated rural Spain.
         It provides tourism digitisation services to public and private entities, including the
         development of tourism websites, content production, and on-site digital audioguides.

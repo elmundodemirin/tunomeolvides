@@ -78,7 +78,7 @@ export default function LoginPage() {
             className="text-2xl font-bold text-[#8E4226]"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            No Me Olvides
+            Tú no me olvides
           </h1>
           <p className="text-sm text-[#5F7355] mt-1">Panel de administración</p>
         </div>

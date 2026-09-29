@@ -31,7 +31,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             className="text-[#FAF6EE] text-sm font-bold"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            No Me Olvides
+            Tú no me olvides
           </span>
           <span className="text-[#f0c9b0] text-xs">· Admin</span>
         </Link>
@@ -49,7 +49,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
             className="text-[#FAF6EE] text-sm font-bold"
             style={{ fontFamily: 'Georgia, serif' }}
           >
-            No Me Olvides
+            Tú no me olvides
           </span>
           <p className="text-[#f0c9b0] text-xs mt-0.5">Panel de administración</p>
         </div>
