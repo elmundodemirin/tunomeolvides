@@ -47,13 +47,20 @@ body {
 }
 
 /* Texto corrido justificado en toda la web (títulos, botones y menús no
-   son <p>, así que no se ven afectados). Sin hyphens: las palabras no se
+   son <p>, así que no se ven afectados). Sin hyphens (con prefijos, por
+   si el navegador prioriza la versión con prefijo): las palabras no se
    parten nunca visualmente, aunque eso pueda dejar algo más de espacio
-   en blanco entre palabras en columnas estrechas. */
+   en blanco entre palabras en columnas estrechas. overflow-wrap/word-break
+   normal para que tampoco se corten por desbordamiento. */
 p {
   text-align: justify;
   text-align-last: left;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
   hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 h1, h2, h3 {
