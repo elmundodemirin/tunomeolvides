@@ -327,7 +327,7 @@ nomeolvides/
 ## 🤔 Decisiones aplazadas (recordar más adelante)
 
 - [x] ~~Nombre y extensión del dominio definitivo~~ → `tunomeolvides.es` (2026-05-17)
-- [ ] Activar buzón propio en Hostinger (`info@`, `noreply@` real, etc.) si se quiere recibir respuestas. Hoy `noreply@tunomeolvides.es` se usa solo para enviar; no existe inbox que reciba.
+- [x] ~~Activar buzón propio en Hostinger~~ → el buzón de email de Hostinger para `tunomeolvides.es` ya está activo (confirmado 2026-09-30 por registros DNS MX/SPF y por acceso real de la promotora, que recibe correo — incluido spam — en `info@tunomeolvides.es`). Pendiente solo decidir si se usa `info@` también como *sender* de los emails transaccionales de Supabase (hoy siguen saliendo desde `noreply@send.tunomeolvides.es` vía Resend, sin relación con este buzón).
 - [ ] Página propia por localidad (URL individual, ej. `/pueblo/[slug]`) para mejorar su posicionamiento en Google por su propio nombre. Esperar a tener localidades reales cargadas (hoy solo hay datos de prueba).
 - [ ] Si en Fase 2 se incorpora avatar IA como alternativa al audio
 - [ ] Si en Fase 2 se añaden filtros en el mapa (provincia, comunidad, tipo)
@@ -361,13 +361,14 @@ nomeolvides/
    - `SUPABASE_SERVICE_ROLE_KEY` (secreta, solo en server)
    - `NEXT_PUBLIC_SITE_URL` → `https://tunomeolvides.es` en Production de Vercel. Usada en `redirectTo` de los emails de invitación/recuperación.
    - `NEXT_PUBLIC_GA_ID` (cuando se active GA4)
+   - `RESEND_API_KEY` (secreta, solo en server) — clave "Sending access" de Resend, usada por `app/api/contact/route.ts` para avisar por email a `info@tunomeolvides.es` de cada mensaje nuevo del formulario de contacto (2026-09-30). Distinta de la que usa el SMTP custom de Supabase Auth (ver abajo).
 
-   La API key de Resend NO va en `.env.local` — vive solo en Supabase Dashboard → Authentication → Emails → SMTP Settings.
+   La API key de Resend usada por Supabase Auth (invitaciones/recuperación de contraseña) NO va en `.env.local` — vive solo en Supabase Dashboard → Authentication → Emails → SMTP Settings. La de `RESEND_API_KEY` es una clave distinta, propia de la aplicación.
 
 ### Lo siguiente que toca hacer
 
 - ✅ **Bloque B8 (SEO técnico)** completado el 2026-09-10 (ver `docs/01_arquitectura.html` §10.1).
-- ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado en local que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). `NEXT_PUBLIC_GA_ID` está configurado en el proyecto Vercel nuevo; pendiente repetir la prueba de "Tiempo real" ya en `tunomeolvides.es` en producción.
+- ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado tanto en local como en producción (`tunomeolvides.es`, 2026-09-30) que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). `NEXT_PUBLIC_GA_ID` configurado en el proyecto Vercel nuevo.
 - ✅ **Repositorio** migrado el 2026-09-24 de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora).
 - ✅ **Proyecto Supabase** migrado el 2026-09-24 a organización propia de la promotora (ref `ilfhwflhbasogrnaktbk`, Frankfurt). Esquema recreado, bucket `audios` recreado, usuario admin recreado, login del panel probado y funcionando.
 - ✅ **Proyecto Vercel** creado el 2026-09-24 desde cero en la cuenta de la promotora (equipo `no-me-olvides`, importado de `elmundodemirin/tunomeolvides`), con las variables de entorno apuntando al Supabase nuevo. **No se esperó a que Aitor transfiriera su proyecto** — en su lugar, se verificó la propiedad del dominio por DNS (registros TXT `_vercel` en Hostinger) y se conectó `tunomeolvides.es` directamente al proyecto nuevo. Producción y local ya usan exactamente el mismo stack (repo, Supabase, Vercel), todo propiedad de la promotora. El proyecto antiguo de Vercel de Aitor queda huérfano (sin tráfico), no hace falta tocarlo.
@@ -388,7 +389,7 @@ nomeolvides/
 ## 📞 Contacto del proyecto
 
 - **Promotora**: María del Carmen López Rosa
-- **Email del proyecto**: info@tunomeolvides.es (pendiente de configurar)
+- **Email del proyecto**: info@tunomeolvides.es (buzón activo en Hostinger, confirmado 2026-09-30)
 
 ---
 
