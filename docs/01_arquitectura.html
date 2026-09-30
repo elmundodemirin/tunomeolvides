@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>No Me Olvides · Documentación de Arquitectura · v1.0</title>
+<title>Tú no me olvides · Documentación de Arquitectura · v1.1</title>
 <style>
   :root {
     --terracota: #C9633E;
@@ -296,7 +296,7 @@
 <div class="layout">
 
   <aside>
-    <div class="logo">No Me Olvides <span class="flower">✿</span></div>
+    <div class="logo">Tú no me olvides <span class="flower">✿</span></div>
     <div class="subtitle">Documentación técnica</div>
     <nav>
       <ul>
@@ -322,11 +322,11 @@
   <main>
 
     <header class="doc-header">
-      <span class="pill">Documento vivo · v1.0</span>
-      <h1>Arquitectura técnica de nomeolvides.es</h1>
+      <span class="pill">Documento vivo · v1.1</span>
+      <h1>Arquitectura técnica de tunomeolvides.es</h1>
       <div class="meta">
-        Proyecto No Me Olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 25 de septiembre de 2026
+        Proyecto Tú no me olvides · Patrimonio cultural de la España vaciada<br>
+        Última actualización: 30 de septiembre de 2026
       </div>
     </header>
 
@@ -334,14 +334,21 @@
     <section id="resumen">
       <h2>01. Resumen ejecutivo</h2>
       <p>
-        <strong>nomeolvides.es</strong> es una plataforma web bilingüe (ES/EN) cuyo elemento central es un mapa
-        interactivo de España donde cada punto representa una localidad documentada del patrimonio rural. Al
-        pinchar un punto, el visitante accede a un audio narrado y a información de la localidad.
+        <strong>tunomeolvides.es</strong> ("Tú no me olvides") es una plataforma web trilingüe (ES/EN/FR, ver
+        <a href="#stack">03</a>) cuyo elemento central es un mapa interactivo de España donde cada punto
+        representa una localidad documentada del patrimonio rural. Al pinchar un punto, el visitante accede
+        a un audio narrado y a información de la localidad.
       </p>
       <p>
         La plataforma incluye un <strong>panel de gestión autónomo</strong> que permite a la promotora
         (María del Carmen López Rosa) añadir, editar y desactivar localidades sin tocar código, así como
         subir archivos de audio directamente desde el navegador.
+      </p>
+      <p>
+        Desde el 25 de septiembre de 2026, la plataforma tiene una segunda cara además de la pública para
+        visitantes: la página <code>/ayuntamientos</code> (solo en español), un argumentario B2G dirigido a
+        pequeños municipios para contratar el servicio de digitalización turística que ya usa la propia web
+        — investigación del patrimonio, audioguía por QR y datos de visitantes.
       </p>
       <div class="box">
         <div class="box-title">Principios rectores del proyecto</div>
@@ -432,7 +439,7 @@
 
       <h3>Flujo del visitante</h3>
       <ol>
-        <li>El visitante entra en <code>nomeolvides.es</code>.</li>
+        <li>El visitante entra en <code>tunomeolvides.es</code>.</li>
         <li>Vercel sirve la página con el mapa renderizada en el servidor (SSR) — buena para SEO y velocidad inicial.</li>
         <li>Leaflet pide los <em>tiles</em> del mapa a OpenStreetMap.</li>
         <li>Next.js consulta a Supabase la lista de localidades activas y las pinta como puntos.</li>
@@ -441,7 +448,7 @@
 
       <h3>Flujo de la promotora</h3>
       <ol>
-        <li>Accede a <code>nomeolvides.es/admin</code> e inicia sesión con email + contraseña (Supabase Auth).</li>
+        <li>Accede a <code>tunomeolvides.es/admin</code> e inicia sesión con email + contraseña (Supabase Auth).</li>
         <li>Ve un listado de localidades, puede crear, editar, desactivar o eliminar.</li>
         <li>Sube archivos MP3 que se almacenan en Supabase Storage.</li>
         <li>Los cambios se reflejan inmediatamente en la web pública.</li>
@@ -524,7 +531,18 @@
           <tr>
             <td>Email transaccional / SMTP</td>
             <td><strong>Resend</strong> (<a href="https://resend.com">resend.com</a>, región EU-West / Dublín)</td>
-            <td>Servidor SMTP <em>custom</em> de Supabase Auth para los emails de invitación de admins y recuperación de contraseña del panel. Sustituye al SMTP compartido de Supabase (limitado a 2 emails/hora para todo el proyecto). Servidores en territorio UE, coherente con la región de Supabase. Cuenta propia de la promotora desde el 2026-09-25; remitente <code>noreply@send.tunomeolvides.es</code>.</td>
+            <td>
+              Dos usos independientes, mismo proveedor y dominio verificado (<code>send.tunomeolvides.es</code>):
+              (1) servidor SMTP <em>custom</em> de Supabase Auth para invitación de admins y recuperación de
+              contraseña del panel — sustituye al SMTP compartido de Supabase, limitado a 2 emails/hora;
+              remitente <code>noreply@send.tunomeolvides.es</code>. (2) Desde el 2026-09-30, la API de Resend
+              se llama directamente desde <code>app/api/contact/route.ts</code> (variable <code>RESEND_API_KEY</code>,
+              propia de la aplicación, distinta de la clave del SMTP custom) para avisar por email a
+              <code>info@tunomeolvides.es</code> de cada mensaje nuevo del formulario de contacto — el mensaje
+              siempre queda guardado primero en <code>contact_messages</code> (fuente de verdad), así que un
+              fallo de envío nunca bloquea el formulario. Servidores en territorio UE, coherente con la
+              región de Supabase. Cuenta propia de la promotora desde el 2026-09-25.
+            </td>
           </tr>
         </tbody>
       </table>
@@ -655,7 +673,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <section id="lopd">
       <h2>05. Cumplimiento LOPD/RGPD</h2>
       <p>
-        Como responsable de tratamiento, <strong>No Me Olvides</strong> debe cumplir el RGPD (UE) y la
+        Como responsable de tratamiento, <strong>Tú no me olvides</strong> debe cumplir el RGPD (UE) y la
         LOPDGDD (España). Este apartado lista todas las obligaciones que impactan el desarrollo.
       </p>
 
@@ -675,10 +693,10 @@ CREATE POLICY "admin_delete" ON contact_messages
           <tr><th>Documento</th><th>Obligación</th><th>Estado</th></tr>
         </thead>
         <tbody>
-          <tr><td>Aviso legal</td><td>Ley 34/2002 (LSSI-CE)</td><td><span class="status todo">Pendiente</span></td></tr>
-          <tr><td>Política de privacidad</td><td>RGPD art. 13</td><td><span class="status todo">Pendiente</span></td></tr>
-          <tr><td>Política de cookies</td><td>RGPD + Guía AEPD</td><td><span class="status todo">Pendiente</span></td></tr>
-          <tr><td>Términos y condiciones de uso</td><td>Recomendable</td><td><span class="status todo">Pendiente</span></td></tr>
+          <tr><td>Aviso legal</td><td>Ley 34/2002 (LSSI-CE)</td><td><span class="status done">Completado</span> — <code>/aviso-legal</code>, <code>/en/legal-notice</code>, <code>/fr/mentions-legales</code></td></tr>
+          <tr><td>Política de privacidad</td><td>RGPD art. 13</td><td><span class="status done">Completado</span> — <code>/privacidad</code>, <code>/en/privacy-policy</code>, <code>/fr/politique-de-confidentialite</code></td></tr>
+          <tr><td>Política de cookies</td><td>RGPD + Guía AEPD</td><td><span class="status done">Completado</span> — <code>/politica-de-cookies</code>, <code>/en/cookie-policy</code>, <code>/fr/politique-cookies</code></td></tr>
+          <tr><td>Términos y condiciones de uso</td><td>Recomendable</td><td><span class="status todo">Pendiente</span> — no bloquea el lanzamiento, es recomendable, no obligatorio</td></tr>
         </tbody>
       </table>
 
@@ -749,6 +767,22 @@ CREATE POLICY "admin_delete" ON contact_messages
           procesan y almacenan en territorio UE, en coherencia con la base de datos de Supabase en
           Frankfurt. No se produce, por tanto, transferencia internacional de datos personales para
           este canal de comunicación.
+        </p>
+      </div>
+
+      <div class="box legal">
+        <div class="box-title">⚖ Aviso por email de mensajes de contacto (2026-09-30)</div>
+        <p>
+          Desde el 30 de septiembre de 2026, cada envío del formulario de contacto también dispara un
+          email a <code>info@tunomeolvides.es</code> (vía la API de Resend, mismo proveedor y región UE
+          ya evaluados arriba) con el nombre, email y mensaje del remitente, y el <em>reply-to</em>
+          puesto al email del visitante para poder responderle directamente. No introduce un tratamiento
+          de datos nuevo ni un encargado de tratamiento adicional: son los mismos datos que ya se
+          recogían con consentimiento explícito para <em>"atender la consulta"</em>, solo que ahora
+          llegan también por email además de quedar guardados en <code>contact_messages</code>, que
+          sigue siendo la fuente de verdad (visible en <code>/admin/mensajes</code>). El buzón de
+          <code>info@tunomeolvides.es</code> en Hostinger ya estaba activo de antes (confirmado por
+          registros DNS MX/SPF y por acceso real de la promotora).
         </p>
       </div>
 
@@ -834,7 +868,7 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td><strong>B9</strong></td>
             <td>Documentación de usuario en HTML para la promotora (cómo usar el panel) + documentación técnica final.</td>
             <td>Documentación entregada.</td>
-            <td><span class="status review">Parcial — manual de la promotora ya hecho (<code>04_manual_panel.html</code>); falta <code>05_traspaso.html</code></span></td>
+            <td><span class="status done">Completado</span> — manual de la promotora (<code>04_manual_panel.html</code>) y traspaso técnico (<code>05_traspaso.html</code>)</td>
           </tr>
           <tr>
             <td><strong>B10</strong></td>
@@ -844,71 +878,92 @@ CREATE POLICY "admin_delete" ON contact_messages
           </tr>
         </tbody>
       </table>
+
+      <h3>Mejoras posteriores a B7-B10</h3>
+      <p>No son bloques propios del plan original, pero se han ido añadiendo tras cerrar la Fase 1:</p>
+      <ul>
+        <li>Vista admin de mensajes de contacto (<code>/admin/mensajes</code>): lista, detalle, marcar atendido, notas internas, eliminar.</li>
+        <li>Campos de auditoría (<code>created_by</code>/<code>modified_by</code> en <code>localities</code>; <code>handled_*</code> y <code>admin_notes</code> en <code>contact_messages</code>).</li>
+        <li>Página <code>/admin/set-password</code> para que los usuarios invitados fijen su contraseña.</li>
+        <li>Migración <code>middleware.ts</code> → <code>proxy.ts</code> (Next.js 16).</li>
+        <li>Repositorio, base de datos, hosting y email transaccional migrados a cuentas propias de la promotora (2026-09-24/25, ver <a href="#decisiones">09</a>).</li>
+        <li><strong>Página <code>/ayuntamientos</code> (2026-09-25)</strong>: argumentario B2G solo en español para captar pequeños municipios como clientes del servicio de digitalización turística.</li>
+        <li><strong>Rebrand completo a "Tú no me olvides" (2026-09-29)</strong>: nuevo nombre, logo, paleta de 3 colores (fondo único, verde olivo para texto/títulos/menú, terracota reservado a botones/enlaces/marcadores del mapa) y tipografías EB Garamond (títulos) + Jost (cuerpo). Clase <code>.marca</code> en <code>globals.css</code> que envuelve cada aparición del nombre de marca en texto visible (hoy en cursiva), para poder restilizarla de forma centralizada sin tocar cada componente.</li>
+        <li><strong>Aviso por email del formulario de contacto (2026-09-30)</strong>: ver <a href="#lopd">05</a> y <a href="#stack">03</a>.</li>
+      </ul>
     </section>
 
     <!-- 07 -->
     <section id="estructura">
       <h2>07. Estructura del proyecto</h2>
-      <pre><code>nomeolvides/
+      <pre><code>nomeolvides/                       # Nombre de la carpeta en disco; la marca
+│                                   # pública es "Tú no me olvides" (dominio
+│                                   # tunomeolvides.es) desde el 2026-09-29.
 ├── docs/                          # Documentación viva (HTML autocontenido)
-│   ├── 01_arquitectura.html       # Este documento
-│   ├── 02_modelo_datos.html
-│   ├── 03_lopd_compliance.html
+│   ├── 01_arquitectura.html       # Este documento (arquitectura + modelo de
+│   │                               datos + LOPD, todo en un único HTML)
 │   ├── 04_manual_panel.html       # Para la promotora
 │   └── 05_traspaso.html           # Para futuro programador
 │
 ├── app/                           # Next.js App Router
-│   ├── [locale]/                  # Rutas por idioma (es, en, fr)
-│   │   ├── page.tsx               # Inicio
-│   │   ├── mapa/page.tsx          # Mapa interactivo
-│   │   ├── sobre/page.tsx         # Sobre el proyecto
-│   │   ├── contacto/page.tsx      # Formulario
-│   │   ├── legal/                 # Páginas legales
-│   │   └── layout.tsx
-│   ├── admin/                     # Panel de gestión
-│   │   ├── page.tsx               # Login
+│   ├── [locale]/                  # Rutas públicas por idioma (es/en/fr)
+│   │   ├── page.tsx               # Inicio: hero + intro + mapa + teaser ayuntamientos (ES)
+│   │   ├── sobre/ · about/ · a-propos/    # "Sobre el proyecto" por idioma
+│   │   ├── contacto/ · contact/           # Formulario de contacto
+│   │   ├── ayuntamientos/page.tsx # Argumentario B2G — SOLO español, sin /en ni /fr
+│   │   ├── aviso-legal/ · legal-notice/ · mentions-legales/
+│   │   ├── privacidad/ · privacy-policy/ · politique-de-confidentialite/
+│   │   ├── politica-de-cookies/ · cookie-policy/ · politique-cookies/
+│   │   └── layout.tsx             # Header público, nav, footer
+│   ├── admin/                     # Panel de gestión (fuera de [locale], solo ES)
+│   │   ├── login/page.tsx
 │   │   ├── set-password/page.tsx  # Fijar contraseña (usuarios invitados)
 │   │   └── (panel)/               # Área autenticada
-│   │       ├── page.tsx           # Listado de localidades
-│   │       ├── nueva/page.tsx     # Crear localidad
-│   │       ├── [id]/page.tsx      # Editar localidad
-│   │       └── mensajes/          # Mensajes de contacto
-│   │           ├── page.tsx       # Lista
-│   │           └── [id]/page.tsx  # Detalle
-│   ├── api/                       # API Routes
-│   │   ├── localities/route.ts
-│   │   ├── contact/route.ts
-│   │   └── upload-audio/route.ts
+│   │       ├── dashboard/
+│   │       ├── localities/        # CRUD de localidades
+│   │       ├── mensajes/          # Mensajes de contacto: lista + detalle
+│   │       ├── usuarios/          # Invitar/listar/borrar administradores
+│   │       └── cuenta/
+│   ├── api/
+│   │   ├── contact/route.ts       # Guarda en contact_messages + avisa por
+│   │   │                           email a info@ vía Resend (ver 03 y 05)
+│   │   └── admin/users/           # Invitar/listar/borrar admins (Supabase Auth)
 │   └── icon.svg                   # Favicon SVG (flor del no-me-olvides)
 │
 ├── components/                    # Componentes React
-│   ├── Map.tsx                    # Mapa Leaflet
-│   ├── LocalityPopup.tsx
-│   ├── AudioPlayer.tsx
-│   ├── LanguageSwitcher.tsx
-│   ├── CookieBanner.tsx
-│   ├── FlowerIcon.tsx             # Icono compartido web pública/admin
+│   ├── Map.tsx · MapWrapper.tsx · Filters.tsx · LocalityList.tsx
+│   ├── HomeHero.tsx · HomeIntro.tsx · HomeShell.tsx · HomeAyuntamientosTeaser.tsx
+│   ├── ContactForm.tsx · CookieBanner.tsx · ManageCookiesButton.tsx
+│   ├── LegalPage.tsx · PrivacyContent.tsx
+│   ├── LocaleSwitcher.tsx · MobileMenu.tsx · MobilePanel.tsx · Modal.tsx
+│   ├── FlowerIcon.tsx · Footer.tsx  # Compartidos web pública + admin
 │   └── admin/
-│       └── MessageActions.tsx     # Cliente: marcar atendido, notas, eliminar
+│       ├── LocalitiesManager.tsx · LocalityForm.tsx
+│       ├── MessageActions.tsx     # Cliente: marcar atendido, notas, eliminar
+│       ├── UsersManager.tsx · PasswordChangeForm.tsx · SignOutButton.tsx
+│       └── AdminMobileMenu.tsx
 │
 ├── lib/                           # Utilidades
-│   ├── supabase.ts                # Cliente Supabase
-│   ├── i18n.ts
-│   └── analytics.ts
+│   ├── supabase.ts · supabase-browser.ts · supabase-server.ts · supabase-admin.ts
+│   ├── seo.ts                     # generateMetadata(), sitemap, JSON-LD (ver 10.1)
+│   ├── locality.ts                # pickLocalized() — fallback ES→EN/FR
+│   └── types.ts
 │
-├── messages/                      # Traducciones
-│   ├── es.json
+├── messages/                      # Traducciones (next-intl)
+│   ├── es.json                    # Por defecto, sin prefijo de URL
 │   ├── en.json
-│   └── fr.json                    # Solo UI; contenido cae a EN
+│   └── fr.json                    # Solo UI; descripciones/audios caen a EN
 │
 ├── public/                        # Assets estáticos
-│   ├── favicon.ico
-│   └── flor-noteolvides.svg       # Símbolo del proyecto
+│   ├── logo-tunomeolvides.png     # Logo cabecera (recortado a pura imagen)
+│   ├── hero-pueblo.png            # Foto de fondo del hero de la home
+│   ├── ods11.png                  # Icono ODS 11 en /ayuntamientos
+│   └── ...
 │
-├── supabase/                      # Migraciones SQL versionadas
-│   └── migrations/
-│       ├── 001_create_localities.sql
-│       └── 002_create_contact_messages.sql
+├── supabase/
+│   └── migrations/                # Migraciones SQL versionadas
+│       ├── 20260924_initial_schema_baseline.sql   # Esquema base (tablas, RLS, bucket audios)
+│       └── 20260502_contact_messages_handled.sql  # Campos handled_*/admin_notes
 │
 ├── .env.local                     # Variables de entorno (NO en git)
 ├── .env.example                   # Plantilla de variables (en git)
@@ -1072,6 +1127,31 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td><code>www.tunomeolvides.es</code> conectado al proyecto Vercel de la promotora con redirección 308 permanente a <code>tunomeolvides.es</code></td>
             <td>El registro DNS de <code>www</code> existía desde antes pero nunca se había reconectado durante la migración; seguía "vinculado a la cuenta de Vercel de Aitor" y servía una versión desactualizada de la web (sin las mejoras de SEO). Verificado por DNS (TXT) igual que <code>tunomeolvides.es</code> y <code>tunomeolvides.com</code>.</td>
           </tr>
+          <tr>
+            <td>2026-09-25</td>
+            <td>Página <code>/ayuntamientos</code> (solo ES) con argumentario B2G para pequeños municipios</td>
+            <td>La plataforma pasa a tener un segundo público objetivo: los propios ayuntamientos como clientes del servicio de digitalización turística, no solo los visitantes finales. Se excluye de EN/FR porque los ayuntamientos son una figura administrativa española y su público lector es español.</td>
+          </tr>
+          <tr>
+            <td>2026-09-29</td>
+            <td>Rebrand completo de "No Me Olvides" a "Tú no me olvides" (nombre, logo, paleta de 3 colores, tipografías EB Garamond/Jost)</td>
+            <td>Decisión de la promotora. Alcance acotado deliberadamente a lo visible al público — <code>CLAUDE.md</code> y <code>docs/*.html</code> quedaron fuera "por ahora" para no bloquear el resto del trabajo, y se han ido actualizando después (esta misma revisión corrige <code>01_arquitectura.html</code>).</td>
+          </tr>
+          <tr>
+            <td>2026-09-29</td>
+            <td>Clase <code>.marca</code> en <code>globals.css</code> envolviendo cada aparición del nombre de marca en texto visible (título de pestaña, metadatos y <em>alt</em> de imagen quedan fuera)</td>
+            <td>Punto de estilo único y centralizado para el nombre de marca (hoy: cursiva) sin tener que tocar cada componente si se quiere cambiar en el futuro. En <code>messages/*.json</code> se implementa con <code>t.rich()</code> y una etiqueta <code>&lt;marca&gt;</code> cuando el nombre va incrustado en mitad de una frase.</td>
+          </tr>
+          <tr>
+            <td>2026-09-30</td>
+            <td>Verificación de Google Analytics 4 repetida ya en producción (<code>tunomeolvides.es</code>), no solo en local</td>
+            <td>Confirma en el entorno real que el evento <code>page_view</code> no se dispara hasta aceptar el banner de cookies. Cierra el pendiente que quedaba abierto en <code>CLAUDE.md</code> desde la creación de la propiedad GA4.</td>
+          </tr>
+          <tr>
+            <td>2026-09-30</td>
+            <td>Aviso por email a <code>info@tunomeolvides.es</code> en cada mensaje del formulario de contacto, vía la API de Resend (<code>RESEND_API_KEY</code>)</td>
+            <td>Se confirmó que el buzón de Hostinger para <code>info@tunomeolvides.es</code> ya estaba activo (contra lo que decía la documentación hasta ahora). <code>contact_messages</code> sigue siendo la fuente de verdad; el email es un aviso añadido, con <em>reply-to</em> al remitente para poder contestarle directamente. Ver <a href="#lopd">05</a>.</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1085,6 +1165,25 @@ CREATE POLICY "admin_delete" ON contact_messages
         Quedan estas piezas pendientes, de mayor a menor prioridad:
       </p>
 
+      <div class="box critical">
+        <div class="box-title">🔴 10.0 — Cargar localidades reales en el mapa (máxima prioridad actual)</div>
+        <p>
+          A fecha de esta actualización (2026-09-30), la tabla <code>localities</code> del proyecto
+          Supabase de producción tiene <strong>0 filas</strong>: el mapa de <code>tunomeolvides.es</code>
+          no muestra ningún punto, ni siquiera de prueba (el seed <code>supabase/seed_test_localities.sql</code>
+          nunca llegó a cargarse tras la migración del 2026-09-24). Es el hueco más importante del
+          proyecto — todo lo demás (diseño, SEO, LOPD, panel, B2G) ya está listo para recibir contenido
+          real, pero el producto todavía no lo tiene.
+        </p>
+        <p>
+          La promotora ha decidido que el primer paso en esta dirección es desarrollar antes un
+          <strong>proyecto piloto</strong> (fuera del alcance de este repositorio) y avisar cuando
+          arranque, así que esta pieza queda <strong>deliberadamente en pausa</strong>, no olvidada.
+          Mientras tanto, cargar el seed de prueba sigue siendo una opción rápida y reversible si en
+          algún momento se necesita ver el mapa con puntos (p. ej. para una demo).
+        </p>
+      </div>
+
       <h3>10.1 — B8: SEO técnico ✅ Completado (2026-09-10)</h3>
       <ol>
         <li>
@@ -1095,7 +1194,7 @@ CREATE POLICY "admin_delete" ON contact_messages
           <code>metaDescription</code>); las 9 páginas legales (aviso, privacidad, cookies × 3
           idiomas) usan <code>export const metadata</code> estático, ya que su contenido también
           está escrito directamente por idioma. El layout raíz define <code>metadataBase</code> y
-          un <em>title template</em> (<code>%s · No Me Olvides</code>).
+          un <em>title template</em> (<code>%s · Tú no me olvides</code>).
         </li>
         <li>
           <strong>Sitemap.xml automático</strong> (<code>app/sitemap.ts</code>): enumera las 6
@@ -1132,40 +1231,25 @@ CREATE POLICY "admin_delete" ON contact_messages
         </p>
       </div>
 
-      <h3>10.2 — Google Analytics 4</h3>
-      <ol>
-        <li>
-          Crear la propiedad GA4 en <code>analytics.google.com</code> (a nombre de la promotora) y
-          obtener el ID <code>G-XXXXXXXXXX</code>.
-        </li>
-        <li>
-          Añadir <code>NEXT_PUBLIC_GA_ID</code> en Vercel (Production, Preview, Development) y
-          redesplegar. El componente de banner de cookies ya está cableado para cargar GA4 solo
-          tras consentimiento.
-        </li>
-        <li>
-          Verificar en Google Tag Assistant que el evento <code>page_view</code> se dispara y que
-          <strong>NO se dispara hasta que el visitante acepta cookies</strong>.
-        </li>
-      </ol>
-
-      <h3>10.3 — Buzón propio en Hostinger (opcional)</h3>
+      <h3>10.2 — Google Analytics 4 ✅ Completado (2026-09-30)</h3>
       <p>
-        Hoy <code>noreply@tunomeolvides.es</code> se usa solo para enviar (vía Resend). Si en
-        algún momento se quiere recibir respuestas o tener <code>info@</code> /
-        <code>contacto@</code> como buzón real:
+        Propiedad GA4 creada por la promotora (ID <code>G-GVYLDZ8C1B</code>), <code>NEXT_PUBLIC_GA_ID</code>
+        configurado en Vercel. Verificado en local y, el 2026-09-30, también en producción
+        (<code>tunomeolvides.es</code>) que el evento <code>page_view</code> no se dispara hasta que el
+        visitante acepta el banner de cookies.
       </p>
-      <ol>
-        <li>Activar el plan de email de Hostinger (suele ser unos 0,99 €/mes).</li>
-        <li>
-          Crear los buzones deseados. Hostinger ya tiene los registros MX/SPF/DMARC/DKIM
-          preparados en el dominio raíz, así que no hay que tocar DNS para esto.
-        </li>
-        <li>
-          (Opcional) Cambiar el <em>Sender email</em> de Supabase de <code>noreply@</code> a
-          <code>info@</code> si se prefiere que las respuestas a invitaciones lleguen a un inbox real.
-        </li>
-      </ol>
+
+      <h3>10.3 — Buzón propio en Hostinger ✅ Ya estaba activo (confirmado 2026-09-30)</h3>
+      <p>
+        Este apartado decía hasta ahora que <code>info@tunomeolvides.es</code> no tenía buzón — resultó
+        ser incorrecto: el buzón de email de Hostinger para el dominio ya estaba contratado y activo
+        (confirmado por registros DNS MX/SPF y por acceso real de la promotora, que recibe correo —
+        incluido spam — ahí). Con esa confirmación se implementó además el aviso por email del
+        formulario de contacto: ver <a href="#stack">03</a> y el apartado LOPD correspondiente en
+        <a href="#lopd">05</a>. El <em>sender</em> de los emails transaccionales de Supabase Auth
+        (invitaciones, recuperación de contraseña) sigue siendo <code>noreply@send.tunomeolvides.es</code>
+        vía Resend — es un canal distinto del buzón de Hostinger y no hay ninguna necesidad de unificarlos.
+      </p>
 
       <h3>10.4 — Operativa continua</h3>
       <ul>
@@ -1185,7 +1269,7 @@ CREATE POLICY "admin_delete" ON contact_messages
       <h3>10.5 — Fase 2 (lejos)</h3>
       <ul>
         <li>Página propia por localidad (URL individual) para mejorar su posicionamiento
-          independiente en Google — esperar a tener localidades reales cargadas (ver 10.1).</li>
+          independiente en Google — esperar a tener localidades reales cargadas (ver 10.0).</li>
         <li>Avatar IA narrando las historias como alternativa al audio (texto-a-voz personalizado).</li>
         <li>Filtros avanzados en el mapa (por provincia, comunidad, tipo de patrimonio).</li>
         <li>Recogida de testimonios crowdsourced (con moderación).</li>
@@ -1195,19 +1279,21 @@ CREATE POLICY "admin_delete" ON contact_messages
         <div class="box-title">✓ Estado actual</div>
         <p>
           Plataforma desplegada y funcional en <code>tunomeolvides.es</code>. Toda la Fase 1
-          (B1-B10) cerrada. Las piezas administrativas (panel, mensajes, gestión de usuarios,
-          set/cambio de contraseña) y el SEO técnico (B8) están terminados y probados. Desde el
-          2026-09-25, el proyecto es <strong>100% independiente del programador anterior</strong>:
-          repositorio, base de datos, hosting y email transaccional viven en cuentas propias de
-          la promotora.
+          (B1-B10) cerrada, rebrand a "Tú no me olvides" completo (2026-09-29), GA4 y buzón de
+          <code>info@</code> verificados en producción (2026-09-30). Desde el 2026-09-25, el
+          proyecto es <strong>100% independiente del programador anterior</strong>: repositorio,
+          base de datos, hosting y email transaccional viven en cuentas propias de la promotora.
+          El único hueco real que queda es de <strong>contenido, no técnico</strong>: el mapa no
+          tiene todavía localidades cargadas (ver <a href="#siguiente">10.0</a>), a la espera de
+          que arranque el proyecto piloto.
         </p>
       </div>
     </section>
 
     <footer>
       <p>
-        <span class="flower">✿</span> No Me Olvides · Documentación viva ·
-        Última actualización 25 de septiembre de 2026 ·
+        <span class="flower">✿</span> Tú no me olvides · Documentación viva ·
+        Última actualización 30 de septiembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>
