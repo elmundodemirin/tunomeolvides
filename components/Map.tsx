@@ -15,6 +15,18 @@ type Props = {
 const DEFAULT_CENTER: [number, number] = [40.4, -3.7]
 const DEFAULT_ZOOM = 6
 
+// Límites de pan/zoom (decisión 2026-10-01, a petición de la promotora):
+// el visitante no debe poder alejarse hasta perderse en el mapamundi.
+// Cubre península + Baleares con margen; deja fuera Canarias a propósito
+// —hoy no hay ninguna localidad allí (ver supabase/seed_test_localities.sql)
+// y añadirlas a las mismas bounds obligaría a un recuadro gigante que
+// dejaría la península minúscula en la vista por defecto. Si en el futuro
+// se añade alguna localidad canaria, revisar este límite entonces.
+const SPAIN_BOUNDS: [[number, number], [number, number]] = [
+  [35.9, -9.6],
+  [43.9, 4.5],
+]
+
 // SVG pin en terracota, la marca reserva ese color solo para botones,
 // enlaces y marcadores del mapa (sized 36x44 for accessible touch target)
 const MARKER_SVG = `
@@ -95,7 +107,10 @@ export default function LeafletMap({ localities, locale, selectedId, focusToken 
 
       let map = mapInstanceRef.current
       if (!map) {
-        map = L.map(mapRef.current).setView(DEFAULT_CENTER, DEFAULT_ZOOM)
+        map = L.map(mapRef.current, {
+          maxBounds: SPAIN_BOUNDS,
+          maxBoundsViscosity: 1.0,
+        }).setView(DEFAULT_CENTER, DEFAULT_ZOOM)
         mapInstanceRef.current = map
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -105,6 +120,13 @@ export default function LeafletMap({ localities, locale, selectedId, focusToken 
           // y resuelve el aviso "Serves images with low resolution" de Lighthouse.
           detectRetina: true,
         }).addTo(map)
+
+        // minZoom dinámico: el nivel exacto en el que SPAIN_BOUNDS llena el
+        // contenedor, calculado contra el tamaño real en pantalla — así
+        // encaja igual de bien en el mapa de móvil (pantalla completa,
+        // estrecho) que en el de escritorio (panel ancho).
+        const regionZoom = map.getBoundsZoom(SPAIN_BOUNDS, false)
+        map.setMinZoom(Math.floor(regionZoom))
       }
 
       // Limpia markers anteriores
