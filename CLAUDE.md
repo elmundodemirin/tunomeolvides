@@ -393,6 +393,12 @@ nomeolvides/
    - Su confirmación explícita para desplegar a producción tal cual, con el aviso de dominio
      de ejemplo visible a cualquier visitante real de tunomeolvides.es.
 
+> **🔴 tunomeolvides.es en pausa (decisión 2026-10-02):** no se toca nada más en este
+> proyecto —ni esta flor ni ningún otro cambio— hasta que el proyecto piloto de
+> **Cabezas del Pozo** (`turismo-cabezas-del-pozo/`) esté finalizado. Instrucción explícita
+> de la promotora. Si en algún momento se pide trabajo aquí antes de eso, confirmar con ella
+> que la pausa sigue vigente antes de proceder.
+
 ---
 
 ## 📞 Contacto del proyecto
