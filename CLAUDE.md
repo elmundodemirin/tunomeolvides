@@ -398,6 +398,10 @@ nomeolvides/
 > **Cabezas del Pozo** (`turismo-cabezas-del-pozo/`) esté finalizado. Instrucción explícita
 > de la promotora. Si en algún momento se pide trabajo aquí antes de eso, confirmar con ella
 > que la pausa sigue vigente antes de proceder.
+>
+> **Excepción puntual (2026-10-02):** la promotora pidió explícitamente levantar la pausa
+> para trabajar en el posicionamiento SEO. La pausa general sigue vigente para todo lo
+> demás — esto no es un levantamiento permanente, solo cubre el trabajo de SEO en curso.
 
 ---
 
