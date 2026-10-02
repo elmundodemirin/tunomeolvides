@@ -383,6 +383,15 @@ nomeolvides/
 
 **Pendiente (opcional, sin prisa)**:
 1. Cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
+2. **Flor del proyecto piloto (Cabezas del Pozo) en el mapa** (2026-10-01): código terminado
+   y verificado en local (`components/Map.tsx` — marcador con icono de flor, distinto de las
+   localidades reales, con popup: insignia "Proyecto piloto", descripción, enlace a
+   `https://turismocabezasdelpozo.es` y aviso de que es un dominio de ejemplo sin registrar
+   todavía). Commiteado en local, **sin desplegar a producción**. Pendiente de:
+   - El audio de presentación que la promotora va a enviar (no llegó ningún archivo el
+     2026-10-01). Hoy el bloque de audio está oculto en el popup (`PROMO_HAS_AUDIO = false`).
+   - Su confirmación explícita para desplegar a producción tal cual, con el aviso de dominio
+     de ejemplo visible a cualquier visitante real de tunomeolvides.es.
 
 ---
 
@@ -393,4 +402,7 @@ nomeolvides/
 
 ---
 
-*Última actualización: 25 de septiembre de 2026 — Resend recreado con cuenta propia de la promotora (send.tunomeolvides.es). Repositorio, base de datos, hosting y email ya están en cuentas propias de la promotora: proyecto 100% independiente del programador anterior*
+*Última actualización: 1 de octubre de 2026 — añadida la flor del proyecto piloto de Cabezas
+del Pozo en el mapa (sin desplegar, pendiente de audio y de confirmación). Repositorio, base de
+datos, hosting y email ya están en cuentas propias de la promotora: proyecto 100% independiente
+del programador anterior*
