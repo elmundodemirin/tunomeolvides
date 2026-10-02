@@ -368,6 +368,8 @@ nomeolvides/
 ### Lo siguiente que toca hacer
 
 - ✅ **Bloque B8 (SEO técnico)** completado el 2026-09-10 (ver `docs/01_arquitectura.html` §10.1).
+- ✅ **SEO — imagen Open Graph/Twitter + Organization en JSON-LD** (2026-10-02): `public/og-image.png` (1200×630) y tarjeta `summary_large_image` en las 16 páginas públicas; bloque `Organization` (logo, descripción, areaServed España) añadido al JSON-LD de la home. Verificado en producción.
+- ✅ **Google Search Console** conectado el 2026-10-02: propiedad de dominio `tunomeolvides.es`, verificada por registro TXT en Hostinger (`@`). Sitemap (`https://tunomeolvides.es/sitemap.xml`) enviado.
 - ✅ **Google Analytics 4**: propiedad creada por la promotora, ID de medición `G-GVYLDZ8C1B`. Verificado tanto en local como en producción (`tunomeolvides.es`, 2026-09-30) que el evento solo se dispara tras aceptar cookies (informe "Tiempo real"). `NEXT_PUBLIC_GA_ID` configurado en el proyecto Vercel nuevo.
 - ✅ **Repositorio** migrado el 2026-09-24 de `github.com/aitorsotorubio/nomeolvides` a `github.com/elmundodemirin/tunomeolvides` (propiedad de la promotora).
 - ✅ **Proyecto Supabase** migrado el 2026-09-24 a organización propia de la promotora (ref `ilfhwflhbasogrnaktbk`, Frankfurt). Esquema recreado, bucket `audios` recreado, usuario admin recreado, login del panel probado y funcionando.
@@ -412,7 +414,7 @@ nomeolvides/
 
 ---
 
-*Última actualización: 1 de octubre de 2026 — añadida la flor del proyecto piloto de Cabezas
-del Pozo en el mapa (sin desplegar, pendiente de audio y de confirmación). Repositorio, base de
-datos, hosting y email ya están en cuentas propias de la promotora: proyecto 100% independiente
-del programador anterior*
+*Última actualización: 2 de octubre de 2026 — SEO: imagen Open Graph/Twitter, Organization en
+el JSON-LD y Google Search Console conectado (dominio verificado, sitemap enviado). Repositorio,
+base de datos, hosting y email ya están en cuentas propias de la promotora: proyecto 100%
+independiente del programador anterior*
