@@ -13,6 +13,15 @@ const OG_LOCALES: Record<Locale, string> = {
   fr: 'fr_FR',
 }
 
+// Mismo eslogan que ya existe en messages/*.json (home.metaTitle) — se
+// reutiliza aquí para el alt de la imagen de Open Graph/Twitter, en vez de
+// inventar una traducción nueva.
+const OG_IMAGE_ALT: Record<Locale, string> = {
+  es: 'Tú no me olvides, mapa sonoro de la España vaciada',
+  en: 'Tú no me olvides, a sound map of rural Spain',
+  fr: "Tú no me olvides, carte sonore de l'Espagne rurale",
+}
+
 // Ruta de cada página en cada idioma. ES no lleva prefijo (routing.localePrefix
 // = 'as-needed'); EN/FR sí, y con el slug traducido. Debe reflejar los
 // nombres de carpeta reales bajo app/[locale]/.
@@ -68,25 +77,69 @@ export function buildPageMetadata({
       siteName: 'Tú no me olvides',
       locale: OG_LOCALES[locale],
       type: 'website',
+      images: [
+        {
+          url: new URL('/og-image.png', siteUrl).toString(),
+          width: 1200,
+          height: 630,
+          alt: OG_IMAGE_ALT[locale],
+        },
+      ],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description,
+      images: [new URL('/og-image.png', siteUrl).toString()],
+    },
+  }
+}
+
+// Mismo texto que messages/*.json → about.metaDescription (reutilizado,
+// no inventado) — describe a la organización, no a la home en concreto.
+const ORGANIZATION_DESCRIPTION: Record<Locale, string> = {
+  es: 'Tú no me olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona.',
+  en: 'Tú no me olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives.',
+  fr: "Tú no me olvides documente et préserve le patrimoine culturel des villages de l'Espagne rurale grâce à des récits audio à la première personne.",
+}
+
+/**
+ * JSON-LD (Schema.org) de la organización — igual en cualquier idioma salvo
+ * la descripción. Se incluye en la home (ver buildHomeJsonLd); un único
+ * Organization basta para que Google entienda la entidad detrás del sitio,
+ * no hace falta repetirlo en cada página.
+ */
+function buildOrganizationSchema(locale: string) {
+  const loc = (locale in ORGANIZATION_DESCRIPTION ? locale : 'es') as Locale
+  return {
+    '@type': 'Organization',
+    name: 'Tú no me olvides',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/logo-tunomeolvides.png', siteUrl).toString(),
+      width: 1215,
+      height: 445,
+    },
+    description: ORGANIZATION_DESCRIPTION[loc],
+    areaServed: {
+      '@type': 'Country',
+      name: 'España',
     },
   }
 }
 
 /**
- * JSON-LD (Schema.org) para la home: describe el sitio y, como ItemList,
- * cada localidad activa como TouristAttraction. No hay URL individual por
- * localidad todavía (solo existen como popups en el mapa), así que se
- * enlaza a external_url cuando existe.
+ * JSON-LD (Schema.org) para la home: describe la organización, el sitio y,
+ * como ItemList, cada localidad activa como TouristAttraction. No hay URL
+ * individual por localidad todavía (solo existen como popups en el mapa),
+ * así que se enlaza a external_url cuando existe.
  */
 export function buildHomeJsonLd(localities: Locality[], locale: string) {
   return {
     '@context': 'https://schema.org',
     '@graph': [
+      buildOrganizationSchema(locale),
       {
         '@type': 'WebSite',
         name: 'Tú no me olvides',
