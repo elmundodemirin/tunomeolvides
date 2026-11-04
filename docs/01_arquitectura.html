@@ -1152,6 +1152,36 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Aviso por email a <code>info@tunomeolvides.es</code> en cada mensaje del formulario de contacto, vía la API de Resend (<code>RESEND_API_KEY</code>)</td>
             <td>Se confirmó que el buzón de Hostinger para <code>info@tunomeolvides.es</code> ya estaba activo (contra lo que decía la documentación hasta ahora). <code>contact_messages</code> sigue siendo la fuente de verdad; el email es un aviso añadido, con <em>reply-to</em> al remitente para poder contestarle directamente. Ver <a href="#lopd">05</a>.</td>
           </tr>
+          <tr>
+            <td>2026-11-04</td>
+            <td>Página "Sobre el proyecto" reescrita por completo con el texto definitivo de la promotora, incluida la cita de Alejandro Cabrero Durán en bloque propio (<code>&lt;blockquote&gt;</code>) y nueva sección "Quién soy"</td>
+            <td>Excepción puntual sobre la pausa general del proyecto (ver <a href="#siguiente">10.0</a>), confirmada explícitamente por la promotora. Aplicado en ES/EN/FR (<code>messages/*.json</code>).</td>
+          </tr>
+          <tr>
+            <td>2026-11-04</td>
+            <td>Primera localidad real cargada en <code>localities</code>: <strong>Cabezas del Pozo</strong> (Ávila, Castilla y León) — descripción ES/EN definitiva, <code>external_url</code> al subdominio <code>https://cabezasdelpozo.tunomeolvides.es</code> y audio de presentación en <code>audio_url_es</code></td>
+            <td>Cierra el hueco de contenido abierto desde el 2026-09-30 (tabla <code>localities</code> vacía). El audio llegó de la promotora en <code>.m4a</code>; como el proyecto solo admite <code>.mp3</code>, se instaló <code>ffmpeg</code> (vía <code>winget</code>, no estaba disponible en el entorno) y se convirtió antes de subirlo al bucket <code>audios</code>. Solo existe la versión en español por ahora.</td>
+          </tr>
+          <tr>
+            <td>2026-11-04</td>
+            <td>Marcador promocional especial de Cabezas del Pozo eliminado de <code>components/Map.tsx</code> (constantes <code>PROMO_*</code> y <code>buildPromoPopupHTML()</code>)</td>
+            <td>Quedó redundante en el mismo instante en que Cabezas del Pozo pasó a ser una fila real de <code>localities</code> en el mismo punto del mapa. Mantenerlo habría dejado dos marcadores superpuestos, uno con el enlace todavía apuntando al dominio de ejemplo abandonado <code>turismocabezasdelpozo.es</code>.</td>
+          </tr>
+          <tr>
+            <td>2026-11-04</td>
+            <td>Icono de los marcadores del mapa: de chincheta genérica a insignia circular con la flor del no-me-olvides (SVG en texto, mismo símbolo que <code>FlowerIcon.tsx</code>)</td>
+            <td>Petición directa de la promotora: la marca del proyecto es la flor, no una chincheta de mapa genérica. Afecta a todas las localidades, no solo a Cabezas del Pozo.</td>
+          </tr>
+          <tr>
+            <td>2026-11-04</td>
+            <td>Botón del popup del mapa: de "Más información →" fijo a "Descubre {nombre del pueblo} →" dinámico (<code>DISCOVER_LABEL</code> por idioma en <code>components/Map.tsx</code>)</td>
+            <td>Usa el campo <code>name</code> ya existente de cada localidad en vez de añadir una columna nueva a la base de datos; funciona igual para cualquier pueblo futuro.</td>
+          </tr>
+          <tr>
+            <td>2026-11-04</td>
+            <td>Adaptadas las correcciones aplicables de una auditoría externa de marketing digital sobre <code>tunomeolvides.es</code>: <em>alt</em> del hero, enlace directo a <code>info@tunomeolvides.es</code> en el footer, textos de <code>/ayuntamientos</code>, meta description de la home, <code>contact.directEmail</code></td>
+            <td>Excepción puntual sobre la pausa, confirmada explícitamente por la promotora. Varios hallazgos de la auditoría resultaron ser falsos positivos al verificarlos contra el código/sitio real (selector EN/FR, JSON-LD <code>Organization</code>/<code>WebSite</code>, datos del titular en el aviso legal) y no se tocaron. Quedan pendientes de datos que la promotora no ha dado aún: foto para "Quién soy", teléfono/WhatsApp, redes sociales, capturas o cita de alcaldesa para el caso de éxito de Cabezas del Pozo.</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1165,22 +1195,22 @@ CREATE POLICY "admin_delete" ON contact_messages
         Quedan estas piezas pendientes, de mayor a menor prioridad:
       </p>
 
-      <div class="box critical">
-        <div class="box-title">🔴 10.0 — Cargar localidades reales en el mapa (máxima prioridad actual)</div>
+      <div class="box">
+        <div class="box-title">✅ 10.0 — Cargar localidades reales en el mapa: primera localidad cargada (2026-11-04)</div>
         <p>
-          A fecha de esta actualización (2026-09-30), la tabla <code>localities</code> del proyecto
-          Supabase de producción tiene <strong>0 filas</strong>: el mapa de <code>tunomeolvides.es</code>
-          no muestra ningún punto, ni siquiera de prueba (el seed <code>supabase/seed_test_localities.sql</code>
-          nunca llegó a cargarse tras la migración del 2026-09-24). Es el hueco más importante del
-          proyecto — todo lo demás (diseño, SEO, LOPD, panel, B2G) ya está listo para recibir contenido
-          real, pero el producto todavía no lo tiene.
+          Entre el 2026-09-30 y el 2026-11-04, la tabla <code>localities</code> del proyecto Supabase
+          de producción tuvo <strong>0 filas</strong>: el mapa de <code>tunomeolvides.es</code> no
+          mostraba ningún punto, ni siquiera de prueba (el seed
+          <code>supabase/seed_test_localities.sql</code> nunca llegó a cargarse). El 2026-11-04, con el
+          piloto de Cabezas del Pozo ya en producción (<code>turismo-cabezas-del-pozo/</code>), se cargó
+          su primera fila real: descripción ES/EN definitiva, audio de presentación en español y enlace
+          al subdominio <code>cabezasdelpozo.tunomeolvides.es</code>. El marcador promocional especial
+          que ocupaba el mismo punto antes de tener la localidad real se eliminó (ver sección 09).
         </p>
         <p>
-          La promotora ha decidido que el primer paso en esta dirección es desarrollar antes un
-          <strong>proyecto piloto</strong> (fuera del alcance de este repositorio) y avisar cuando
-          arranque, así que esta pieza queda <strong>deliberadamente en pausa</strong>, no olvidada.
-          Mientras tanto, cargar el seed de prueba sigue siendo una opción rápida y reversible si en
-          algún momento se necesita ver el mapa con puntos (p. ej. para una demo).
+          Sigue habiendo una única localidad real. El resto de pueblos se irán añadiendo a medida que
+          cada uno tenga su propio proyecto turístico terminado, igual que Cabezas del Pozo — no hay
+          plan de cargar el seed de datos ficticios en producción.
         </p>
       </div>
 
@@ -1293,7 +1323,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> Tú no me olvides · Documentación viva ·
-        Última actualización 30 de septiembre de 2026 ·
+        Última actualización 4 de noviembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>

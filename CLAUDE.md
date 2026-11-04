@@ -321,6 +321,12 @@ nomeolvides/
 | 2026-09-24 | `tunomeolvides.com` (también propiedad de la promotora, mismo registrador) conectado en Vercel con redirección 308 permanente a `tunomeolvides.es` | Protege la marca — evita que otra persona registre el `.com` y lo use para confundir visitantes o hacer phishing. Registro A en Hostinger apuntado a Vercel (`216.198.79.1`); el redirect lo gestiona Vercel a nivel de dominio, sin código adicional en la app |
 | 2026-09-25 | Cuenta de Resend recreada con la cuenta propia de la promotora (dominio `send.tunomeolvides.es` reverificado con nuevos registros DKIM/CNAME de Resend, distintos a los de Aitor) y reconfigurada como SMTP custom en el proyecto Supabase nuevo | La cuenta de Resend original también era de Aitor y no se trasladó al migrar Supabase. Cierra la última dependencia del programador anterior. Sender email cambia ligeramente a `noreply@send.tunomeolvides.es` (antes `noreply@tunomeolvides.es`) para alinearse exactamente con el dominio verificado en la cuenta nueva. Probado con el flujo de "recuperar contraseña" del panel: email recibido correctamente |
 | 2026-09-25 | `www.tunomeolvides.es` conectado al proyecto Vercel de la promotora con redirección 308 permanente a `tunomeolvides.es` | El registro DNS de `www` existía desde antes pero nunca se había reconectado durante la migración; seguía "vinculado a la cuenta de Vercel de Aitor" y servía una versión desactualizada de la web. Verificado por TXT igual que `tunomeolvides.es` y `tunomeolvides.com` |
+| 2026-11-04 | Primera localidad real cargada en `localities`: **Cabezas del Pozo** (Ávila, Castilla y León), con `description_es`/`description_en` definitivos, `audio_url_es` (ver fila siguiente) y `external_url` → `https://cabezasdelpozo.tunomeolvides.es` | Cierra el hueco de contenido que llevaba abierto desde el 2026-09-30 (tabla `localities` vacía en producción). Es la primera vez que una localidad del mapa principal apunta al sitio real de un pueblo, en vez de a datos de prueba. `cover_image_url` queda `null` por ahora |
+| 2026-11-04 | Audio de presentación subido a Supabase Storage (`audios/{locality_id}/es.mp3`) y enlazado en `audio_url_es` de Cabezas del Pozo | La promotora entregó el audio en `.m4a` (grabado/exportado como vídeo sin imagen); el proyecto solo admite `.mp3` (panel y bucket). Se instaló `ffmpeg` (vía `winget`, no estaba disponible) y se convirtió a mp3 128kbps antes de subirlo. Solo existe versión ES por ahora; falta la de EN |
+| 2026-11-04 | Eliminado el marcador promocional especial de Cabezas del Pozo en `components/Map.tsx` (`PROMO_MARKER_COORDS`, `PROMO_WEBSITE_URL`, `buildPromoPopupHTML()`, etc.) | Quedó redundante en cuanto Cabezas del Pozo pasó a ser una fila real de `localities` en el mismo punto del mapa — mantenerlo habría dejado dos marcadores superpuestos, uno de ellos con el enlace apuntando todavía al dominio antiguo abandonado `turismocabezasdelpozo.es` |
+| 2026-11-04 | Icono de los marcadores del mapa cambiado de chincheta a la flor del no-me-olvides (insignia circular, mismo símbolo que `FlowerIcon.tsx` pero como SVG en texto para Leaflet) | Petición directa de la promotora: la chincheta genérica no representa la marca; la flor es el símbolo oficial del proyecto y ya se usa como favicon y en el panel |
+| 2026-11-04 | Botón del popup cambiado de "Más información →" fijo a "Descubre {nombre del pueblo} →" dinámico (`DISCOVER_LABEL` por idioma en `components/Map.tsx`) | Usa el propio campo `name` de la localidad en vez de añadir una columna nueva en la base de datos; funciona igual para cualquier pueblo futuro sin tocar el esquema |
+| 2026-11-04 | Adaptadas las correcciones de una auditoría externa de marketing digital sobre `tunomeolvides.es` (hero `alt`, footer con email directo, textos de `/ayuntamientos`, meta description de la home, nuevo bloque "Quién soy" en `/sobre`, `contact.directEmail`) | Se adaptó solo lo verificable con datos reales del proyecto; varios hallazgos de la auditoría resultaron ser falsos positivos tras comprobarlos contra el código/sitio real (selector EN/FR, JSON-LD `Organization`/`WebSite`, datos del titular en el aviso legal) y no se tocaron. Quedan pendientes de datos que la promotora no ha dado aún: foto para "Quién soy", teléfono/WhatsApp, redes sociales, capturas o cita de alcaldesa para el caso de éxito de Cabezas del Pozo |
 
 ---
 
@@ -384,16 +390,15 @@ nomeolvides/
 - ✅ **`www.tunomeolvides.es`** conectado el 2026-09-25 al proyecto de Vercel con redirección 308 permanente a `tunomeolvides.es` (también estaba "vinculado a otra cuenta de Vercel", verificado por TXT igual que los otros dominios). Los tres dominios (`tunomeolvides.es`, `tunomeolvides.com`, `www.tunomeolvides.es`) quedan cubiertos.
 
 **Pendiente (opcional, sin prisa)**:
-1. Cargar `supabase/seed_test_localities.sql` en el proyecto nuevo para tener datos de prueba visibles en el mapa.
-2. **Flor del proyecto piloto (Cabezas del Pozo) en el mapa** (2026-10-01): código terminado
-   y verificado en local (`components/Map.tsx` — marcador con icono de flor, distinto de las
-   localidades reales, con popup: insignia "Proyecto piloto", descripción, enlace a
-   `https://turismocabezasdelpozo.es` y aviso de que es un dominio de ejemplo sin registrar
-   todavía). Commiteado en local, **sin desplegar a producción**. Pendiente de:
-   - El audio de presentación que la promotora va a enviar (no llegó ningún archivo el
-     2026-10-01). Hoy el bloque de audio está oculto en el popup (`PROMO_HAS_AUDIO = false`).
-   - Su confirmación explícita para desplegar a producción tal cual, con el aviso de dominio
-     de ejemplo visible a cualquier visitante real de tunomeolvides.es.
+1. Cargar `supabase/seed_test_localities.sql` en el proyecto nuevo — ya no es prioritario:
+   desde el 2026-11-04 el mapa tiene su primera localidad real (Cabezas del Pozo), así que
+   el hueco de "mapa vacío" documentado desde el 2026-09-30 está cerrado. El seed de prueba
+   solo haría falta si se quisiera volver a ver el mapa con puntos ficticios para una demo.
+2. ~~Flor del proyecto piloto (Cabezas del Pozo) en el mapa~~ → **superado el 2026-11-04**:
+   el marcador promocional especial (que apuntaba al dominio de ejemplo abandonado
+   `turismocabezasdelpozo.es`) se eliminó de `components/Map.tsx` porque Cabezas del Pozo ya
+   existe como localidad real en `localities`, en el mismo punto del mapa, con su audio y su
+   enlace al subdominio real `cabezasdelpozo.tunomeolvides.es`.
 
 > **🔴 tunomeolvides.es en pausa (decisión 2026-10-02):** no se toca nada más en este
 > proyecto —ni esta flor ni ningún otro cambio— hasta que el proyecto piloto de
@@ -405,12 +410,19 @@ nomeolvides/
 > para trabajar en el posicionamiento SEO. La pausa general sigue vigente para todo lo
 > demás — esto no es un levantamiento permanente, solo cubre el trabajo de SEO en curso.
 >
-> **Excepción puntual (2026-11-04):** con el piloto de Cabezas del Pozo ya en producción,
-> la promotora pidió reescribir la página "Sobre el proyecto" con un texto nuevo (cita de
-> Alejandro Cabrero Durán incluida, en bloque propio) — confirmó explícitamente que era
-> "solo esta excepción puntual", no un levantamiento general de la pausa. Desplegado
-> (commit `4645c39`, push a `main`, Vercel despliega automáticamente desde GitHub — a
-> diferencia del piloto, que se despliega a mano con `vercel deploy --prod`).
+> **Excepción puntual (2026-11-04):** con el piloto de Cabezas del Pozo ya en producción, la
+> promotora pidió reescribir la página "Sobre el proyecto" (cita de Alejandro Cabrero Durán
+> en bloque propio) y, en una segunda petición explícitamente confirmada como parte de la
+> misma excepción de hoy ("sí, entra en la excepción de hoy"), adaptar los comentarios de un
+> experto en marketing digital sobre `tunomeolvides.es`. De ahí salió el resto del trabajo del
+> día: alta de la primera localidad real (Cabezas del Pozo, con descripción, audio y enlace al
+> subdominio), eliminación del marcador promocional ya redundante, cambio del icono del mapa de
+> chincheta a flor, botón "Descubre {pueblo}" dinámico, y los ajustes de SEO/footer/`/ayuntamientos`
+> de la auditoría. Todo confirmado explícitamente como excepción puntual de este día — la pausa
+> general sigue vigente para cualquier otro trabajo futuro en este proyecto. Commits: `4645c39`,
+> `2908eb7`, `e52d79a`, `60e4965`, `46391d3`. Todos desplegados a producción (push a `main`,
+> Vercel despliega automáticamente — a diferencia del piloto, que se despliega a mano con
+> `vercel deploy --prod`).
 
 ---
 
@@ -421,7 +433,8 @@ nomeolvides/
 
 ---
 
-*Última actualización: 2 de octubre de 2026 — SEO: imagen Open Graph/Twitter, Organization en
-el JSON-LD y Google Search Console conectado (dominio verificado, sitemap enviado). Repositorio,
-base de datos, hosting y email ya están en cuentas propias de la promotora: proyecto 100%
-independiente del programador anterior*
+*Última actualización: 4 de noviembre de 2026 — Excepción puntual sobre la pausa: página "Sobre
+el proyecto" reescrita, primera localidad real (Cabezas del Pozo) cargada en el mapa con audio y
+enlace a su subdominio, marcador promocional retirado, icono del mapa cambiado a la flor del
+no-me-olvides, botón del popup dinámico ("Descubre {pueblo}") y ajustes de una auditoría de
+marketing digital aplicados. La pausa general del proyecto sigue vigente para el resto del trabajo.*
