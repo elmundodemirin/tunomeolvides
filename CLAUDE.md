@@ -404,6 +404,13 @@ nomeolvides/
 > **Excepción puntual (2026-10-02):** la promotora pidió explícitamente levantar la pausa
 > para trabajar en el posicionamiento SEO. La pausa general sigue vigente para todo lo
 > demás — esto no es un levantamiento permanente, solo cubre el trabajo de SEO en curso.
+>
+> **Excepción puntual (2026-11-04):** con el piloto de Cabezas del Pozo ya en producción,
+> la promotora pidió reescribir la página "Sobre el proyecto" con un texto nuevo (cita de
+> Alejandro Cabrero Durán incluida, en bloque propio) — confirmó explícitamente que era
+> "solo esta excepción puntual", no un levantamiento general de la pausa. Desplegado
+> (commit `4645c39`, push a `main`, Vercel despliega automáticamente desde GitHub — a
+> diferencia del piloto, que se despliega a mano con `vercel deploy --prod`).
 
 ---
 
