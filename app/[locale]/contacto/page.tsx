@@ -34,6 +34,12 @@ export default async function ContactoPage({ params }: { params: Promise<{ local
         {t('intro')}
       </p>
       <ContactForm />
+      <p className="mt-8 text-sm" style={{ color: 'var(--color-tinta)', opacity: 0.8 }}>
+        {t('directEmail')}{' '}
+        <a href="mailto:info@tunomeolvides.es" className="font-medium underline" style={{ color: 'var(--color-terracota)' }}>
+          info@tunomeolvides.es
+        </a>
+      </p>
     </div>
   )
 }

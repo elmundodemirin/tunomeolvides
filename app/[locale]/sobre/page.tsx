@@ -37,7 +37,14 @@ export default async function SobrePage({ params }: { params: Promise<{ locale: 
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body2')}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t.rich('body3', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body4')}</p>
-      <p className="leading-relaxed" style={{ color: 'var(--color-tinta)' }}>{t.rich('body5', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
+      <p className="leading-relaxed mb-10" style={{ color: 'var(--color-tinta)' }}>{t.rich('body5', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
+
+      <div className="pt-8 border-t" style={{ borderColor: 'var(--color-papel-hondo)' }}>
+        <h2 className="text-xl mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}>
+          {t('whoTitle')}
+        </h2>
+        <p className="leading-relaxed" style={{ color: 'var(--color-tinta)' }}>{t.rich('whoBody', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
+      </div>
     </div>
   )
 }

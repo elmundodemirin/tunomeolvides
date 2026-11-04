@@ -77,13 +77,20 @@ const COLUMNS = [
   {
     Icon: HeadphonesIcon,
     title: 'Guía digital en destino',
-    body: 'Códigos QR en cada punto de interés que activan una audioguía narrada en español e inglés. Sin app, sin registro, 24 horas al día.',
+    body: 'Códigos QR en cada punto de interés que activan una audioguía narrada en español, con inglés opcional. Sin app, sin registro, 24 horas al día.',
   },
   {
     Icon: ChartIcon,
     title: 'Datos de tus visitantes',
-    body: 'Por primera vez sabrás cuántas personas visitan tu municipio, de dónde vienen y qué les interesa. Inteligencia turística real para cualquier ayuntamiento.',
+    body: 'Por primera vez sabrás cuántas personas visitan tu municipio, de dónde vienen y qué les interesa. Datos anónimos y agregados, sin registro y conformes al RGPD.',
   },
+]
+
+const PROCESS_STEPS = [
+  { title: 'Visita e investigación', body: 'Visita y entrevistas con los vecinos.' },
+  { title: 'Documentación', body: 'Investigación en archivos y en el libro o la historia local.' },
+  { title: 'Producción', body: 'Textos, audios y web.' },
+  { title: 'Puesta en marcha', body: 'Instalación de los QR e informe de visitas.' },
 ]
 
 export default async function AyuntamientosPage({
@@ -138,13 +145,63 @@ export default async function AyuntamientosPage({
         ))}
       </div>
 
+      <h2
+        className="text-xl mb-6"
+        style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
+      >
+        Cómo trabajamos
+      </h2>
+      <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+        {PROCESS_STEPS.map((step, i) => (
+          <li key={step.title}>
+            <span
+              className="flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold mb-3"
+              style={{ backgroundColor: 'var(--color-terracota)', color: 'white' }}
+            >
+              {i + 1}
+            </span>
+            <h3 className="text-base font-semibold mb-1" style={{ color: 'var(--color-terracota)' }}>
+              {step.title}
+            </h3>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--color-tinta)' }}>
+              {step.body}
+            </p>
+          </li>
+        ))}
+      </ol>
+
+      <div
+        className="rounded-marca px-6 py-7 mb-14 border-l-4"
+        style={{ backgroundColor: 'var(--color-papel-hondo)', borderColor: 'var(--color-terracota)' }}
+      >
+        <h2
+          className="text-lg mb-3"
+          style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
+        >
+          Así lo hicimos en Cabezas del Pozo
+        </h2>
+        <p className="text-sm lg:text-base leading-relaxed mb-3" style={{ color: 'var(--color-tinta)' }}>
+          Nuestro primer municipio piloto, en La Moraña (Ávila), ya tiene su web turística completa:
+          11 sitios de interés con ficha propia, 2 rutas documentadas (a pie y en coche), sus
+          establecimientos y su agenda de fiestas y eventos — todo en un solo mes de trabajo.
+        </p>
+        <a
+          href="https://cabezasdelpozo.tunomeolvides.es"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium underline"
+          style={{ color: 'var(--color-terracota)' }}
+        >
+          Ver cabezasdelpozo.tunomeolvides.es →
+        </a>
+      </div>
+
       <div
         className="rounded-marca px-6 py-6 mb-14"
         style={{ backgroundColor: 'var(--color-papel-hondo)' }}
       >
         <p className="text-sm lg:text-base leading-relaxed" style={{ color: 'var(--color-tinta)' }}>
-          El proyecto puede financiarse con subvenciones públicas. Nos encargamos de identificar
-          las convocatorias disponibles para tu municipio y gestionar todo el proceso de solicitud.
+          Presupuesto adaptado al municipio; te ayudamos a buscar financiación (LEADER, Diputación…).
         </p>
       </div>
 

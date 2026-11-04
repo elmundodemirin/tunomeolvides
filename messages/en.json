@@ -24,7 +24,7 @@
     "noResults": "No results match these filters.",
     "mapAriaLabel": "Interactive map of villages in rural Spain",
     "metaTitle": "Tú no me olvides — A Sound Map of Rural Spain",
-    "metaDescription": "Explore villages of depopulated rural Spain through an interactive map with first-person audio stories told by those who lived them."
+    "metaDescription": "Discover the villages of depopulated rural Spain on a sound map, with their stories told by those who lived them."
   },
   "about": {
     "title": "About the project",
@@ -36,6 +36,8 @@
     "body3": "But <marca>Tú no me olvides</marca> isn't only an audioguide. Every locality that joins the project gets a complete tourism website: its points of interest with a page and audioguide, its documented routes, its businesses, and its calendar of festivals and events. All positioned online, so that travellers looking for an authentic destination can find the village before they arrive.",
     "body4": "And, finally, something no small village has ever had before: real data about its visitors. Every QR code anonymously logs how many people scan it, when, and where they come from. For the first time, a village with no tourist office can know who is visiting and what interests them.",
     "body5": "Because every village has a story that deserves to be told. <marca>Tú no me olvides</marca> is here to tell it.",
+    "whoTitle": "Who I am",
+    "whoBody": "I'm María del Carmen López Rosa. I've worked as a tour guide for over 20 years, I'm a licensed Official Tourism Guide, and I hold a degree in Tourism from the UNED. Before <marca>Tú no me olvides</marca>, I was a tourism officer in Laguna de Duero, where I created Laguna Experience. Today I put that same experience to work for the villages no one tells about.",
     "metaTitle": "About the project — rural heritage & memory",
     "metaDescription": "Tú no me olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives."
   },
@@ -60,6 +62,7 @@
   "contact": {
     "title": "Contact",
     "intro": "Do you have information about a village, want to collaborate, or simply want to get in touch? Write to us.",
+    "directEmail": "You can also write to us directly at",
     "metaTitle": "Contact — share your story",
     "metaDescription": "Do you have information about a village or want to collaborate with Tú no me olvides? Get in touch with us.",
     "name": "Name",

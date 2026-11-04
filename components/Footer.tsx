@@ -48,6 +48,9 @@ export function Footer({ locale }: Props) {
       <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-tinta/80">
         <span>{strings.rights(new Date().getFullYear())}</span>
         <nav className="flex flex-wrap items-center gap-4" aria-label={strings.navAria}>
+          <a href="mailto:info@tunomeolvides.es" className="hover:text-terracota transition-colors">
+            info@tunomeolvides.es
+          </a>
           {links.map(link => (
             <Link
               key={link.href}

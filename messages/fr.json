@@ -24,7 +24,7 @@
     "noResults": "Aucun résultat avec ces filtres.",
     "mapAriaLabel": "Carte interactive des villages de l'Espagne rurale",
     "metaTitle": "Tú no me olvides — Carte sonore de l'Espagne rurale",
-    "metaDescription": "Découvrez les villages de l'Espagne rurale à travers une carte interactive avec des récits audio racontés à la première personne."
+    "metaDescription": "Découvrez les villages de l'Espagne rurale sur une carte sonore, avec leurs histoires racontées par ceux qui les ont vécues."
   },
   "about": {
     "title": "À propos du projet",
@@ -36,6 +36,8 @@
     "body3": "Mais <marca>Tú no me olvides</marca> n'est pas seulement un audioguide. Chaque localité qui rejoint le projet reçoit un site web touristique complet : ses points d'intérêt avec fiche et audioguide, ses itinéraires documentés, ses établissements et son agenda de fêtes et d'événements. Le tout référencé sur internet, pour que le voyageur en quête d'une destination authentique trouve le village avant même d'y arriver.",
     "body4": "Et enfin, ce qu'aucun petit village n'a jamais eu : des données réelles sur ses visiteurs. Chaque QR code enregistre, de façon anonyme, combien de personnes le scannent, quand et d'où elles viennent. Pour la première fois, un village sans office de tourisme peut savoir qui le visite et ce qui l'intéresse.",
     "body5": "Parce que chaque village a une histoire qui mérite d'être racontée. <marca>Tú no me olvides</marca> est là pour la raconter.",
+    "whoTitle": "Qui suis-je",
+    "whoBody": "Je suis María del Carmen López Rosa. Je travaille comme guide touristique depuis plus de 20 ans, je suis Guide Officielle de Tourisme habilitée et diplômée en Tourisme de l'UNED. Avant <marca>Tú no me olvides</marca>, j'étais technicienne de tourisme à Laguna de Duero, où j'ai créé Laguna Experience. Aujourd'hui, je mets cette même expérience au service des villages dont personne ne parle.",
     "metaTitle": "À propos — mémoire et patrimoine rural",
     "metaDescription": "Tú no me olvides documente et préserve le patrimoine culturel des villages de l'Espagne rurale grâce à des récits audio à la première personne."
   },
@@ -60,6 +62,7 @@
   "contact": {
     "title": "Contact",
     "intro": "Vous avez des informations sur un village, vous souhaitez collaborer ou simplement nous écrire ? Contactez-nous.",
+    "directEmail": "Vous pouvez aussi nous écrire directement à",
     "metaTitle": "Contact — partagez votre histoire",
     "metaDescription": "Vous avez des informations sur un village ou souhaitez collaborer avec Tú no me olvides ? Contactez-nous.",
     "name": "Nom",

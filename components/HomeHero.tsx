@@ -28,7 +28,7 @@ export async function HomeHero({ locale }: Props) {
       {HERO_IMAGE_EXISTS && (
         <Image
           src="/hero-pueblo.png"
-          alt=""
+          alt="Plaza de un pueblo español con un crucero de piedra y casas tradicionales, al atardecer"
           fill
           priority
           sizes="100vw"
