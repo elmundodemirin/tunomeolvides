@@ -27,14 +27,24 @@ const SPAIN_BOUNDS: [[number, number], [number, number]] = [
   [43.9, 4.5],
 ]
 
-// SVG pin en terracota, la marca reserva ese color solo para botones,
-// enlaces y marcadores del mapa (sized 36x44 for accessible touch target)
+// Marcador del mapa: la flor del no-me-olvides, la marca del proyecto
+// (mismo símbolo que FlowerIcon.tsx — no reutilizable tal cual, Leaflet
+// necesita el SVG como cadena de texto, no como componente React).
+// Insignia circular en vez de la flor "desnuda" para que tenga contraste
+// propio sobre los tiles del mapa a cualquier zoom.
 const MARKER_SVG = `
-<svg xmlns="http://www.w3.org/2000/svg" width="36" height="44" viewBox="0 0 28 36" aria-hidden="true">
-  <path d="M14 0C6.268 0 0 6.268 0 14c0 9.333 14 22 14 22S28 23.333 28 14C28 6.268 21.732 0 14 0z"
-        fill="var(--color-terracota)" stroke="var(--color-olivo)" stroke-width="1.5"/>
-  <circle cx="14" cy="14" r="6" fill="var(--color-papel)" opacity="0.9"/>
-  <circle cx="14" cy="14" r="3" fill="var(--color-terracota)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+  <circle cx="20" cy="20" r="18" fill="var(--color-papel)" stroke="var(--color-terracota)" stroke-width="2.5"/>
+  <g transform="translate(20 20)">
+    ${[0, 72, 144, 216, 288]
+      .map(
+        (deg) =>
+          `<ellipse cx="0" cy="0" rx="3.5" ry="7" fill="var(--color-flower)" opacity="0.9" transform="rotate(${deg}) translate(0 -4.5)"/>`,
+      )
+      .join('')}
+    <circle cx="0" cy="0" r="3.5" fill="var(--color-papel)"/>
+    <circle cx="0" cy="0" r="2.2" fill="var(--color-flower)"/>
+  </g>
 </svg>`
 
 const MORE_INFO_LABEL: Record<string, string> = {
@@ -136,9 +146,9 @@ export default function LeafletMap({ localities, locale, selectedId, focusToken 
       const icon = L.divIcon({
         html: MARKER_SVG,
         className: '',
-        iconSize: [36, 44],
-        iconAnchor: [18, 44],
-        popupAnchor: [0, -44],
+        iconSize: [40, 40],
+        iconAnchor: [20, 20],
+        popupAnchor: [0, -20],
       })
 
       localities.forEach((loc) => {
