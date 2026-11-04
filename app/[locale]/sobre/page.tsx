@@ -24,6 +24,14 @@ export default async function SobrePage({ params }: { params: Promise<{ locale: 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
       <h1 className="text-3xl mb-6" style={{ color: 'var(--color-terracota)' }}>{t('title')}</h1>
+      <blockquote className="mb-8 pl-5 border-l-4" style={{ borderColor: 'var(--color-terracota)' }}>
+        <p className="italic text-xl leading-relaxed mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-tinta)' }}>
+          {t('quoteText')}
+        </p>
+        <footer className="text-sm" style={{ color: 'var(--color-tinta)', opacity: 0.7 }}>
+          — {t('quoteAttribution')}
+        </footer>
+      </blockquote>
       <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t.rich('intro', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t.rich('body', { marca: (chunks) => <span className="marca">{chunks}</span> })}</p>
       <p className="leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>{t('body2')}</p>
