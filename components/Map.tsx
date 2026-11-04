@@ -47,16 +47,19 @@ const MARKER_SVG = `
   </g>
 </svg>`
 
-const MORE_INFO_LABEL: Record<string, string> = {
-  es: 'Más información',
-  en: 'More information',
-  fr: 'Plus d’informations',
+// "Descubre {pueblo} →" en vez de un genérico "Más información": usa el
+// propio nombre de la localidad, así funciona igual de bien para
+// cualquier pueblo nuevo sin necesitar un campo propio en la base de datos.
+const DISCOVER_LABEL: Record<string, (name: string) => string> = {
+  es: (name) => `Descubre ${name}`,
+  en: (name) => `Discover ${name}`,
+  fr: (name) => `Découvrez ${name}`,
 }
 
 function buildPopupHTML(loc: Locality, locale: string): string {
   const description = pickLocalized(locale, loc.description_es, loc.description_en)
   const audioUrl = pickLocalized(locale, loc.audio_url_es, loc.audio_url_en)
-  const moreInfoLabel = MORE_INFO_LABEL[locale] ?? MORE_INFO_LABEL.es
+  const moreInfoLabel = (DISCOVER_LABEL[locale] ?? DISCOVER_LABEL.es)(loc.name)
 
   const audioSection = audioUrl
     ? `<div style="padding:4px 14px 8px">
