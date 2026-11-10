@@ -44,23 +44,26 @@ export function Footer({ locale }: Props) {
   const strings = STRINGS[locale] ?? STRINGS.es
 
   return (
-    <footer className="border-t border-papel-hondo bg-papel mt-auto">
-      <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-tinta/80">
+    <footer className="bg-terracota mt-auto">
+      <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-sobre-terracota/90">
         <span>{strings.rights(new Date().getFullYear())}</span>
         <nav className="flex flex-wrap items-center gap-4" aria-label={strings.navAria}>
-          <a href="mailto:info@tunomeolvides.es" className="hover:text-terracota transition-colors">
+          <a href="mailto:info@tunomeolvides.es" className="underline-offset-2 hover:underline transition-opacity hover:opacity-80">
             info@tunomeolvides.es
           </a>
           {links.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-terracota transition-colors"
+              className="underline-offset-2 hover:underline transition-opacity hover:opacity-80"
             >
               {link.label}
             </Link>
           ))}
-          <ManageCookiesButton label={strings.manage} />
+          <ManageCookiesButton
+            label={strings.manage}
+            className="underline-offset-2 hover:underline transition-opacity hover:opacity-80"
+          />
         </nav>
       </div>
     </footer>

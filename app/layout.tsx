@@ -1,21 +1,24 @@
 import type { Metadata } from 'next'
-import { EB_Garamond, Jost } from 'next/font/google'
+import { Vollkorn, Karla } from 'next/font/google'
 import { getLocale } from 'next-intl/server'
 import './globals.css'
 import { AuthRedirectGuard } from '@/components/AuthRedirectGuard'
 import { siteUrl } from '@/lib/seo'
 
-// Identidad de marca: EB Garamond para títulos, Jost para el resto del texto.
-const ebGaramond = EB_Garamond({
+// Identidad de marca: Vollkorn para títulos (serif rústica, terrosa — encaja
+// con un proyecto sobre tierra y memoria rural), Karla para el resto del
+// texto (humanista, cálida, suaviza el contraste con una serif tan robusta).
+const vollkorn = Vollkorn({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-eb-garamond',
+  style: ['normal', 'italic'],
+  variable: '--font-vollkorn',
   display: 'swap',
 })
-const jost = Jost({
+const karla = Karla({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-jost',
+  weight: ['400', '500', '600'],
+  variable: '--font-karla',
   display: 'swap',
 })
 
@@ -41,7 +44,7 @@ const supabaseOrigin = (() => {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
   return (
-    <html lang={locale} className={`h-full ${ebGaramond.variable} ${jost.variable}`}>
+    <html lang={locale} className={`h-full ${vollkorn.variable} ${karla.variable}`}>
       <head>
         {/* Preconnect a los subdominios de tiles de OSM y a Supabase
             para arrancar el handshake antes de que Leaflet/los queries

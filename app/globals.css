@@ -20,8 +20,8 @@
 
   --radius-marca: 10px;
 
-  --font-heading: var(--font-eb-garamond), Georgia, serif;
-  --font-body: var(--font-jost), system-ui, sans-serif;
+  --font-heading: var(--font-vollkorn), Georgia, serif;
+  --font-body: var(--font-karla), system-ui, sans-serif;
 }
 
 /* Envoltorio semántico para cada aparición de "Tú no me olvides" en textos,
@@ -38,7 +38,11 @@
   --color-sage-dark:       var(--color-olivo);
   --color-cream:           var(--color-papel);
   --color-cream-dark:      var(--color-papel-hondo);
-  --color-flower:          var(--color-olivo);
+  /* La flor del no-me-olvides recupera su azul real (fuera de la paleta de
+     3 colores a propósito): es el color de la planta en la naturaleza, y
+     queda como firma de marca solo para el símbolo — nunca para texto,
+     botones o enlaces, que siguen en terracota. */
+  --color-flower:          #6B8CB8;
   --color-text:            var(--color-tinta);
 }
 
