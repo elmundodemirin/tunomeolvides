@@ -322,11 +322,11 @@
   <main>
 
     <header class="doc-header">
-      <span class="pill">Documento vivo · v1.1</span>
+      <span class="pill">Documento vivo · v1.2</span>
       <h1>Arquitectura técnica de tunomeolvides.es</h1>
       <div class="meta">
         Proyecto Tú no me olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 30 de septiembre de 2026
+        Última actualización: 10 de noviembre de 2026
       </div>
     </header>
 
@@ -890,6 +890,7 @@ CREATE POLICY "admin_delete" ON contact_messages
         <li><strong>Página <code>/ayuntamientos</code> (2026-09-25)</strong>: argumentario B2G solo en español para captar pequeños municipios como clientes del servicio de digitalización turística.</li>
         <li><strong>Rebrand completo a "Tú no me olvides" (2026-09-29)</strong>: nuevo nombre, logo, paleta de 3 colores (fondo único, verde olivo para texto/títulos/menú, terracota reservado a botones/enlaces/marcadores del mapa) y tipografías EB Garamond (títulos) + Jost (cuerpo). Clase <code>.marca</code> en <code>globals.css</code> que envuelve cada aparición del nombre de marca en texto visible (hoy en cursiva), para poder restilizarla de forma centralizada sin tocar cada componente.</li>
         <li><strong>Aviso por email del formulario de contacto (2026-09-30)</strong>: ver <a href="#lopd">05</a> y <a href="#stack">03</a>.</li>
+        <li><strong>Segundo rebrand tipográfico y visual (2026-11-10)</strong>: tipografías EB Garamond + Jost sustituidas por <strong>Vollkorn (títulos) + Karla (cuerpo)</strong> — la promotora notaba la combinación anterior como "muy de IA/plantilla"; la flor del no-me-olvides recupera su azul real <code>#6B8CB8</code> (ya especificado así en este mismo documento desde el origen del proyecto, pero el código se había quedado en verde olivo tras el rebrand de septiembre); el logo de la cabecera cambia el sol por la propia flor (editado con IA a partir de una foto real de la flor que aportó la promotora, para respetar su forma) y pasa a tener fondo transparente; el pie de página cambia de fondo crema a terracota para distinguirse visualmente del resto de la página; el marcador del mapa adopta forma de pin con la flor dentro (en vez de la insignia circular del 4 de noviembre); y el favicon/icono de "añadir a pantalla de inicio" pasa a ser solo la flor recortada, no la ilustración completa. Ver <a href="#decisiones">09</a>.</li>
       </ul>
     </section>
 
@@ -1182,6 +1183,41 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Adaptadas las correcciones aplicables de una auditoría externa de marketing digital sobre <code>tunomeolvides.es</code>: <em>alt</em> del hero, enlace directo a <code>info@tunomeolvides.es</code> en el footer, textos de <code>/ayuntamientos</code>, meta description de la home, <code>contact.directEmail</code></td>
             <td>Excepción puntual sobre la pausa, confirmada explícitamente por la promotora. Varios hallazgos de la auditoría resultaron ser falsos positivos al verificarlos contra el código/sitio real (selector EN/FR, JSON-LD <code>Organization</code>/<code>WebSite</code>, datos del titular en el aviso legal) y no se tocaron. Quedan pendientes de datos que la promotora no ha dado aún: foto para "Quién soy", teléfono/WhatsApp, redes sociales, capturas o cita de alcaldesa para el caso de éxito de Cabezas del Pozo.</td>
           </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>Tipografía de toda la web: <strong>EB Garamond + Jost → Vollkorn (títulos) + Karla (cuerpo)</strong> (<code>app/layout.tsx</code>, <code>app/globals.css</code>)</td>
+            <td>Excepción puntual sobre la pausa, confirmada por la promotora. La combinación anterior se repite mucho en webs generadas con IA; Vollkorn es una serif rústica y terrosa (encaja con un proyecto sobre tierra y memoria rural), Karla es humanista y cálida. Antes de implementar, se publicó una comparativa visual con las 4-5 combinaciones candidatas sobre el contenido real de la home para que la promotora eligiera viéndolas, no solo leyendo nombres de fuentes.</td>
+          </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>La flor del no-me-olvides recupera su color azul real (<code>--color-flower: #6B8CB8</code>, antes alias de <code>--color-olivo</code>) — <code>FlowerIcon.tsx</code>, favicon y marcador del mapa</td>
+            <td>Este mismo documento (sección "Identidad visual" original del proyecto) siempre especificó la flor en azul — el rebrand del 2026-09-29 la dejó en verde olivo sin que nadie lo pidiera explícitamente. Queda fuera de la paleta de 3 colores a propósito: es la firma del símbolo, nunca de texto/botones/enlaces, que siguen en terracota.</td>
+          </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>Logo de la cabecera (<code>public/logo-tunomeolvides.png</code>): el sol de la ilustración se sustituye por la propia flor, y el fondo pasa a transparente</td>
+            <td>Editado con IA (modelo de edición de imagen con referencia + <code>birefnet-v2-bg-removal</code> para el fondo) a partir de una foto real de un no-me-olvides que aportó la promotora, para que la flor del logo respetara su forma natural. El fondo crema sólido se notaba como un rectángulo distinto del crema de la propia web; sin fondo, se funde con la cabecera</td>
+          </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>Favicon y icono de "añadir a pantalla de inicio" (<code>app/icon.png</code>, <code>app/apple-icon.png</code>, sustituyen a <code>app/icon.svg</code>): pasan a ser un recorte cuadrado de la flor del logo nuevo, aislada sobre fondo blanco</td>
+            <td>Petición explícita: que en resultados de Google y al instalar la web como acceso directo se vea solo la flor, no la ilustración completa del pueblo</td>
+          </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>Marcador del mapa (<code>components/Map.tsx</code>): de insignia circular (2026-11-04) a <strong>pin con punta</strong>, con la flor dentro del círculo superior</td>
+            <td>La promotora mandó una imagen de referencia (un pin de mapa clásico) pidiendo esa silueta para las ubicaciones; se mantiene la flor como motivo en vez de un icono genérico dentro del pin</td>
+          </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>Pie de página: de fondo crema a <strong>fondo terracota</strong> (mismo tono que los botones)</td>
+            <td>La promotora notaba que el pie no se distinguía visualmente del resto de la página; ahora se identifica de un vistazo como la zona de avisos legales</td>
+          </tr>
+          <tr>
+            <td>2026-11-10</td>
+            <td>Botón flotante "Localidades" en móvil (<code>components/MobilePanel.tsx</code>): de <code>position: fixed</code> a <code>position: absolute</code></td>
+            <td>Antes seguía visible por toda la página al hacer scroll, incluso sobre "Sobre el proyecto" o <code>/ayuntamientos</code>, donde no tenía sentido. Su contenedor directo en <code>HomeShell.tsx</code> ya es <code>position: relative</code> con la altura de la sección del mapa, así que con <code>absolute</code> el botón solo aparece dentro de esa sección</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1323,7 +1359,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> Tú no me olvides · Documentación viva ·
-        Última actualización 4 de noviembre de 2026 ·
+        Última actualización 10 de noviembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>

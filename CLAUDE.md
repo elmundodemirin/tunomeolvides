@@ -238,16 +238,32 @@ CREATE POLICY "admin_delete" ON contact_messages
 
 ## 🎨 Identidad visual
 
-- **Color principal**: terracota / tierra (`#C9633E`, `#8E4226`)
-- **Color secundario**: verde salvia (`#8FA785`, `#5F7355`)
-- **Fondos**: crema / blanco roto (`#FAF6EE`, `#EFE8D6`)
-- **Tipografía títulos**: Georgia (con carácter, evoca memoria)
-- **Tipografía cuerpo**: Arial / sans-serif limpia
-- **Símbolo**: la flor del no-me-olvides (azul `#6B8CB8`), pequeña y silvestre.
-  Usar como icono de los puntos del mapa o decoración recurrente.
+> **Actualizado el 2026-11-10** — esta sección llevaba desde el rebrand del
+> 2026-09-29 sin reflejar los tokens reales de `app/globals.css`; los
+> colores de abajo son ahora los mismos que usa el código, no los
+> originales del brief (ver ADR correspondiente en `docs/01_arquitectura.html` §09
+> para el historial de ambos rebrands).
+
+- **Fondo único**: crema (`--color-papel` / `--color-papel-hondo`, `#FAF7F2`)
+- **Texto, títulos, menú**: verde olivo (`--color-tinta` / `--color-olivo`, `#4A5236`)
+- **Terracota**: reservado solo para botones, enlaces y el pie de página
+  (`--color-terracota`, `#9A5530`) — nunca para texto corrido
+- **Tipografía títulos**: Vollkorn (serif rústica y terrosa — encaja con
+  un proyecto sobre tierra y memoria rural)
+- **Tipografía cuerpo**: Karla (humanista, cálida)
+- **Símbolo**: la flor del no-me-olvides, en su azul real
+  (`--color-flower`, `#6B8CB8`) — deliberadamente fuera de la paleta de
+  3 colores de arriba, como firma exclusiva del símbolo (favicon,
+  marcador del mapa, `FlowerIcon.tsx`). El logo de la cabecera
+  (`public/logo-tunomeolvides.png`) también lleva esta misma flor desde
+  el 2026-11-10, generada a partir de una foto real que aportó la
+  promotora para respetar su forma natural.
 
 **Tono general**: cercano, auténtico, con carácter. NO corporativo frío,
 NO genérico de turismo. Debe transmitir memoria, territorio y narración.
+Esto incluye la propia elección tipográfica: EB Garamond + Jost (hasta el
+2026-11-10) se abandonaron precisamente por sentirse "muy de plantilla de
+IA" — ver ADR del 2026-11-10.
 
 ---
 
@@ -327,6 +343,13 @@ nomeolvides/
 | 2026-11-04 | Icono de los marcadores del mapa cambiado de chincheta a la flor del no-me-olvides (insignia circular, mismo símbolo que `FlowerIcon.tsx` pero como SVG en texto para Leaflet) | Petición directa de la promotora: la chincheta genérica no representa la marca; la flor es el símbolo oficial del proyecto y ya se usa como favicon y en el panel |
 | 2026-11-04 | Botón del popup cambiado de "Más información →" fijo a "Descubre {nombre del pueblo} →" dinámico (`DISCOVER_LABEL` por idioma en `components/Map.tsx`) | Usa el propio campo `name` de la localidad en vez de añadir una columna nueva en la base de datos; funciona igual para cualquier pueblo futuro sin tocar el esquema |
 | 2026-11-04 | Adaptadas las correcciones de una auditoría externa de marketing digital sobre `tunomeolvides.es` (hero `alt`, footer con email directo, textos de `/ayuntamientos`, meta description de la home, nuevo bloque "Quién soy" en `/sobre`, `contact.directEmail`) | Se adaptó solo lo verificable con datos reales del proyecto; varios hallazgos de la auditoría resultaron ser falsos positivos tras comprobarlos contra el código/sitio real (selector EN/FR, JSON-LD `Organization`/`WebSite`, datos del titular en el aviso legal) y no se tocaron. Quedan pendientes de datos que la promotora no ha dado aún: foto para "Quién soy", teléfono/WhatsApp, redes sociales, capturas o cita de alcaldesa para el caso de éxito de Cabezas del Pozo |
+| 2026-11-10 | Tipografía de toda la web: EB Garamond + Jost → **Vollkorn (títulos) + Karla (cuerpo)** | Excepción puntual sobre la pausa. La combinación anterior se repite mucho en webs generadas con IA; se publicó antes una comparativa visual de varias combinaciones sobre contenido real de la home para que la promotora eligiera viéndolas |
+| 2026-11-10 | La flor del no-me-olvides recupera su azul real (`--color-flower: #6B8CB8`, antes alias de `--color-olivo`) en `FlowerIcon.tsx`, favicon y marcador del mapa | Esta sección de "Identidad visual" siempre especificó la flor en azul; el rebrand del 2026-09-29 la dejó en verde olivo sin que nadie lo pidiera. Queda fuera de la paleta de 3 colores a propósito — firma del símbolo, nunca de texto/botones/enlaces |
+| 2026-11-10 | Logo de la cabecera (`public/logo-tunomeolvides.png`): el sol de la ilustración pasa a ser la flor, y el fondo pasa a transparente | Editado con IA (edición con referencia + `birefnet-v2-bg-removal`) a partir de una foto real de un no-me-olvides que aportó la promotora, para respetar su forma natural. Sin fondo, se funde con la cabecera en vez de verse como un rectángulo recortado |
+| 2026-11-10 | Favicon/icono de "añadir a pantalla de inicio" (`app/icon.png`, `app/apple-icon.png`, sustituyen a `app/icon.svg`): recorte cuadrado de la flor del logo nuevo, aislada | Petición explícita: que en Google y al instalar la web como acceso directo se vea solo la flor, no la ilustración completa del pueblo |
+| 2026-11-10 | Marcador del mapa: de insignia circular (2026-11-04) a **pin con punta**, con la flor dentro del círculo superior | La promotora mandó una imagen de referencia (pin de mapa clásico) pidiendo esa silueta; se mantiene la flor como motivo en vez de un icono genérico |
+| 2026-11-10 | Pie de página: de fondo crema a fondo terracota (mismo tono que los botones) | No se distinguía visualmente del resto de la página; ahora se identifica de un vistazo como la zona de avisos legales |
+| 2026-11-10 | Botón flotante "Localidades" en móvil: de `position: fixed` a `position: absolute` (`components/MobilePanel.tsx`) | Antes seguía visible por toda la página al hacer scroll (incluso sobre "Sobre el proyecto"); su contenedor en `HomeShell.tsx` ya es `position: relative` con la altura de la sección del mapa, así que con `absolute` solo aparece ahí |
 
 ---
 
@@ -423,6 +446,17 @@ nomeolvides/
 > `2908eb7`, `e52d79a`, `60e4965`, `46391d3`. Todos desplegados a producción (push a `main`,
 > Vercel despliega automáticamente — a diferencia del piloto, que se despliega a mano con
 > `vercel deploy --prod`).
+>
+> **Excepción puntual (2026-11-10):** la promotora pidió explícitamente trabajar hoy en
+> tunomeolvides.es ("vamos al proyecto principal, hay algunos datos a mejorar") pese a que
+> el piloto de Cabezas del Pozo seguía sin terminar (9 fichas aún sin audio en esa fecha) —
+> confirmado como excepción de un solo día, la pausa general sigue vigente después. Segundo
+> rebrand visual del proyecto (ver ADRs del 2026-11-10 más arriba): tipografía Vollkorn+Karla,
+> la flor recupera su azul real, logo de cabecera con la flor en vez del sol y fondo
+> transparente, favicon = solo la flor, marcador del mapa en forma de pin, pie de página en
+> terracota, y botón móvil "Localidades" corregido para no seguir el scroll fuera de la
+> sección del mapa. Todo desplegado a producción (push a `main`, 3 commits:
+> `aaa5553`, `02f46a7`, `79e3c35`).
 
 ---
 
@@ -433,8 +467,8 @@ nomeolvides/
 
 ---
 
-*Última actualización: 4 de noviembre de 2026 — Excepción puntual sobre la pausa: página "Sobre
-el proyecto" reescrita, primera localidad real (Cabezas del Pozo) cargada en el mapa con audio y
-enlace a su subdominio, marcador promocional retirado, icono del mapa cambiado a la flor del
-no-me-olvides, botón del popup dinámico ("Descubre {pueblo}") y ajustes de una auditoría de
-marketing digital aplicados. La pausa general del proyecto sigue vigente para el resto del trabajo.*
+*Última actualización: 10 de noviembre de 2026 — Excepción puntual sobre la pausa: segundo
+rebrand visual del proyecto (tipografía Vollkorn+Karla, flor en azul real, logo de cabecera con
+la flor y fondo transparente, favicon = solo la flor, marcador del mapa en pin, pie de página en
+terracota) y corrección del botón "Localidades" en móvil. La pausa general del proyecto sigue
+vigente para el resto del trabajo.*
