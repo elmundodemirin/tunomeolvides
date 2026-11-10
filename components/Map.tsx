@@ -27,23 +27,31 @@ const SPAIN_BOUNDS: [[number, number], [number, number]] = [
   [43.9, 4.5],
 ]
 
-// Marcador del mapa: la flor del no-me-olvides, la marca del proyecto
-// (mismo símbolo que FlowerIcon.tsx — no reutilizable tal cual, Leaflet
-// necesita el SVG como cadena de texto, no como componente React).
-// Insignia circular en vez de la flor "desnuda" para que tenga contraste
-// propio sobre los tiles del mapa a cualquier zoom.
+// Marcador del mapa: pin con punta (silueta reconocible de "aquí está"),
+// con la flor del no-me-olvides en el círculo superior — a petición de la
+// promotora (2026-11-10), inspirado en un pin de referencia que mandó.
+// Vuelve a la forma de pin tras el cambio a insignia circular del
+// 2026-11-04, pero conserva la flor como motivo (no una chincheta genérica).
+// El path del pin es la silueta clásica de marcador de mapa (círculo que
+// remata en punta), reescalada a un viewBox de 40×40.
 const MARKER_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
-  <circle cx="20" cy="20" r="18" fill="var(--color-papel)" stroke="var(--color-terracota)" stroke-width="2.5"/>
-  <g transform="translate(20 20)">
+  <path
+    d="M20,3.33 C13.55,3.33 8.33,8.55 8.33,15 C8.33,23.75 20,36.67 20,36.67 C20,36.67 31.67,23.75 31.67,15 C31.67,8.55 26.45,3.33 20,3.33 Z"
+    fill="var(--color-flower)"
+    stroke="var(--color-terracota)"
+    stroke-width="1.5"
+  />
+  <circle cx="20" cy="15" r="7" fill="var(--color-papel)" />
+  <g transform="translate(20 15)">
     ${[0, 72, 144, 216, 288]
       .map(
         (deg) =>
-          `<ellipse cx="0" cy="0" rx="3.5" ry="7" fill="var(--color-flower)" opacity="0.9" transform="rotate(${deg}) translate(0 -4.5)"/>`,
+          `<ellipse cx="0" cy="0" rx="1.4" ry="2.8" fill="var(--color-flower)" opacity="0.9" transform="rotate(${deg}) translate(0 -1.8)"/>`,
       )
       .join('')}
-    <circle cx="0" cy="0" r="3.5" fill="var(--color-papel)"/>
-    <circle cx="0" cy="0" r="2.2" fill="var(--color-flower)"/>
+    <circle cx="0" cy="0" r="1.6" fill="var(--color-papel)"/>
+    <circle cx="0" cy="0" r="1" fill="var(--color-flower)"/>
   </g>
 </svg>`
 

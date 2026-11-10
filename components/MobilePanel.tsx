@@ -13,6 +13,15 @@ type Props = {
 // Patrón "botón flotante + panel pantalla completa" para móvil.
 // El botón vive a z-[1000] y el panel a z-[1001], por encima del z-700
 // que Leaflet usa para sus popups. Así no hay conflictos de stacking.
+//
+// El botón es absolute (no fixed) a propósito (2026-11-10): el padre
+// directo en HomeShell.tsx es la sección del mapa (position: relative,
+// alto fijo = pantalla menos cabecera), así que el botón solo flota
+// dentro de esa sección y desaparece al hacer scroll hacia la cabecera
+// o hacia "Sobre el proyecto"/ayuntamientos — antes, al ser fixed, seguía
+// visible encima de esas otras secciones, sin sentido fuera del mapa.
+// El panel, en cambio, sigue fixed inset-0: cuando está abierto debe
+// cubrir toda la pantalla pase lo que pase con el scroll.
 export function MobilePanel({
   buttonLabel,
   panelTitle,
@@ -43,7 +52,7 @@ export function MobilePanel({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`fixed bottom-5 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2 px-5 py-3 rounded-full shadow-md transition-transform active:scale-95 ${className}`}
+        className={`absolute bottom-5 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2 px-5 py-3 rounded-full shadow-md transition-transform active:scale-95 ${className}`}
         style={{
           backgroundColor: 'var(--color-terracota)',
           color: 'white',
