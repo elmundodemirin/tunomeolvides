@@ -38,11 +38,18 @@
   --color-sage-dark:       var(--color-olivo);
   --color-cream:           var(--color-papel);
   --color-cream-dark:      var(--color-papel-hondo);
-  /* La flor del no-me-olvides recupera su azul real (fuera de la paleta de
-     3 colores a propósito): es el color de la planta en la naturaleza, y
-     queda como firma de marca solo para el símbolo — nunca para texto,
-     botones o enlaces, que siguen en terracota. */
-  --color-flower:          #6B8CB8;
+  /* La flor del no-me-olvides (fuera de la paleta de 3 colores a
+     propósito): es el color de la planta en la naturaleza, y queda como
+     firma de marca solo para el símbolo — nunca para texto, botones o
+     enlaces, que siguen en terracota. Valores de la "Guía del símbolo"
+     (2026-11-18): pétalos azules, sol de rayos en --color-papel y botón
+     amarillo en el centro. --color-flower-ink (marrón oscuro) es solo para
+     la versión a una tinta del símbolo — NO sustituye a --color-tinta del
+     texto general, que sigue en verde oliva a petición de la promotora. */
+  --color-flower:          #4F8AD0;
+  --color-flower-button:   #E9AE2E;
+  --color-flower-ink:      #2C2217;
+  --color-ocre:            #C8965C;
   --color-text:            var(--color-tinta);
 }
 

@@ -33,7 +33,10 @@ const SPAIN_BOUNDS: [[number, number], [number, number]] = [
 // Vuelve a la forma de pin tras el cambio a insignia circular del
 // 2026-11-04, pero conserva la flor como motivo (no una chincheta genérica).
 // El path del pin es la silueta clásica de marcador de mapa (círculo que
-// remata en punta), reescalada a un viewBox de 40×40.
+// remata en punta), reescalada a un viewBox de 40×40. Centro de la flor
+// con botón amarillo (--color-flower-button), igual que FlowerIcon.tsx,
+// pero sin los rayos del sol: a este tamaño no se distinguirían (ver
+// "Guía del símbolo", regla de tamaño mínimo 24px).
 const MARKER_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
   <path
@@ -51,7 +54,7 @@ const MARKER_SVG = `
       )
       .join('')}
     <circle cx="0" cy="0" r="1.6" fill="var(--color-papel)"/>
-    <circle cx="0" cy="0" r="1" fill="var(--color-flower)"/>
+    <circle cx="0" cy="0" r="1" fill="var(--color-flower-button)"/>
   </g>
 </svg>`
 
