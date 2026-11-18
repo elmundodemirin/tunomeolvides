@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tú no me olvides · Documentación de Arquitectura · v1.1</title>
+<title>Tú no me olvides · Documentación de Arquitectura · v1.3</title>
 <style>
   :root {
     --terracota: #C9633E;
@@ -14,7 +14,7 @@
     --crema-dark: #EFE8D6;
     --tinta: #2A2622;
     --tinta-soft: #5C544D;
-    --azul-flor: #6B8CB8;
+    --azul-flor: #4F8AD0;
     --border: #D8CFB9;
     --code-bg: #2A2622;
     --code-text: #E8DFC8;
@@ -322,11 +322,11 @@
   <main>
 
     <header class="doc-header">
-      <span class="pill">Documento vivo · v1.2</span>
+      <span class="pill">Documento vivo · v1.3</span>
       <h1>Arquitectura técnica de tunomeolvides.es</h1>
       <div class="meta">
         Proyecto Tú no me olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 10 de noviembre de 2026
+        Última actualización: 18 de noviembre de 2026
       </div>
     </header>
 
@@ -417,7 +417,7 @@
           <text x="360" y="372" text-anchor="middle" font-family="Arial" font-size="10" fill="#5C544D">Audios MP3</text>
 
           <!-- External services -->
-          <rect x="470" y="290" width="190" height="120" rx="8" fill="#FFFFFF" stroke="#6B8CB8" stroke-width="2"/>
+          <rect x="470" y="290" width="190" height="120" rx="8" fill="#FFFFFF" stroke="#4F8AD0" stroke-width="2"/>
           <text x="565" y="315" text-anchor="middle" font-family="Georgia" font-size="14" fill="#3F5E8A" font-weight="bold">Servicios externos</text>
           <line x1="490" y1="330" x2="640" y2="330" stroke="#D8CFB9" stroke-width="1"/>
           <text x="565" y="350" text-anchor="middle" font-family="Arial" font-size="11" fill="#2A2622">OpenStreetMap (tiles)</text>
@@ -891,6 +891,7 @@ CREATE POLICY "admin_delete" ON contact_messages
         <li><strong>Rebrand completo a "Tú no me olvides" (2026-09-29)</strong>: nuevo nombre, logo, paleta de 3 colores (fondo único, verde olivo para texto/títulos/menú, terracota reservado a botones/enlaces/marcadores del mapa) y tipografías EB Garamond (títulos) + Jost (cuerpo). Clase <code>.marca</code> en <code>globals.css</code> que envuelve cada aparición del nombre de marca en texto visible (hoy en cursiva), para poder restilizarla de forma centralizada sin tocar cada componente.</li>
         <li><strong>Aviso por email del formulario de contacto (2026-09-30)</strong>: ver <a href="#lopd">05</a> y <a href="#stack">03</a>.</li>
         <li><strong>Segundo rebrand tipográfico y visual (2026-11-10)</strong>: tipografías EB Garamond + Jost sustituidas por <strong>Vollkorn (títulos) + Karla (cuerpo)</strong> — la promotora notaba la combinación anterior como "muy de IA/plantilla"; la flor del no-me-olvides recupera su azul real <code>#6B8CB8</code> (ya especificado así en este mismo documento desde el origen del proyecto, pero el código se había quedado en verde olivo tras el rebrand de septiembre); el logo de la cabecera cambia el sol por la propia flor (editado con IA a partir de una foto real de la flor que aportó la promotora, para respetar su forma) y pasa a tener fondo transparente; el pie de página cambia de fondo crema a terracota para distinguirse visualmente del resto de la página; el marcador del mapa adopta forma de pin con la flor dentro (en vez de la insignia circular del 4 de noviembre); y el favicon/icono de "añadir a pantalla de inicio" pasa a ser solo la flor recortada, no la ilustración completa. Ver <a href="#decisiones">09</a>.</li>
+        <li><strong>Tercer ajuste de marca (2026-11-18)</strong>: el centro de la flor pasa de un disco liso a el sol de rayos blancos con botón amarillo, siguiendo una "Guía del símbolo" encargada por la promotora a otra conversación de Claude; de paso se elimina la sección "Quién soy" de <code>/sobre</code> (datos erróneos, pospuesta). Ver <a href="#decisiones">09</a>.</li>
       </ul>
     </section>
 
@@ -1218,6 +1219,21 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Botón flotante "Localidades" en móvil (<code>components/MobilePanel.tsx</code>): de <code>position: fixed</code> a <code>position: absolute</code></td>
             <td>Antes seguía visible por toda la página al hacer scroll, incluso sobre "Sobre el proyecto" o <code>/ayuntamientos</code>, donde no tenía sentido. Su contenedor directo en <code>HomeShell.tsx</code> ya es <code>position: relative</code> con la altura de la sección del mapa, así que con <code>absolute</code> el botón solo aparece dentro de esa sección</td>
           </tr>
+          <tr>
+            <td>2026-11-18</td>
+            <td>Centro de la flor: de disco liso con punto azul a <strong>sol de rayos blancos con botón amarillo</strong> (<code>--color-flower-button: #E9AE2E</code> nuevo); <code>--color-flower</code> pasa a su azul definitivo <code>#4F8AD0</code> (antes <code>#6B8CB8</code>) — <code>FlowerIcon.tsx</code>, favicon y marcador del mapa</td>
+            <td>Excepción puntual sobre la pausa. Sigue la "Guía del símbolo" que la promotora encargó a otra conversación de Claude: especifica el símbolo completo (pétalos + sol + botón), su paleta exacta y sus reglas de uso (tamaño mínimo 24px, espacio libre, nunca degradados/sombras). En el marcador del mapa solo el botón pasa a amarillo, sin los rayos — ilegibles a ese tamaño según la propia guía.</td>
+          </tr>
+          <tr>
+            <td>2026-11-18</td>
+            <td><code>--color-flower-ink</code> (<code>#2C2217</code>, versión a una tinta del símbolo) y <code>--color-ocre</code> (<code>#C8965C</code>) añadidos como tokens en <code>app/globals.css</code>, sin aplicar todavía en ningún componente</td>
+            <td>La guía los define para la versión a una tinta del símbolo y para separadores/detalles decorativos. Decisión explícita de la promotora: <strong>no</strong> sustituyen a <code>--color-tinta</code> del texto general de la web, que sigue en verde oliva — esto es un cambio de icono, no un cambio de identidad de toda la web.</td>
+          </tr>
+          <tr>
+            <td>2026-11-18</td>
+            <td>Sección "Quién soy" eliminada de <code>/sobre</code> (ES/EN/FR), pospuesta</td>
+            <td>La promotora detectó datos erróneos en el bloque, entre ellos una mención a "Laguna Experience" — pasa a ser norma permanente no mencionar esa web en ningún proyecto (es de otro programador, aunque el hecho biográfico sea real). Se retira el bloque completo hasta que redacte una versión corregida.</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1359,7 +1375,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> Tú no me olvides · Documentación viva ·
-        Última actualización 10 de noviembre de 2026 ·
+        Última actualización 18 de noviembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>

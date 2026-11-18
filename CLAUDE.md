@@ -350,6 +350,10 @@ nomeolvides/
 | 2026-11-10 | Marcador del mapa: de insignia circular (2026-11-04) a **pin con punta**, con la flor dentro del círculo superior | La promotora mandó una imagen de referencia (pin de mapa clásico) pidiendo esa silueta; se mantiene la flor como motivo en vez de un icono genérico |
 | 2026-11-10 | Pie de página: de fondo crema a fondo terracota (mismo tono que los botones) | No se distinguía visualmente del resto de la página; ahora se identifica de un vistazo como la zona de avisos legales |
 | 2026-11-10 | Botón flotante "Localidades" en móvil: de `position: fixed` a `position: absolute` (`components/MobilePanel.tsx`) | Antes seguía visible por toda la página al hacer scroll (incluso sobre "Sobre el proyecto"); su contenedor en `HomeShell.tsx` ya es `position: relative` con la altura de la sección del mapa, así que con `absolute` solo aparece ahí |
+| 2026-11-18 | Centro de la flor: de disco liso con punto azul a **sol de rayos blancos con botón amarillo** (`--color-flower-button: #E9AE2E` nuevo); `--color-flower` pasa a su azul definitivo `#4F8AD0` (antes `#6B8CB8`) | Sigue la "Guía del símbolo" que la promotora encargó a otra conversación de Claude (noviembre de 2026): especifica el símbolo completo (pétalos + sol + botón), su paleta exacta y sus reglas de uso. Aplicado en `FlowerIcon.tsx` (cabecera, panel admin) y favicon; en el marcador del mapa solo el botón pasa a amarillo, sin los rayos (ilegibles a ese tamaño, la propia guía fija un mínimo de 24px) |
+| 2026-11-18 | `--color-flower-ink` (`#2C2217`, versión a una tinta del símbolo) y `--color-ocre` (`#C8965C`) añadidos como tokens, sin aplicar todavía en ningún componente | La guía los define para la versión a una tinta del símbolo y para separadores/detalles decorativos — explícitamente **no** sustituyen a `--color-tinta` del texto general de la web, que sigue en verde oliva (decisión de la promotora, para no convertir un cambio de icono en un cambio de identidad de toda la web) |
+| 2026-11-18 | Favicon y "añadir a pantalla de inicio" (`app/icon.png`, `apple-icon.png`) regenerados desde el nuevo diseño de la flor (construido con GDI+/PowerShell, no con las imágenes de la guía) | Motivo original de la promotora: en el móvil seguía apareciendo una flor verde (icono cacheado de antes del rebrand del 10 de noviembre). Resuelto regenerando los archivos desde cero con los colores correctos |
+| 2026-11-18 | Sección "Quién soy" eliminada de `/sobre` (ES/EN/FR), pospuesta | La promotora detectó datos erróneos, entre ellos una mención a "Laguna Experience" — pasa a ser **norma permanente**: esa web es de otro programador y no debe nombrarse en ningún proyecto, aunque el hecho biográfico (que trabajó allí como técnica de turismo) sea real |
 
 ---
 
@@ -457,6 +461,17 @@ nomeolvides/
 > terracota, y botón móvil "Localidades" corregido para no seguir el scroll fuera de la
 > sección del mapa. Todo desplegado a producción (push a `main`, 3 commits:
 > `aaa5553`, `02f46a7`, `79e3c35`).
+>
+> **Excepción puntual (2026-11-18):** la promotora pidió trabajar hoy en la imagen de marca
+> de tunomeolvides.es — el centro de la flor pasa de un disco liso a el sol de rayos blancos
+> con botón amarillo, siguiendo una "Guía del símbolo" que encargó a otra conversación de
+> Claude (PDF con la paleta y las reglas de uso completas). Aplicado en el favicon, la
+> cabecera, el panel admin y el marcador del mapa. De paso, se eliminó la sección "Quién soy"
+> de `/sobre` (datos erróneos, incluida una mención a "Laguna Experience" — ver norma nueva en
+> memoria permanente, nunca mencionar esa web). Confirmado como excepción de un solo día, la
+> pausa general sigue vigente después — la promotora pasa a continuación a seguir trabajando
+> en el piloto de Cabezas del Pozo. Todo desplegado a producción (push a `main`, 2 commits:
+> `98a58cc`, `e559342`).
 
 ---
 
@@ -467,8 +482,8 @@ nomeolvides/
 
 ---
 
-*Última actualización: 10 de noviembre de 2026 — Excepción puntual sobre la pausa: segundo
-rebrand visual del proyecto (tipografía Vollkorn+Karla, flor en azul real, logo de cabecera con
-la flor y fondo transparente, favicon = solo la flor, marcador del mapa en pin, pie de página en
-terracota) y corrección del botón "Localidades" en móvil. La pausa general del proyecto sigue
-vigente para el resto del trabajo.*
+*Última actualización: 18 de noviembre de 2026 — Excepción puntual sobre la pausa: el centro
+de la flor pasa a sol de rayos blancos con botón amarillo (Guía del símbolo de la promotora),
+aplicado en favicon/cabecera/admin/mapa, y se elimina la sección "Quién soy" de `/sobre`
+(pospuesta, datos erróneos). La pausa general del proyecto sigue vigente para el resto del
+trabajo.*
