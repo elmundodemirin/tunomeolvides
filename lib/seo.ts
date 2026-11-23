@@ -79,7 +79,7 @@ export function buildPageMetadata({
       type: 'website',
       images: [
         {
-          url: new URL('/og-image-v4.jpg', siteUrl).toString(),
+          url: new URL('/og-image-v5.jpg', siteUrl).toString(),
           width: 1800,
           height: 945,
           alt: OG_IMAGE_ALT[locale],
@@ -90,7 +90,7 @@ export function buildPageMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [new URL('/og-image-v4.jpg', siteUrl).toString()],
+      images: [new URL('/og-image-v5.jpg', siteUrl).toString()],
     },
   }
 }
@@ -117,7 +117,7 @@ function buildOrganizationSchema(locale: string) {
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
-      url: new URL('/logo-tunomeolvides.png', siteUrl).toString(),
+      url: new URL('/logo-tunomeolvides-completo.png', siteUrl).toString(),
       width: 1215,
       height: 445,
     },

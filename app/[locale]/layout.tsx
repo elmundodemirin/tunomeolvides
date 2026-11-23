@@ -42,14 +42,12 @@ export default async function LocaleLayout({
         }}
       >
         <Link href={homeHref} className="flex items-center gap-3 no-underline">
-          {/* Solo el emblema del pueblo, sin el texto "Tú no me olvides" ni
-              las franjas inferiores que traía la imagen original (recortadas
-              del propio archivo, fondo transparente). Fondo de la imagen ya
-              es prácticamente el mismo crema del header, así que no
-              necesita tarjeta propia. */}
+          {/* Solo el emblema del logo (el pueblo en acuarela con la flor como sol), sin
+              el texto «Tú no me olvides»: recortado del logo definitivo del
+              2026-11-23, con fondo transparente. */}
           <span className="block relative overflow-hidden shrink-0 h-11 w-[120px] lg:h-14 lg:w-[153px]">
             <Image
-              src="/logo-tunomeolvides.png"
+              src="/logo-tunomeolvides-emblema.png"
               alt="Tú no me olvides"
               fill
               priority
