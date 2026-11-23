@@ -494,3 +494,29 @@ de la flor pasa a sol de rayos blancos con botón amarillo (Guía del símbolo d
 aplicado en favicon/cabecera/admin/mapa, y se elimina la sección "Quién soy" de `/sobre`
 (pospuesta, datos erróneos). La pausa general del proyecto sigue vigente para el resto del
 trabajo.*
+
+---
+
+## 📋 Cierre del 23 de noviembre de 2026 — marca, 404 e idiomas
+
+Todo desplegado y verificado en producción al cierre:
+- **Logo definitivo** (pueblo en acuarela con la flor como sol) en cabecera,
+  JSON-LD e imagen para compartir (`og-image-v5.jpg`); `favicon.ico` con la flor.
+  Archivos maestros de flor y logo en `Escritorio/TUNOMEOLVIDES/FLOR - simbolo de marca/`.
+- **404 propia de la marca** (ES/EN) y 404 real para cualquier dirección inexistente,
+  incluidas las que parecen archivos (`/foto.png`).
+- **Web solo en español e inglés**: 14 páginas (7 × 2) respondiendo `200`, sitemap con
+  14 URL y sin francés; `/fr/...` redirige (308) a su equivalente en inglés.
+- **`/en/for-councils`** (página para ayuntamientos en inglés) con enlace «For councils».
+
+**Despliegues**: el build de Vercel falla a veces con
+`next/font/google queries have exactly one entry` / `Can't resolve
+'@vercel/turbopack-next/internal/font/google/font'`. Es un fallo de red pasajero al
+descargar las fuentes de Google; **se resuelve reintentando sin tocar nada**
+(`vercel redeploy <url> --target production`). Hoy hizo falta hasta **dos reintentos**
+seguidos. Mientras falla, producción sigue sirviendo la versión anterior. Este mismo
+cierre es un commit solo de documentación: si su build falla, no importa (el código
+desplegado es idéntico).
+
+**Pendiente para la promotora**: revisar la traducción al inglés de `/en/for-councils`
+(la hizo Claude); el icono de Google con la flor verde antigua se renovará solo.
