@@ -79,9 +79,9 @@ export function buildPageMetadata({
       type: 'website',
       images: [
         {
-          url: new URL('/og-image-v3.jpg', siteUrl).toString(),
-          width: 1200,
-          height: 630,
+          url: new URL('/og-image-v4.jpg', siteUrl).toString(),
+          width: 1800,
+          height: 945,
           alt: OG_IMAGE_ALT[locale],
         },
       ],
@@ -90,7 +90,7 @@ export function buildPageMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [new URL('/og-image-v3.jpg', siteUrl).toString()],
+      images: [new URL('/og-image-v4.jpg', siteUrl).toString()],
     },
   }
 }
