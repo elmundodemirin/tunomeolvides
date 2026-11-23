@@ -1,4 +1,5 @@
-import { NextIntlClientProvider } from 'next-intl'
+import { NextIntlClientProvider, hasLocale } from 'next-intl'
+import { notFound } from 'next/navigation'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import Link from 'next/link'
@@ -20,6 +21,9 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
+  // Solo es, en y fr: cualquier otro valor (p. ej. /foto.png, que no pasa por el
+  // proxy por llevar punto) es una dirección que no existe -> 404 de la marca.
+  if (!hasLocale(routing.locales, locale)) notFound()
   const messages = await getMessages()
   const t = await getTranslations({ locale, namespace: 'nav' })
 

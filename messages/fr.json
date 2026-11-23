@@ -78,5 +78,10 @@
     "error": "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
     "privacyModalTitle": "Politique de confidentialité",
     "closeModal": "Fermer"
+  },
+  "notFound": {
+    "title": "Cette page s’est perdue en chemin",
+    "body": "L’adresse est peut-être mal saisie, ou la page n’existe plus. Mais la carte est toujours là, avec les voix des villages qui attendent d’être écoutées.",
+    "cta": "Retour à l’accueil"
   }
 }

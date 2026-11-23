@@ -78,5 +78,10 @@
     "error": "An error occurred while sending the message. Please try again.",
     "privacyModalTitle": "Privacy policy",
     "closeModal": "Close"
+  },
+  "notFound": {
+    "title": "This page got lost along the way",
+    "body": "The address may be mistyped, or the page may no longer exist. But the map is still here, with the voices of the villages waiting to be heard.",
+    "cta": "Back to home"
   }
 }
