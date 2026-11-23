@@ -7,7 +7,6 @@ import { useRouter, usePathname } from '@/i18n/navigation'
 const LOCALES = [
   { code: 'es', label: 'Español' },
   { code: 'en', label: 'English' },
-  { code: 'fr', label: 'Français' },
 ] as const
 
 type LocaleCode = (typeof LOCALES)[number]['code']
@@ -16,20 +15,18 @@ type LocaleCode = (typeof LOCALES)[number]['code']
 // pathnames que devuelve next-intl (sin prefijo de locale). Un pathname ausente
 // implica caer al home del idioma destino.
 const PATH_EQUIVALENTS: Record<string, Partial<Record<LocaleCode, string>>> = {
-  '/sobre':                          { en: '/about',                       fr: '/a-propos' },
-  '/about':                          { es: '/sobre',                       fr: '/a-propos' },
-  '/a-propos':                       { es: '/sobre',                       en: '/about' },
-  '/contacto':                       { en: '/contact',                     fr: '/contact' },
-  '/contact':                        { es: '/contacto',                    fr: '/contact' },
-  '/aviso-legal':                    { en: '/legal-notice',                fr: '/mentions-legales' },
-  '/legal-notice':                   { es: '/aviso-legal',                 fr: '/mentions-legales' },
-  '/mentions-legales':               { es: '/aviso-legal',                 en: '/legal-notice' },
-  '/privacidad':                     { en: '/privacy-policy',              fr: '/politique-de-confidentialite' },
-  '/privacy-policy':                 { es: '/privacidad',                  fr: '/politique-de-confidentialite' },
-  '/politique-de-confidentialite':   { es: '/privacidad',                  en: '/privacy-policy' },
-  '/politica-de-cookies':            { en: '/cookie-policy',               fr: '/politique-cookies' },
-  '/cookie-policy':                  { es: '/politica-de-cookies',         fr: '/politique-cookies' },
-  '/politique-cookies':              { es: '/politica-de-cookies',         en: '/cookie-policy' },
+  '/sobre':               { en: '/about' },
+  '/about':               { es: '/sobre' },
+  '/ayuntamientos':       { en: '/for-councils' },
+  '/for-councils':        { es: '/ayuntamientos' },
+  '/contacto':            { en: '/contact' },
+  '/contact':             { es: '/contacto' },
+  '/aviso-legal':         { en: '/legal-notice' },
+  '/legal-notice':        { es: '/aviso-legal' },
+  '/privacidad':          { en: '/privacy-policy' },
+  '/privacy-policy':      { es: '/privacidad' },
+  '/politica-de-cookies': { en: '/cookie-policy' },
+  '/cookie-policy':       { es: '/politica-de-cookies' },
 }
 
 function mapPath(currentPath: string, target: LocaleCode): string {

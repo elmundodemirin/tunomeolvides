@@ -64,7 +64,6 @@ const MARKER_SVG = `
 const DISCOVER_LABEL: Record<string, (name: string) => string> = {
   es: (name) => `Descubre ${name}`,
   en: (name) => `Discover ${name}`,
-  fr: (name) => `Découvrez ${name}`,
 }
 
 function buildPopupHTML(loc: Locality, locale: string): string {

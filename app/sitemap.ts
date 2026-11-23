@@ -10,6 +10,7 @@ type PageKey = keyof typeof PAGE_PATHS
 const ENTRIES: { page: PageKey; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']; priority: number }[] = [
   { page: 'home', changeFrequency: 'weekly', priority: 1 },
   { page: 'about', changeFrequency: 'monthly', priority: 0.6 },
+  { page: 'councils', changeFrequency: 'monthly', priority: 0.6 },
   { page: 'contact', changeFrequency: 'yearly', priority: 0.5 },
   { page: 'legalNotice', changeFrequency: 'yearly', priority: 0.1 },
   { page: 'privacy', changeFrequency: 'yearly', priority: 0.1 },
@@ -24,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const languages = {
       es: new URL(paths.es, siteUrl).toString(),
       en: new URL(paths.en, siteUrl).toString(),
-      fr: new URL(paths.fr, siteUrl).toString(),
     }
 
     return (Object.keys(paths) as Array<keyof typeof paths>).map((locale) => ({
@@ -36,13 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   })
 
-  // /ayuntamientos solo existe en español, sin alternates de idioma.
-  const ayuntamientosEntry: MetadataRoute.Sitemap[number] = {
-    url: new URL('/ayuntamientos', siteUrl).toString(),
-    lastModified,
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }
-
-  return [...multiLangEntries, ayuntamientosEntry]
+  return multiLangEntries
 }

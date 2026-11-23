@@ -14,11 +14,6 @@ const LINKS_BY_LOCALE: Record<string, { href: string; label: string }[]> = {
     { href: '/en/privacy-policy', label: 'Privacy policy' },
     { href: '/en/cookie-policy', label: 'Cookie policy' },
   ],
-  fr: [
-    { href: '/fr/mentions-legales', label: 'Mentions légales' },
-    { href: '/fr/politique-de-confidentialite', label: 'Politique de confidentialité' },
-    { href: '/fr/politique-cookies', label: 'Politique relative aux cookies' },
-  ],
 }
 
 const STRINGS: Record<string, { manage: string; navAria: string; rights: (year: number) => React.ReactNode }> = {
@@ -31,11 +26,6 @@ const STRINGS: Record<string, { manage: string; navAria: string; rights: (year: 
     manage: 'Manage cookies',
     navAria: 'Legal',
     rights: (year) => <>© {year} <span className="marca">Tú no me olvides</span> · All rights reserved</>,
-  },
-  fr: {
-    manage: 'Gérer les cookies',
-    navAria: 'Mentions légales',
-    rights: (year) => <>© {year} <span className="marca">Tú no me olvides</span> · Tous droits réservés</>,
   },
 }
 

@@ -10,7 +10,6 @@ type Locale = (typeof routing.locales)[number]
 const OG_LOCALES: Record<Locale, string> = {
   es: 'es_ES',
   en: 'en_US',
-  fr: 'fr_FR',
 }
 
 // Mismo eslogan que ya existe en messages/*.json (home.metaTitle) — se
@@ -19,26 +18,26 @@ const OG_LOCALES: Record<Locale, string> = {
 const OG_IMAGE_ALT: Record<Locale, string> = {
   es: 'Tú no me olvides, mapa sonoro de la España vaciada',
   en: 'Tú no me olvides, a sound map of rural Spain',
-  fr: "Tú no me olvides, carte sonore de l'Espagne rurale",
 }
 
 // Ruta de cada página en cada idioma. ES no lleva prefijo (routing.localePrefix
-// = 'as-needed'); EN/FR sí, y con el slug traducido. Debe reflejar los
+// = 'as-needed'); EN sí, y con el slug traducido. Debe reflejar los
 // nombres de carpeta reales bajo app/[locale]/.
 export const PAGE_PATHS = {
-  home: { es: '/', en: '/en', fr: '/fr' },
-  about: { es: '/sobre', en: '/en/about', fr: '/fr/a-propos' },
-  contact: { es: '/contacto', en: '/en/contact', fr: '/fr/contact' },
-  legalNotice: { es: '/aviso-legal', en: '/en/legal-notice', fr: '/fr/mentions-legales' },
-  privacy: { es: '/privacidad', en: '/en/privacy-policy', fr: '/fr/politique-de-confidentialite' },
-  cookiePolicy: { es: '/politica-de-cookies', en: '/en/cookie-policy', fr: '/fr/politique-cookies' },
+  home: { es: '/', en: '/en' },
+  about: { es: '/sobre', en: '/en/about' },
+  councils: { es: '/ayuntamientos', en: '/en/for-councils' },
+  contact: { es: '/contacto', en: '/en/contact' },
+  legalNotice: { es: '/aviso-legal', en: '/en/legal-notice' },
+  privacy: { es: '/privacidad', en: '/en/privacy-policy' },
+  cookiePolicy: { es: '/politica-de-cookies', en: '/en/cookie-policy' },
 } as const satisfies Record<string, Record<Locale, string>>
 
 type PageKey = keyof typeof PAGE_PATHS
 
 /**
  * Metadata por página: title/description propios + canonical + hreflang
- * (alternates.languages) apuntando a las tres versiones de idioma, tal y
+ * (alternates.languages) apuntando a las dos versiones de idioma, tal y
  * como recomienda Google para contenido multi-idioma.
  */
 export function buildPageMetadata({
@@ -66,7 +65,6 @@ export function buildPageMetadata({
       languages: {
         es: new URL(paths.es, siteUrl).toString(),
         en: new URL(paths.en, siteUrl).toString(),
-        fr: new URL(paths.fr, siteUrl).toString(),
         'x-default': new URL(paths.es, siteUrl).toString(),
       },
     },
@@ -100,7 +98,6 @@ export function buildPageMetadata({
 const ORGANIZATION_DESCRIPTION: Record<Locale, string> = {
   es: 'Tú no me olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona.',
   en: 'Tú no me olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives.',
-  fr: "Tú no me olvides documente et préserve le patrimoine culturel des villages de l'Espagne rurale grâce à des récits audio à la première personne.",
 }
 
 /**

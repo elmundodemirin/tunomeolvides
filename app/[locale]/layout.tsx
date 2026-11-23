@@ -21,20 +21,20 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  // Solo es, en y fr: cualquier otro valor (p. ej. /foto.png, que no pasa por el
+  // Solo es y en: cualquier otro valor (p. ej. /foto.png, que no pasa por el
   // proxy por llevar punto) es una dirección que no existe -> 404 de la marca.
   if (!hasLocale(routing.locales, locale)) notFound()
   const messages = await getMessages()
   const t = await getTranslations({ locale, namespace: 'nav' })
 
-  // URLs por idioma (ES sin prefijo, EN/FR con prefijo y slug traducido)
+  // URLs por idioma (ES sin prefijo, EN con prefijo y slug traducido)
   const homeHref = locale === 'es' ? '/' : `/${locale}`
   const aboutHref =
-    locale === 'es' ? '/sobre' : locale === 'fr' ? '/fr/a-propos' : '/en/about'
+    locale === 'es' ? '/sobre' : '/en/about'
   const contactHref =
-    locale === 'es' ? '/contacto' : locale === 'fr' ? '/fr/contact' : '/en/contact'
-  // "Para ayuntamientos" solo existe en español (público objetivo: ayuntamientos españoles)
-  const isEs = locale === 'es'
+    locale === 'es' ? '/contacto' : '/en/contact'
+  // Página de servicio para ayuntamientos: /ayuntamientos y /en/for-councils
+  const councilsHref = locale === 'es' ? '/ayuntamientos' : '/en/for-councils'
 
   return (
     <NextIntlClientProvider messages={messages}>
@@ -68,11 +68,9 @@ export default async function LocaleLayout({
           <Link href={aboutHref} className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
             {t('about')}
           </Link>
-          {isEs && (
-            <Link href="/ayuntamientos" className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
-              Para ayuntamientos
-            </Link>
-          )}
+          <Link href={councilsHref} className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
+            {t('councils')}
+          </Link>
           <Link href={contactHref} className="label-marca hidden lg:inline-block transition-opacity hover:opacity-70">
             {t('contact')}
           </Link>
@@ -85,7 +83,7 @@ export default async function LocaleLayout({
             items={[
               { href: homeHref, label: t('home') },
               { href: aboutHref, label: t('about') },
-              ...(isEs ? [{ href: '/ayuntamientos', label: 'Para ayuntamientos' }] : []),
+              { href: councilsHref, label: t('councils') },
               { href: contactHref, label: t('contact') },
             ]}
           />

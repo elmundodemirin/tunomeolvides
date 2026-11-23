@@ -11,7 +11,7 @@ import { buildPageMetadata, buildHomeJsonLd } from '@/lib/seo'
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: 'es' | 'en' | 'fr' }>
+  params: Promise<{ locale: 'es' | 'en' }>
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
