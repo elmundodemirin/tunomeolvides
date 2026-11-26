@@ -322,11 +322,11 @@
   <main>
 
     <header class="doc-header">
-      <span class="pill">Documento vivo · v1.4</span>
+      <span class="pill">Documento vivo · v1.5</span>
       <h1>Arquitectura técnica de tunomeolvides.es</h1>
       <div class="meta">
         Proyecto Tú no me olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 23 de noviembre de 2026
+        Última actualización: 26 de noviembre de 2026
       </div>
     </header>
 
@@ -338,6 +338,14 @@
         <a href="#stack">03</a>) cuyo elemento central es un mapa interactivo de España donde cada punto
         representa una localidad documentada del patrimonio rural. Al pinchar un punto, el visitante accede
         a un audio narrado y a información de la localidad.
+      </p>
+      <p>
+        Desde el 26 de noviembre de 2026 se presenta como la <strong>oficina de turismo digital de las
+        poblaciones por descubrir</strong>, de la España vaciada a municipios de más de 20.000 habitantes: a
+        cada población le da una web turística propia, un guía en cada punto de interés (audioguía por QR),
+        un escaparate para sus recursos y datos de sus visitantes. La idea que se remarca siempre es que
+        <strong>cada población tiene una historia que merece ser contada</strong>; la oficina de turismo
+        digital explica cómo se consigue, no es el lema (ver <a href="#decisiones">09</a>).
       </p>
       <p>
         La plataforma incluye un <strong>panel de gestión autónomo</strong> que permite a la promotora
@@ -1263,6 +1271,11 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td><strong>Página para ayuntamientos en inglés</strong>: <code>/en/for-councils</code>, con enlace «For councils» en el menú inglés. Textos ES/EN en <code>components/CouncilsPage.tsx</code>, metadatos con <code>buildPageMetadata</code> y entrada en el sitemap</td>
             <td>Petición de la promotora: ninguna pestaña sin versión en inglés. Traducción de Claude, pendiente de revisión por la promotora</td>
           </tr>
+                  <tr>
+            <td>2026-11-26</td>
+            <td><strong>Nuevo posicionamiento</strong>: de «mapa sonoro de la España vaciada» a <strong>oficina de turismo digital de las poblaciones por descubrir</strong>, para visitantes y ayuntamientos a la vez. Portada reordenada: cabecera (con los textos anteriores) → mapa («Poblaciones con su propia oficina de turismo digital») → «Todo lo que una población necesita para darse a conocer» con cuatro pilares (oficina de turismo digital, guía profesional, escaparate, datos de visitantes) → «¿Tu municipio tiene una historia que contar?». Botones «Explora el mapa» y «Para ayuntamientos»; bloque final también en inglés (<code>councilsTeaser</code>). Nuevos títulos y descripciones para Google y redes; la descripción de la portada empieza por «Cada población tiene una historia que merece ser contada». Página para ayuntamientos: «Dale a tu municipio el valor turístico que merece». Fuera «pequeño(s)» de toda la web</td>
+            <td>Decisión de la promotora tras una propuesta en cinco borradores y una vista previa local en una rama aparte. Se descartaron el lema «Cada población merece su oficina de turismo digital» (la idea central es que cada población tiene una historia que merece ser contada) y «poblaciones con encanto» (sustituido por «por descubrir»). Se mantiene «España vaciada», razón de ser del proyecto; se retira «mapa sonoro»; el servicio no es solo para municipios pequeños. <strong>Normas de redacción</strong>: párrafos justificados (salvo la cabecera sobre la foto y la página 404), sin partir palabras, sin el verbo «comprar», y el texto sobre la repercusión del turismo (<code>homeIntro.venuesBody</code>) se mantiene literal</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1272,7 +1285,15 @@ CREATE POLICY "admin_delete" ON contact_messages
       <h2>10. Siguientes pasos</h2>
 
       <div class="box">
-        <div class="box-title">📍 Dónde lo dejamos — 23 de noviembre de 2026</div>
+        <div class="box-title">📍 Dónde lo dejamos — 26 de noviembre de 2026</div>
+        <p>
+          <strong>Nuevo posicionamiento publicado</strong>: oficina de turismo digital de las poblaciones por
+          descubrir, con la portada reordenada y textos nuevos para Google en español e inglés. Verificado en vivo
+          (14 páginas, títulos y descripciones). La promotora solicita la reindexación en Search Console.
+          Idea a remarcar siempre en cualquier texto nuevo: <strong>cada población tiene una historia que merece
+          ser contada</strong>.
+        </p>
+        <p><strong>Estado anterior (23 de noviembre):</strong></p>
         <p>
           Marca cerrada: <strong>flor</strong> (símbolo plano, pétalos <code>#4F8AD0</code>, sol blanco, botón
           <code>#E9AE2E</code>) y <strong>logo definitivo</strong> (pueblo en acuarela con la flor como sol),
@@ -1420,7 +1441,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> Tú no me olvides · Documentación viva ·
-        Última actualización 23 de noviembre de 2026 ·
+        Última actualización 26 de noviembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>
