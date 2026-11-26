@@ -48,11 +48,11 @@ export async function HomeHero({ locale }: Props) {
         >
           <span className="marca">{t('title')}</span>
         </h1>
-        <p className="text-lg lg:text-2xl leading-snug mb-5 text-white">
+        <p className="text-lg lg:text-2xl leading-snug mb-5 text-white" style={{ textAlignLast: 'center' }}>
           {t('subtitle')}
         </p>
-        <p className="text-sm lg:text-base leading-relaxed mb-9 max-w-xl mx-auto text-white/85">
-          {t('paragraph')}
+        <p className="text-sm lg:text-base leading-relaxed mb-9 max-w-xl mx-auto text-white/85" style={{ textAlignLast: 'center' }}>
+          {t.rich('paragraph', { marca: (chunks) => <span className="marca">{chunks}</span> })}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -62,17 +62,15 @@ export async function HomeHero({ locale }: Props) {
           >
             {t('cta1')}
           </a>
-          {locale === 'es' && (
-            // Excepción deliberada: sobre foto con overlay oscuro, un botón
-            // secundario en olivo se perdería — se usa contorno blanco por contraste.
-            <Link
-              href="/ayuntamientos"
-              className="inline-block py-4 px-7 rounded-marca font-medium text-base text-white transition-colors border-2 border-white min-h-[48px] backdrop-blur-sm"
-              style={{ backgroundColor: 'rgba(255,255,255,0.12)' }}
-            >
-              ¿Eres un ayuntamiento?
-            </Link>
-          )}
+          {/* Excepción deliberada: sobre foto con overlay oscuro, un botón
+              secundario en olivo se perdería — se usa contorno blanco por contraste. */}
+          <Link
+            href={locale === 'es' ? '/ayuntamientos' : '/en/for-councils'}
+            className="inline-block py-4 px-7 rounded-marca font-medium text-base text-white transition-colors border-2 border-white min-h-[48px] backdrop-blur-sm"
+            style={{ backgroundColor: 'rgba(255,255,255,0.12)' }}
+          >
+            {t('cta2')}
+          </Link>
         </div>
       </div>
     </div>

@@ -13,18 +13,12 @@ function MonumentIcon() {
   )
 }
 
-function RouteIcon() {
+function HeadphonesIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <path
-        d="M8 34 C8 24 20 24 20 16 C20 8 32 8 32 4"
-        stroke="var(--color-terracota)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <circle cx="8" cy="34" r="3" fill="var(--color-terracota)" />
-      <circle cx="32" cy="4" r="3" fill="var(--color-terracota)" />
+      <path d="M8 22v-2a12 12 0 0 1 24 0v2" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <rect x="5" y="21" width="7" height="11" rx="3.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <rect x="28" y="21" width="7" height="11" rx="3.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
     </svg>
   )
 }
@@ -41,31 +35,32 @@ function VenuesIcon() {
   )
 }
 
-function EventsIcon() {
+function ChartIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <rect x="6" y="10" width="28" height="24" rx="3" stroke="var(--color-terracota)" strokeWidth="2.5" />
-      <line x1="6" y1="17" x2="34" y2="17" stroke="var(--color-terracota)" strokeWidth="2.5" />
-      <line x1="13" y1="6" x2="13" y2="13" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" />
-      <line x1="27" y1="6" x2="27" y2="13" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="14" cy="24.5" r="1.8" fill="var(--color-terracota)" />
-      <circle cx="20" cy="28.5" r="1.8" fill="var(--color-terracota)" />
-      <circle cx="26" cy="24.5" r="1.8" fill="var(--color-terracota)" />
+      <line x1="7" y1="33" x2="33" y2="33" stroke="var(--color-terracota)" strokeWidth="2.5" strokeLinecap="round" />
+      <rect x="10" y="22" width="6" height="11" rx="1.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <rect x="19" y="14" width="6" height="19" rx="1.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
+      <rect x="28" y="18" width="6" height="15" rx="1.5" stroke="var(--color-terracota)" strokeWidth="2.5" />
     </svg>
   )
 }
 
 type Props = { locale: string }
 
-// Bloque "Qué es Tú no me olvides", primera sección de la home (encima del mapa).
+// Bloque «Todo lo que una población necesita para darse a conocer», debajo del
+// mapa: los cuatro pilares del servicio (oficina de turismo digital, guía,
+// escaparate y datos de visitantes). El texto del escaparate (venuesBody) es el
+// texto original sobre la repercusión del turismo en las poblaciones y se
+// mantiene literal por decisión de la promotora.
 export async function HomeIntro({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'homeIntro' })
 
   const points = [
-    { Icon: MonumentIcon, title: t('poiTitle'), body: t('poiBody') },
-    { Icon: RouteIcon, title: t('routesTitle'), body: t('routesBody') },
+    { Icon: MonumentIcon, title: t('officeTitle'), body: t('officeBody') },
+    { Icon: HeadphonesIcon, title: t('guideTitle'), body: t('guideBody') },
     { Icon: VenuesIcon, title: t('venuesTitle'), body: t('venuesBody') },
-    { Icon: EventsIcon, title: t('eventsTitle'), body: t('eventsBody') },
+    { Icon: ChartIcon, title: t('dataTitle'), body: t('dataBody') },
   ]
 
   return (
@@ -84,12 +79,12 @@ export async function HomeIntro({ locale }: Props) {
         {points.map(({ Icon, title, body }) => (
           <div key={title}>
             <Icon />
-            <h2
+            <h3
               className="text-base mt-4 mb-2"
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
             >
               {title}
-            </h2>
+            </h3>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--color-tinta)' }}>
               {body}
             </p>

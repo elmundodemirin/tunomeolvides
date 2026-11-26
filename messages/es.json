@@ -14,8 +14,8 @@
   "home": {
     "mapLoading": "Cargando mapa...",
     "errorLoading": "Error cargando localidades",
-    "title": "Voces de los pueblos",
-    "lead": "Cada punto del mapa es una localidad de la España vaciada con una historia narrada por quien la vivió. Pincha en cualquiera para escucharla.",
+    "title": "Poblaciones con su propia oficina de turismo digital",
+    "lead": "Cada punto es una población con su guía digital: sus lugares, sus rutas, sus fiestas y sus historias, contadas por quien mejor las conoce. Pincha en cualquiera para conocerla.",
     "localitiesHeading": "Localidades",
     "localitiesCount": "{count, plural, =0 {Sin localidades disponibles} =1 {# localidad} other {# localidades}}",
     "filterSearch": "Buscar localidad…",
@@ -24,8 +24,8 @@
     "filterClear": "Limpiar filtros",
     "noResults": "No hay resultados con estos filtros.",
     "mapAriaLabel": "Mapa interactivo de localidades de la España vaciada",
-    "metaTitle": "Tú no me olvides — Mapa sonoro de la España vaciada",
-    "metaDescription": "Descubre los pueblos de la España vaciada en un mapa sonoro, con sus historias contadas por quienes las vivieron."
+    "metaTitle": "Tú no me olvides · Turismo de poblaciones por descubrir",
+    "metaDescription": "Cada población tiene una historia que merece ser contada. Descúbrela con su propio guía: audioguías por QR, rutas, fiestas y establecimientos, en un mapa."
   },
   "about": {
     "title": "Sobre el proyecto",
@@ -33,30 +33,31 @@
     "quoteAttribution": "Alejandro Cabrero Durán, prólogo de Historia de un pueblo morañego (Cabezas del Pozo), de Joaquín Ruano López",
     "intro": "<marca>Tú no me olvides</marca> nace para que ese olvido no ocurra. Es una plataforma para documentar, preservar y difundir el patrimonio cultural de los pueblos de la España vaciada. Cada punto del mapa es un pueblo con historia, con voces que lo habitaron y con una memoria que merece ser contada.",
     "body": "<marca>Tú no me olvides</marca> propone una guía digital en destino: una voz que acompaña al viajero, nacional o internacional, durante su visita al municipio, mientras le descubre uno a uno sus puntos de interés y le cuenta sus peculiaridades, anécdotas y secretos. Sin descargar ninguna aplicación. Sin registro. Solo escanear el código QR y escuchar.",
-    "body2": "No habla de historia. Habla de historias. De vidas, de recuerdos, de curiosidades que convierten un paseo por un pueblo pequeño en algo único. Un susurro que te lleva al pasado.",
+    "body2": "No habla de historia. Habla de historias. De vidas, de recuerdos, de curiosidades que convierten un paseo por sus calles en algo único. Un susurro que te lleva al pasado.",
     "body3": "Pero <marca>Tú no me olvides</marca> no es solo una audioguía. Cada localidad que entra en el proyecto recibe una plataforma web turística completa: sus puntos de interés con ficha y audioguía, sus rutas documentadas, sus establecimientos y su agenda de fiestas y eventos. Todo posicionado en internet, para que el viajero que busca un destino auténtico encuentre el municipio antes de llegar.",
-    "body4": "Y, al final, lo que ningún pueblo pequeño ha tenido nunca: datos reales sobre sus visitantes. Cada código QR registra, de forma anónima, cuántas personas lo escanean, cuándo y desde dónde vienen. Por primera vez, un municipio sin oficina de turismo puede saber quién lo visita y qué le interesa.",
+    "body4": "Y, al final, lo que muy pocas poblaciones tienen: datos reales sobre sus visitantes. Cada código QR registra, de forma anónima, cuántas personas lo escanean, cuándo y desde dónde vienen. Por primera vez, un municipio sin oficina de turismo puede saber quién lo visita y qué le interesa.",
     "body5": "Porque cada pueblo tiene una historia que merece ser contada. <marca>Tú no me olvides</marca> está aquí para contarla.",
     "metaTitle": "Sobre el proyecto — memoria y patrimonio rural",
-    "metaDescription": "Tú no me olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona."
+    "metaDescription": "Tú no me olvides da valor turístico a la España vaciada y a las poblaciones por descubrir: oficina de turismo digital, un guía en cada rincón y un escaparate."
   },
   "hero": {
     "title": "Tú no me olvides",
     "subtitle": "Rescatamos las historias de los pueblos de la España vaciada y las ponemos en el mapa.",
-    "paragraph": "Investigamos, narramos y digitalizamos el patrimonio de pequeños municipios que merecen ser descubiertos. Una guía digital en destino que acompaña al visitante punto a punto, contándole los secretos de cada lugar.",
-    "cta1": "Descubre los pueblos"
+    "paragraph": "Investigamos, narramos y digitalizamos el patrimonio de poblaciones que merecen ser descubiertas. Una guía digital en destino que acompaña al visitante punto a punto, contándole los secretos de cada lugar.",
+    "cta1": "Explora el mapa",
+    "cta2": "Para ayuntamientos"
   },
   "homeIntro": {
-    "title": "<marca>Tú no me olvides</marca> recoge las voces de los pueblos y les da valor en un mundo digital y globalizado.",
+    "title": "Todo lo que una población necesita para darse a conocer",
     "intro": "No se trata solo de patrimonio. Es todo lo que hace único a un municipio: parajes naturales, rutas, fiestas y tradiciones culturales, gastronomía, alojamientos turísticos. Cada localidad que entra en el proyecto recibe una plataforma digital completa que lo convierte en un destino turístico real.",
-    "poiTitle": "Puntos de interés",
-    "poiBody": "Patrimonio, historia, naturaleza, miradores. Cada punto con su ficha, su fotografía y su audioguía narrada en primera persona. El visitante escanea el QR y escucha la historia de ese lugar como si un guía experto estuviera a su lado.",
-    "routesTitle": "Rutas",
-    "routesBody": "Rutas a pie, en bicicleta o en coche por el municipio. Con mapa, distancia, dificultad y los puntos de interés que encontrarás en el camino.",
-    "venuesTitle": "Establecimientos",
+    "officeTitle": "Una oficina de turismo digital abierta las 24 horas",
+    "officeBody": "Una web turística propia con todo lo que ofrece la población: patrimonio, historia, naturaleza, establecimientos. Cada punto con su ficha, su fotografía y su audioguía narrada en primera persona.",
+    "guideTitle": "Un guía profesional en cada rincón",
+    "guideBody": "Un código QR en cada punto de interés activa la audioguía: el visitante escucha la historia de ese lugar como si un guía experto estuviera a su lado. Sin descargar nada y sin registrarse.",
+    "venuesTitle": "Un escaparate para sus recursos",
     "venuesBody": "Restaurantes, bares, alojamientos rurales y tiendas de productos locales. Todo lo que el visitante necesita para disfrutar de la experiencia al máximo, mientras impulsa una economía local sostenible que ayuda a mantener vivo el municipio.",
-    "eventsTitle": "Fiestas y eventos",
-    "eventsBody": "La agenda local: fiestas patronales, mercados, actividades culturales y deportivas. Lo que hace que un pueblo valga la pena visitar en cada época del año."
+    "dataTitle": "Datos de sus visitantes",
+    "dataBody": "El ayuntamiento sabe cuántas personas visitan cada punto y de dónde vienen. Datos anónimos y conformes al RGPD."
   },
   "contact": {
     "title": "Contacto",
@@ -84,5 +85,10 @@
     "title": "Esta página se ha perdido por el camino",
     "body": "Puede que la dirección esté mal escrita o que la página ya no exista. Pero el mapa sigue aquí, con las voces de los pueblos esperando a ser escuchadas.",
     "cta": "Volver al inicio"
+  },
+  "councilsTeaser": {
+    "title": "¿Tu municipio tiene una historia que contar?",
+    "body": "<marca>Tú no me olvides</marca> ofrece a los ayuntamientos un servicio completo de digitalización turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.",
+    "cta": "Más información"
   }
 }

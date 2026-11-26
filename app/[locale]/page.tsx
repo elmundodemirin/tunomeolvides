@@ -53,11 +53,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <HomeHero locale={locale} />
-      <HomeIntro locale={locale} />
       <div id="mapa" className="scroll-mt-[72px]">
         <HomeShell localities={activeLocalities} locale={locale} />
       </div>
-      {locale === 'es' && <HomeAyuntamientosTeaser />}
+      <HomeIntro locale={locale} />
+      <HomeAyuntamientosTeaser locale={locale} />
     </>
   )
 }

@@ -1,27 +1,32 @@
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 
-// Resumen "Para ayuntamientos" debajo del mapa en la home. Solo en español
-// (ver app/[locale]/ayuntamientos/page.tsx) — la página completa vive en /ayuntamientos.
-export function HomeAyuntamientosTeaser() {
+type Props = { locale: string }
+
+// Resumen «Para ayuntamientos» al final de la home, en español e inglés. La
+// página completa vive en /ayuntamientos y /en/for-councils.
+export async function HomeAyuntamientosTeaser({ locale }: Props) {
+  const t = await getTranslations({ locale, namespace: 'councilsTeaser' })
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16 text-center">
+    <div className="max-w-2xl mx-auto px-6 py-16">
       <h2
-        className="text-2xl lg:text-3xl leading-tight mb-4"
+        className="text-2xl lg:text-3xl leading-tight mb-4 text-center"
         style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-terracota)' }}
       >
-        ¿Tu municipio tiene una historia que contar?
+        {t('title')}
       </h2>
       <p className="text-sm lg:text-base leading-relaxed mb-6" style={{ color: 'var(--color-tinta)' }}>
-        <span className="marca">Tú no me olvides</span> ofrece a los pequeños ayuntamientos un servicio completo de digitalización
-        turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.
+        {t.rich('body', { marca: (chunks) => <span className="marca">{chunks}</span> })}
       </p>
-      <Link
-        href="/ayuntamientos"
-        className="inline-block py-3 px-6 rounded-marca text-white font-medium text-sm transition-colors"
-        style={{ backgroundColor: 'var(--color-terracota)' }}
-      >
-        Más información
-      </Link>
+      <div className="text-center">
+        <Link
+          href={locale === 'es' ? '/ayuntamientos' : '/en/for-councils'}
+          className="inline-block py-3 px-6 rounded-marca text-white font-medium text-sm transition-colors"
+          style={{ backgroundColor: 'var(--color-terracota)' }}
+        >
+          {t('cta')}
+        </Link>
+      </div>
     </div>
   )
 }

@@ -10,15 +10,15 @@ type Locale = 'es' | 'en'
 export const COUNCILS_TEXT = {
   es: {
     navLabel: 'Para ayuntamientos',
-    metaTitle: 'Para ayuntamientos',
+    metaTitle: 'Oficina de turismo digital',
     metaDescription:
-      'Servicio de digitalización turística para ayuntamientos: investigación del patrimonio local, audioguía por QR y datos de visitantes. Primera consulta gratuita.',
+      'Oficina de turismo digital para ayuntamientos: investigación del patrimonio, audioguía por QR, web turística y datos de visitantes. Primera consulta gratuita.',
     odsAlt: 'ODS 11 — Ciudades y comunidades sostenibles',
     odsStrong: 'Proyecto subvencionable.',
     odsText: 'Contribuimos al ODS 11 protegiendo el patrimonio cultural de los pueblos y generando desarrollo local.',
-    title: '¿Tu municipio tiene una historia que contar?',
+    title: 'Dale a tu municipio el valor turístico que merece',
     intro:
-      'ofrece a los pequeños ayuntamientos un servicio completo de digitalización turística: investigamos tu patrimonio, lo narramos y lo ponemos en el mapa.',
+      'ofrece a los ayuntamientos, sea cual sea su tamaño, una oficina de turismo digital abierta las 24 horas, un guía profesional en cada punto de interés y un escaparate para todos sus recursos turísticos. Nosotros investigamos, narramos y lo ponemos en marcha.',
     columns: [
       {
         title: 'Investigación',
@@ -51,15 +51,15 @@ export const COUNCILS_TEXT = {
   },
   en: {
     navLabel: 'For councils',
-    metaTitle: 'For local councils',
+    metaTitle: 'Digital tourist office',
     metaDescription:
-      'Tourism digitisation for local councils: research into local heritage, QR audio guides and visitor data. First consultation free of charge.',
+      'A digital tourist office for councils: heritage research, QR audio guides, a tourism website and visitor data. First consultation free of charge.',
     odsAlt: 'SDG 11 — Sustainable cities and communities',
     odsStrong: 'Eligible for funding.',
     odsText: 'We contribute to SDG 11 by protecting the cultural heritage of rural villages and fostering local development.',
-    title: 'Does your village have a story to tell?',
+    title: 'Give your town the tourism profile it deserves',
     intro:
-      'offers small local councils a complete tourism digitisation service: we research your heritage, tell its story and put it on the map.',
+      'offers councils of every size a digital tourist office open 24 hours, a professional guide at every point of interest and a shop window for all their tourism resources. We research, tell the story and set it all up.',
     columns: [
       {
         title: 'Research',

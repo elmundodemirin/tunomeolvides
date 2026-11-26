@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: 'Tú no me olvides',
     template: '%s · Tú no me olvides',
   },
-  description: 'Patrimonio cultural de la España vaciada. Un mapa de voces, memoria y territorio.',
+  description: 'Oficina de turismo digital para la España vaciada y las poblaciones por descubrir.',
 }
 
 const supabaseOrigin = (() => {

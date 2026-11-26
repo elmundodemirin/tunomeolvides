@@ -16,8 +16,8 @@ const OG_LOCALES: Record<Locale, string> = {
 // reutiliza aquí para el alt de la imagen de Open Graph/Twitter, en vez de
 // inventar una traducción nueva.
 const OG_IMAGE_ALT: Record<Locale, string> = {
-  es: 'Tú no me olvides, mapa sonoro de la España vaciada',
-  en: 'Tú no me olvides, a sound map of rural Spain',
+  es: 'Tú no me olvides, la oficina de turismo digital de las poblaciones por descubrir',
+  en: 'Tú no me olvides, the digital tourist office for towns waiting to be discovered',
 }
 
 // Ruta de cada página en cada idioma. ES no lleva prefijo (routing.localePrefix
@@ -96,8 +96,8 @@ export function buildPageMetadata({
 // Mismo texto que messages/*.json → about.metaDescription (reutilizado,
 // no inventado) — describe a la organización, no a la home en concreto.
 const ORGANIZATION_DESCRIPTION: Record<Locale, string> = {
-  es: 'Tú no me olvides documenta y preserva el patrimonio cultural de los pueblos de la España vaciada mediante audios narrados en primera persona.',
-  en: 'Tú no me olvides documents and preserves the cultural heritage of depopulated rural Spanish villages through first-person audio narratives.',
+  es: 'Tú no me olvides da valor turístico a la España vaciada y a las poblaciones por descubrir: oficina de turismo digital, un guía en cada rincón y un escaparate.',
+  en: 'Tú no me olvides brings out the tourism value of rural Spain and towns waiting to be discovered: a digital tourist office, a guide and a shop window.',
 }
 
 /**
