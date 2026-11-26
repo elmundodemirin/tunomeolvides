@@ -322,11 +322,11 @@
   <main>
 
     <header class="doc-header">
-      <span class="pill">Documento vivo · v1.3</span>
+      <span class="pill">Documento vivo · v1.4</span>
       <h1>Arquitectura técnica de tunomeolvides.es</h1>
       <div class="meta">
         Proyecto Tú no me olvides · Patrimonio cultural de la España vaciada<br>
-        Última actualización: 18 de noviembre de 2026
+        Última actualización: 23 de noviembre de 2026
       </div>
     </header>
 
@@ -334,7 +334,7 @@
     <section id="resumen">
       <h2>01. Resumen ejecutivo</h2>
       <p>
-        <strong>tunomeolvides.es</strong> ("Tú no me olvides") es una plataforma web trilingüe (ES/EN/FR, ver
+        <strong>tunomeolvides.es</strong> ("Tú no me olvides") es una plataforma web bilingüe (ES/EN, ver
         <a href="#stack">03</a>) cuyo elemento central es un mapa interactivo de España donde cada punto
         representa una localidad documentada del patrimonio rural. Al pinchar un punto, el visitante accede
         a un audio narrado y a información de la localidad.
@@ -346,7 +346,7 @@
       </p>
       <p>
         Desde el 25 de septiembre de 2026, la plataforma tiene una segunda cara además de la pública para
-        visitantes: la página <code>/ayuntamientos</code> (solo en español), un argumentario B2G dirigido a
+        visitantes: la página <code>/ayuntamientos</code> (en inglés, <code>/en/for-councils</code> desde el 2026-11-23), un argumentario B2G dirigido a
         pequeños municipios para contratar el servicio de digitalización turística que ya usa la propia web
         — investigación del patrimonio, audioguía por QR y datos de visitantes.
       </p>
@@ -476,7 +476,7 @@
           <tr>
             <td>Internacionalización</td>
             <td><strong>next-intl 4</strong></td>
-            <td>Estándar de facto en Next.js, URLs <code>/es/</code>, <code>/en/</code> y <code>/fr/</code> amigables para SEO. Idiomas soportados: <strong>español</strong> (por defecto), <strong>inglés</strong> y <strong>francés</strong>. El francés es <em>solo UI</em>: las descripciones y audios siguen en ES + EN, con <strong>fallback automático a EN</strong> cuando se navega en FR.</td>
+            <td>Estándar de facto en Next.js, URLs amigables para SEO: español sin prefijo y <code>/en/</code> para inglés. Idiomas soportados: <strong>español</strong> (por defecto) e <strong>inglés</strong>. El francés existió hasta el 2026-11-23 (solo interfaz); se retiró y sus direcciones <code>/fr/...</code> redirigen de forma permanente a su equivalente en inglés (<code>next.config.ts</code>).</td>
           </tr>
           <tr>
             <td>Estilos</td>
@@ -693,9 +693,9 @@ CREATE POLICY "admin_delete" ON contact_messages
           <tr><th>Documento</th><th>Obligación</th><th>Estado</th></tr>
         </thead>
         <tbody>
-          <tr><td>Aviso legal</td><td>Ley 34/2002 (LSSI-CE)</td><td><span class="status done">Completado</span> — <code>/aviso-legal</code>, <code>/en/legal-notice</code>, <code>/fr/mentions-legales</code></td></tr>
-          <tr><td>Política de privacidad</td><td>RGPD art. 13</td><td><span class="status done">Completado</span> — <code>/privacidad</code>, <code>/en/privacy-policy</code>, <code>/fr/politique-de-confidentialite</code></td></tr>
-          <tr><td>Política de cookies</td><td>RGPD + Guía AEPD</td><td><span class="status done">Completado</span> — <code>/politica-de-cookies</code>, <code>/en/cookie-policy</code>, <code>/fr/politique-cookies</code></td></tr>
+          <tr><td>Aviso legal</td><td>Ley 34/2002 (LSSI-CE)</td><td><span class="status done">Completado</span> — <code>/aviso-legal</code>, <code>/en/legal-notice</code></td></tr>
+          <tr><td>Política de privacidad</td><td>RGPD art. 13</td><td><span class="status done">Completado</span> — <code>/privacidad</code>, <code>/en/privacy-policy</code></td></tr>
+          <tr><td>Política de cookies</td><td>RGPD + Guía AEPD</td><td><span class="status done">Completado</span> — <code>/politica-de-cookies</code>, <code>/en/cookie-policy</code></td></tr>
           <tr><td>Términos y condiciones de uso</td><td>Recomendable</td><td><span class="status todo">Pendiente</span> — no bloquea el lanzamiento, es recomendable, no obligatorio</td></tr>
         </tbody>
       </table>
@@ -908,14 +908,16 @@ CREATE POLICY "admin_delete" ON contact_messages
 │   └── 05_traspaso.html           # Para futuro programador
 │
 ├── app/                           # Next.js App Router
-│   ├── [locale]/                  # Rutas públicas por idioma (es/en/fr)
+│   ├── [locale]/                  # Rutas públicas por idioma (es/en)
 │   │   ├── page.tsx               # Inicio: hero + intro + mapa + teaser ayuntamientos (ES)
-│   │   ├── sobre/ · about/ · a-propos/    # "Sobre el proyecto" por idioma
+│   │   ├── sobre/ · about/                # "Sobre el proyecto" por idioma
 │   │   ├── contacto/ · contact/           # Formulario de contacto
-│   │   ├── ayuntamientos/page.tsx # Argumentario B2G — SOLO español, sin /en ni /fr
-│   │   ├── aviso-legal/ · legal-notice/ · mentions-legales/
-│   │   ├── privacidad/ · privacy-policy/ · politique-de-confidentialite/
-│   │   ├── politica-de-cookies/ · cookie-policy/ · politique-cookies/
+│   │   ├── ayuntamientos/ · for-councils/ # Argumentario B2G (ES y EN, components/CouncilsPage.tsx)
+│   │   ├── aviso-legal/ · legal-notice/
+│   │   ├── privacidad/ · privacy-policy/
+│   │   ├── politica-de-cookies/ · cookie-policy/
+│   │   ├── [...rest]/page.tsx     # Cualquier ruta inexistente → 404 de la marca
+│   │   ├── not-found.tsx          # Página «no encontrada» (ES/EN)
 │   │   └── layout.tsx             # Header público, nav, footer
 │   ├── admin/                     # Panel de gestión (fuera de [locale], solo ES)
 │   │   ├── login/page.tsx
@@ -930,13 +932,14 @@ CREATE POLICY "admin_delete" ON contact_messages
 │   │   ├── contact/route.ts       # Guarda en contact_messages + avisa por
 │   │   │                           email a info@ vía Resend (ver 03 y 05)
 │   │   └── admin/users/           # Invitar/listar/borrar admins (Supabase Auth)
-│   └── icon.svg                   # Favicon SVG (flor del no-me-olvides)
+│   ├── not-found.tsx              # 404 de respaldo sin idioma (p. ej. /foto.png)
+│   └── icon.png · apple-icon.png · favicon.ico   # Iconos: la flor de marca
 │
 ├── components/                    # Componentes React
 │   ├── Map.tsx · MapWrapper.tsx · Filters.tsx · LocalityList.tsx
 │   ├── HomeHero.tsx · HomeIntro.tsx · HomeShell.tsx · HomeAyuntamientosTeaser.tsx
 │   ├── ContactForm.tsx · CookieBanner.tsx · ManageCookiesButton.tsx
-│   ├── LegalPage.tsx · PrivacyContent.tsx
+│   ├── LegalPage.tsx · PrivacyContent.tsx · CouncilsPage.tsx · NotFoundContent.tsx
 │   ├── LocaleSwitcher.tsx · MobileMenu.tsx · MobilePanel.tsx · Modal.tsx
 │   ├── FlowerIcon.tsx · Footer.tsx  # Compartidos web pública + admin
 │   └── admin/
@@ -948,16 +951,17 @@ CREATE POLICY "admin_delete" ON contact_messages
 ├── lib/                           # Utilidades
 │   ├── supabase.ts · supabase-browser.ts · supabase-server.ts · supabase-admin.ts
 │   ├── seo.ts                     # generateMetadata(), sitemap, JSON-LD (ver 10.1)
-│   ├── locality.ts                # pickLocalized() — fallback ES→EN/FR
+│   ├── locality.ts                # pickLocalized() — elige ES o EN
 │   └── types.ts
 │
 ├── messages/                      # Traducciones (next-intl)
 │   ├── es.json                    # Por defecto, sin prefijo de URL
-│   ├── en.json
-│   └── fr.json                    # Solo UI; descripciones/audios caen a EN
+│   └── en.json
 │
 ├── public/                        # Assets estáticos
-│   ├── logo-tunomeolvides.png     # Logo cabecera (recortado a pura imagen)
+│   ├── logo-tunomeolvides-emblema.png   # Cabecera: el dibujo del logo, sin texto
+│   ├── logo-tunomeolvides-completo.png  # Logo completo (JSON-LD Organization)
+│   ├── og-image-v5.jpg            # Imagen para compartir (1800×945, JPG)
 │   ├── hero-pueblo.png            # Foto de fondo del hero de la home
 │   ├── ods11.png                  # Icono ODS 11 en /ayuntamientos
 │   └── ...
@@ -1234,6 +1238,31 @@ CREATE POLICY "admin_delete" ON contact_messages
             <td>Sección "Quién soy" eliminada de <code>/sobre</code> (ES/EN/FR), pospuesta</td>
             <td>La promotora detectó datos erróneos en el bloque, entre ellos una mención a "Laguna Experience" — pasa a ser norma permanente no mencionar esa web en ningún proyecto (es de otro programador, aunque el hecho biográfico sea real). Se retira el bloque completo hasta que redacte una versión corregida.</td>
           </tr>
+                  <tr>
+            <td>2026-11-23</td>
+            <td>Imagen para compartir (Open Graph): el sol naranja de la ilustración antigua se sustituye por la flor; pasa a <strong>JPG</strong> sin transparencia y a <strong>1800×945</strong> desde una versión de alta resolución de la promotora. Añadido <code>app/favicon.ico</code></td>
+            <td>Al compartir la web por WhatsApp salía el sol, porque el cambio del 2026-11-10 no había tocado esta imagen. La PNG con transparencia (253 KB) salía pixelada en WhatsApp. <strong>Regla: la imagen para compartir, siempre en JPG, sin alfa, muy por debajo de 300 KB y con nombre nuevo cada vez que cambie</strong> (WhatsApp guarda copia por URL). La flor verde de los resultados de Google es caché de Google anterior al 10 de noviembre y se renueva sola</td>
+          </tr>
+          <tr>
+            <td>2026-11-23</td>
+            <td><strong>Logo definitivo de la marca</strong>: el pueblo en acuarela con la flor de marca como sol y «Tú no me olvides» debajo. En cabecera (<code>logo-tunomeolvides-emblema.png</code>, solo el dibujo), JSON-LD (<code>logo-tunomeolvides-completo.png</code>) e imagen para compartir (<code>og-image-v5.jpg</code>). Se retira el logo antiguo de papel</td>
+            <td>Diseñado por la promotora. Del original se quitó, a petición suya, la línea inferior «— TU NO ME OLVIDES —» (sin tilde y repetía el título). Archivos maestros de flor y logo en <code>Escritorio/TUNOMEOLVIDES/FLOR - simbolo de marca/</code>; borrados los del estilo antiguo</td>
+          </tr>
+          <tr>
+            <td>2026-11-23</td>
+            <td><strong>Página «no encontrada» (404) propia de la marca</strong>, con el logo y la flor, y 404 real para toda dirección inexistente. <code>[locale]/layout.tsx</code> comprueba el idioma con <code>hasLocale</code></td>
+            <td>Antes, una dirección con punto (<code>/foto.png</code>) se tomaba como idioma y devolvía la portada con estado 200, un «soft 404» para Google. Con esta versión de Next (16.2.4), cuando una página llama a <code>notFound()</code> el servidor entrega el 404 correcto y el navegador monta el contenido; ya pasaba antes en <code>/en/ayuntamientos</code></td>
+          </tr>
+          <tr>
+            <td>2026-11-23</td>
+            <td><strong>Se retira el francés</strong>: la web queda en español e inglés. Fuera <code>messages/fr.json</code>, las 4 páginas francesas y todo texto francés (menú, pie, cookies, mapa, privacidad, SEO, sitemap, selector). <code>/fr/...</code> redirige (308) a su equivalente en inglés</td>
+            <td>Decisión de la promotora. Se redirige al inglés por ser el idioma más cercano para un visitante francófono, sin perder lo ya indexado. Revierte la decisión que añadió el francés (ver la fila correspondiente más arriba)</td>
+          </tr>
+          <tr>
+            <td>2026-11-23</td>
+            <td><strong>Página para ayuntamientos en inglés</strong>: <code>/en/for-councils</code>, con enlace «For councils» en el menú inglés. Textos ES/EN en <code>components/CouncilsPage.tsx</code>, metadatos con <code>buildPageMetadata</code> y entrada en el sitemap</td>
+            <td>Petición de la promotora: ninguna pestaña sin versión en inglés. Traducción de Claude, pendiente de revisión por la promotora</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -1241,6 +1270,22 @@ CREATE POLICY "admin_delete" ON contact_messages
     <!-- 10 -->
     <section id="siguiente">
       <h2>10. Siguientes pasos</h2>
+
+      <div class="box">
+        <div class="box-title">📍 Dónde lo dejamos — 23 de noviembre de 2026</div>
+        <p>
+          Marca cerrada: <strong>flor</strong> (símbolo plano, pétalos <code>#4F8AD0</code>, sol blanco, botón
+          <code>#E9AE2E</code>) y <strong>logo definitivo</strong> (pueblo en acuarela con la flor como sol),
+          aplicados en toda la web. Web <strong>solo en español e inglés</strong> (14 páginas, sitemap con 14 URL),
+          con página para ayuntamientos en los dos idiomas y 404 propia. Todo desplegado y verificado en vivo.
+        </p>
+        <p>
+          <strong>Pendiente para la promotora:</strong> revisar la traducción de <code>/en/for-councils</code>.
+          <strong>Despliegues:</strong> si el build de Vercel falla con
+          <code>next/font/google queries have exactly one entry</code>, reintentar sin tocar nada
+          (<code>vercel redeploy &lt;url&gt; --target production</code>); a veces hacen falta dos reintentos.
+        </p>
+      </div>
 
       <p>
         El setup técnico está completo y desplegado en <code>https://tunomeolvides.es</code>.
@@ -1270,17 +1315,17 @@ CREATE POLICY "admin_delete" ON contact_messages
       <ol>
         <li>
           <strong>Metadatos dinámicos por página</strong>: <code>lib/seo.ts</code> centraliza título,
-          descripción, Open Graph y <em>alternates</em> (canonical + hreflang es/en/fr) por página.
+          descripción, Open Graph y <em>alternates</em> (canonical + hreflang es/en) por página.
           Home, "Sobre" y "Contacto" usan <code>generateMetadata()</code> con next-intl (namespaces
           <code>home</code>/<code>about</code>/<code>contact</code>, claves <code>metaTitle</code>/
-          <code>metaDescription</code>); las 9 páginas legales (aviso, privacidad, cookies × 3
+          <code>metaDescription</code>); las 6 páginas legales (aviso, privacidad, cookies × 2
           idiomas) usan <code>export const metadata</code> estático, ya que su contenido también
           está escrito directamente por idioma. El layout raíz define <code>metadataBase</code> y
           un <em>title template</em> (<code>%s · Tú no me olvides</code>).
         </li>
         <li>
-          <strong>Sitemap.xml automático</strong> (<code>app/sitemap.ts</code>): enumera las 6
-          páginas estáticas (Home, Sobre, Contacto, 3 legales) en los 3 idiomas, con
+          <strong>Sitemap.xml automático</strong> (<code>app/sitemap.ts</code>): enumera las 7
+          páginas estáticas (Home, Sobre, Ayuntamientos, Contacto, 3 legales) en los 2 idiomas, con
           <code>alternates.languages</code> por entrada. <strong>No incluye localidades
           individuales</strong> — ver nota más abajo.
         </li>
@@ -1296,7 +1341,7 @@ CREATE POLICY "admin_delete" ON contact_messages
           <code>buildHomeJsonLd()</code> (<code>lib/seo.ts</code>) a partir de la misma consulta que
           ya alimenta el mapa, reutilizando <code>pickLocalized()</code> (extraída de
           <code>components/Map.tsx</code> a <code>lib/locality.ts</code> para no duplicar la regla
-          de fallback ES→EN/FR).
+          de elección ES/EN).
         </li>
       </ol>
 
@@ -1375,7 +1420,7 @@ CREATE POLICY "admin_delete" ON contact_messages
     <footer>
       <p>
         <span class="flower">✿</span> Tú no me olvides · Documentación viva ·
-        Última actualización 18 de noviembre de 2026 ·
+        Última actualización 23 de noviembre de 2026 ·
         Este documento es parte del proyecto y debe mantenerse actualizado en cada cambio relevante.
       </p>
     </footer>
